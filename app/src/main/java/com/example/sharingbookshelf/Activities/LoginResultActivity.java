@@ -23,8 +23,7 @@ public class LoginResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_reginfor);
+        setContentView(R.layout.activity_main);
         textView_get = findViewById(R.id.사진api);
         textView_get.setText("");
 

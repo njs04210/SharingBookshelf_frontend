@@ -46,8 +46,8 @@
                     style="@style/headerText"
                     android:layout_gravity="center"
                     android:layout_marginTop="40dp"
-                    android:text="Register Information"
-                    android:textSize="35dp"/>
+                    android:text="회원정보 입력"
+                    android:textSize="20dp"/>
 
                 <include layout="@layout/layout_reginfor" />
 

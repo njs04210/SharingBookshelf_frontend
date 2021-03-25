@@ -20,30 +20,43 @@
 <!--            android:layout_marginTop="@dimen/loginViewsMargin"-->
 <!--            android:text="회원정보를 입력하세요" />-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputEmail"
-            style="@style/parent"
-            android:layout_marginTop="@dimen/loginViewsMargin">
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textInputEmail"-->
+<!--            style="@style/parent"-->
+<!--            android:layout_marginTop="@dimen/loginViewsMargin">-->
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_email"
-                style="@style/modifiedEditText"
-                android:hint="@string/login_email_hint"
-                android:inputType="textEmailAddress"
-                android:maxLines="1" />
-        </com.google.android.material.textfield.TextInputLayout>
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/login_email"-->
+<!--                style="@style/modifiedEditText"-->
+<!--                android:hint="@string/login_email_hint"-->
+<!--                android:inputType="textEmailAddress"-->
+<!--                android:maxLines="1" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInputPassword"
+        <Button
+            android:id="@+id/reg_childage"
             style="@style/parent"
-            android:layout_marginTop="@dimen/loginViewsMargin">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_password"
-                style="@style/modifiedEditText"
-                android:hint="@string/login_password_hint"
-                android:maxLines="1"
-                android:inputType="textPassword"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_marginTop="20dp"
+            android:text="자녀 나이 입력"/>
+
+        <Button
+            style="@style/parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="15dp"
+            android:text="주소지 입력"/>
+
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:id="@+id/textInputPassword"-->
+<!--            style="@style/parent"-->
+<!--            android:layout_marginTop="@dimen/loginViewsMargin">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:id="@+id/login_password"-->
+<!--                style="@style/modifiedEditText"-->
+<!--                android:hint="@string/login_password_hint"-->
+<!--                android:maxLines="1"-->
+<!--                android:inputType="textPassword"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
 
 <!--        <TextView-->
 <!--            style="@style/viewParent"-->
@@ -54,13 +67,13 @@
 <!--            android:onClick="viewForgotPAssword"-->
 <!--            android:layout_marginTop="10dp"/>-->
 
-        <Button
-            android:id="@+id/reginfor_button"
-            style="@style/loginButton"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/loginViewsMargin"
-            android:onClick="button_login"
-            android:text="입력 완료" />
+<!--        <Button-->
+<!--            android:id="@+id/reginfor_button"-->
+<!--            style="@style/loginButton"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="@dimen/loginViewsMargin"-->
+<!--            android:onClick="button_login"-->
+<!--            android:text="입력 완료" />-->
 
         <Button
             android:id="@+id/camera_button"
