@@ -29,10 +29,12 @@ public class TakingPhotoActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+    //로그아웃
     private void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
 
+    //탈퇴
     private void revokeAccess() {
         mAuth.getCurrentUser().delete();
     }

@@ -10,7 +10,11 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.JoinData;
+import com.example.sharingbookshelf.Models.JoinResponse;
 import com.example.sharingbookshelf.R;
+import com.example.sharingbookshelf.RetrofitClient;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -28,10 +32,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MainActivity extends AppCompatActivity {
-    //private TextInputEditText login_email, login_password;
-    //private TextView login_google;
-    //private TextView signUp;
 
     /* google login */
     private FirebaseAuth mAuth;
@@ -40,15 +45,23 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 9001;
     private SignInButton login_google;
 
+    private RetrofitServiceApi retrofitServiceApi;
+    private int statusCode;
+
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       /* login_email = findViewById(R.id.login_email);
-        login_password = findViewById(R.id.login_password);
-        signUp = findViewById(R.id.login_signUp);*/
         login_google = findViewById(R.id.signInButton);
 
         // Configure Google Sign In
@@ -66,15 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 signIn();
             }
         });
-
-        /*//Sign Up Button
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class); //1번 파라미터 : 메인 액티비티 자신, 2번 : 호출할 클래스
-                startActivity(intent); //intent => Activity끼리 서로 호출하기 위해서 필요한 통신장치.
-            }
-        });*/
     }
 
     //활동을 초기화할 때 현재 로그인 상태인지 확인
@@ -86,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
         updateUI(currentUser);
     }
 
-    // [START onactivityresult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -109,11 +112,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // [START auth_with_google]
     private void firebaseAuthWithGoogle(String idToken) {
-        // [START_EXCLUDE silent]
         //showProgressBar();
-        // [END_EXCLUDE]
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -123,7 +123,24 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            retrofitServiceApi = RetrofitClient.getRetrofit().create(RetrofitServiceApi.class);
+                            Call<JoinResponse> call = retrofitServiceApi.userJoin(new JoinData(user.getEmail(), user.getDisplayName(), user.getUid()));
+                            call.enqueue(new Callback<JoinResponse>() {
+                                @Override
+                                public void onResponse(Call<JoinResponse> call, Response<JoinResponse> response) {
+                                    System.out.println(response.code());
+                                    JoinResponse result = response.body();
+                                    setStatusCode(result.getCode());
+                                    updateUI(user);
+                                }
+
+                                @Override
+                                public void onFailure(Call<JoinResponse> call, Throwable t) {
+                                    System.out.println(t);
+                                    updateUI(null);
+                                }
+                            });
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
@@ -131,13 +148,10 @@ public class MainActivity extends AppCompatActivity {
                             updateUI(null);
                         }
 
-                        // [START_EXCLUDE]
                         //hideProgressBar();
-                        // [END_EXCLUDE]
                     }
                 });
     }
-    // [END auth_with_google]
 
     private void signIn() {
         mGoogleSignInClient.signOut();
@@ -146,11 +160,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        int code = getStatusCode();
         if (user != null) {
-            Intent intent = new Intent(this, TakingPhotoActivity.class);
-            startActivity(intent);
-            finish();
+            if (code == 200) { //기존회원
+                Intent intent = new Intent(this, HomeActivity.class);
+                startActivity(intent);
+                finish();
+            } else if (code == 201) { //신규회원은 자녀선택부터
+                Intent intent = new Intent(this, SelectChildAgeActivity.class);
+                startActivity(intent);
+                finish();
+            }
+
         }
     }
+
 
 }
