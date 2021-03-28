@@ -13,7 +13,7 @@
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
         <activity android:name=".Activities.HomeActivity"></activity>
-        <activity android:name=".Activities.SelectChildAgeActivity" />
+        <activity android:name=".Activities.SelectAgeAreaActivity" />
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">

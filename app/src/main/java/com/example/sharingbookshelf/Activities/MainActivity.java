@@ -7,15 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.JoinData;
 import com.example.sharingbookshelf.Models.JoinResponse;
 import com.example.sharingbookshelf.R;
 import com.example.sharingbookshelf.RetrofitClient;
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -24,8 +21,6 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -167,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             } else if (code == 201) { //신규회원은 자녀선택부터
-                Intent intent = new Intent(this, SelectChildAgeActivity.class);
+                Intent intent = new Intent(this, SelectAgeAreaActivity.class);
                 startActivity(intent);
                 finish();
             }

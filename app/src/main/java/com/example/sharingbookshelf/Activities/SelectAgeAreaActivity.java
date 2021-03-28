@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.sharingbookshelf.R;
 
-public class SelectChildAgeActivity extends AppCompatActivity {
+public class SelectAgeAreaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
