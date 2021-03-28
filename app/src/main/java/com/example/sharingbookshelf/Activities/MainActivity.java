@@ -44,14 +44,14 @@ public class MainActivity extends AppCompatActivity {
 
         if (view.getId() == R.id.login_button) {
             //Intent intent = new Intent(MainActivity.this, LoginResultActivity.class);
-            Intent intent = new Intent(MainActivity.this, RegisterInforActivity.class);
+            Intent intent = new Intent(MainActivity.this, SelectAgeAreaActivity.class);
             intent.putExtra("email", email);
             intent.putExtra("password", password);
             Toast.makeText(MainActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
             startActivity(intent);
         } else if (view.getId() == R.id.login_button_Google) {
             //Intent intent = new Intent(MainActivity.this, LoginResultActivity.class);
-            Intent intent = new Intent(MainActivity.this, RegisterInforActivity.class);
+            Intent intent = new Intent(MainActivity.this, SelectAgeAreaActivity.class);
             startActivity(intent);
         }
     }
