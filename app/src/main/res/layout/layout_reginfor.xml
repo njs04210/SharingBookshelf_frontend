@@ -6,7 +6,7 @@
     app:cardCornerRadius="@dimen/loginCardRadius"
     android:elevation="5dp"
     android:layout_gravity="center"
-    android:layout_marginTop="@dimen/loginViewsMargin"
+    android:layout_marginTop="30dp"
     android:layout_marginBottom="@dimen/loginViewsMargin"
     android:background="@color/whiteCardColor">
 
@@ -15,124 +15,118 @@
         android:layout_gravity="center"
         android:padding="@dimen/loginViewsMargin">
 
-<!--        <TextView-->
-<!--            style="@style/headerTextPrimary"-->
-<!--            android:layout_marginTop="@dimen/loginViewsMargin"-->
-<!--            android:text="회원정보를 입력하세요" />-->
-
 <!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/textInputEmail"-->
-<!--            style="@style/parent"-->
-<!--            android:layout_marginTop="@dimen/loginViewsMargin">-->
+<!--            android:id="@+id/reg_childAge2"-->
+<!--            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="80dp"-->
+<!--            android:hint="자녀의 나이를 선택하세요">-->
 
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/login_email"-->
-<!--                style="@style/modifiedEditText"-->
-<!--                android:hint="@string/login_email_hint"-->
-<!--                android:inputType="textEmailAddress"-->
-<!--                android:maxLines="1" />-->
+<!--            <AutoCompleteTextView-->
+<!--                android:id="@+id/showage"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:inputType="none"/>-->
 <!--        </com.google.android.material.textfield.TextInputLayout>-->
 
-        <Button
-            android:id="@+id/reg_childage"
-            style="@style/parent"
-            android:layout_marginTop="20dp"
-            android:text="자녀 나이 입력"/>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp">
 
-        <Button
-            style="@style/parent"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="15dp"
-            android:text="주소지 입력"/>
+            <TextView
+                android:id="@+id/childage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="자녀나이"
+                android:textColor="#147AFE"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
+            <Spinner
+                android:id="@+id/reg_childAge"
+                style="@style/SpinnerStyle1"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/childage"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/spinner_background"
+                android:scrollbarThumbVertical="@drawable/scrollbar"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"
+                android:verticalScrollbarPosition="right" />
+        </RelativeLayout>
 
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:id="@+id/textInputPassword"-->
-<!--            style="@style/parent"-->
-<!--            android:layout_marginTop="@dimen/loginViewsMargin">-->
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:id="@+id/login_password"-->
-<!--                style="@style/modifiedEditText"-->
-<!--                android:hint="@string/login_password_hint"-->
-<!--                android:maxLines="1"-->
-<!--                android:inputType="textPassword"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
 
-<!--        <TextView-->
-<!--            style="@style/viewParent"-->
-<!--            android:text="Forgot Password?"-->
-<!--            android:textColor="@color/primaryTextColor"-->
-<!--            android:textSize="@dimen/newsMoreTextSize"-->
-<!--            android:layout_gravity="end"-->
-<!--            android:onClick="viewForgotPAssword"-->
-<!--            android:layout_marginTop="10dp"/>-->
+            <TextView
+                android:id="@+id/text_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="거주지역"
+                android:textColor="#1291FF"
+                android:textSize="15dp"
+                android:textStyle="bold"/>
 
-<!--        <Button-->
-<!--            android:id="@+id/reginfor_button"-->
-<!--            style="@style/loginButton"-->
-<!--            android:layout_gravity="center_horizontal"-->
-<!--            android:layout_marginTop="@dimen/loginViewsMargin"-->
-<!--            android:onClick="button_login"-->
-<!--            android:text="입력 완료" />-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/input_address"
+                android:layout_width="180dp"
+                android:layout_height="40dp"
+                android:layout_toRightOf="@+id/text_address"
+                android:layout_marginLeft="10dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/spinner_background"
+                    android:inputType="text"
+                    android:minLines="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/reg_address"
+                style="@style/parent"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@+id/input_address"
+                android:background="@color/primaryTextColor"
+                android:text="검색"
+                android:textAlignment="center"
+                android:textSize="12dp"
+                android:textColor="#ffffff"
+                android:textStyle="bold"/>
+
+        </RelativeLayout>
+
 
         <Button
             android:id="@+id/camera_button"
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="50dp"
             android:onClick="button_login"
             android:text="책장 인식하러 가기" />
 
         <TextView
-            android:id="@+id/login_signUp"
+            android:id="@+id/homeView"
             style="@style/parent"
             android:layout_marginTop="@dimen/loginViewsMargin"
+            android:layout_marginBottom="30dp"
             android:background="?attr/selectableItemBackground"
             android:onClick="viewRegisterClicked"
             android:text="홈으로 건너뛰기"
             android:textAlignment="center"
             android:textColor="@color/primaryTextColor"
             android:textStyle="bold" />
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/login_Google"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            android:orientation="horizontal"-->
-<!--            android:gravity="center"-->
-<!--            android:background="@drawable/bin_darkblue"-->
-<!--            android:paddingLeft="12dp"-->
-<!--            android:paddingRight="12dp"-->
-<!--            android:layout_marginTop="@dimen/loginViewsMargin"-->
-<!--            android:onClick="button_login"-->
-<!--            android:weightSum="1">-->
-<!--&lt;!&ndash;            <ImageView&ndash;&gt;-->
-<!--                android:layout_width="30dp"-->
-<!--                android:layout_height="30dp"-->
-<!--                android:background="#ffffff"-->
-<!--                android:src="@drawable/logo_google"-->
-<!--                android:gravity="center" />-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/login_button_Google"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="38dp"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_weight="1"-->
-<!--                android:gravity="center"-->
-<!--                android:text="Google 계정으로 로그인"-->
-<!--                android:textColor="#ffffff" />-->
-<!--        </LinearLayout>-->
-        <!--<Button
-            android:id="@+id/login_Google"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/loginViewsMargin"
-            android:background="@drawable/bin_darkblue"
-            android:onClick="button_login"
-            android:text="Google 계정으로 로그인"
-            android:textColor="#ffffff" />-->
-
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

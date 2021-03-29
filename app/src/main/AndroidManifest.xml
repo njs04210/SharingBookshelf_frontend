@@ -25,8 +25,11 @@
         <activity
             android:name=".Activities.RegisterActivity"
             android:theme="@style/SplashTheme" ></activity>
-        <activity android:name=".Activities.RegisterInforActivity"></activity>
+        <activity android:name=".Activities.RegisterInforActivity"
+            android:theme="@style/StatusBar"></activity>
         <activity android:name=".Activities.TakingPhotoActivity"
+            android:theme="@style/Theme.AppCompat"></activity>
+        <activity android:name=".Activities.HomeActivity"
             android:theme="@style/Theme.AppCompat"></activity>
     </application>
 
