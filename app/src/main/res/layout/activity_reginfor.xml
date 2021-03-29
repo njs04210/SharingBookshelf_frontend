@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/loginParent"
     android:orientation="vertical"
-    tools:context="com.example.sharingbookshelf.Activities.MainActivity">
+    tools:context="com.example.sharingbookshelf.Activities.RegisterInforActivity">
 
     <ScrollView style="@style/parent">
 
@@ -19,6 +19,7 @@
 
                 <LinearLayout
                     style="@style/parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="3"
                     android:background="@drawable/login_shape_bk"
                     android:orientation="vertical">
@@ -46,8 +47,8 @@
                     style="@style/headerText"
                     android:layout_gravity="center"
                     android:layout_marginTop="40dp"
-                    android:text="Register Information"
-                    android:textSize="35dp"/>
+                    android:text="회원정보 입력"
+                    android:textSize="20dp"/>
 
                 <include layout="@layout/layout_reginfor" />
 
