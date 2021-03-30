@@ -19,7 +19,6 @@ public class SelectAgeAreaActivity extends Activity {
     String[] ages = {"1세","2세","3세","4세","5세","6세","7세","8세","9세","10세",
             "11세","12세","13세","14세","15세","16세","17세","18세"};
 
-
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
 
     @Override
