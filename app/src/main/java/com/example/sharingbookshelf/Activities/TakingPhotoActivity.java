@@ -21,6 +21,7 @@ public class TakingPhotoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_taking_photo);
 
         IntentIntegrator integrator = new IntentIntegrator(this);
+        integrator.setCaptureActivity(ZxingActivity.class); //세로모드
         integrator.setOrientationLocked(false);
         integrator.setPrompt("등록할 책의 바코드를 읽어주세요.");
         integrator.setBarcodeImageEnabled(true);
