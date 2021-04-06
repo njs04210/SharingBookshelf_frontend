@@ -10,21 +10,33 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.LoginResponse;
+import com.example.sharingbookshelf.Models.SetUserInfoResponse;
+import com.example.sharingbookshelf.Models.UserInfoData;
 import com.example.sharingbookshelf.R;
+import com.example.sharingbookshelf.RetrofitClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SelectAgeAreaActivity extends Activity {
 
+    private final String TAG = "아이북쉐어";
     private Button btn_camera, btn_address;
     private Spinner sp_age;
     private TextView et_address;
-    private String[] ages = {"1세","2세","3세","4세","5세","6세","7세","8세","9세","10세",
+    private final String[] ages = {"1세","2세","3세","4세","5세","6세","7세","8세","9세","10세",
             "11세","12세","13세","14세","15세","16세","17세","18세"};
 
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
+    private RetrofitServiceApi retrofitServiceApi;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,19 +50,6 @@ public class SelectAgeAreaActivity extends Activity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, ages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_age.setAdapter(adapter);
-
-        /*sp_age.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            // 선택된 상태
-           @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                text.setText(ages[position]);
-            }
-            // 선택되지 않은 상태
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                text.setText("자녀 나이를 입력하세요");
-            }
-        });*/
 
         // 주소지 설정 팝업
         btn_address = (Button)findViewById(R.id.reg_address);
@@ -75,7 +74,6 @@ public class SelectAgeAreaActivity extends Activity {
         });
     }
 
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -95,6 +93,8 @@ public class SelectAgeAreaActivity extends Activity {
 
         String age = sp_age.getSelectedItem().toString();
         String address = et_address.getText().toString();
+        String nickname = "안녕";
+        int sex = 1; //1은 여자 0은 남자
 
         boolean cancel = false;
         View focusView = null;
@@ -120,7 +120,31 @@ public class SelectAgeAreaActivity extends Activity {
         if(cancel) {
             focusView.requestFocus();
         } else {
-            //startCamera();
+            startSetInfo(new UserInfoData(nickname, age, address));
         }
+    }
+
+    private void startSetInfo(UserInfoData userInfo) {
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        System.out.println(MainActivity.getJWT());
+        Call<SetUserInfoResponse> call = retrofitServiceApi.setUserInfo(userInfo);
+        call.enqueue(new Callback<SetUserInfoResponse>() {
+            @Override
+            public void onResponse(Call<SetUserInfoResponse> call, Response<SetUserInfoResponse> response) {
+                Log.d(TAG, response.body().getMsg());
+                updateUI();
+            }
+
+            @Override
+            public void onFailure(Call<SetUserInfoResponse> call, Throwable t) {
+                Log.e(TAG, "회원정보 등록 응답 못받음", t);
+            }
+        });
+    }
+
+    private void updateUI() {
+        Intent intent = new Intent(this, TakingPhotoActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
