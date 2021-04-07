@@ -7,13 +7,14 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcherr"
         android:label="아이북쉐어"
         android:roundIcon="@mipmap/ic_launcherr_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
-        android:usesCleartextTraffic="true"
-        android:hardwareAccelerated="true">
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.BarcodeActivity"></activity>
         <activity
             android:name=".Activities.ZxingActivity"
             android:screenOrientation="fullSensor"
@@ -24,27 +25,22 @@
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
+
+        </activity>
+        <activity
+            android:name=".Activities.SelectAgeAreaActivity"
+            android:theme="@style/StatusBar"></activity>
+        <activity android:name=".Activities.WebViewActivity" />
+        <activity
+            android:name=".Activities.TakingPhotoActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.AppCompat"
+            tools:replace="screenOrientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar">
-        </activity>
-        <activity android:name=".Activities.WebViewActivity" />
-        <activity android:name=".Activities.TakingPhotoActivity"
-            android:theme="@style/Theme.AppCompat"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation">
-            <!--<intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
-        </activity>
-
     </application>
-
 
 </manifest>

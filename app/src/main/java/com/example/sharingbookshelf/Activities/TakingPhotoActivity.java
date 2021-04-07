@@ -1,43 +1,59 @@
 package com.example.sharingbookshelf.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.ImageDecoder;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
 import com.example.sharingbookshelf.R;
-import com.google.zxing.integration.android.IntentIntegrator;
-import com.google.zxing.integration.android.IntentResult;
+
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TakingPhotoActivity extends AppCompatActivity {
+    private static final String TAG = "난리났네난리났어";
+
+    private ImageView iv_photo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taking_photo);
 
-        IntentIntegrator integrator = new IntentIntegrator(this);
-        integrator.setCaptureActivity(ZxingActivity.class); //세로모드
-        integrator.setOrientationLocked(false);
-        integrator.setPrompt("등록할 책의 바코드를 읽어주세요.");
-        integrator.setBarcodeImageEnabled(true);
-        integrator.initiateScan();
-        //new IntentIntegrator(this).initiateScan();
+        Button btn_photo = findViewById(R.id.btn_barcode);
+        iv_photo = findViewById(R.id.iv_photo);
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if(result != null) {
-            if(result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+        btn_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (v.getId() == R.id.btn_barcode) {
+                    Intent intent = new Intent(TakingPhotoActivity.this, BarcodeActivity.class);
+                    startActivity(intent);
+                }
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
+        });
     }
-
 }
+
+
+
+
+
+
