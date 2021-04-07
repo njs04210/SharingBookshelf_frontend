@@ -28,14 +28,12 @@ import retrofit2.Response;
 public class SelectAgeAreaActivity extends Activity {
 
     private final String TAG = "아이북쉐어";
-    private Button btn_camera, btn_address;
     private Spinner sp_age;
     private TextView et_address;
     private final String[] ages = {"1세","2세","3세","4세","5세","6세","7세","8세","9세","10세",
             "11세","12세","13세","14세","15세","16세","17세","18세"};
 
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
-    private RetrofitServiceApi retrofitServiceApi;
 
 
     @Override
@@ -52,8 +50,8 @@ public class SelectAgeAreaActivity extends Activity {
         sp_age.setAdapter(adapter);
 
         // 주소지 설정 팝업
-        btn_address = (Button)findViewById(R.id.reg_address);
-        btn_camera = (Button)findViewById(R.id.camera_button);
+        Button btn_address = (Button) findViewById(R.id.reg_address);
+        Button btn_camera = (Button) findViewById(R.id.camera_button);
         et_address = findViewById(R.id.et_address);
 
         if (btn_address != null) {
@@ -77,15 +75,13 @@ public class SelectAgeAreaActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        switch (requestCode) {
-            case SEARCH_ADDRESS_ACTIVITY:
-                if (resultCode == RESULT_OK) {
-                    String data = intent.getExtras().getString("data");
-                    if (data != null) {
-                        et_address.setText(data);
-                    }
+        if (requestCode == SEARCH_ADDRESS_ACTIVITY) {
+            if (resultCode == RESULT_OK) {
+                String data = intent.getExtras().getString("data");
+                if (data != null) {
+                    et_address.setText(data);
                 }
-                break;
+            }
         }
     }
 
@@ -125,7 +121,7 @@ public class SelectAgeAreaActivity extends Activity {
     }
 
     private void startSetInfo(UserInfoData userInfo) {
-        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         System.out.println(MainActivity.getJWT());
         Call<SetUserInfoResponse> call = retrofitServiceApi.setUserInfo(userInfo);
         call.enqueue(new Callback<SetUserInfoResponse>() {

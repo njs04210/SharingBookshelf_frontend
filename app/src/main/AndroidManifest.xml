@@ -14,7 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.BarcodeActivity"></activity>
+        <activity android:name=".Activities.BookDetailsPopupActivity"></activity>
+        <activity android:name=".Activities.SelfAddBookPopupActivity" />
+        <activity android:name=".Activities.BarcodeActivity" />
         <activity
             android:name=".Activities.ZxingActivity"
             android:screenOrientation="fullSensor"
@@ -24,12 +26,10 @@
         <activity android:name=".Activities.HomeActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/SplashTheme">
-
-        </activity>
+            android:theme="@style/SplashTheme" />
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar"></activity>
+            android:theme="@style/StatusBar" />
         <activity android:name=".Activities.WebViewActivity" />
         <activity
             android:name=".Activities.TakingPhotoActivity"
@@ -38,6 +38,7 @@
             tools:replace="screenOrientation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
