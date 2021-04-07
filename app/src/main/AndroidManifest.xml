@@ -14,8 +14,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.BookDetailsPopupActivity"></activity>
-        <activity android:name=".Activities.SelfAddBookPopupActivity" />
+        <activity android:name=".Activities.BookDetailsPopupActivity"/>
+        <activity android:name=".Activities.SelfAddBookPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".Activities.BarcodeActivity" />
         <activity
             android:name=".Activities.ZxingActivity"

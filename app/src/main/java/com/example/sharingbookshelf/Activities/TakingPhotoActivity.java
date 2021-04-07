@@ -33,9 +33,14 @@ public class TakingPhotoActivity extends AppCompatActivity {
                     Intent intent = new Intent(TakingPhotoActivity.this, BarcodeActivity.class);
                     startActivityForResult(intent, BARCODE_ACTIVITY);
                 }
+            }
+        });
+
+        btn_selfAddBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 if (v.getId() == R.id.btn_selfAddBook) {
                     Intent intent = new Intent(TakingPhotoActivity.this, SelfAddBookPopupActivity.class);
-                    intent.putExtra("data", "Test Popup");
                     startActivityForResult(intent, SELFADD_ACTIVITY);
                 }
             }
@@ -56,9 +61,9 @@ public class TakingPhotoActivity extends AppCompatActivity {
         }
         if (requestCode == SELFADD_ACTIVITY) {
             if (resultCode == RESULT_OK) {
-                String data = intent.getExtras().getString("data");
+                String data = intent.getExtras().getString("ISBN");
                 if (data != null) {
-                    //et_address.setText(data);
+                    Log.d(TAG, data);
                 }
             }
         }
