@@ -51,7 +51,7 @@ public class SelectAgeAreaActivity extends Activity {
 
         // 주소지 설정 팝업
         Button btn_address = (Button) findViewById(R.id.reg_address);
-        Button btn_camera = (Button) findViewById(R.id.camera_button);
+        Button btn_camera = (Button) findViewById(R.id.btn_home);
         et_address = findViewById(R.id.et_address);
 
         if (btn_address != null) {

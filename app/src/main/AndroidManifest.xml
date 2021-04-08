@@ -30,18 +30,19 @@
             android:theme="@style/SplashTheme" />
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar" />
+            android:theme="@style/StatusBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Activities.WebViewActivity" />
         <activity
             android:name=".Activities.TakingPhotoActivity"
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat"
             tools:replace="screenOrientation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
