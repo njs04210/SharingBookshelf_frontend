@@ -27,14 +27,11 @@
         <activity android:name=".Activities.HomeActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/SplashTheme" />
+            android:theme="@style/SplashTheme">
+        </activity>
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
             android:theme="@style/StatusBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Activities.WebViewActivity" />
         <activity
@@ -42,7 +39,10 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat"
             tools:replace="screenOrientation">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 
