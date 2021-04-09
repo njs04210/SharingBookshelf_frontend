@@ -25,8 +25,8 @@
     <LinearLayout
         android:padding="10dp"
         android:layout_gravity="center"
-        android:layout_width="150dp"
-        android:layout_height="150dp">
+        android:layout_width="200dp"
+        android:layout_height="200dp">
         <ImageView
             android:id="@+id/iv_thumbnail"
             android:layout_width="match_parent"
@@ -99,7 +99,8 @@
         android:padding="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
