@@ -11,36 +11,109 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="53dp"
             android:background="#ff7a00"
             android:gravity="center"
-            android:text="ISBN 입력"
+            android:text="책 검색 결과"
+            android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="20sp" />
     </LinearLayout>
     <!-- //end 타이틀바 -->
-
-    <!-- Notice -->
     <LinearLayout
-        android:padding="24dp"
-        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_gravity="center"
+        android:layout_width="150dp"
+        android:layout_height="150dp">
+        <ImageView
+            android:id="@+id/iv_thumbnail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_logo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/ISBN_field"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="ISBN"
+            android:layout_weight="2"
             android:textAlignment="center"
-            android:inputType="text" />
-
+            android:text="ISBN"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tv_ISBN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000"/>
     </LinearLayout>
-    <!-- Notice -->
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:text="제목"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:text="작가"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tv_authors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAlignment="center"
+            android:text="출판사"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/tv_publisher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="#000"/>
+    </LinearLayout>
 
     <View
         android:background="#66bdbdbd"
@@ -52,16 +125,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_addBook"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
+            android:layout_weight="1"
             android:gravity="center"
-            android:onClick="mOnClose"
             android:padding="16dp"
-            android:text="확인"
+            android:text="책 추가"
+            android:textColor="#ff7a00"
+            android:textSize="15sp" />
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="돌아가기"
             android:textColor="#ff7a00"
             android:textSize="15sp" />
     </LinearLayout>

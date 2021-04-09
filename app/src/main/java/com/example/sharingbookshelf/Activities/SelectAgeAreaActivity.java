@@ -31,7 +31,6 @@ import retrofit2.Response;
 
 public class SelectAgeAreaActivity extends Activity {
 
-    private final String TAG = "아이북쉐어";
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private static final int IMAGE_VIEW_REQUEST = 10001;
     private final String[] ages = {"1세", "2세", "3세", "4세", "5세", "6세", "7세", "8세", "9세", "10세",
@@ -49,20 +48,13 @@ public class SelectAgeAreaActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_age_area);
 
-        profileView = findViewById(R.id.profileView);
-        et_nickname = findViewById(R.id.input_nickname);
-        btn_address = findViewById(R.id.reg_address);
-        tv_address = findViewById(R.id.tv_address);
-        sp_age = findViewById(R.id.reg_childAge);
-        radioGroup = findViewById(R.id.radioGroup_sex);
-        
-        Button btn_home = (Button) findViewById(R.id.btn_home);
-
-        registerProfileView(); //프로필 사진
-        selectAgeSpinner(); // 자녀 나이 선택
+        initializeView();
+        setProfile(); //프로필 사진 등록
+        selectAge(); // 자녀 나이 선택
         searchAddress(); // 주소지 설정 팝업
 
-        btn_home.setOnClickListener(new View.OnClickListener() {
+        Button btn_register = findViewById(R.id.btn_register); //등록 버튼
+        btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 attemptNext();
@@ -70,7 +62,16 @@ public class SelectAgeAreaActivity extends Activity {
         });
     }
 
-    private void registerProfileView() {
+    private void initializeView() {
+        profileView = findViewById(R.id.profileView);
+        et_nickname = findViewById(R.id.input_nickname);
+        btn_address = findViewById(R.id.reg_address);
+        tv_address = findViewById(R.id.tv_address);
+        sp_age = findViewById(R.id.reg_childAge);
+        radioGroup = findViewById(R.id.radioGroup_sex);
+    }
+
+    private void setProfile() {
         profileView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +83,7 @@ public class SelectAgeAreaActivity extends Activity {
         });
     }
 
-    private void selectAgeSpinner() {
+    private void selectAge() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, ages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_age.setAdapter(adapter);
@@ -119,7 +120,7 @@ public class SelectAgeAreaActivity extends Activity {
                     in.close();
                     profileView.setImageBitmap(img);
                 } catch (Exception e) {
-                    Log.e(TAG, "이미지 불러오기 실패", e);
+                    Log.e(MainActivity.MAIN_TAG, "이미지 불러오기 실패", e);
                 }
             } else if (resultCode == RESULT_CANCELED) {
                 Toast.makeText(this, "사진 선택 취소", Toast.LENGTH_LONG).show();
@@ -146,7 +147,7 @@ public class SelectAgeAreaActivity extends Activity {
         boolean cancel = false;
         View focusView = null;
 
-        //유효성 검사
+        //유효성 체크
         if (nickname.isEmpty()) {
             et_nickname.setError("닉네임을 입력해주세요.");
             focusView = et_nickname;
@@ -172,13 +173,13 @@ public class SelectAgeAreaActivity extends Activity {
         call.enqueue(new Callback<SetUserInfoResponse>() {
             @Override
             public void onResponse(Call<SetUserInfoResponse> call, Response<SetUserInfoResponse> response) {
-                Log.d(TAG, response.body().getMsg());
+                Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
                 updateUI();
             }
 
             @Override
             public void onFailure(Call<SetUserInfoResponse> call, Throwable t) {
-                Log.e(TAG, "회원정보 등록 응답 못받음", t);
+                Log.e(MainActivity.MAIN_TAG, "회원정보 등록 응답 못받음", t);
             }
         });
     }

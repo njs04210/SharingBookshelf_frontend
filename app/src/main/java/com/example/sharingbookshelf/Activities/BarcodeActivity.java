@@ -36,12 +36,17 @@ public class BarcodeActivity extends AppCompatActivity {
             } else {
                 //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 String ISBN = result.getContents();
-                Bundle extra = new Bundle();
+                Intent intent = new Intent(getApplicationContext(), TakingPhotoActivity.class);
+                intent.putExtra("ISBN", ISBN);
+                setResult(RESULT_OK, intent);
+                finish();
+
+                /*Bundle extra = new Bundle();
                 Intent intent = getIntent();
                 extra.putString("ISBN", ISBN);
                 intent.putExtras(extra);
                 setResult(RESULT_OK, intent);
-                finish();
+                finish();*/
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

@@ -258,7 +258,7 @@
         </RelativeLayout>
 
         <Button
-            android:id="@+id/btn_home"
+            android:id="@+id/btn_register"
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
