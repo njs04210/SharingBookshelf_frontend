@@ -4,6 +4,8 @@
     package="com.example.sharingbookshelf">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcherr_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true">
         <activity android:name=".Activities.BookDetailsPopupActivity"
             android:theme="@android:style/Theme.Dialog"/>
         <activity android:name=".Activities.SelfAddBookPopupActivity"
@@ -29,10 +32,15 @@
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
             android:theme="@style/StatusBar">
+
         </activity>
         <activity android:name=".Activities.WebViewActivity" />
         <activity
@@ -40,10 +48,7 @@
             android:screenOrientation="fullSensor"
             android:theme="@style/Theme.AppCompat"
             tools:replace="screenOrientation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
     </application>
 

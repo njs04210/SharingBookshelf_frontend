@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d(MAIN_TAG, result.getAccessToken());
                                         setStatusCode(result.getFlag());
                                         setJWT(result.getAccessToken());
-                                        Log.d(MAIN_TAG, "code : " + response.code() + "msg : " + result.getMsg() + "accessToken : " + getJWT());
+                                        Log.d(MAIN_TAG, "code : " + response.code() + "msg : " + result.getMsg() + " accessToken : " + getJWT());
                                         updateUI(user);
                                     }
 
