@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.HomeActivity">
+    tools:context=".Activities.HomeActivity"
+    android:background="@color/loginBkColor">
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -13,16 +14,62 @@
         app:layout_constraintBottom_toTopOf="@id/navigationView"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></FrameLayout>
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#FFFFFF">
+
+            <!-- 프로필 사진 불러오기 -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="30dp"
+                android:src="@drawable/icon_logo"
+                android:layout_gravity="center_vertical"
+                app:civ_border_width="2dp"
+                app:civ_border_color="@color/background"/>
+
+            <!-- 닉네임 불러오기 -->
+            <TextView
+                android:id="@+id/nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="15dp"
+                android:text="nickname"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="2dp"
+                android:text="님의 홈"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="#000000"/>
+
+        </LinearLayout>
+
+        <include layout="@layout/layout_home"/>
+
+    </FrameLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
         app:menu="@menu/menu_bottomnavigationview" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
