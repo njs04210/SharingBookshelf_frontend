@@ -15,7 +15,7 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.JoinData;
 import com.example.sharingbookshelf.Models.JoinResponse;
 import com.example.sharingbookshelf.R;
-import com.example.sharingbookshelf.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;

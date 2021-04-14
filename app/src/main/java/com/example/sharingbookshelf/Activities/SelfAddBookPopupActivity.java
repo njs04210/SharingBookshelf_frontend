@@ -1,6 +1,5 @@
 package com.example.sharingbookshelf.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 
 import android.content.Intent;
@@ -10,7 +9,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 
-import com.example.sharingbookshelf.BookApiRetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.R;
@@ -20,8 +19,6 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.google.zxing.client.result.ParsedResultType.ISBN;
 
 public class SelfAddBookPopupActivity extends Activity {
 

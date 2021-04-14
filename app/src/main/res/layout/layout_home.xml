@@ -8,24 +8,24 @@
     android:layout_marginBottom="@dimen/loginViewsMargin"
     android:background="@color/whiteCardColor"
     android:elevation="5dp"
-    android:layout_width="380dp"
+    android:layout_width="350dp"
     android:layout_height="450dp"
     app:cardCornerRadius="@dimen/loginCardRadius"
     android:layout_toEndOf="@+id/linearlayout1">
 
     <!-- 버튼 디자인 수정 필요 -> 별도의 팝업이 나타나지 않는 디자인? -->
     <Button
-        android:id="@+id/btn_book"
+        android:id="@+id/btn_AddBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right|top"
         android:layout_marginRight="15dp"
         android:layout_marginTop="10dp"
-        android:text="책 추가하기" />
+        android:text="책 추가" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <FrameLayout
             android:layout_width="match_parent"

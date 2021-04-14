@@ -1,6 +1,7 @@
 package com.example.sharingbookshelf.HttpRequest;
 
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.LoginResponse;
 import com.example.sharingbookshelf.Models.SetUserInfoResponse;
 import com.example.sharingbookshelf.Models.UserInfoData;
@@ -13,6 +14,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.QueryName;
 import retrofit2.http.Url;
@@ -29,13 +31,9 @@ public interface RetrofitServiceApi {
 
     @GET("v3/search/book")
     Call<BookApiResponse> setBookApiResponse(@Query("query") String isbn, @Query("target") String target);
-   /* @GET("api/members")
-    Call<LoginResponse> getUser(
-            @Query("id") int id);
 
-    @POST("api/members")
-    Call<JoinResponse> userJoin(
-            @Body JoinData joinData); //user/join 경로로 body에 JoinData 담아보내고 JoinResponse 구조로 받아올거*/
+    @GET("api/users/{memId}")
+    Call<GetUserInfoResponse> getUserInfo(@Path("memId") int memId);
 
 }
 

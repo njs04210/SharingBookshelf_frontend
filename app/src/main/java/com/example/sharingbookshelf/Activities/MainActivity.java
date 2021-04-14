@@ -11,7 +11,7 @@ import android.view.View;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.LoginResponse;
 import com.example.sharingbookshelf.R;
-import com.example.sharingbookshelf.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -43,24 +43,28 @@ public class MainActivity extends AppCompatActivity {
     private RetrofitServiceApi retrofitServiceApi;
 
     private int statusCode;
-
     public void setStatusCode(int statusCode) {
         this.statusCode = statusCode;
     }
-
     public int getStatusCode() {
         return statusCode;
     }
 
 
     private static String accessToken;
-
     public static String getJWT() {
         return accessToken;
     }
-
     public static void setJWT(String accessToken) {
         MainActivity.accessToken = accessToken;
+    }
+
+    private static int memId;
+    public static int getMemId() {
+        return memId;
+    }
+    public static void setMemId(int memId) {
+        MainActivity.memId = memId;
     }
 
     @Override
@@ -141,7 +145,8 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d(MAIN_TAG, result.getAccessToken());
                                         setStatusCode(result.getFlag());
                                         setJWT(result.getAccessToken());
-                                        Log.d(MAIN_TAG, "code : " + response.code() + "msg : " + result.getMsg() + "accessToken : " + getJWT());
+                                        setMemId(result.getMemId());
+                                        Log.d(MAIN_TAG, "memId : " + result.getMemId() + " code : " + response.code() + "msg : " + result.getMsg() + " accessToken : " + getJWT());
                                         updateUI(user);
                                     }
 
