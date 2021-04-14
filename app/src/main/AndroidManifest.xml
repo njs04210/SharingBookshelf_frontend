@@ -5,21 +5,23 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcherr"
         android:label="아이북쉐어"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcherr_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SharingBookshelf"
-        android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true">
-        <activity android:name=".Activities.BookDetailsPopupActivity"
-            android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".Activities.SelfAddBookPopupActivity"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activities.BookDetailsPopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".Activities.SelfAddBookPopupActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity android:name=".Activities.BarcodeActivity" />
         <activity
@@ -28,27 +30,32 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".Activities.HomeActivity" />
         <activity
-            android:name=".Activities.MainActivity"
-            android:theme="@style/SplashTheme">
+            android:name=".Activities.HomeActivity"
+            android:theme="@style/StatusBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar">
+            android:name=".Activities.MainActivity"
+            android:theme="@style/SplashTheme">
 
         </activity>
-        <activity android:name=".Activities.WebViewActivity" />
+        <activity
+            android:name=".Activities.SelectAgeAreaActivity"
+            android:theme="@style/StatusBar">
+        </activity>
+        <activity
+            android:name=".Activities.WebViewActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
         <activity
             android:name=".Activities.TakingPhotoActivity"
             android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             tools:replace="screenOrientation">
-
         </activity>
     </application>
 
