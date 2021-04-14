@@ -200,7 +200,7 @@ public class SelectAgeAreaActivity extends Activity {
         //Create a stroage reference from our app
         StorageReference storageRef = storage.getReference();
         Uri file = Uri.fromFile(new File(getRealPathFromURI(getApplicationContext(), imgUri)));
-        StorageReference riversRef = storageRef.child("UserProfileImg/" + file.getLastPathSegment());
+        StorageReference riversRef = storageRef.child("UserProfileImg/profile_" + MainActivity.getMemId());
         Log.d(MainActivity.MAIN_TAG, file.toString());
         UploadTask uploadTask = riversRef.putFile(file);
 
@@ -262,7 +262,7 @@ public class SelectAgeAreaActivity extends Activity {
     }
 
     private void updateUI() {
-        Intent intent = new Intent(this, TakingPhotoActivity.class);
+        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
     }

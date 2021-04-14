@@ -1,6 +1,7 @@
 package com.example.sharingbookshelf.Models;
 
 import com.google.gson.annotations.SerializedName;
+
 //DTO
 public class LoginResponse {
 
@@ -12,6 +13,9 @@ public class LoginResponse {
 
     @SerializedName("accessToken")
     private String accessToken;
+
+    @SerializedName("memId")
+    private int memId;
 
     public String getMsg() {
         return msg;
@@ -25,6 +29,9 @@ public class LoginResponse {
         return accessToken;
     }
 
+    public int getMemId() {
+        return memId;
+    }
 
 
 }
