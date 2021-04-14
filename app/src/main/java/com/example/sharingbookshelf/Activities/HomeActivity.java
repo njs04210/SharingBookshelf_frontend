@@ -78,8 +78,12 @@ public class HomeActivity extends AppCompatActivity {
             public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
                 GetUserInfoResponse result = response.body();
                 Log.d(MainActivity.MAIN_TAG, "현재사용자 : " + result.getNickname() + " 프로필 : " + result.getProfileImg());
-                tv_nickname.setText(result.getNickname());
-                Glide.with(HomeActivity.this).load(result.getProfileImg()).into(civ_profile);
+                String nickname = result.getNickname();
+                String profileImg = result.getProfileImg();
+                tv_nickname.setText(nickname);
+                if (profileImg != null) {
+                    Glide.with(HomeActivity.this).load(profileImg).into(civ_profile);
+                }
             }
 
             @Override

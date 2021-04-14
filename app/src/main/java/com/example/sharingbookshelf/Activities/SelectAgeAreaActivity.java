@@ -65,7 +65,7 @@ public class SelectAgeAreaActivity extends Activity {
     private RadioGroup radioGroup;
     private TextInputEditText et_nickname;
     private FirebaseStorage storage;
-    private Uri imgUri;
+    private Uri imgUri = null;
     private String storageImgUri = "";
     private UserInfoData userInfoData;
 
@@ -190,7 +190,8 @@ public class SelectAgeAreaActivity extends Activity {
             focusView.requestFocus();
         } else {
             userInfoData = new UserInfoData(nickname, address, age, sex, null);
-            addImgToFirebaseStorage(imgUri);
+            if (imgUri != null) addImgToFirebaseStorage(imgUri);
+            else { startSetInfo(userInfoData);}
             //startSetInfo(new UserInfoData(nickname, address, age, sex));
         }
     }
