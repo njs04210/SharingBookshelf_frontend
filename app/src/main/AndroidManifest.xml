@@ -50,12 +50,6 @@
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
-        <activity
-            android:name=".Activities.TakingPhotoActivity"
-            android:screenOrientation="fullSensor"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            tools:replace="screenOrientation">
-        </activity>
     </application>
 
 </manifest>

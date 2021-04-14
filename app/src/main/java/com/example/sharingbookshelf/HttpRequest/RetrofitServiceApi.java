@@ -34,13 +34,6 @@ public interface RetrofitServiceApi {
 
     @GET("api/users/{memId}")
     Call<GetUserInfoResponse> getUserInfo(@Path("memId") int memId);
-   /* @GET("api/members")
-    Call<LoginResponse> getUser(
-            @Query("id") int id);
-
-    @POST("api/members")
-    Call<JoinResponse> userJoin(
-            @Body JoinData joinData); //user/join 경로로 body에 JoinData 담아보내고 JoinResponse 구조로 받아올거*/
 
 }
 

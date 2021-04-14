@@ -30,22 +30,19 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.SetUserInfoResponse;
 import com.example.sharingbookshelf.Models.UserInfoData;
 import com.example.sharingbookshelf.R;
-import com.example.sharingbookshelf.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.awt.font.NumericShaper;
 import java.io.File;
 import java.io.InputStream;
-import java.net.URI;
 
 import retrofit2.Call;
 import retrofit2.Callback;

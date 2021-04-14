@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.example.sharingbookshelf.R;
 import com.example.sharingbookshelf.Models.LoginResponse;
-import com.example.sharingbookshelf.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 
 import retrofit2.Call;

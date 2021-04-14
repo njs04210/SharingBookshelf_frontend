@@ -15,7 +15,7 @@ public class BarcodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_taking_photo);
+        setContentView(R.layout.layout_home);
         intentIntegratorSettings();
     }
 
@@ -39,7 +39,7 @@ public class BarcodeActivity extends AppCompatActivity {
             } else {
                 //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 String ISBN = result.getContents();
-                Intent intent = new Intent(getApplicationContext(), TakingPhotoActivity.class);
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("ISBN", ISBN);
                 setResult(RESULT_OK, intent);
                 finish();
