@@ -13,10 +13,6 @@
     app:cardCornerRadius="@dimen/loginCardRadius"
     android:layout_toEndOf="@+id/linearlayout1">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,5 +59,4 @@
             </LinearLayout>
 
         </FrameLayout>
-    </ScrollView>
 </androidx.cardview.widget.CardView>
