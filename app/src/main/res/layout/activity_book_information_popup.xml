@@ -123,30 +123,6 @@
                         android:textSize="5dp" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="공유상태"
-                        android:textAlignment="center"
-                        android:textSize="10dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_sharingstate"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:textColor="#000"
-                        android:textSize="5dp" />
-                </LinearLayout>
-
             </LinearLayout>
 
         </LinearLayout>
@@ -170,6 +146,32 @@
                 android:layout_height="wrap_content"
                 android:textSize="9dp"
                 android:textColor="#000"/>
+        </LinearLayout>
+
+        <!-- 공유 상태 -->
+        <LinearLayout
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="공유 상태"
+                android:textSize="10dp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/tv_sharingstate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="9dp"
+                android:textColor="#000"/>
+            <Button
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:text="변경"
+                android:textAlignment="center"
+                android:textSize="10dp"/>
         </LinearLayout>
 
         <!-- 책 메모 -->
