@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.HomeActivity"
+    android:background="@color/loginBkColor">
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@id/navigationView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearlayout1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:gravity="center"
+            android:background="#FFFFFF">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical">
+                <!-- 프로필 사진 불러오기 -->
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/civ_profile"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/icon_logo"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/black"/>
+
+                <!-- 닉네임 불러오기 -->
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="4dp"
+                    android:layout_toRightOf="@id/civ_profile"
+                    android:layout_centerVertical="true"
+                    android:textAlignment="center"
+                    android:layout_marginLeft="15dp"
+                    android:paddingBottom="0dp"
+                    android:text="nickname"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_nickname"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="님의 책장"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"/>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            style="@style/loginCard"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:layout_marginBottom="@dimen/loginViewsMargin"
+            android:background="@color/whiteCardColor"
+            android:elevation="5dp"
+            android:layout_width="350dp"
+            android:layout_height="450dp"
+            app:cardCornerRadius="@dimen/loginCardRadius"
+            android:layout_toEndOf="@+id/linearlayout1">
+
+            <Button
+                android:id="@+id/btn_AddBook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right|top"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:text="책 추가" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="140dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_blank2"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="서재가 텅~ 비었어요"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="책을 추가해 주세요"
+                    android:textSize="15dp"
+                    android:layout_gravity="center_horizontal"/>
+
+                <Button
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:text="책 추가하러 가기"
+                    android:textSize="10dp"
+                    android:textAlignment="center"
+                    android:background="@color/colorPrimary"/>
+
+            </LinearLayout>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+    </FrameLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigationView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        app:menu="@menu/menu_bottomnavigationview" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
