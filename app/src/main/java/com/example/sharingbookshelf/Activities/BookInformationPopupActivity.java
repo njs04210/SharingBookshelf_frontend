@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.R;
 
@@ -61,4 +60,3 @@ public class BookInformationPopupActivity extends Activity {
     // 판매중, 공유중, 공유불가 상태
 
 }
-
