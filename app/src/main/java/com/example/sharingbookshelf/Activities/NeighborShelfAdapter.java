@@ -9,33 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sharingbookshelf.Models.NeighborShelfInfoData;
+import com.example.sharingbookshelf.Models.UserInfoData;
 import com.example.sharingbookshelf.R;
 
+import java.util.ArrayList;
+
 public class NeighborShelfAdapter extends RecyclerView.Adapter<NeighborShelfAdapter.NSViewHolder>{
-    public NeighborShelfAdapter(){
 
-    }
+    private ArrayList<NeighborShelfInfoData> NeighborInfoData;
 
-    @NonNull
-    @Override //layoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킨다.
-    public NSViewHolder onCreateViewHolder(@NonNull ViewGroup viewgroup, int viewType) {
-        View view = LayoutInflater.from(viewgroup.getContext())
-                .inflate(R.layout.layout_neighbor_shelf,viewgroup, false);
-        return new ViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull NSViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
+    public NeighborShelfAdapter(ArrayList<NeighborShelfInfoData> myinfoData){
+         this.NeighborInfoData = myinfoData;
     }
 
     public class NSViewHolder extends RecyclerView.ViewHolder{
-        protected RecyclerView recyclerView;
 
         private TextView nickname;
         private ImageView profile;
@@ -45,5 +33,25 @@ public class NeighborShelfAdapter extends RecyclerView.Adapter<NeighborShelfAdap
             nickname = view.findViewById(R.id.nickname);
             profile = view.findViewById(R.id.profile);
         }
+    }
+
+    @NonNull
+    @Override //layoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킨다.
+    public NSViewHolder onCreateViewHolder(@NonNull ViewGroup viewgroup, int viewType) {
+        View view = LayoutInflater.from(viewgroup.getContext())
+                .inflate(R.layout.layout_neighbor_shelf, viewgroup, false);
+        NSViewHolder NSviewholder = new NSViewHolder(view);
+        return NSviewholder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull NSViewHolder holder, int position) {
+        holder.profile.setImageResource(NeighborInfoData.get(position).getProfile());
+        holder.nickname.setText(NeighborInfoData.get(position).getNickname());
+    }
+
+    @Override
+    public int getItemCount() {
+        return NeighborInfoData.size();
     }
 }

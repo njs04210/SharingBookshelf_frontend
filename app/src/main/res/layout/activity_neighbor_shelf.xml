@@ -37,7 +37,10 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
+        <androidx.recyclerview.widget.RecyclerView
+            android:id = "@+id/recyclerview_main_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
         <include layout="@layout/layout_neighbor_shelf" />
 
     </FrameLayout>
