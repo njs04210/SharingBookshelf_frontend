@@ -60,7 +60,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:text="제목"
                         android:textAlignment="center"
                         android:textSize="10dp"
@@ -120,13 +120,12 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="5dp" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal"
                     android:padding="5dp">
 
@@ -134,18 +133,18 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
-                        android:text="정가"
+                        android:text="공유상태"
                         android:textAlignment="center"
                         android:textSize="10dp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/tv_price"
+                        android:id="@+id/tv_sharingstate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textColor="#000"
-                        android:textSize="10dp" />
+                        android:textSize="5dp" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -166,6 +165,7 @@
                 android:textColor="#000"
                 android:textStyle="bold"/>
             <TextView
+                android:id="@+id/tv_contents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="9dp"
@@ -215,7 +215,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_addBook"
+            android:id="@+id/btn_addBookMemo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#00000000"
