@@ -61,3 +61,4 @@ public class BookInformationPopupActivity extends Activity {
     // 판매중, 공유중, 공유불가 상태
 
 }
+
