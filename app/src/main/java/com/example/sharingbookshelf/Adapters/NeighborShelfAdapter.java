@@ -30,7 +30,7 @@ public class NeighborShelfAdapter extends RecyclerView.Adapter<NeighborShelfAdap
     public NeighborShelfAdapter.NeighborShelfViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_neighborshelf, parent, false);
         NeighborShelfAdapter.NeighborShelfViewHolder holder = new NeighborShelfAdapter.NeighborShelfViewHolder(view);
-        return null;
+        return holder;
     }
 
     @Override
