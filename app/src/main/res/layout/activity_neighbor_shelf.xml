@@ -49,8 +49,7 @@
             android:elevation="5dp"
             android:layout_width="380dp"
             android:layout_height="530dp"
-            app:cardCornerRadius="@dimen/loginCardRadius"
-            android:layout_toEndOf="@+id/linearlayout1">
+            app:cardCornerRadius="@dimen/loginCardRadius">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv"
