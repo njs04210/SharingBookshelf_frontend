@@ -50,6 +50,11 @@
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
+        <activity
+            android:name=".Activities.NeighborShelfActivity"
+            android:theme="@style/SplashTheme">
+
+        </activity>
     </application>
 
 </manifest>
