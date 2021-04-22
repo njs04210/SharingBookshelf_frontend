@@ -11,6 +11,7 @@
         android:id="@+id/iv_book"
         android:layout_width="60dp"
         android:layout_height="70dp"
+        android:layout_marginLeft="15dp"
         android:scaleType="fitCenter"
         android:src="@mipmap/ic_launcher"/>
 
