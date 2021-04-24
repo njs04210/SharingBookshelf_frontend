@@ -1,6 +1,7 @@
 package com.example.sharingbookshelf.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,11 +34,18 @@ public class HomeActivity extends AppCompatActivity {
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private RetrofitServiceApi retrofitServiceApi;
-
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+
+        context = this;
+
+        ProgressDialogActivity.showLoading(context);
+       // ProgressDialogActivity.hideLoading();
+
 
         initializeView();
         setUserView(MainActivity.getMemId()); //사용자화면 구성
