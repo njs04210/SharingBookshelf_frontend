@@ -42,7 +42,7 @@ public class NeighborShelfActivity extends AppCompatActivity {
     private void setData(){
         for(int i = 1; i < 10; i++){
             NeighborInfoData neighborInfoData = new NeighborInfoData();
-            neighborInfoData.setNickname("kjs: + i");
+            neighborInfoData.setNickname("kjs: " + i);
             neighborInfoData.setProfile(R.drawable.ic_profile_default);
             ArrayList<NeighborShelfData> bookerList = new ArrayList<>();
 
