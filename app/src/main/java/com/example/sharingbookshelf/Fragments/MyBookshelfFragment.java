@@ -1,31 +1,33 @@
-package com.example.sharingbookshelf.Activities;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
+package com.example.sharingbookshelf.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import androidx.annotation.CallSuper;
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.Fragments.ChattingFragment;
-import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
-import com.example.sharingbookshelf.Fragments.MyPageFragment;
-import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
-import com.example.sharingbookshelf.Fragments.RankingFragment;
+import com.example.sharingbookshelf.Activities.BarcodeActivity;
+import com.example.sharingbookshelf.Activities.BookDetailsPopupActivity;
+import com.example.sharingbookshelf.Activities.HomeActivity;
+import com.example.sharingbookshelf.Activities.MainActivity;
+import com.example.sharingbookshelf.Activities.SelfAddBookPopupActivity;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
-import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -35,7 +37,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeActivity extends AppCompatActivity {
+import static android.app.Activity.RESULT_OK;
+
+public class MyBookshelfFragment extends Fragment {
 
     private static final int BARCODE_ACTIVITY = 10000;
     private static final int ADDSELF_ACTIVITY = 10001;
@@ -45,69 +49,48 @@ public class HomeActivity extends AppCompatActivity {
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private RetrofitServiceApi retrofitServiceApi;
-    private BottomNavigationView btnNav;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
 
-        initializeView();
-
-        btnNav.setOnNavigationItemSelectedListener(navListener);
-
-        // Setting MyBookshelf Fragment as main fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();
-
-        setUserView(MainActivity.getMemId()); //사용자화면 구성
-        addBookView();
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener = new
-            BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFragment = null;
-                    int itemId = item.getItemId();
-                    if (itemId == R.id.myBookShelf) {
-                        selectedFragment = new MyBookshelfFragment();
-                    } else if (itemId == R.id.otherBookshelf) {
-                        selectedFragment = new OtherBookshelfFragment();
-                    } else if (itemId == R.id.ranking) {
-                        selectedFragment = new RankingFragment();
-                    } else if (itemId == R.id.chatting) {
-                        selectedFragment = new ChattingFragment();
-                    } else if (itemId == R.id.myPage) {
-                        selectedFragment = new MyPageFragment();
-                    }
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.fragment_mybookshelf, container, false);
+        initializeView(view);
+        setUserView(MainActivity.getMemId()); //사용자화면 구성
+        addBookView();
 
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_layout,
-                                    selectedFragment).commit();
+        return view;
+    }
 
-                    return true;
-                }
-
-            };
+    private void initializeView(View v) {
+        civ_profile = v.findViewById(R.id.civ_profile);
+        tv_nickname = v.findViewById(R.id.tv_nickname);
+        btn_addBook = v.findViewById(R.id.btn_AddBook);
+    }
 
     private void addBookView() {
         btn_addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-                final PopupMenu popupMenu = new PopupMenu(getApplicationContext(), view);
-                getMenuInflater().inflate(R.menu.menu_register_book, popupMenu.getMenu());
+                final PopupMenu popupMenu = new PopupMenu(getActivity().getApplicationContext(), view);
+                getActivity().getMenuInflater().inflate(R.menu.menu_register_book, popupMenu.getMenu());
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
                         if (menuItem.getItemId() == R.id.bookFind_barcode) { // 메뉴 홈페이지 만들고 intent로 수정
-                            Intent intent = new Intent(HomeActivity.this, BarcodeActivity.class);
-                            startActivityForResult(intent, BARCODE_ACTIVITY);
+                            Intent intent = new Intent(getActivity(), BarcodeActivity.class);
+                            getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
                         } else if (menuItem.getItemId() == R.id.bookFind_ISBN) {
-                            Intent intent = new Intent(HomeActivity.this, SelfAddBookPopupActivity.class);
-                            startActivityForResult(intent, ADDSELF_ACTIVITY);
+                            Intent intent = new Intent(getActivity(), SelfAddBookPopupActivity.class);
+                            getActivity().startActivityForResult(intent, ADDSELF_ACTIVITY);
                         } else if (menuItem.getItemId() == R.id.bookFind_direct) {
-                            Toast.makeText(HomeActivity.this, "수동으로 정보 입력", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "수동으로 정보 입력", Toast.LENGTH_SHORT).show();
                         }
                         return false;
                     }
@@ -118,28 +101,25 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    @CallSuper
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == BARCODE_ACTIVITY) { //바코드 인식 결과
             if (resultCode == RESULT_OK) {
-//                String data = intent.getExtras().getString("ISBN");
-//                if (data != null) {
-                    Fragment myBookshelfFragment = getSupportFragmentManager().findFragmentById(R.id.myBookShelf);
-                    myBookshelfFragment.onActivityResult(requestCode,resultCode,intent);
-//                    Log.d(MainActivity.MAIN_TAG, data);
-//                    callBookResponse(data);
-//                }
+                String data = intent.getExtras().getString("ISBN");
+                if (data != null) {
+                    Log.d(MainActivity.MAIN_TAG, data);
+                    callBookResponse(data);
+                }
             }
         }
         if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
             if (resultCode == RESULT_OK) {
-//                String data = intent.getExtras().getString("ISBN");
-//                if (data != null) {
-                    Fragment myBookshelfFragment = getSupportFragmentManager().findFragmentById(R.id.myBookShelf);
-                    myBookshelfFragment.onActivityResult(requestCode,resultCode,intent);
-//                    Log.d(MainActivity.MAIN_TAG, data);
-//                    callBookResponse(data);
-//                }
+                String data = intent.getExtras().getString("ISBN");
+                if (data != null) {
+                    Log.d(MainActivity.MAIN_TAG, data);
+                    callBookResponse(data);
+                }
             }
         }
     }
@@ -168,18 +148,10 @@ public class HomeActivity extends AppCompatActivity {
     private void getBookDetails(BookApiResponse books) {
         ArrayList<BookApiResponse.Document> documentList = books.documents;
         BookApiResponse.Meta meta = books.metas;
-        Intent intent = new Intent(HomeActivity.this, BookDetailsPopupActivity.class);
+        Intent intent = new Intent(getActivity(), BookDetailsPopupActivity.class);
         intent.putExtra("documentList", documentList);
         intent.putExtra("meta", meta);
-        startActivityForResult(intent, BOOKPOPUP_ACTIVITY);
-    }
-
-    private void initializeView() {
-        civ_profile = findViewById(R.id.civ_profile);
-        tv_nickname = findViewById(R.id.tv_nickname);
-        btn_addBook = findViewById(R.id.btn_AddBook);
-        btnNav = findViewById(R.id.bottomNavigationView);
-
+        getActivity().startActivityForResult(intent, BOOKPOPUP_ACTIVITY);
     }
 
     private void setUserView(int memId) {
@@ -194,7 +166,7 @@ public class HomeActivity extends AppCompatActivity {
                 String profileImg = result.getProfileImg();
                 tv_nickname.setText(nickname);
                 if (profileImg != null) {
-                    Glide.with(HomeActivity.this).load(profileImg).into(civ_profile);
+                    Glide.with(getActivity()).load(profileImg).into(civ_profile);
                 }
             }
 
@@ -204,5 +176,4 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
     }
-
 }
