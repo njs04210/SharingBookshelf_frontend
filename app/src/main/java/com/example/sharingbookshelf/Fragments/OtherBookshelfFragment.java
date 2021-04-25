@@ -40,7 +40,7 @@ public class OtherBookshelfFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
 
-        rv_Bookshelves = (RecyclerView) getActivity().findViewById(R.id.rv_bookshelves);
+        rv_Bookshelves = (RecyclerView) view.findViewById(R.id.rv_bookshelves);
 
         // bookshelfList 는 싱글톤으로
         if (bookshelfList == null) {

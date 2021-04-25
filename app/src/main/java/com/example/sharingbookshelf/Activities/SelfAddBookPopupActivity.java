@@ -76,7 +76,7 @@ public class SelfAddBookPopupActivity extends Activity {
         ArrayList<BookApiResponse.Document> documentList = result.documents;
         BookApiResponse.Meta meta = result.metas;
         //BookApiResponse.Document book = (BookApiResponse.Document) books.documents.get(0);
-        Intent intent = new Intent(SelfAddBookPopupActivity.this, BookDetailsPopupActivity.class);
+        Intent intent = new Intent(SelfAddBookPopupActivity.this, BookInfoPopupActivity.class);
         intent.putExtra("documentList", documentList);
         intent.putExtra("meta", meta);
         intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);

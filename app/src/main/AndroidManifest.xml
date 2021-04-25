@@ -18,7 +18,7 @@
         android:theme="@style/Theme.SharingBookshelf"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".Activities.BookDetailsPopupActivity"
+            android:name=".Activities.BookInfoPopupActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity
             android:name=".Activities.SelfAddBookPopupActivity"
@@ -49,10 +49,6 @@
         <activity
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
-        <activity
-            android:name=".Activities.OtherBookshelvesActivity"
-            android:theme="@style/StatusBar">
         </activity>
     </application>
 

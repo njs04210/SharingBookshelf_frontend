@@ -17,7 +17,7 @@ import com.example.sharingbookshelf.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDetailsPopupActivity extends Activity {
+public class BookInfoPopupActivity extends Activity {
 
     private ImageView iv_thumbNail;
     private TextView tv_ISBN, tv_title, tv_authors, tv_publisher;
@@ -28,7 +28,7 @@ public class BookDetailsPopupActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //타이틀바 없애기
-        setContentView(R.layout.activity_book_details_popup);
+        setContentView(R.layout.activity_bookinfo_popup);
 
         Log.d(MainActivity.MAIN_TAG, "데이터 전달 성공");
         initializeView();
@@ -45,7 +45,7 @@ public class BookDetailsPopupActivity extends Activity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookDetailsPopupActivity.this, SelfAddBookPopupActivity.class);
+                Intent intent = new Intent(BookInfoPopupActivity.this, SelfAddBookPopupActivity.class);
                 startActivity(intent);
                 finish();
             }
