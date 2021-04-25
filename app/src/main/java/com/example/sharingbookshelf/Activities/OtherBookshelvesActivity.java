@@ -13,9 +13,9 @@ import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
-public class NeighborShelfActivity extends AppCompatActivity {
+public class OtherBookshelvesActivity extends AppCompatActivity {
 
-    private RecyclerView NeighborRecyclerView;
+    private RecyclerView rcv_Bookshelves;
     private LinearLayoutManager linearLayoutManager;
     private NeighborAdapter neighborAdapter;
     private ArrayList<NeighborInfoData> neighborList;
@@ -25,33 +25,33 @@ public class NeighborShelfActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_neighbor_shelf);
 
-        neighborList = new ArrayList<>();
-
-        NeighborRecyclerView = (RecyclerView) findViewById(R.id.rv);
         linearLayoutManager = new LinearLayoutManager(this);
-
-        NeighborRecyclerView.setHasFixedSize(true);
-        NeighborRecyclerView.setLayoutManager(linearLayoutManager);
-
+        neighborList = new ArrayList<>();
         neighborAdapter = new NeighborAdapter(this, neighborList);
 
-        NeighborRecyclerView.setAdapter(neighborAdapter);
+        /* RecyclerView Settings */
+        rcv_Bookshelves = (RecyclerView) findViewById(R.id.rv);
+        rcv_Bookshelves.setHasFixedSize(true);
+        rcv_Bookshelves.setLayoutManager(linearLayoutManager);
+        rcv_Bookshelves.setAdapter(neighborAdapter);
 
         setData();
     }
+
     private void setData(){
         for(int i = 1; i < 10; i++){
             NeighborInfoData neighborInfoData = new NeighborInfoData();
-            neighborInfoData.setNickname("kjs: " + i);
+            neighborInfoData.setNickname("회원 " + i);
             neighborInfoData.setProfile(R.drawable.ic_profile_default);
-            ArrayList<NeighborShelfData> bookerList = new ArrayList<>();
 
+            // 한 회원의 책장 속 책세팅
+            ArrayList<NeighborShelfData> bookList = new ArrayList<>();
             for(int j = 0; j < 7; j++){
                 NeighborShelfData neighborShelfData = new NeighborShelfData();
                 neighborShelfData.setIv_book(R.drawable.icon_book2);
-                bookerList.add(neighborShelfData);
+                bookList.add(neighborShelfData);
             }
-            neighborInfoData.setArrayList(bookerList);
+            neighborInfoData.setBookList(bookList);
 
             neighborList.add(neighborInfoData);
         }

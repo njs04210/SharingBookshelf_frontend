@@ -6,21 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.sharingbookshelf.Models.NeighborInfoData;
 import com.example.sharingbookshelf.Models.NeighborShelfData;
 import com.example.sharingbookshelf.R;
-
 import java.util.ArrayList;
 
 public class NeighborAdapter extends RecyclerView.Adapter<NeighborAdapter.NeighborViewHolder> {
 
-    Context context;
-    ArrayList<NeighborInfoData> arrayList;
+    private Context context;
+    private ArrayList<NeighborInfoData> arrayList;
 
     public NeighborAdapter(Context context, ArrayList<NeighborInfoData> arrayList) {
         this.context = context;
@@ -42,7 +39,7 @@ public class NeighborAdapter extends RecyclerView.Adapter<NeighborAdapter.Neighb
         NeighborInfoData neighborInfoData = arrayList.get(position);
         holder.iv_profile.setImageResource(arrayList.get(position).getProfile());
         holder.tv_nickname.setText(arrayList.get(position).getNickname());
-        ArrayList<NeighborShelfData> singleItem = neighborInfoData.getArrayList();
+        ArrayList<NeighborShelfData> singleItem = neighborInfoData.getBookList();
 
         NeighborShelfAdapter neighborShelfAdapter = new NeighborShelfAdapter(context, singleItem);
 
@@ -57,7 +54,7 @@ public class NeighborAdapter extends RecyclerView.Adapter<NeighborAdapter.Neighb
         return (null != arrayList ? arrayList.size() : 0);
     }
 
-    public class NeighborViewHolder extends RecyclerView.ViewHolder {
+    public static class NeighborViewHolder extends RecyclerView.ViewHolder {
 
         RecyclerView recyclerView;
         protected ImageView iv_profile;

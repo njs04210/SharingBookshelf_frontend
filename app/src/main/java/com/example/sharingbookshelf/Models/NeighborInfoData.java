@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class NeighborInfoData {
     private String nickname;
     private int profile;
-    ArrayList<NeighborShelfData> arrayList;
+    private ArrayList<NeighborShelfData> bookList;
 
     public String getNickname() {
         return nickname;
@@ -23,11 +23,11 @@ public class NeighborInfoData {
         this.profile = profile;
     }
 
-    public ArrayList<NeighborShelfData> getArrayList() {
-        return arrayList;
+    public ArrayList<NeighborShelfData> getBookList() {
+        return bookList;
     }
 
-    public void setArrayList(ArrayList<NeighborShelfData> arrayList) {
-        this.arrayList = arrayList;
+    public void setBookList(ArrayList<NeighborShelfData> bookList) {
+        this.bookList = bookList;
     }
 }

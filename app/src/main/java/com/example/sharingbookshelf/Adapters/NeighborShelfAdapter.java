@@ -1,18 +1,14 @@
 package com.example.sharingbookshelf.Adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.sharingbookshelf.Models.NeighborShelfData;
 import com.example.sharingbookshelf.R;
-
 import java.util.ArrayList;
 
 public class NeighborShelfAdapter extends RecyclerView.Adapter<NeighborShelfAdapter.NeighborShelfViewHolder> {
