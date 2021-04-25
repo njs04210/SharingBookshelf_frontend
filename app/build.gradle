@@ -62,4 +62,7 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:3.1.0'
     //for Firebase Storage
     implementation 'com.google.firebase:firebase-storage:19.2.2'
+    //for recyclerview
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0"
 }

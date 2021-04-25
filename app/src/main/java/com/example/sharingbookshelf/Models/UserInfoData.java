@@ -19,5 +19,4 @@ public class UserInfoData {
     public void setPhotoURL(String photoURL) {
         this.photoURL = photoURL;
     }
-
 }

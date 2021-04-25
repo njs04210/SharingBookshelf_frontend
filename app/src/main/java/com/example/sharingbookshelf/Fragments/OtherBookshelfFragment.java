@@ -3,64 +3,86 @@ package com.example.sharingbookshelf.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sharingbookshelf.Adapters.BookshelfAdapter;
+import com.example.sharingbookshelf.Models.BookData;
+import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link OtherBookshelfFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class OtherBookshelfFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView rv_Bookshelves;
+    private LinearLayoutManager linearLayoutManager;
+    private BookshelfAdapter bookshelfAdapter;
+    private ArrayList<BookshelfInfoData> bookshelfList;
+    private ArrayList<BookData> bookList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public OtherBookshelfFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment OthersFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static OtherBookshelfFragment newInstance(String param1, String param2) {
-        OtherBookshelfFragment fragment = new OtherBookshelfFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public ArrayList<BookshelfInfoData> getBookshelfList() {
+        return bookshelfList;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
+
+        rv_Bookshelves = (RecyclerView) view.findViewById(R.id.rv_bookshelves);
+
+        // bookshelfList 는 싱글톤으로
+        if (bookshelfList == null) {
+            bookshelfList = new ArrayList<>();
+        } else {
+            bookshelfList = getBookshelfList();
+        }
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        bookshelfAdapter = new BookshelfAdapter(bookshelfList);
+
+        // RecyclerView Settings
+        rv_Bookshelves.setHasFixedSize(true);
+        rv_Bookshelves.setLayoutManager(linearLayoutManager);
+        rv_Bookshelves.setAdapter(bookshelfAdapter);
+
+        setBookshelf();
+
+        return view;
+    }
+
+    private void setBookshelf() {
+        for (int i = 1; i < 10; i++) {
+            //회원 책장 객체 생성
+            BookshelfInfoData bookshelfInfoData = new BookshelfInfoData();
+            bookshelfInfoData.setNickname("회원 " + i);
+            bookshelfInfoData.setProfile(R.drawable.ic_profile_default);
+
+            // 책장 속 책 받을 arraylist 객체 생성
+            bookList = new ArrayList<>();
+            for (int j = 0; j < 7; j++) {
+                //책정보 세팅
+                BookData bookData = new BookData();
+                bookData.setIv_book(R.drawable.icon_book2);
+                bookList.add(bookData);
+            }
+
+            //책장에 책리스트 넣기
+            bookshelfInfoData.setBookList(bookList);
+            //책장목록에 책 넣기
+            bookshelfList.add(bookshelfInfoData);
+        }
+        bookshelfAdapter.notifyDataSetChanged();
     }
 }

@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.BarcodeActivity;
-import com.example.sharingbookshelf.Activities.BookDetailsPopupActivity;
+import com.example.sharingbookshelf.Activities.BookInfoPopupActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Activities.SelfAddBookPopupActivity;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
@@ -146,7 +146,7 @@ public class MyBookshelfFragment extends Fragment {
     private void getBookDetails(BookApiResponse books) {
         ArrayList<BookApiResponse.Document> documentList = books.documents;
         BookApiResponse.Meta meta = books.metas;
-        Intent intent = new Intent(getActivity(), BookDetailsPopupActivity.class);
+        Intent intent = new Intent(getActivity(), BookInfoPopupActivity.class);
         intent.putExtra("documentList", documentList);
         intent.putExtra("meta", meta);
         getActivity().startActivityForResult(intent, BOOKPOPUP_ACTIVITY);

@@ -14,7 +14,7 @@ import com.example.sharingbookshelf.R;
 
 import java.util.List;
 
-public class BookInformationPopupActivity extends Activity {
+public class ClickBookDetailsActivity extends Activity {
 
     private ImageView iv_thumbNail;
     private TextView tv_title, tv_authors, tv_publisher, tv_sharingstate;
@@ -25,7 +25,7 @@ public class BookInformationPopupActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //타이틀바 없애기
-        setContentView(R.layout.activity_book_information_popup);
+        setContentView(R.layout.activity_click_bookdetails);
 
         //UI 객체생성
         BookMemo_field = (EditText)findViewById(R.id.BookMemo_field);
