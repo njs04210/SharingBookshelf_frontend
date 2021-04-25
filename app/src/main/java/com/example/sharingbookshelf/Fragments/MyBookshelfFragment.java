@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.BarcodeActivity;
 import com.example.sharingbookshelf.Activities.BookDetailsPopupActivity;
-import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Activities.SelfAddBookPopupActivity;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
@@ -28,7 +27,6 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
