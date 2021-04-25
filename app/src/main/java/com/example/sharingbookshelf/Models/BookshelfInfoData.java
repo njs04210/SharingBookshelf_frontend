@@ -2,10 +2,10 @@ package com.example.sharingbookshelf.Models;
 
 import java.util.ArrayList;
 
-public class NeighborInfoData {
+public class BookshelfInfoData {
     private String nickname;
     private int profile;
-    private ArrayList<NeighborShelfData> bookList;
+    private ArrayList<BookData> bookList;
 
     public String getNickname() {
         return nickname;
@@ -23,11 +23,11 @@ public class NeighborInfoData {
         this.profile = profile;
     }
 
-    public ArrayList<NeighborShelfData> getBookList() {
+    public ArrayList<BookData> getBookList() {
         return bookList;
     }
 
-    public void setBookList(ArrayList<NeighborShelfData> bookList) {
+    public void setBookList(ArrayList<BookData> bookList) {
         this.bookList = bookList;
     }
 }

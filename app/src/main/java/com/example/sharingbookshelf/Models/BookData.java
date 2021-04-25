@@ -1,6 +1,6 @@
 package com.example.sharingbookshelf.Models;
 
-public class NeighborShelfData {
+public class BookData {
     private int iv_book;
 
     public int getIv_book() {
