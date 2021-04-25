@@ -11,26 +11,27 @@ import com.example.sharingbookshelf.Models.NeighborShelfData;
 import com.example.sharingbookshelf.R;
 import java.util.ArrayList;
 
-public class NeighborShelfAdapter extends RecyclerView.Adapter<NeighborShelfAdapter.NeighborShelfViewHolder> {
+public class BookshelvesAdapter extends RecyclerView.Adapter<BookshelvesAdapter.NeighborShelfViewHolder> {
 
     Context context;
-    ArrayList<NeighborShelfData> arrayList;
+    private ArrayList<NeighborShelfData> arrayList;
 
-    public NeighborShelfAdapter(Context context, ArrayList<NeighborShelfData> arrayList){
+    /* Initialize the dateset of the Adapter. */
+    public BookshelvesAdapter(Context context, ArrayList<NeighborShelfData> arrayList){
         this.context = context;
         this.arrayList = arrayList;
     }
 
     @NonNull
     @Override
-    public NeighborShelfAdapter.NeighborShelfViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public BookshelvesAdapter.NeighborShelfViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_neighborshelf, parent, false);
-        NeighborShelfAdapter.NeighborShelfViewHolder holder = new NeighborShelfAdapter.NeighborShelfViewHolder(view);
-        return holder;
+
+        return new NeighborShelfViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull NeighborShelfAdapter.NeighborShelfViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull BookshelvesAdapter.NeighborShelfViewHolder holder, int position) {
         NeighborShelfData neighborShelfData = arrayList.get(position);
         holder.iv_book.setImageResource(neighborShelfData.getIv_book());
     }

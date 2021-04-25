@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharingbookshelf.Adapters.NeighborAdapter;
+import com.example.sharingbookshelf.Adapters.BookshelfAdapter;
 import com.example.sharingbookshelf.Models.NeighborInfoData;
 import com.example.sharingbookshelf.Models.NeighborShelfData;
 import com.example.sharingbookshelf.R;
@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class OtherBookshelvesActivity extends AppCompatActivity {
 
-    private RecyclerView rcv_Bookshelves;
+    private RecyclerView rv_Bookshelves;
     private LinearLayoutManager linearLayoutManager;
-    private NeighborAdapter neighborAdapter;
+    private BookshelfAdapter bookshelfAdapter;
     private ArrayList<NeighborInfoData> neighborList;
 
     @Override
@@ -27,13 +27,13 @@ public class OtherBookshelvesActivity extends AppCompatActivity {
 
         linearLayoutManager = new LinearLayoutManager(this);
         neighborList = new ArrayList<>();
-        neighborAdapter = new NeighborAdapter(this, neighborList);
+        bookshelfAdapter = new BookshelfAdapter(this, neighborList);
 
         /* RecyclerView Settings */
-        rcv_Bookshelves = (RecyclerView) findViewById(R.id.rv);
-        rcv_Bookshelves.setHasFixedSize(true);
-        rcv_Bookshelves.setLayoutManager(linearLayoutManager);
-        rcv_Bookshelves.setAdapter(neighborAdapter);
+        rv_Bookshelves = (RecyclerView) findViewById(R.id.rv_bookshelves);
+        rv_Bookshelves.setHasFixedSize(true);
+        rv_Bookshelves.setLayoutManager(linearLayoutManager);
+        rv_Bookshelves.setAdapter(bookshelfAdapter);
 
         setData();
     }
@@ -55,6 +55,6 @@ public class OtherBookshelvesActivity extends AppCompatActivity {
 
             neighborList.add(neighborInfoData);
         }
-        neighborAdapter.notifyDataSetChanged();
+        bookshelfAdapter.notifyDataSetChanged();
     }
 }
