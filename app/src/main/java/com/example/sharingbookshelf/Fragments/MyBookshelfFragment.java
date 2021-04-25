@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.example.sharingbookshelf.Activities.BarcodeActivity;
 import com.example.sharingbookshelf.Activities.BookInfoPopupActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
@@ -47,11 +48,12 @@ public class MyBookshelfFragment extends Fragment {
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private RetrofitServiceApi retrofitServiceApi;
+    public RequestManager mGlideRequestManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mGlideRequestManager = Glide.with(this);
     }
 
     @Override
@@ -164,7 +166,7 @@ public class MyBookshelfFragment extends Fragment {
                 String profileImg = result.getProfileImg();
                 tv_nickname.setText(nickname);
                 if (profileImg != null) {
-                    Glide.with(getActivity()).load(profileImg).into(civ_profile);
+                    mGlideRequestManager.load(profileImg).into(civ_profile);
                 }
             }
 
