@@ -40,10 +40,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class MyBookshelfFragment extends Fragment {
 
-    private static final int BARCODE_ACTIVITY = 10000;
-    private static final int ADDSELF_ACTIVITY = 10001;
-    private static final int BOOKPOPUP_ACTIVITY = 10002;
-
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private RetrofitServiceApi retrofitServiceApi;
@@ -78,60 +74,6 @@ public class MyBookshelfFragment extends Fragment {
         return v;
     }
 
-   /* @Override
-    @CallSuper
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == BARCODE_ACTIVITY) { //바코드 인식 결과
-            if (resultCode == RESULT_OK) {
-                String data = intent.getExtras().getString("ISBN");
-                if (data != null) {
-                    Log.d(MainActivity.MAIN_TAG, data);
-                    callBookResponse(data);
-                }
-            }
-        }
-        if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
-            if (resultCode == RESULT_OK) {
-                String data = intent.getExtras().getString("ISBN");
-                if (data != null) {
-                    Log.d(MainActivity.MAIN_TAG, data);
-                    callBookResponse(data);
-                }
-            }
-        }
-    }*/
-
-    /* Kakao Book search API 통신 *//*
-    private void callBookResponse(String ISBN) {
-        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
-        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
-        call.enqueue(new Callback<BookApiResponse>() {
-            @Override
-            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
-                BookApiResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
-                if (result != null) {
-                    getBookDetails(result);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookApiResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
-            }
-        });
-    }
-
-    private void getBookDetails(BookApiResponse books) {
-        ArrayList<BookApiResponse.Document> documentList = books.documents;
-        BookApiResponse.Meta meta = books.metas;
-        Intent intent = new Intent(getActivity(), BookInfoPopupActivity.class);
-        intent.putExtra("documentList", documentList);
-        intent.putExtra("meta", meta);
-        getActivity().startActivityForResult(intent, BOOKPOPUP_ACTIVITY);
-    }*/
-
     private void setUserView(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<GetUserInfoResponse> call = retrofitServiceApi.getUserInfo(memId);
@@ -140,7 +82,7 @@ public class MyBookshelfFragment extends Fragment {
             public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
                 GetUserInfoResponse result = response.body();
                 Log.d(MainActivity.MAIN_TAG, "현재사용자 : " + result.getNickname() + " 프로필 : " + result.getProfileImg());
-                String nickname = result.getNickname();
+                String nickname = result.getNickname() + "의 책장";
                 String profileImg = result.getProfileImg();
                 tv_nickname.setText(nickname);
                 if (profileImg != null) {

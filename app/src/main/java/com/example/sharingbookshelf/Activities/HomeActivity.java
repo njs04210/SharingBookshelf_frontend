@@ -61,7 +61,9 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
+
                     int itemId = item.getItemId();
+
                     if (itemId == R.id.myBookShelf) {
                         selectedFragment = new MyBookshelfFragment();
                     } else if (itemId == R.id.otherBookshelf) {
@@ -89,18 +91,12 @@ public class HomeActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 NoEmptyShelfFragment noEmptyShelfFragment = new NoEmptyShelfFragment();
                 noEmptyShelfFragment.onActivityResult(requestCode, resultCode, intent);
-                /*Fragment NoEmptyShelfFragment = getSupportFragmentManager().beginTransaction()
-                        .replace(new NoEmptyShelfFragment()).commit();
-                myBookshelfFragment.onActivityResult(requestCode, resultCode, intent);*/
             }
         }
         if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
             if (resultCode == RESULT_OK) {
                 NoEmptyShelfFragment noEmptyShelfFragment = new NoEmptyShelfFragment();
                 noEmptyShelfFragment.onActivityResult(requestCode, resultCode, intent);
-                /*Fragment myBookshelfFragment = getSupportFragmentManager()
-                        .findFragmentById(R.id.myBookShelf);
-                myBookshelfFragment.onActivityResult(requestCode, resultCode, intent);*/
             }
         }
     }
