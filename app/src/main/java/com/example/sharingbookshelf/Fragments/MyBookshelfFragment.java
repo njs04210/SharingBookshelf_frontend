@@ -44,13 +44,12 @@ public class MyBookshelfFragment extends Fragment {
     private static final int ADDSELF_ACTIVITY = 10001;
     private static final int BOOKPOPUP_ACTIVITY = 10002;
 
-    private Button btn_addBook;
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
 
-    int sample = 1;
+    int sample = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +61,7 @@ public class MyBookshelfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_mybookshelf, container, false);
+        View v = inflater.inflate(R.layout.fragment_mybookshelf, container, false);
         //initializeView(view);
         setUserView(MainActivity.getMemId()); //사용자화면 구성
         //addBookView();
@@ -75,39 +74,12 @@ public class MyBookshelfFragment extends Fragment {
                     .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
         }
 
-        return view;
+        return v;
     }
 
     private void initializeView(View v) {
         civ_profile = v.findViewById(R.id.civ_profile);
         tv_nickname = v.findViewById(R.id.tv_nickname);
-        btn_addBook = v.findViewById(R.id.btn_AddBook);
-    }
-
-    private void addBookView() {
-        btn_addBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-                final PopupMenu popupMenu = new PopupMenu(getActivity().getApplicationContext(), view);
-                getActivity().getMenuInflater().inflate(R.menu.menu_register_book, popupMenu.getMenu());
-                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.bookFind_barcode) { // 메뉴 홈페이지 만들고 intent로 수정
-                            Intent intent = new Intent(getActivity(), BarcodeActivity.class);
-                            getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
-                        } else if (menuItem.getItemId() == R.id.bookFind_ISBN) {
-                            Intent intent = new Intent(getActivity(), SelfAddBookPopupActivity.class);
-                            getActivity().startActivityForResult(intent, ADDSELF_ACTIVITY);
-                        } else if (menuItem.getItemId() == R.id.bookFind_direct) {
-                            Toast.makeText(getActivity(), "수동으로 정보 입력", Toast.LENGTH_SHORT).show();
-                        }
-                        return false;
-                    }
-                });
-                popupMenu.show();
-            }
-        });
     }
 
     @Override
