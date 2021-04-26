@@ -27,24 +27,25 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="서재가 텅~ 비었어요"
+            android:text="책장이 텅~ 비었어요"
             android:textSize="15dp"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="책을 추가해 주세요"
+            android:text="책을 추가해 주세요!"
             android:textSize="15dp"
             android:layout_gravity="center_horizontal"/>
 
         <Button
+            android:id="@+id/btn_makeBookshelf"
             android:layout_width="120dp"
             android:layout_height="40dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="책 추가하러 가기"
-            android:textSize="10dp"
+            android:text="책장 생성"
+            android:textSize="15sp"
             android:textAlignment="center"
             android:background="@color/colorPrimary"/>
 

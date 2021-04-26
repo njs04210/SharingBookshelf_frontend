@@ -49,7 +49,7 @@ public class MyBookshelfFragment extends Fragment {
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
 
-    int sample = 0;
+    public static int sample = 1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
