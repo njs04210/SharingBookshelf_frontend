@@ -62,9 +62,10 @@ public class MyBookshelfFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mybookshelf, container, false);
-        //initializeView(view);
+
+        civ_profile = v.findViewById(R.id.civ_profile);
+        tv_nickname = v.findViewById(R.id.tv_nickname);
         setUserView(MainActivity.getMemId()); //사용자화면 구성
-        //addBookView();
 
         if (sample == 1) {
             getActivity().getSupportFragmentManager().beginTransaction()
@@ -77,12 +78,7 @@ public class MyBookshelfFragment extends Fragment {
         return v;
     }
 
-    private void initializeView(View v) {
-        civ_profile = v.findViewById(R.id.civ_profile);
-        tv_nickname = v.findViewById(R.id.tv_nickname);
-    }
-
-    @Override
+   /* @Override
     @CallSuper
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -104,9 +100,9 @@ public class MyBookshelfFragment extends Fragment {
                 }
             }
         }
-    }
+    }*/
 
-    /* Kakao Book search API 통신 */
+    /* Kakao Book search API 통신 *//*
     private void callBookResponse(String ISBN) {
         retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
         Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
@@ -134,7 +130,7 @@ public class MyBookshelfFragment extends Fragment {
         intent.putExtra("documentList", documentList);
         intent.putExtra("meta", meta);
         getActivity().startActivityForResult(intent, BOOKPOPUP_ACTIVITY);
-    }
+    }*/
 
     private void setUserView(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
