@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Fragments.ChattingFragment;
 import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.MyPageFragment;
+import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.RankingFragment;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
@@ -86,16 +87,20 @@ public class HomeActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, intent);
         if (requestCode == BARCODE_ACTIVITY) { //바코드 인식 결과
             if (resultCode == RESULT_OK) {
-                Fragment myBookshelfFragment = getSupportFragmentManager()
-                        .findFragmentById(R.id.myBookShelf);
-                myBookshelfFragment.onActivityResult(requestCode, resultCode, intent);
+                NoEmptyShelfFragment noEmptyShelfFragment = new NoEmptyShelfFragment();
+                noEmptyShelfFragment.onActivityResult(requestCode, resultCode, intent);
+                /*Fragment NoEmptyShelfFragment = getSupportFragmentManager().beginTransaction()
+                        .replace(new NoEmptyShelfFragment()).commit();
+                myBookshelfFragment.onActivityResult(requestCode, resultCode, intent);*/
             }
         }
         if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
             if (resultCode == RESULT_OK) {
-                Fragment myBookshelfFragment = getSupportFragmentManager()
+                NoEmptyShelfFragment noEmptyShelfFragment = new NoEmptyShelfFragment();
+                noEmptyShelfFragment.onActivityResult(requestCode, resultCode, intent);
+                /*Fragment myBookshelfFragment = getSupportFragmentManager()
                         .findFragmentById(R.id.myBookShelf);
-                myBookshelfFragment.onActivityResult(requestCode, resultCode, intent);
+                myBookshelfFragment.onActivityResult(requestCode, resultCode, intent);*/
             }
         }
     }

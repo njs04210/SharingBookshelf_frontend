@@ -58,10 +58,11 @@ public class NoEmptyShelfFragment extends Fragment {
             public void onClick(final View view) {
                 final PopupMenu popupMenu = new PopupMenu(getActivity().getApplicationContext(), view);
                 getActivity().getMenuInflater().inflate(R.menu.menu_register_book, popupMenu.getMenu());
+
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem menuItem) {
-                        if (menuItem.getItemId() == R.id.bookFind_barcode) { // 메뉴 홈페이지 만들고 intent로 수정
+                        if (menuItem.getItemId() == R.id.bookFind_barcode) {
                             Intent intent = new Intent(getActivity(), BarcodeActivity.class);
                             getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
                         } else if (menuItem.getItemId() == R.id.bookFind_ISBN) {
