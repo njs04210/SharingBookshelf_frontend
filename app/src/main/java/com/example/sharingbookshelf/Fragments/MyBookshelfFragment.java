@@ -50,6 +50,8 @@ public class MyBookshelfFragment extends Fragment {
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
 
+    int sample = 1;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +63,17 @@ public class MyBookshelfFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_mybookshelf, container, false);
-        initializeView(view);
+        //initializeView(view);
         setUserView(MainActivity.getMemId()); //사용자화면 구성
-        addBookView();
+        //addBookView();
+
+        if (sample == 1) {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+        } else {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+        }
 
         return view;
     }
