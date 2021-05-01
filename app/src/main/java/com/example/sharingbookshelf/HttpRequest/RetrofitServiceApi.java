@@ -1,6 +1,8 @@
 package com.example.sharingbookshelf.HttpRequest;
 
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.CreateShelfResponse;
+import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.LoginResponse;
 import com.example.sharingbookshelf.Models.SetUserInfoResponse;
@@ -34,6 +36,12 @@ public interface RetrofitServiceApi {
 
     @GET("api/users/{memId}")
     Call<GetUserInfoResponse> getUserInfo(@Path("memId") int memId);
+
+    @GET("api/bookshelves/{memId}")
+    Call<GetShelfStatusResponse> getShelfStatus(@Path("memId") int memId);
+
+    @POST("api/bookshelves")
+    Call<CreateShelfResponse> createShelf();
 
 }
 

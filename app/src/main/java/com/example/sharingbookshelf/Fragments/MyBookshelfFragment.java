@@ -26,6 +26,7 @@ import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 
@@ -45,7 +46,15 @@ public class MyBookshelfFragment extends Fragment {
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
 
-    public static int sample = 1;
+    private static int shelf_statusCode;
+
+    public static void setShelf_statusCode(int shelf_statusCode) {
+        MyBookshelfFragment.shelf_statusCode = shelf_statusCode;
+    }
+
+    public static int getShelf_statusCode() {
+        return shelf_statusCode;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,14 +71,15 @@ public class MyBookshelfFragment extends Fragment {
         civ_profile = v.findViewById(R.id.civ_profile);
         tv_nickname = v.findViewById(R.id.tv_nickname);
         setUserView(MainActivity.getMemId()); //사용자화면 구성
+        setShelfView(MainActivity.getMemId());
 
-        if (sample == 1) {
+       /* if (getShelf_statusCode() == 0) {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-        } else {
+        } else if (getShelf_statusCode() == 1) {
             getActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
-        }
+        }*/
 
         return v;
     }
@@ -93,6 +103,33 @@ public class MyBookshelfFragment extends Fragment {
             @Override
             public void onFailure(Call<GetUserInfoResponse> call, Throwable t) {
                 Log.e(MainActivity.MAIN_TAG, "사용자 정보 가져오기 실패", t);
+            }
+        });
+    }
+
+    private void setShelfView(int memId) {
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<GetShelfStatusResponse> call = retrofitServiceApi.getShelfStatus(memId);
+        call.enqueue(new Callback<GetShelfStatusResponse>() {
+            @Override
+            public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
+                setShelf_statusCode(response.body().getCode());
+                String msg = response.body().getMsg();
+                Log.d(MainActivity.MAIN_TAG, msg);
+
+                if (getShelf_statusCode() == 0) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+                } else if (getShelf_statusCode() == 1) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<GetShelfStatusResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
             }
         });
     }
