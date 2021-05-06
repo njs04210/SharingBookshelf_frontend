@@ -17,12 +17,12 @@ import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
-public class BookshelfAdapter extends RecyclerView.Adapter<BookshelfAdapter.BookshelfViewHolder> {
+public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelfAdapter.BookshelfViewHolder> {
 
     private ArrayList<BookshelfInfoData> bookshelfList;
     private Context context;
 
-    public BookshelfAdapter(ArrayList<BookshelfInfoData> bookshlefList) {
+    public OthersBookshelfAdapter(ArrayList<BookshelfInfoData> bookshlefList) {
         this.bookshelfList = bookshlefList;
     }
 

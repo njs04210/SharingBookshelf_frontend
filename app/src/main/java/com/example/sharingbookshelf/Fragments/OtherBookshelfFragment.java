@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.sharingbookshelf.Adapters.BookshelfAdapter;
+import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.R;
@@ -21,7 +21,7 @@ public class OtherBookshelfFragment extends Fragment {
 
     private RecyclerView rv_Bookshelves;
     private LinearLayoutManager linearLayoutManager;
-    private BookshelfAdapter bookshelfAdapter;
+    private OthersBookshelfAdapter othersBookshelfAdapter;
     private ArrayList<BookshelfInfoData> bookshelfList;
     private ArrayList<BookData> bookList;
 
@@ -50,12 +50,12 @@ public class OtherBookshelfFragment extends Fragment {
         }
 
         linearLayoutManager = new LinearLayoutManager(getContext());
-        bookshelfAdapter = new BookshelfAdapter(bookshelfList);
+        othersBookshelfAdapter = new OthersBookshelfAdapter(bookshelfList);
 
         // RecyclerView Settings
         rv_Bookshelves.setHasFixedSize(true);
         rv_Bookshelves.setLayoutManager(linearLayoutManager);
-        rv_Bookshelves.setAdapter(bookshelfAdapter);
+        rv_Bookshelves.setAdapter(othersBookshelfAdapter);
 
         setBookshelf();
 
@@ -83,6 +83,6 @@ public class OtherBookshelfFragment extends Fragment {
             //책장목록에 책 넣기
             bookshelfList.add(bookshelfInfoData);
         }
-        bookshelfAdapter.notifyDataSetChanged();
+        othersBookshelfAdapter.notifyDataSetChanged();
     }
 }
