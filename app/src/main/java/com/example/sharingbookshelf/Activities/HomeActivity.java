@@ -45,6 +45,9 @@ public class HomeActivity extends AppCompatActivity {
                     if (itemId == R.id.myBookShelf) {
                         selectedFragment = new MyBookshelfFragment();
                     } else if (itemId == R.id.otherBookshelf) {
+                        // empty view라면
+                        // AccessWarning activity 부름
+                        // no empty라면
                         selectedFragment = new OtherBookshelfFragment();
                     } else if (itemId == R.id.ranking) {
                         selectedFragment = new RankingFragment();
