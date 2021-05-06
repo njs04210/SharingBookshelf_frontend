@@ -5,10 +5,133 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.RankingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="ranking" />
+        android:layout_height="100dp"
+        android:background="#FFFFFF">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:gravity="center"
+            android:text="책 순위"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="110dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="180dp">
+
+        <ImageView
+            android:id="@+id/iv_1stbook"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:background="@color/purple_200"
+            android:layout_centerHorizontal="true"/>
+        <ImageView
+            android:id="@+id/iv_2ndbook"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:background="@color/purple_200"
+            android:layout_toLeftOf="@+id/iv_1stbook"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="50dp"/>
+        <ImageView
+            android:id="@+id/iv_3rdbook"
+            android:layout_width="80dp"
+            android:layout_height="100dp"
+            android:background="@color/purple_200"
+            android:layout_toRightOf="@+id/iv_1stbook"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="80dp" />
+        <TextView
+            android:id="@+id/iv_1stplatform"
+            android:layout_width="100dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/iv_1stbook"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bin_blue2"
+            android:text="1st"
+            android:textSize="50dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+        <TextView
+            android:id="@+id/iv_2ndplatform"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@+id/iv_2ndbook"
+            android:background="@drawable/bin_blue2"
+            android:layout_toLeftOf="@id/iv_1stplatform"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="10dp"
+            android:text="2nd"
+            android:textSize="40dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+        <TextView
+            android:id="@+id/iv_3rdplatform"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_below="@+id/iv_3rdbook"
+            android:background="@drawable/bin_blue2"
+            android:layout_toRightOf="@+id/iv_1stplatform"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:text="3rd"
+            android:textSize="40dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"/>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        style="@style/loginCard"
+        android:layout_gravity="center"
+        android:layout_marginTop="210dp"
+        android:layout_marginBottom="@dimen/loginViewsMargin"
+        android:background="@color/whiteCardColor"
+        android:elevation="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        app:cardCornerRadius="@dimen/loginCardRadius">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_bookshelves"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarFadeDuration="0"
+            android:scrollbarSize="5dp"
+            android:scrollbarThumbVertical="@android:color/darker_gray"
+            android:scrollbars="vertical"
+            android:layout_weight="1">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </androidx.cardview.widget.CardView>
+
 
 </FrameLayout>
