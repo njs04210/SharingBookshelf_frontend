@@ -53,9 +53,9 @@ public class SelfAddBookPopupActivity extends Activity {
         callBookResponse(ISBN);
     }
 
-    private void callBookResponse(String ISBN) {
+    private void callBookResponse(String isbn) {
         retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
-        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
+        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(isbn, "isbn");
         call.enqueue(new Callback<BookApiResponse>() {
             @Override
             public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
@@ -72,9 +72,9 @@ public class SelfAddBookPopupActivity extends Activity {
         });
     }
 
-    private void getBookDetails(BookApiResponse result) {
-        ArrayList<BookApiResponse.Document> documentList = result.documents;
-        BookApiResponse.Meta meta = result.metas;
+    private void getBookDetails(BookApiResponse books) {
+        ArrayList<BookApiResponse.Document> documentList = books.documents;
+        BookApiResponse.Meta meta = books.metas;
         //BookApiResponse.Document book = (BookApiResponse.Document) books.documents.get(0);
         Intent intent = new Intent(SelfAddBookPopupActivity.this, BookInfoPopupActivity.class);
         intent.putExtra("documentList", documentList);

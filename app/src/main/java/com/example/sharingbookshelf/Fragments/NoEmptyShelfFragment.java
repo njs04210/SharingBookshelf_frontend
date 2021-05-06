@@ -36,7 +36,6 @@ public class NoEmptyShelfFragment extends Fragment {
 
     private static final int BARCODE_ACTIVITY = 10000;
     private static final int ADDSELF_ACTIVITY = 10001;
-    private static final int BOOKPOPUP_ACTIVITY = 10002;
 
     private Button btn_addBook;
     private RetrofitServiceApi retrofitServiceApi;
@@ -132,6 +131,7 @@ public class NoEmptyShelfFragment extends Fragment {
         Intent intent = new Intent(getActivity(), BookInfoPopupActivity.class);
         intent.putExtra("documentList", documentList);
         intent.putExtra("meta", meta);
-        getActivity().startActivityForResult(intent, BOOKPOPUP_ACTIVITY);
+        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+        startActivity(intent);
     }
 }

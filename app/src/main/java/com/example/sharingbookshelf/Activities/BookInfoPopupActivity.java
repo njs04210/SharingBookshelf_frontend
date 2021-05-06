@@ -11,11 +11,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.AddBookResponse;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookInfoPopupActivity extends Activity {
 
@@ -23,6 +31,7 @@ public class BookInfoPopupActivity extends Activity {
     private TextView tv_ISBN, tv_title, tv_authors, tv_publisher;
     private Button btn_addBook;
     private Button btn_back;
+    private HashMap<String, Object> parameters = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +47,20 @@ public class BookInfoPopupActivity extends Activity {
         btn_addBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //책 추가하기 눌렀을 때
+                RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+                Call<AddBookResponse> call = retrofitServiceApi.addBookInShelf(MainActivity.getMemId(), parameters);
+                call.enqueue(new Callback<AddBookResponse>() {
+                    @Override
+                    public void onResponse(Call<AddBookResponse> call, Response<AddBookResponse> response) {
+                        Log.d(MainActivity.MAIN_TAG, response.body().getCode()  + " : " + response.body().getMsg());
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<AddBookResponse> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
@@ -75,12 +97,20 @@ public class BookInfoPopupActivity extends Activity {
         List<String> authors = book.getAuthors();
         String publisher = book.getPublisher();
         String thumbnail = book.getThumbnail();
-        Glide.with(this).load(thumbnail).into(iv_thumbNail);
 
+        parameters.put("ISBN", isbn);
+        parameters.put("title", title);
+        parameters.put("author", authors.get(0));
+        parameters.put("publisher", publisher);
+        parameters.put("thumbnail", thumbnail);
+
+
+        Glide.with(this).load(thumbnail).into(iv_thumbNail);
         tv_ISBN.setText(isbn);
         tv_title.setText(title);
         tv_authors.setText(authors.get(0));
         tv_publisher.setText(publisher);
+
     }
 
    /* public void mOnClose(View view) {
