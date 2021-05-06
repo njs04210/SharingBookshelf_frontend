@@ -24,9 +24,6 @@ public class AccessWarning extends AppCompatActivity {
         setContentView(R.layout.activity_access_warning_popup);
 
         Button btn_back = findViewById(R.id.btn_backhome);
-        View EmptyView = findViewById(R.id.empty_shelf);
-        View NoEmptyView = findViewById(R.id.no_empty_shelf);
-
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,9 +32,5 @@ public class AccessWarning extends AppCompatActivity {
                 finish();
             }
         });
-
-        // empty book인지 no empty book인지 검사하고
-        // empty book이라면 팝업창 발생
-
     }
 }
