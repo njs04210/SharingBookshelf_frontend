@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Models.RankingData;
@@ -22,11 +23,13 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
     public RankingAdapter(ArrayList<RankingData> rankingList) { this.rankingList = rankingList; }
 
     public static class RankingViewHolder extends RecyclerView.ViewHolder {
+        private final RecyclerView rv_ranking;
         private final TextView tv_grade;
         private final TextView tv_booktitle;
 
         public RankingViewHolder(@NonNull View itemView) {
             super(itemView);
+            this.rv_ranking = (RecyclerView) itemView.findViewById(R.id.rv_ranking);
             this.tv_grade = (TextView) itemView.findViewById(R.id.tv_grade);
             this.tv_booktitle = (TextView) itemView.findViewById(R.id.tv_booktitle);
         }
