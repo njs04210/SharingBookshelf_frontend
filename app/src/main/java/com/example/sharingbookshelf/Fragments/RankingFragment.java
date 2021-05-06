@@ -3,24 +3,25 @@ package com.example.sharingbookshelf.Fragments;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.sharingbookshelf.Adapters.RankingAdapter;
+import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RankingFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class RankingFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private RecyclerView rv_ranking;
+    private LinearLayoutManager linearLayoutManager;
+    private RankingAdapter rankingAdapter;
+    private ArrayList<RankingData> rankingList;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
