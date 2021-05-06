@@ -10,6 +10,7 @@
     android:elevation="5dp"
     android:layout_width="350dp"
     android:layout_height="450dp"
+    android:id="@+id/no_empty_shelf"
     app:cardCornerRadius="@dimen/loginCardRadius"
     android:layout_toEndOf="@+id/linearlayout1">
 
