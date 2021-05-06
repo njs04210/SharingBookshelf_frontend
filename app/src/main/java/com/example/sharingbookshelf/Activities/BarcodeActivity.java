@@ -4,13 +4,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
+import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class BarcodeActivity extends AppCompatActivity {
+
+    private RetrofitServiceApi retrofitServiceApi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,19 +51,45 @@ public class BarcodeActivity extends AppCompatActivity {
             } else {
                 //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 String ISBN = result.getContents();
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                callBookResponse(ISBN);
+                /*Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                 intent.putExtra("ISBN", ISBN);
-                setResult(RESULT_OK, intent);
-                finish();
-                /*Bundle extra = new Bundle();
-                Intent intent = getIntent();
-                extra.putString("ISBN", ISBN);
-                intent.putExtras(extra);
                 setResult(RESULT_OK, intent);
                 finish();*/
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void callBookResponse(String isbn) {
+        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
+        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(isbn, "isbn");
+        call.enqueue(new Callback<BookApiResponse>() {
+            @Override
+            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
+                BookApiResponse result = response.body();
+                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
+                if (result != null) {
+                    getBookDetails(result);
+                }
+            }
+            @Override
+            public void onFailure(Call<BookApiResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
+            }
+        });
+    }
+
+    private void getBookDetails(BookApiResponse books) {
+        ArrayList<BookApiResponse.Document> documentList = books.documents;
+        BookApiResponse.Meta meta = books.metas;
+        //BookApiResponse.Document book = (BookApiResponse.Document) books.documents.get(0);
+        Intent intent = new Intent(BarcodeActivity.this, BookInfoPopupActivity.class);
+        intent.putExtra("documentList", documentList);
+        intent.putExtra("meta", meta);
+        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
+        startActivity(intent);
+        finish();
     }
 }

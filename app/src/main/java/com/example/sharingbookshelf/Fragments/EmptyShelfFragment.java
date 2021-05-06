@@ -40,9 +40,6 @@ public class EmptyShelfFragment extends Fragment {
         btn_makeBookshelf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
-                MyBookshelfFragment.setShelf_statusCode(1);*/
                 retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
                 Call<CreateShelfResponse> call = retrofitServiceApi.createShelf();
                 call.enqueue(new Callback<CreateShelfResponse>() {
