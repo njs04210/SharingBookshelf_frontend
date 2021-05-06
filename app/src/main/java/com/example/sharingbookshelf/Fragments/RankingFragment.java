@@ -23,45 +23,46 @@ public class RankingFragment extends Fragment {
     private RankingAdapter rankingAdapter;
     private ArrayList<RankingData> rankingList;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RankingFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RankingFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RankingFragment newInstance(String param1, String param2) {
-        RankingFragment fragment = new RankingFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    public ArrayList<RankingData> getRankingList() { return rankingList; }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ranking, container, false);
+        View view = inflater.inflate(R.layout.fragment_ranking, container, false);
+
+        rv_ranking = (RecyclerView) view.findViewById(R.id.rv_ranking);
+
+        if (rankingList == null) {
+            rankingList = new ArrayList<>();
+        } else {
+            rankingList = getRankingList();
+        }
+
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        rankingAdapter = new RankingAdapter(rankingList);
+
+        rv_ranking.setHasFixedSize(true);
+        rv_ranking.setLayoutManager(linearLayoutManager);
+        rv_ranking.setAdapter(rankingAdapter);
+
+        setRanking();
+
+        return view;
+    }
+
+    private void setRanking() {
+        for (int i = 3; i < 11; i++) {
+            RankingData rankingData = new RankingData();
+            rankingData.setGrade(i);
+            rankingData.setBooktitle("누가 내 머리에 똥쌌어? " + i);
+
+            rankingList.add(rankingData);
+        }
+        rankingAdapter.notifyDataSetChanged();
     }
 }
