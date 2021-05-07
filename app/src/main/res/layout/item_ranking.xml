@@ -2,31 +2,34 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
-    android:orientation="horizontal">
-    
-    <TextView
-        android:id="@+id/tv_grade"
+    android:layout_height="25dp"
+    android:gravity="center_horizontal"
+    android:background="@drawable/border">
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:text="0"
-        android:textSize="30dp"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text=" 등"
         android:layout_marginRight="20dp"
-        android:textSize="30dp" />
+        android:layout_gravity="center_vertical"
+        >
+        <TextView
+            android:id="@+id/tv_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="위"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_booktitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="bookname"
-        android:textSize="30dp"/>
+        android:layout_gravity="center_vertical"
+        android:textSize="12sp"/>
 
 </LinearLayout>
