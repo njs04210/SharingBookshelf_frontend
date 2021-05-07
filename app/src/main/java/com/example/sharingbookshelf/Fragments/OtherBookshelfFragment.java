@@ -22,7 +22,7 @@ public class OtherBookshelfFragment extends Fragment {
     private RecyclerView rv_Bookshelves;
     private LinearLayoutManager linearLayoutManager;
     private OthersBookshelfAdapter othersBookshelfAdapter;
-    private ArrayList<BookshelfInfoData> bookshelfList;
+    private ArrayList<BookshelfInfoData> bookshelfList = new ArrayList<>();
     private ArrayList<BookData> bookList;
 
     public ArrayList<BookshelfInfoData> getBookshelfList() {
@@ -67,7 +67,7 @@ public class OtherBookshelfFragment extends Fragment {
             for (int j = 0; j < 7; j++) {
                 //책정보 세팅
                 BookData bookData = new BookData();
-//                bookData.setThumbnail("");
+                bookData.setThumbnail("");
                 bookList.add(bookData);
             }
 

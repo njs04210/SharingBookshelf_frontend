@@ -1,40 +1,51 @@
 package com.example.sharingbookshelf.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
-import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
+import com.example.sharingbookshelf.Models.ThumbnailData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
 public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.ViewHolder> {
 
-    private ArrayList<String> localDataSet;
+    private ArrayList<ThumbnailData> localDataSet;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView mimageView;
 
         public ViewHolder(View view) {
             super(view);
             // Define click listener for the ViewHolder's View
             mimageView = view.findViewById(R.id.iv_book);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        ThumbnailData item = localDataSet.get(pos);
+                        Log.d("책", item.getIsbn());
+                    }
+                }
+            });
         }
 
     }
 
-    public MyBookshelfAdapter(ArrayList<String> dataSet) {
+    public MyBookshelfAdapter(ArrayList<ThumbnailData> dataSet) {
         localDataSet = dataSet;
     }
 
@@ -52,10 +63,12 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
 
         Glide
                 .with(viewHolder.mimageView.getContext())
-                .load(localDataSet.get(position))
+                .load(localDataSet.get(position).getThumbnail())
                 .fitCenter()
                 .placeholder(R.drawable.icon_book)
                 .into(viewHolder.mimageView);
+
+        viewHolder.mimageView.setTag(localDataSet.get(position).getIsbn());
     }
 
     @Override

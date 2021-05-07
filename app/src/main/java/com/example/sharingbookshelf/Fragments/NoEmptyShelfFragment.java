@@ -32,6 +32,7 @@ import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.ThumbnailData;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -57,7 +58,7 @@ public class NoEmptyShelfFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
     private List<Map<String, Object>> myDataset;
-    private ArrayList<String> thumbnailSet = new ArrayList<>();
+    private ArrayList<ThumbnailData> thumbnailSet = new ArrayList<>();
 
     public NoEmptyShelfFragment(ArrayList<Map<String, Object>> myDataset) {
         this.myDataset = myDataset;
@@ -68,7 +69,13 @@ public class NoEmptyShelfFragment extends Fragment {
 
     private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
         for (int i = 0; i < myDataset.size(); i++) {
-            thumbnailSet.add((String) myDataset.get(i).get("thumbnail"));
+            Map<String, Object> myBook = myDataset.get(i);
+            ThumbnailData thumbnailData = new ThumbnailData();
+
+            thumbnailData.setIsbn((String)myBook.get("ISBN"));
+            thumbnailData.setThumbnail((String)myBook.get("thumbnail"));
+
+            thumbnailSet.add(thumbnailData);
         }
     }
 
