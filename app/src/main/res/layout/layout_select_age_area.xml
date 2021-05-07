@@ -67,14 +67,17 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputnickname"
                 android:layout_width="140dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/nickname"
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
                 android:layout_centerVertical="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_nickname"
-                    style="@style/modifiedEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:inputType="text"
                     android:gravity="center"
                     android:textSize="15sp"
