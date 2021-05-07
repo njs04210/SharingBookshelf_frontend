@@ -42,7 +42,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.BooksViewHol
     @Override
     public void onBindViewHolder(@NonNull BooksViewHolder booksViewHolder, int position) {
         BookData bookData = hasBookList.get(position);
-        booksViewHolder.iv_book.setImageResource(bookData.getIv_book());
+//        booksViewHolder.iv_book.setImageResource(bookData.getIv_book());
     }
 
     @Override

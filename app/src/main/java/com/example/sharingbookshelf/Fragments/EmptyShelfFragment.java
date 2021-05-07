@@ -48,7 +48,7 @@ public class EmptyShelfFragment extends Fragment {
                         MyBookshelfFragment.setShelf_statusCode(response.body().getCode());
                         Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
                         getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment(null)).commit();
                     }
 
                     @Override

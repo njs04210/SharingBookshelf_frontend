@@ -1,6 +1,7 @@
 package com.example.sharingbookshelf.Activities;
 
 import android.app.Activity;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +11,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.bumptech.glide.Glide;
+import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
+import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.AddBookResponse;
@@ -54,6 +59,9 @@ public class BookInfoPopupActivity extends Activity {
                     public void onResponse(Call<AddBookResponse> call, Response<AddBookResponse> response) {
                         Log.d(MainActivity.MAIN_TAG, response.body().getCode()  + " : " + response.body().getMsg());
                         finish();
+                        //액티비티 전체 말고 NoEmptyFragment 만 reload 되는 방법 찾기
+                        Intent intent= new Intent(BookInfoPopupActivity.this, HomeActivity.class);
+                        startActivity(intent);
                     }
 
                     @Override

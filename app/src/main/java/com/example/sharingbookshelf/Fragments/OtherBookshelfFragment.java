@@ -42,13 +42,6 @@ public class OtherBookshelfFragment extends Fragment {
 
         rv_Bookshelves = (RecyclerView) view.findViewById(R.id.rv_bookshelves);
 
-        // bookshelfList 는 싱글톤으로
-        if (bookshelfList == null) {
-            bookshelfList = new ArrayList<>();
-        } else {
-            bookshelfList = getBookshelfList();
-        }
-
         linearLayoutManager = new LinearLayoutManager(getContext());
         othersBookshelfAdapter = new OthersBookshelfAdapter(bookshelfList);
 
@@ -74,7 +67,7 @@ public class OtherBookshelfFragment extends Fragment {
             for (int j = 0; j < 7; j++) {
                 //책정보 세팅
                 BookData bookData = new BookData();
-                bookData.setIv_book(R.drawable.icon_book2);
+//                bookData.setThumbnail("");
                 bookList.add(bookData);
             }
 
