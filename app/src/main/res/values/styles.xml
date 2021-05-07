@@ -84,7 +84,7 @@
     </style>
 
     <!-- 상태바 -->
-    <style name="StatusBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="StatusBar" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>
