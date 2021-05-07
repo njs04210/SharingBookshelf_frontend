@@ -20,35 +20,34 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.RankingV
 
     private ArrayList<RankingData> rankingList;
 
-    public RankingAdapter(ArrayList<RankingData> rankingList) { this.rankingList = rankingList; }
-
     public static class RankingViewHolder extends RecyclerView.ViewHolder {
-        private final RecyclerView rv_ranking;
         private final TextView tv_grade;
         private final TextView tv_booktitle;
 
-        public RankingViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.rv_ranking = (RecyclerView) itemView.findViewById(R.id.rv_ranking);
-            this.tv_grade = (TextView) itemView.findViewById(R.id.tv_grade);
-            this.tv_booktitle = (TextView) itemView.findViewById(R.id.tv_booktitle);
+        public RankingViewHolder(@NonNull View view) {
+            super(view);
+            tv_grade = (TextView) view.findViewById(R.id.tv_grade);
+            tv_booktitle = (TextView) view.findViewById(R.id.tv_booktitle);
         }
+    }
+
+    public RankingAdapter(ArrayList<RankingData> dataSet) {
+        rankingList = dataSet;
     }
 
     @NonNull
     @Override
-    public RankingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_ranking, parent, false);
+    public RankingViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_ranking, viewGroup, false);
 
         return new RankingViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RankingViewHolder rankingViewHolder, int position) {
-        RankingData rankingData = rankingList.get(position);
-        rankingViewHolder.tv_grade.setText(rankingData.getGrade());
-        rankingViewHolder.tv_booktitle.setText(rankingData.getBooktitle());
+        rankingViewHolder.tv_grade.setText(Integer.toString(rankingList.get(position).getGrade()));
+        rankingViewHolder.tv_booktitle.setText(rankingList.get(position).getBooktitle());
     }
 
     @Override

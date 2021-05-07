@@ -15,15 +15,15 @@ import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class RankingFragment extends Fragment {
 
-    private RecyclerView rv_ranking;
-    private LinearLayoutManager linearLayoutManager;
-    private RankingAdapter rankingAdapter;
-    private ArrayList<RankingData> rankingList;
-
-    public ArrayList<RankingData> getRankingList() { return rankingList; }
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private RecyclerView.Adapter mAdapter;
+    private ArrayList<RankingData> rankingList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,22 +35,18 @@ public class RankingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ranking, container, false);
 
-        rv_ranking = (RecyclerView) view.findViewById(R.id.rv_ranking);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_ranking);
 
-        if (rankingList == null) {
-            rankingList = new ArrayList<>();
-        } else {
-            rankingList = getRankingList();
-        }
-
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        rankingAdapter = new RankingAdapter(rankingList);
-
-        rv_ranking.setHasFixedSize(true);
-        rv_ranking.setLayoutManager(linearLayoutManager);
-        rv_ranking.setAdapter(rankingAdapter);
-
+        mLayoutManager = new LinearLayoutManager(getActivity());
         setRanking();
+
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RankingAdapter(rankingList);
+        mRecyclerView.setAdapter(mAdapter);
+
+
 
         return view;
     }
@@ -59,10 +55,10 @@ public class RankingFragment extends Fragment {
         for (int i = 3; i < 11; i++) {
             RankingData rankingData = new RankingData();
             rankingData.setGrade(i);
-            rankingData.setBooktitle("누가 내 머리에 똥쌌어? " + i);
+            rankingData.setBooktitle("누가 내 머리에 똥쌌어?");
 
             rankingList.add(rankingData);
         }
-        rankingAdapter.notifyDataSetChanged();
+        //mAdapter.notifyDataSetChanged();
     }
 }
