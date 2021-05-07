@@ -37,7 +37,7 @@ public class RankingFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_ranking);
 
-        mLayoutManager = new LinearLayoutManager(getActivity());
+        mLayoutManager = new LinearLayoutManager(getContext());
         setRanking();
 
         mRecyclerView.setHasFixedSize(true);
