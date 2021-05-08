@@ -28,7 +28,6 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
 
         public ViewHolder(View view) {
             super(view);
-            // Define click listener for the ViewHolder's View
             mimageView = view.findViewById(R.id.iv_book);
 
             view.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +72,6 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
 
     @Override
     public int getItemCount() {
-        return localDataSet.size();
+        return (null != localDataSet ? localDataSet.size() : 0);
     }
 }

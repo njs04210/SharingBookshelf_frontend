@@ -17,39 +17,39 @@ import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
-public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelfAdapter.BookshelfViewHolder> {
+public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelfAdapter.ViewHolder> {
 
     private ArrayList<BookshelfInfoData> bookshelfList;
     private Context context;
 
-    public OthersBookshelfAdapter(ArrayList<BookshelfInfoData> bookshlefList) {
-        this.bookshelfList = bookshlefList;
-    }
-
-    public static class BookshelfViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final RecyclerView rv_bookshelf;
         private final ImageView iv_profileImg;
         private final TextView tv_nickname;
 
-        public BookshelfViewHolder(@NonNull View itemView) {
-            super(itemView); // Define click listener for the ViewHolder's View
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
             this.rv_bookshelf = (RecyclerView) itemView.findViewById(R.id.rv_bookshelf);
             this.iv_profileImg = (ImageView) itemView.findViewById(R.id.iv_profileImg);
             this.tv_nickname = (TextView) itemView.findViewById(R.id.tv_nickname);
         }
     }
 
+    public OthersBookshelfAdapter(ArrayList<BookshelfInfoData> dataSet) {
+        bookshelfList = dataSet;
+    }
+
     @NonNull
     @Override
-    public BookshelfViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_bookshelf, parent, false);
 
-        return new BookshelfViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull BookshelfViewHolder bookshelfViewHolder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder bookshelfViewHolder, final int position) {
         BookshelfInfoData bookshelfInfoData = bookshelfList.get(position);
         bookshelfViewHolder.iv_profileImg.setImageResource(bookshelfInfoData.getProfile());
         bookshelfViewHolder.tv_nickname.setText(bookshelfInfoData.getNickname());
