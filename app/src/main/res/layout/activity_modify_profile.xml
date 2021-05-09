@@ -46,7 +46,7 @@
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
-            <include layout="@layout/layout_modify_profile" />
+            <include layout="@layout/layout_edit_profile" />
 
         </LinearLayout>
 
