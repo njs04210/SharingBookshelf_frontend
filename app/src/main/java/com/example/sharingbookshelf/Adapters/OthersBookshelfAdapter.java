@@ -23,15 +23,15 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final RecyclerView rv_bookshelf;
+        private final RecyclerView mRecyclerView;
         private final ImageView iv_profileImg;
         private final TextView tv_nickname;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.rv_bookshelf = (RecyclerView) itemView.findViewById(R.id.rv_bookshelf);
-            this.iv_profileImg = (ImageView) itemView.findViewById(R.id.iv_profileImg);
-            this.tv_nickname = (TextView) itemView.findViewById(R.id.tv_nickname);
+        public ViewHolder(@NonNull View view) {
+            super(view);
+            this.mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_bookshelf);
+            this.iv_profileImg = (ImageView) view.findViewById(R.id.iv_profileImg);
+            this.tv_nickname = (TextView) view.findViewById(R.id.tv_nickname);
         }
     }
 
@@ -49,17 +49,17 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder bookshelfViewHolder, final int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         BookshelfInfoData bookshelfInfoData = bookshelfList.get(position);
-        bookshelfViewHolder.iv_profileImg.setImageResource(bookshelfInfoData.getProfile());
-        bookshelfViewHolder.tv_nickname.setText(bookshelfInfoData.getNickname());
+        viewHolder.iv_profileImg.setImageResource(bookshelfInfoData.getProfile());
+        viewHolder.tv_nickname.setText(bookshelfInfoData.getNickname());
 
         ArrayList<BookData> bookList = bookshelfInfoData.getBookList();
         BooksAdapter booksAdapter = new BooksAdapter(bookList);
 
-        bookshelfViewHolder.rv_bookshelf.setAdapter(booksAdapter);
-        bookshelfViewHolder.rv_bookshelf.setHasFixedSize(true);
-        bookshelfViewHolder.rv_bookshelf.setLayoutManager(new LinearLayoutManager(context,
+        viewHolder.mRecyclerView.setAdapter(booksAdapter);
+        viewHolder.mRecyclerView.setHasFixedSize(true);
+        viewHolder.mRecyclerView.setLayoutManager(new LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false));
 
     }

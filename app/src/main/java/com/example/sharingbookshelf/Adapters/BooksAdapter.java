@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.R;
 
@@ -15,20 +16,19 @@ import java.util.ArrayList;
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> {
 
-    private ArrayList<BookData> hasBookList;
-
+    private ArrayList<BookData> bookDataSet;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView iv_book;
+        private final ImageView mimageView;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.iv_book = (ImageView) itemView.findViewById(R.id.iv_book);
+        public ViewHolder(@NonNull View view) {
+            super(view);
+            mimageView = (ImageView) view.findViewById(R.id.iv_book);
         }
     }
 
     public BooksAdapter(ArrayList<BookData> dataSet) {
-        hasBookList = dataSet;
+        bookDataSet = dataSet;
     }
 
     @NonNull
@@ -41,13 +41,19 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder booksViewHolder, int position) {
-        BookData bookData = hasBookList.get(position);
-//        booksViewHolder.iv_book.setImageResource(bookData.getIv_book());
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        BookData bookData = bookDataSet.get(position);
+        Glide
+                .with(viewHolder.mimageView.getContext())
+                .load(bookData.getThumbnail())
+                .fitCenter()
+                .placeholder(R.drawable.icon_book)
+                .into(viewHolder.mimageView);
+        //viewHolder.mimageView.setImageResource(R.drawable.icon_book2);
     }
 
     @Override
     public int getItemCount() {
-        return (null != hasBookList ? hasBookList.size() : 0);
+        return (null != bookDataSet ? bookDataSet.size() : 0);
     }
 }
