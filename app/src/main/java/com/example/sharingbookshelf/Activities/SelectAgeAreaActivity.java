@@ -263,6 +263,7 @@ public class SelectAgeAreaActivity extends Activity {
         Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
         finish();
+        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
     }
 
     private String getRealPathFromURI(Context context, Uri uri) {

@@ -183,10 +183,12 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             } else if (code == 0) { //신규회원은 자녀선택부터
                 Intent intent = new Intent(this, SelectAgeAreaActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
             }
         }
     }
