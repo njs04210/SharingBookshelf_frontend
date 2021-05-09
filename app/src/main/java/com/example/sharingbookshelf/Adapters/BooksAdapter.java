@@ -49,7 +49,6 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
                 .fitCenter()
                 .placeholder(R.drawable.icon_book)
                 .into(viewHolder.mimageView);
-        //viewHolder.mimageView.setImageResource(R.drawable.icon_book2);
     }
 
     @Override

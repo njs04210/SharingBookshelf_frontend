@@ -62,14 +62,6 @@ public class MyBookshelfFragment extends Fragment {
         setUserView(MainActivity.getMemId()); //사용자화면 구성
         setShelfView(MainActivity.getMemId());
 
-       /* if (getShelf_statusCode() == 0) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-        } else if (getShelf_statusCode() == 1) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
-        }*/
-
         return v;
     }
 
@@ -106,16 +98,6 @@ public class MyBookshelfFragment extends Fragment {
                 setShelf_statusCode(response.body().getCode());
                 String msg = response.body().getMsg();
                 books = response.body().getHasBooks();
-
-//                if (books != null) {
-//                    thumbnail = new ArrayList<>();
-//
-//                    for (int i = 0; i < books.size(); i++) {
-//                        books.get(i)
-//                    BookData bookData = new BookData();
-//                    bookData.setThumbnail(bookData.);
-//
-//                }
 
                 Log.d(MainActivity.MAIN_TAG, msg);
 
