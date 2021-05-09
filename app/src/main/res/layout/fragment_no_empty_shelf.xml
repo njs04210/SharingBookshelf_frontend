@@ -28,14 +28,6 @@
             android:paddingBottom="10dp"
             android:scrollbars="vertical" />
 
-        <!--<Button
-            android:id="@+id/btn_AddBook"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right|top"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp"
-            android:text="책 추가" />-->
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">

@@ -90,7 +90,6 @@ public class NoEmptyShelfFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_no_empty_shelf, container, false);
 
-        //btn_addBook = v.findViewById(R.id.btn_AddBook);
         fab_addBook = v.findViewById(R.id.floating_action_button);
         mRecyclerView = v.findViewById(R.id.rcv_myBookShelf);
 

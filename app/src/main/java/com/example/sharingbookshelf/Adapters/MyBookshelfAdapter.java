@@ -51,7 +51,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        LinearLayout view = (LinearLayout) LayoutInflater.from(viewGroup.getContext())
+        View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_book_mybookshelf, viewGroup, false);
 
         return new ViewHolder(view);
@@ -67,7 +67,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                 .placeholder(R.drawable.icon_book)
                 .into(viewHolder.mimageView);
 
-        viewHolder.mimageView.setTag(localDataSet.get(position).getIsbn());
+        //viewHolder.mimageView.setTag(localDataSet.get(position).getIsbn());
     }
 
     @Override
