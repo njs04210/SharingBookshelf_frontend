@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="20dp"
-            app:chipSpacingHorizontal="20dp"
+            app:chipSpacingHorizontal="10dp"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -59,8 +59,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
-
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="25dp">
 
         <ImageView
             android:layout_width="350dp"
@@ -111,18 +110,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:background="@color/whiteCardColor"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="23dp"
         android:elevation="5dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_ranking"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbarFadeDuration="0"
-            android:scrollbarSize="5dp"
-            android:scrollbarThumbVertical="@android:color/darker_gray"
-            android:scrollbars="vertical">
-
+            android:scrollbarFadeDuration="0">
         </androidx.recyclerview.widget.RecyclerView>
 
     </LinearLayout>

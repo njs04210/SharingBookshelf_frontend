@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sharingbookshelf">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,25 +31,24 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/StatusBar">
+            android:theme="@style/StatusBar" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Activities.MainActivity"
-            android:theme="@style/SplashTheme">
-
-        </activity>
-        <activity
             android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar">
-        </activity>
+            android:theme="@style/StatusBar" />
         <activity
             android:name=".Activities.WebViewActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name=".Activities.LeaveIdActivity" />
+        <activity android:name=".Activities.LikeListActivity" />
+        <activity android:name=".Activities.EditProfileActivity" />
     </application>
 
 </manifest>

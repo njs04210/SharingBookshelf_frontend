@@ -12,7 +12,7 @@
 
     <LinearLayout
         style="@style/linearParent"
-        android:layout_height="530dp"
+        android:layout_height="540dp"
         android:layout_gravity="center"
         android:padding="@dimen/loginViewsMargin">
 
@@ -33,21 +33,22 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/icon_logo" />
 
-            <TextView
-                android:layout_width="180dp"
-                android:layout_height="match_parent"
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:gravity="center"
                 android:textAlignment="center"
                 android:layout_toRightOf="@+id/profileView"
-                android:text="프로필 사진을\n등록해보세요!"
-                android:textColor="#147AFE"
+                android:text="사진등록/변경"
+                android:textColor="#ffffff"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:background="@color/primaryTextColor"/>
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="260dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:layout_gravity="center">
@@ -60,24 +61,21 @@
                 android:layout_centerVertical="true"
                 android:paddingTop="10dp"
                 android:text="닉네임"
-                android:textColor="#147AFE"
+                android:textColor="#ff7a00"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputnickname"
                 android:layout_width="140dp"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/nickname"
-                app:boxBackgroundColor="@android:color/transparent"
-                android:background="@android:color/transparent"
                 android:layout_centerVertical="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_nickname"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    style="@style/modifiedEditText"
                     android:inputType="text"
                     android:gravity="center"
                     android:textSize="15sp"
@@ -96,21 +94,34 @@
             <Button
                 android:id="@+id/check_nickname"
                 style="@style/parent"
-                android:layout_width="40dp"
+                android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
                 android:layout_toRightOf="@+id/textInputnickname"
                 android:background="@color/primaryTextColor"
-                android:text="확인"
+                android:text="중복확인"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
+        <TextView
+            android:id="@+id/naming_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingTop="10dp"
+            android:text="8자 이내로 입력하세요"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textColor="#CCCCCC"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
         <RelativeLayout
-            android:layout_width="260dp"
+            android:layout_width="280dp"
             android:layout_height="40dp"
             android:layout_marginTop="15dp"
             android:layout_gravity="center">
@@ -121,7 +132,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="거주 지역"
-                android:textColor="#147AFE"
+                android:textColor="#ff7a00"
                 android:textSize="15dp"
                 android:textAlignment="center"
                 android:textStyle="bold" />
@@ -169,7 +180,7 @@
             <Button
                 android:id="@+id/reg_address"
                 style="@style/parent"
-                android:layout_width="40dp"
+                android:layout_width="80dp"
                 android:layout_height="35dp"
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
@@ -196,7 +207,7 @@
                 android:layout_centerVertical="true"
                 android:text="자녀 나이"
                 android:textAlignment="center"
-                android:textColor="#147AFE"
+                android:textColor="#ff7a00"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -228,7 +239,7 @@
                 android:layout_centerVertical="true"
                 android:text="자녀 성별"
                 android:textAlignment="center"
-                android:textColor="#147AFE"
+                android:textColor="#ff7a00"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -265,7 +276,7 @@
             style="@style/loginButton"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="25dp"
-            android:text="등록" />
+            android:text="저장" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>

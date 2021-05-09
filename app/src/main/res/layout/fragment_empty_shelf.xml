@@ -43,13 +43,13 @@
         <Button
             android:id="@+id/btn_makeBookshelf"
             android:layout_width="120dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="책장 생성"
             android:textSize="15sp"
             android:textAlignment="center"
-            android:background="@color/colorPrimary"/>
+            android:backgroundTint="@color/colorPrimary"/>
 
     </LinearLayout>
 

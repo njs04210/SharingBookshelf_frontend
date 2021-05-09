@@ -10,7 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.sharingbookshelf.Adapters.BookshelfAdapter;
+import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.R;
@@ -19,10 +19,10 @@ import java.util.ArrayList;
 
 public class OtherBookshelfFragment extends Fragment {
 
-    private RecyclerView rv_Bookshelves;
-    private LinearLayoutManager linearLayoutManager;
-    private BookshelfAdapter bookshelfAdapter;
-    private ArrayList<BookshelfInfoData> bookshelfList;
+    private RecyclerView mRecyclerView;
+    private RecyclerView.LayoutManager mLayoutManager;
+    private OthersBookshelfAdapter mAdapter;
+    private ArrayList<BookshelfInfoData> bookshelfList = new ArrayList<>();
     private ArrayList<BookData> bookList;
 
     public ArrayList<BookshelfInfoData> getBookshelfList() {
@@ -38,28 +38,21 @@ public class OtherBookshelfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
+        View v = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
 
-        rv_Bookshelves = (RecyclerView) view.findViewById(R.id.rv_bookshelves);
+        mRecyclerView = v.findViewById(R.id.rv_bookshelves);
+        mRecyclerView.setHasFixedSize(true);
 
-        // bookshelfList 는 싱글톤으로
-        if (bookshelfList == null) {
-            bookshelfList = new ArrayList<>();
-        } else {
-            bookshelfList = getBookshelfList();
-        }
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mAdapter = new OthersBookshelfAdapter(bookshelfList);
 
-        linearLayoutManager = new LinearLayoutManager(getContext());
-        bookshelfAdapter = new BookshelfAdapter(bookshelfList);
-
-        // RecyclerView Settings
-        rv_Bookshelves.setHasFixedSize(true);
-        rv_Bookshelves.setLayoutManager(linearLayoutManager);
-        rv_Bookshelves.setAdapter(bookshelfAdapter);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
 
         setBookshelf();
 
-        return view;
+        return v;
     }
 
     private void setBookshelf() {
@@ -67,14 +60,14 @@ public class OtherBookshelfFragment extends Fragment {
             //회원 책장 객체 생성
             BookshelfInfoData bookshelfInfoData = new BookshelfInfoData();
             bookshelfInfoData.setNickname("회원 " + i);
-            bookshelfInfoData.setProfile(R.drawable.ic_profile_default);
+            bookshelfInfoData.setProfile(R.drawable.icon_logo);
 
             // 책장 속 책 받을 arraylist 객체 생성
             bookList = new ArrayList<>();
             for (int j = 0; j < 7; j++) {
                 //책정보 세팅
                 BookData bookData = new BookData();
-                bookData.setIv_book(R.drawable.icon_book2);
+                bookData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/157/x9791158362157.jpg");
                 bookList.add(bookData);
             }
 
@@ -83,6 +76,6 @@ public class OtherBookshelfFragment extends Fragment {
             //책장목록에 책 넣기
             bookshelfList.add(bookshelfInfoData);
         }
-        bookshelfAdapter.notifyDataSetChanged();
+        mAdapter.notifyDataSetChanged();
     }
 }

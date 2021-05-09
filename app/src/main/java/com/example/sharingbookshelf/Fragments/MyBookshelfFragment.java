@@ -1,43 +1,31 @@
 package com.example.sharingbookshelf.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.CallSuper;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
-import com.example.sharingbookshelf.Activities.BarcodeActivity;
-import com.example.sharingbookshelf.Activities.BookInfoPopupActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
-import com.example.sharingbookshelf.Activities.SelfAddBookPopupActivity;
-import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
 
 public class MyBookshelfFragment extends Fragment {
 
@@ -45,6 +33,7 @@ public class MyBookshelfFragment extends Fragment {
     private TextView tv_nickname;
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
+    public ArrayList<Map<String, Object>> books;
 
     private static int shelf_statusCode;
 
@@ -72,14 +61,6 @@ public class MyBookshelfFragment extends Fragment {
         tv_nickname = v.findViewById(R.id.tv_nickname);
         setUserView(MainActivity.getMemId()); //사용자화면 구성
         setShelfView(MainActivity.getMemId());
-
-       /* if (getShelf_statusCode() == 0) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-        } else if (getShelf_statusCode() == 1) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
-        }*/
 
         return v;
     }
@@ -113,8 +94,11 @@ public class MyBookshelfFragment extends Fragment {
         call.enqueue(new Callback<GetShelfStatusResponse>() {
             @Override
             public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
+
                 setShelf_statusCode(response.body().getCode());
                 String msg = response.body().getMsg();
+                books = response.body().getHasBooks();
+
                 Log.d(MainActivity.MAIN_TAG, msg);
 
                 if (getShelf_statusCode() == 0) {
@@ -122,7 +106,7 @@ public class MyBookshelfFragment extends Fragment {
                             .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
                 } else if (getShelf_statusCode() == 1) {
                     getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+                            .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
                 }
 
             }

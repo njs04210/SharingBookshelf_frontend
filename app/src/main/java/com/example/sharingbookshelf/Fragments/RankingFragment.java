@@ -52,7 +52,7 @@ public class RankingFragment extends Fragment {
     }
 
     private void setRanking() {
-        for (int i = 3; i < 11; i++) {
+        for (int i = 4; i < 11; i++) {
             RankingData rankingData = new RankingData();
             rankingData.setGrade(i);
             rankingData.setBooktitle("누가 내 머리에 똥쌌어?");
