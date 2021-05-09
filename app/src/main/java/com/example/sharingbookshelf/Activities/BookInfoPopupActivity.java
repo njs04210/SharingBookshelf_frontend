@@ -62,6 +62,8 @@ public class BookInfoPopupActivity extends Activity {
                         //액티비티 전체 말고 NoEmptyFragment 만 reload 되는 방법 찾기
                         Intent intent= new Intent(BookInfoPopupActivity.this, HomeActivity.class);
                         startActivity(intent);
+                        finish();
+                        overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     }
 
                     @Override
@@ -75,7 +77,7 @@ public class BookInfoPopupActivity extends Activity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookInfoPopupActivity.this, SelfAddBookPopupActivity.class);
+                Intent intent = new Intent(BookInfoPopupActivity.this,SelfAddBookPopupActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -120,14 +122,4 @@ public class BookInfoPopupActivity extends Activity {
         tv_publisher.setText(publisher);
 
     }
-
-   /* public void mOnClose(View view) {
-        //데이터 전달하기
-        String res = ISBN_field.getText().toString();
-        Intent intent = new Intent(getApplicationContext(), TakingPhotoActivity.class);
-        intent.putExtra("ISBN", res);
-        setResult(RESULT_OK, intent);
-        finish();
-
-    }*/
 }
