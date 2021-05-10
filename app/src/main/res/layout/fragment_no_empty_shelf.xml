@@ -4,11 +4,9 @@
     android:id="@+id/no_empty_shelf"
     style="@style/loginCard"
     android:layout_width="350dp"
-    android:layout_height="450dp"
+    android:layout_height="500dp"
     android:layout_gravity="center"
-    android:layout_marginTop="65dp"
-    android:layout_marginBottom="@dimen/loginViewsMargin"
-    android:layout_toEndOf="@+id/linearlayout1"
+    app:layout_constraintTop_toBottomOf="@+id/linearlayout1"
     android:background="@color/whiteCardColor"
     android:elevation="5dp"
     app:cardCornerRadius="@dimen/loginCardRadius">
@@ -40,7 +38,7 @@
                 android:layout_margin="16dp"
                 android:src="@drawable/outline_add_24"
                 app:fabSize="auto"
-                app:backgroundTint="@color/colorPrimary" />
+                app:backgroundTint="@color/colorPrimary_2" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
