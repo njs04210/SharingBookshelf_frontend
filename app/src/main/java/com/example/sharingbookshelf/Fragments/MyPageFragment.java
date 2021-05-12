@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.sharingbookshelf.Activities.EditProfileActivity;
 import com.example.sharingbookshelf.Activities.LeaveIdActivity;
 import com.example.sharingbookshelf.Activities.LikeListActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
@@ -69,9 +68,11 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
         Intent intent;
         switch (v.getId()) {
             case R.id.btn_editProfile:
-                intent = new Intent(getActivity(), EditProfileActivity.class);
+                EditProfileFragment e = EditProfileFragment.getInstance();
+                e.show(getActivity().getSupportFragmentManager(), "Abc");
+                /*intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);*/
                 break;
 
             case R.id.btn_dealList:
