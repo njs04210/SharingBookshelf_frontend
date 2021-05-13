@@ -62,6 +62,7 @@ public class MyBookshelfFragment extends Fragment {
         setUserView(MainActivity.getMemId()); //사용자화면 구성
         setShelfView(MainActivity.getMemId());
 
+
         return v;
     }
 

@@ -41,9 +41,10 @@
                 android:textAlignment="center"
                 android:layout_toRightOf="@+id/profileView"
                 android:text="프로필 사진을\n등록해보세요!"
-                android:textColor="#147AFE"
+                android:textColor="@color/colorPrimary_2"
                 android:textSize="15sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:fontFamily="@font/font_main"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -60,7 +61,7 @@
                 android:layout_centerVertical="true"
                 android:paddingTop="10dp"
                 android:text="닉네임"
-                android:textColor="#147AFE"
+                android:textColor="@color/colorPrimary_2"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -101,7 +102,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
                 android:layout_toRightOf="@+id/textInputnickname"
-                android:background="@color/primaryTextColor"
+                android:background="@color/colorPrimary_2"
                 android:text="확인"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
@@ -121,7 +122,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="거주 지역"
-                android:textColor="#147AFE"
+                android:textColor="@color/colorPrimary_2"
                 android:textSize="15dp"
                 android:textAlignment="center"
                 android:textStyle="bold" />
@@ -174,7 +175,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/tv_address"
-                android:background="@color/primaryTextColor"
+                android:background="@color/colorPrimary_2"
                 android:text="검색"
                 android:textAlignment="center"
                 android:textColor="#ffffff"
@@ -196,7 +197,7 @@
                 android:layout_centerVertical="true"
                 android:text="자녀 나이"
                 android:textAlignment="center"
-                android:textColor="#147AFE"
+                android:textColor="@color/colorPrimary_2"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 
@@ -228,7 +229,7 @@
                 android:layout_centerVertical="true"
                 android:text="자녀 성별"
                 android:textAlignment="center"
-                android:textColor="#147AFE"
+                android:textColor="@color/colorPrimary_2"
                 android:textSize="15dp"
                 android:textStyle="bold" />
 

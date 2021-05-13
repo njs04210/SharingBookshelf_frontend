@@ -45,12 +45,12 @@
     </style>
 
     <style name="headerTextPrimary" parent="headerText">
-        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColor">@color/colorPrimary_2</item>
     </style>
 
     <style name="modifiedEditText" parent="parent">
         <item name="android:textSize">@dimen/newsMoreTextSize</item>
-        <item name="android:backgroundTint">@color/primaryTextColor</item>
+        <item name="android:backgroundTint">@color/colorPrimary_2</item>
     </style>
 
     <style name="viewParent">

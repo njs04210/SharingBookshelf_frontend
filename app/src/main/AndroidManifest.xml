@@ -32,6 +32,8 @@
         <activity
             android:name=".Activities.HomeActivity"
             android:theme="@style/StatusBar" />
+
+
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
@@ -39,6 +41,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
@@ -49,7 +52,8 @@
         <activity
             android:name=".Activities.LeaveIdActivity" />
         <activity android:name=".Activities.LikeListActivity" />
-        <activity android:name=".Activities.EditProfileActivity" />
+        <activity android:name=".Activities.EditProfileActivity"
+            android:theme="@android:style/ThemeOverlay.Material.Dialog"/>
     </application>
 
 </manifest>
