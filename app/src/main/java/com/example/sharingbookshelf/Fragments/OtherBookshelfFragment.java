@@ -1,5 +1,7 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,13 +11,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
+
+import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
 
 public class OtherBookshelfFragment extends Fragment {
 
@@ -52,6 +58,10 @@ public class OtherBookshelfFragment extends Fragment {
 
         setBookshelf();
 
+        if (getHasShelfcode() == 0) {
+            openDialog();
+        }
+
         return v;
     }
 
@@ -77,5 +87,12 @@ public class OtherBookshelfFragment extends Fragment {
             bookshelfList.add(bookshelfInfoData);
         }
         mAdapter.notifyDataSetChanged();
+    }
+
+    public void openDialog() {
+        AccessWarningFragment accessWarningFragment = new AccessWarningFragment();
+        accessWarningFragment.setCancelable(false);
+        accessWarningFragment.show(
+                getChildFragmentManager(), "abc");
     }
 }

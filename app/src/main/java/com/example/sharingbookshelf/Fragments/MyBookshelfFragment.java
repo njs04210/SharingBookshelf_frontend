@@ -19,7 +19,6 @@ import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -28,6 +27,9 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
+import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
 
 public class MyBookshelfFragment extends Fragment {
 
@@ -39,16 +41,6 @@ public class MyBookshelfFragment extends Fragment {
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
     public ArrayList<Map<String, Object>> books;
-
-    private static int shelf_statusCode;
-
-    public static void setShelf_statusCode(int shelf_statusCode) {
-        MyBookshelfFragment.shelf_statusCode = shelf_statusCode;
-    }
-
-    public static int getShelf_statusCode() {
-        return shelf_statusCode;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,9 +66,14 @@ public class MyBookshelfFragment extends Fragment {
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 Fragment selectedFragment = null;
-                if (position == 0 && flag == true) {
-                    getActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
+                if (position == 0) {
+                    if (getHasShelfcode() == 1 && flag == true) {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
+                    } else if (getHasShelfcode() == 0) {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+                    }
                 }
                 if (position == 1) {
                     getActivity().getSupportFragmentManager().beginTransaction()
@@ -128,16 +125,16 @@ public class MyBookshelfFragment extends Fragment {
             @Override
             public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
 
-                setShelf_statusCode(response.body().getCode());
+                setHasShelfcode(response.body().getCode());
                 String msg = response.body().getMsg();
                 books = response.body().getHasBooks();
 
                 Log.d(MainActivity.MAIN_TAG, msg);
 
-                if (getShelf_statusCode() == 0) {
+                if (getHasShelfcode() == 0) {
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-                } else if (getShelf_statusCode() == 1) {
+                } else if (getHasShelfcode() == 1) {
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
                     flag = true;

@@ -102,4 +102,10 @@
         <item name="buttonTint">@color/colorPrimary_2</item>
     </style>
 
+    <style name="BookReportButton" parent="viewParent">
+        <item name="android:background">@drawable/bookreport_button_bk</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
 </resources>

@@ -14,12 +14,13 @@ import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.CreateShelfResponse;
-import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
 
 public class EmptyShelfFragment extends Fragment {
 
@@ -45,7 +46,7 @@ public class EmptyShelfFragment extends Fragment {
                 call.enqueue(new Callback<CreateShelfResponse>() {
                     @Override
                     public void onResponse(Call<CreateShelfResponse> call, Response<CreateShelfResponse> response) {
-                        MyBookshelfFragment.setShelf_statusCode(response.body().getCode());
+                        setHasShelfcode(response.body().getCode());
                         Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
                         getActivity().getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.bookshelf, new NoEmptyShelfFragment(null)).commit();
