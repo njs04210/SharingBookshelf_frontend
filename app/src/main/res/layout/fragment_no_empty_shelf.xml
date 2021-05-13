@@ -4,9 +4,9 @@
     android:id="@+id/no_empty_shelf"
     style="@style/loginCard"
     android:layout_width="350dp"
-    android:layout_height="500dp"
+    android:layout_height="460dp"
     android:layout_gravity="center"
-    app:layout_constraintTop_toBottomOf="@+id/linearlayout1"
+    app:layout_constraintTop_toBottomOf="@+id/tabLayout"
     android:background="@color/whiteCardColor"
     android:elevation="5dp"
     app:cardCornerRadius="@dimen/loginCardRadius">

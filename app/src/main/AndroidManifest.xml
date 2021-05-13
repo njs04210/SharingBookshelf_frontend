@@ -49,7 +49,6 @@
         <activity
             android:name=".Activities.LeaveIdActivity" />
         <activity android:name=".Activities.LikeListActivity" />
-        <activity android:name=".Activities.EditProfileActivity" />
     </application>
 
 </manifest>

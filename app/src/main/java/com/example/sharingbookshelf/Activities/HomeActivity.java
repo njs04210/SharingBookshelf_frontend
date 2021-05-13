@@ -20,6 +20,16 @@ public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView btnNav;
 
+    private static int hasShelfcode;
+
+    public static void setHasShelfcode(int hasShelfcode) {
+        HomeActivity.hasShelfcode = hasShelfcode;
+    }
+
+    public static int getHasShelfcode() {
+        return hasShelfcode;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

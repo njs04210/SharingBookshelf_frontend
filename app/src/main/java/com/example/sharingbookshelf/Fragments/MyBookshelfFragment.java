@@ -18,6 +18,7 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -27,23 +28,19 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
+import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
+
 public class MyBookshelfFragment extends Fragment {
 
     private CircleImageView civ_profile;
     private TextView tv_nickname;
+    private TabLayout mtabLayout;
+    private boolean flag = false;
+
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
     public ArrayList<Map<String, Object>> books;
-
-    private static int shelf_statusCode;
-
-    public static void setShelf_statusCode(int shelf_statusCode) {
-        MyBookshelfFragment.shelf_statusCode = shelf_statusCode;
-    }
-
-    public static int getShelf_statusCode() {
-        return shelf_statusCode;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,8 +56,41 @@ public class MyBookshelfFragment extends Fragment {
 
         civ_profile = v.findViewById(R.id.civ_profile);
         tv_nickname = v.findViewById(R.id.tv_nickname);
+        mtabLayout = v.findViewById(R.id.tabLayout);
+
         setUserView(MainActivity.getMemId()); //사용자화면 구성
         setShelfView(MainActivity.getMemId());
+
+        mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                Fragment selectedFragment = null;
+                if (position == 0) {
+                    if (getHasShelfcode() == 1 && flag == true) {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
+                    } else if (getHasShelfcode() == 0) {
+                        getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+                    }
+                }
+                if (position == 1) {
+                    getActivity().getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.bookshelf, new BookReportFragment()).commit();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 
         return v;
     }
@@ -95,18 +125,19 @@ public class MyBookshelfFragment extends Fragment {
             @Override
             public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
 
-                setShelf_statusCode(response.body().getCode());
+                setHasShelfcode(response.body().getCode());
                 String msg = response.body().getMsg();
                 books = response.body().getHasBooks();
 
                 Log.d(MainActivity.MAIN_TAG, msg);
 
-                if (getShelf_statusCode() == 0) {
+                if (getHasShelfcode() == 0) {
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-                } else if (getShelf_statusCode() == 1) {
+                } else if (getHasShelfcode() == 1) {
                     getActivity().getSupportFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
+                    flag = true;
                 }
 
             }
