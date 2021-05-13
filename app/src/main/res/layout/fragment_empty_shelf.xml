@@ -1,59 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/empty_shelf"
     style="@style/loginCard"
+    android:layout_width="350dp"
+    android:layout_height="500dp"
     android:layout_gravity="center"
-    android:layout_marginTop="65dp"
-    android:layout_marginBottom="@dimen/loginViewsMargin"
     android:background="@color/whiteCardColor"
     android:elevation="5dp"
-    android:layout_width="350dp"
-    android:layout_height="450dp"
-    android:id="@+id/empty_shelf"
     app:cardCornerRadius="@dimen/loginCardRadius"
-    android:layout_toEndOf="@+id/linearlayout1">
+    app:layout_constraintTop_toBottomOf="@+id/linearlayout1">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_gravity="center"
         android:layout_marginBottom="25dp"
-        android:layout_gravity="center">
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="140dp"
             android:layout_height="120dp"
-            android:src="@drawable/ic_blank2"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            android:src="@drawable/ic_blank2" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="책장이 텅~ 비었어요"
-            android:textSize="15sp"
-            android:layout_gravity="center_horizontal"/>
+            android:textSize="15sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="책을 추가해주세요!"
-            android:textSize="15sp"
-            android:layout_gravity="center_horizontal"/>
+            android:textSize="15sp" />
 
         <Button
             android:id="@+id/btn_makeBookshelf"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/colorPrimary"
             android:text="책장 생성"
-            android:textSize="15sp"
             android:textAlignment="center"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:textSize="15sp" />
 
     </LinearLayout>
-
-
-
 
 </androidx.cardview.widget.CardView>

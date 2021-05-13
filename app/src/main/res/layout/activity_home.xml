@@ -1,30 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.HomeActivity"
-    android:background="@color/loginBkColor">
+    android:background="@color/loginBkColor"
+    android:orientation="vertical"
+    tools:context=".Activities.HomeActivity">
 
     <FrameLayout
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </FrameLayout>
+        android:layout_weight="1" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        app:menu="@menu/menu_bottomnavigationview" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:background="@color/loginBkColor">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="365dp"
+            android:layout_height="65dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/bottomnavigation_shape"
+            app:elevation="0dp"
+            app:itemIconTint="@drawable/bottomnavi_selector_color"
+            app:itemTextColor="@drawable/bottomnavi_selector_color"
+            app:menu="@menu/menu_bottomnavigationview" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
