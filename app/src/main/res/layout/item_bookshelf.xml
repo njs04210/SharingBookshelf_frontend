@@ -8,10 +8,11 @@
         android:layout_width="match_parent"
         android:layout_height="30dp">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_profileImg"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/icon_logo" />
 
         <TextView
@@ -19,10 +20,12 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/font_main"
             android:paddingTop="8dp"
             android:text="nickname"
             android:textSize="12sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -31,7 +34,9 @@
         android:id="@+id/rv_bookshelf"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal" />
+        android:orientation="horizontal" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>

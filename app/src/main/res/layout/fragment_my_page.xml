@@ -101,7 +101,7 @@
                         android:layout_below="@id/tv_nickname"
                         android:layout_marginLeft="37dp"
                         android:layout_marginRight="50dp"
-                        android:backgroundTint="#bdbdbd"
+                        android:backgroundTint="#E0E0E0"
                         android:text="프로필수정"
                         android:textColor="#212121"
                         android:textAlignment="center"

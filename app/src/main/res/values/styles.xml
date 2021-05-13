@@ -4,9 +4,9 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/white</item> <!-- No Title Bar-->
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
-<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-<!--        <item name="colorAccent">@color/colorAccent</item> &lt;!&ndash; No Title Bar&ndash;&gt;-->
+        <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--        <item name="colorAccent">@color/colorAccent</item> &lt;!&ndash; No Title Bar&ndash;&gt;-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item> <!-- white status bar -->
         <item name="android:windowFullscreen">true</item>

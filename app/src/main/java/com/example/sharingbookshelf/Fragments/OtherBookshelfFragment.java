@@ -18,6 +18,7 @@ import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.R;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
 
@@ -77,7 +78,7 @@ public class OtherBookshelfFragment extends Fragment {
             for (int j = 0; j < 7; j++) {
                 //책정보 세팅
                 BookData bookData = new BookData();
-                bookData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/157/x9791158362157.jpg");
+                bookData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");
                 bookList.add(bookData);
             }
 
