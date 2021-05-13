@@ -4,9 +4,9 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/white</item> <!-- No Title Bar-->
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
-<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-<!--        <item name="colorAccent">@color/colorAccent</item> &lt;!&ndash; No Title Bar&ndash;&gt;-->
+        <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+        <!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+        <!--        <item name="colorAccent">@color/colorAccent</item> &lt;!&ndash; No Title Bar&ndash;&gt;-->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item> <!-- white status bar -->
         <item name="android:windowFullscreen">true</item>
@@ -88,6 +88,25 @@
         <item name="android:statusBarColor">@color/colorPrimary_2</item>
         <!--<item name="android:windowFullscreen">true</item>
         <item name="windowNoTitle">true</item>-->
+
+    </style>
+
+    <style name="CustomBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="Widget.App.RadioButton" parent="Widget.MaterialComponents.CompoundButton.RadioButton">
+        <item name="buttonTint">@color/colorPrimary_2</item>
+    </style>
+
+    <style name="BookReportButton" parent="viewParent">
+        <item name="android:background">@drawable/bookreport_button_bk</item>
+        <item name="android:textColor">@color/whiteTextColor</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
 </resources>

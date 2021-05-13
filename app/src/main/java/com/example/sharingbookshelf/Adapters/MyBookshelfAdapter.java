@@ -64,7 +64,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                 .with(viewHolder.mimageView.getContext())
                 .load(localDataSet.get(position).getThumbnail())
                 .fitCenter()
-                .placeholder(R.drawable.icon_book)
+                .placeholder(R.drawable.icon_book2)
                 .into(viewHolder.mimageView);
 
         //viewHolder.mimageView.setTag(localDataSet.get(position).getIsbn());
