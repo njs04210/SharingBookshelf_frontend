@@ -6,6 +6,7 @@ import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -163,6 +164,24 @@ public class ClickBookDetailsFragment extends DialogFragment {
                     WindowInsets.Type.systemBars());
 
             Window window = getDialog().getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
+            params.width = windowMetrics.getBounds().width();
+            params.horizontalMargin = 0.0f;
+            getDialog().getWindow().setAttributes(params);
+        } catch (Exception e) {
+            // regardless
+            e.printStackTrace();
+        }
+
+        /*try {
+            WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
+            Insets insets = windowMetrics.getWindowInsets().getInsetsIgnoringVisibility(
+                    WindowInsets.Type.systemBars());
+
+            Window window = getDialog().getWindow();
             window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             //window.setGravity(Gravity.CENTER);
@@ -173,7 +192,7 @@ public class ClickBookDetailsFragment extends DialogFragment {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 }
