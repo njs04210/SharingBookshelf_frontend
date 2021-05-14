@@ -2,7 +2,6 @@ package com.example.sharingbookshelf.Fragments;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
 import android.widget.EditText;
@@ -132,7 +130,6 @@ public class ClickBookDetailsFragment extends DialogFragment {
         super.onDismiss(dialog);
         String content = memoField.getText().toString();
 
-        //memoData = getMemoInstance();
         memoData.setISBN(isbn);
         memoData.setContent(content);
 
@@ -150,8 +147,6 @@ public class ClickBookDetailsFragment extends DialogFragment {
 
             }
         });
-
-
     }
 
     @Override
@@ -160,8 +155,6 @@ public class ClickBookDetailsFragment extends DialogFragment {
 
         try {
             WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
-            Insets insets = windowMetrics.getWindowInsets().getInsetsIgnoringVisibility(
-                    WindowInsets.Type.systemBars());
 
             Window window = getDialog().getWindow();
             window.setGravity(Gravity.BOTTOM);
@@ -171,28 +164,10 @@ public class ClickBookDetailsFragment extends DialogFragment {
             params.width = windowMetrics.getBounds().width();
             params.horizontalMargin = 0.0f;
             getDialog().getWindow().setAttributes(params);
+
         } catch (Exception e) {
-            // regardless
             e.printStackTrace();
         }
-
-        /*try {
-            WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
-            Insets insets = windowMetrics.getWindowInsets().getInsetsIgnoringVisibility(
-                    WindowInsets.Type.systemBars());
-
-            Window window = getDialog().getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            //window.setGravity(Gravity.CENTER);
-
-            WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-            params.width = windowMetrics.getBounds().width() - 70;
-            getDialog().getWindow().setAttributes(params);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
 }
