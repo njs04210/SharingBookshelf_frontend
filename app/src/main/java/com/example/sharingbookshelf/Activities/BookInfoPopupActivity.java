@@ -1,7 +1,6 @@
 package com.example.sharingbookshelf.Activities;
 
 import android.app.Activity;
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,15 +10,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
 import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
-import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.AddBookResponse;
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -53,31 +48,32 @@ public class BookInfoPopupActivity extends Activity {
             @Override
             public void onClick(View v) {
                 RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-                Call<AddBookResponse> call = retrofitServiceApi.addBookInShelf(MainActivity.getMemId(), parameters);
-                call.enqueue(new Callback<AddBookResponse>() {
+                Call<CommonResponse> call = retrofitServiceApi.addBookInShelf(MainActivity.getMemId(), parameters);
+                call.enqueue(new Callback<CommonResponse>() {
                     @Override
-                    public void onResponse(Call<AddBookResponse> call, Response<AddBookResponse> response) {
-                        Log.d(MainActivity.MAIN_TAG, response.body().getCode()  + " : " + response.body().getMsg());
+                    public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                        Log.d(MainActivity.MAIN_TAG, response.body().getCode() + " : " + response.body().getMsg());
                         finish();
                         //액티비티 전체 말고 NoEmptyFragment 만 reload 되는 방법 찾기
-                        Intent intent= new Intent(BookInfoPopupActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(BookInfoPopupActivity.this, HomeActivity.class);
                         startActivity(intent);
                         finish();
                         overridePendingTransition(R.anim.anim_slide_in_right, R.anim.anim_slide_out_left);
                     }
 
                     @Override
-                    public void onFailure(Call<AddBookResponse> call, Throwable t) {
+                    public void onFailure(Call<CommonResponse> call, Throwable t) {
 
                     }
                 });
+
             }
         });
 
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookInfoPopupActivity.this,SelfAddBookPopupActivity.class);
+                Intent intent = new Intent(BookInfoPopupActivity.this, SelfAddBookPopupActivity.class);
                 startActivity(intent);
                 finish();
             }

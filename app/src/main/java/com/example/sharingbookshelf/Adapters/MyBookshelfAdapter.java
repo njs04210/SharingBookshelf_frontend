@@ -1,19 +1,22 @@
 package com.example.sharingbookshelf.Adapters;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sharingbookshelf.Fragments.ClickBookDetailsFragment;
 import com.example.sharingbookshelf.Models.ThumbnailData;
 import com.example.sharingbookshelf.R;
 
@@ -22,6 +25,8 @@ import java.util.ArrayList;
 public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.ViewHolder> {
 
     private ArrayList<ThumbnailData> localDataSet;
+    private Context context;
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView mimageView;
@@ -37,6 +42,14 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                     if (pos != RecyclerView.NO_POSITION) {
                         ThumbnailData item = localDataSet.get(pos);
                         Log.d("책", item.getIsbn());
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("isbn", item.getIsbn());
+                        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                        ClickBookDetailsFragment dialog = new ClickBookDetailsFragment();
+                        dialog.setArguments(bundle);
+                        dialog.show(fm, "abc");
+
                     }
                 }
             });
@@ -53,6 +66,8 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_book_mybookshelf, viewGroup, false);
+
+        context = viewGroup.getContext();
 
         return new ViewHolder(view);
     }
