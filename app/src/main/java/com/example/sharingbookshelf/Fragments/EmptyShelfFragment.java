@@ -13,7 +13,7 @@ import android.widget.Button;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.CreateShelfResponse;
+import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.R;
 
 import retrofit2.Call;
@@ -42,10 +42,10 @@ public class EmptyShelfFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-                Call<CreateShelfResponse> call = retrofitServiceApi.createShelf();
-                call.enqueue(new Callback<CreateShelfResponse>() {
+                Call<CommonResponse> call = retrofitServiceApi.createShelf();
+                call.enqueue(new Callback<CommonResponse>() {
                     @Override
-                    public void onResponse(Call<CreateShelfResponse> call, Response<CreateShelfResponse> response) {
+                    public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                         setHasShelfcode(response.body().getCode());
                         Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
                         getActivity().getSupportFragmentManager().beginTransaction()
@@ -53,7 +53,7 @@ public class EmptyShelfFragment extends Fragment {
                     }
 
                     @Override
-                    public void onFailure(Call<CreateShelfResponse> call, Throwable t) {
+                    public void onFailure(Call<CommonResponse> call, Throwable t) {
 
                     }
                 });

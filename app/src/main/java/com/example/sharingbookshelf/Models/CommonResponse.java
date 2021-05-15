@@ -2,12 +2,13 @@ package com.example.sharingbookshelf.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class AddBookResponse {
+public class CommonResponse {
+
     @SerializedName("code")
-    int code;
+    private int code;
 
     @SerializedName("msg")
-    String msg;
+    private String msg;
 
     public int getCode() {
         return code;
@@ -16,4 +17,5 @@ public class AddBookResponse {
     public String getMsg() {
         return msg;
     }
+
 }

@@ -1,6 +1,8 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
@@ -72,8 +74,10 @@ public class NoEmptyShelfFragment extends Fragment {
             Map<String, Object> myBook = myDataset.get(i);
             ThumbnailData thumbnailData = new ThumbnailData();
 
-            thumbnailData.setIsbn((String)myBook.get("ISBN"));
-            thumbnailData.setThumbnail((String)myBook.get("thumbnail"));
+            int book_id = (int)(double)myBook.get("book_id"); // double to int
+            thumbnailData.setBookId(book_id);
+            thumbnailData.setIsbn((String) myBook.get("ISBN"));
+            thumbnailData.setThumbnail((String) myBook.get("thumbnail"));
 
             thumbnailSet.add(thumbnailData);
         }
@@ -108,8 +112,9 @@ public class NoEmptyShelfFragment extends Fragment {
         listPopupWindow.setAdapter(arrayAdapter);
         listPopupWindow.setContentWidth(measureContentWidth(arrayAdapter));
         listPopupWindow.setModal(true); //선택해도 자동으로 팝업 안닫히게
-        listPopupWindow.setHorizontalOffset(-200);
+        listPopupWindow.setHorizontalOffset(-230);
         listPopupWindow.setVerticalOffset(100);
+        listPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
