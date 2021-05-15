@@ -33,7 +33,6 @@
             android:name=".Activities.HomeActivity"
             android:theme="@style/StatusBar" />
 
-
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">

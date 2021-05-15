@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -32,11 +34,13 @@ import retrofit2.Response;
 
 public class BookInfoPopupActivity extends Activity {
 
+    private final String[] categories = { "학습(똑똑해져요)", "동화(상상력이풍부해져요)" ,"만화(시간가는줄몰라요)"};
     private ImageView iv_thumbNail;
     private TextView tv_ISBN, tv_title, tv_authors, tv_publisher;
     private Button btn_addBook;
     private Button btn_back;
     private HashMap<String, Object> parameters = new HashMap<>();
+    private Spinner sp_category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +50,10 @@ public class BookInfoPopupActivity extends Activity {
 
         Log.d(MainActivity.MAIN_TAG, "데이터 전달 성공");
         initializeView();
+        // selectCategory(); //장르 선택
         BookApiResponse.Document book = getBook();
         setView(book);
+
 
         btn_addBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +96,7 @@ public class BookInfoPopupActivity extends Activity {
         tv_title = findViewById(R.id.tv_title);
         tv_authors = findViewById(R.id.tv_authors);
         tv_publisher = findViewById(R.id.tv_publisher);
+    //    sp_category = findViewById(R.id.reg_category);
         btn_addBook = findViewById(R.id.btn_addBook);
         btn_back = findViewById(R.id.btn_back);
     }
@@ -101,6 +108,13 @@ public class BookInfoPopupActivity extends Activity {
         return documentList.get(0);
     }
 
+
+  /*  private void selectCategory() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_category.setAdapter(adapter);
+    }
+*/
     private void setView(BookApiResponse.Document book) {
         String isbn = book.getIsbn();
         String title = book.getTitle();
@@ -122,4 +136,5 @@ public class BookInfoPopupActivity extends Activity {
         tv_publisher.setText(publisher);
 
     }
+
 }
