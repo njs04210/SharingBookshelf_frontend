@@ -4,8 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class MemoData {
 
-    @SerializedName("ISBN")
-    String ISBN;
+    @SerializedName("bookId")
+    int bookId;
 
     @SerializedName("content")
     String content;
@@ -13,12 +13,12 @@ public class MemoData {
     @SerializedName("created")
     String created;
 
-    public String getISBN() {
-        return ISBN;
+    public int getBookId() {
+        return bookId;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setBookId(int bookId) {
+        this.bookId = bookId;
     }
 
     public String getContent() {

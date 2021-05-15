@@ -40,7 +40,7 @@ public class ClickBookDetailsFragment extends DialogFragment {
     private TextView tv_title, tv_authors, tv_publisher;
     private EditText memoField;
     private BookData bookData;
-    private String isbn;
+    private int bookId;
     private final MemoData memoData = new MemoData();
 
     @Override
@@ -63,21 +63,21 @@ public class ClickBookDetailsFragment extends DialogFragment {
         memoField = v.findViewById(R.id.et_memo);
 
         Bundle bundle = getArguments();
-        isbn = bundle.getString("isbn");
-        callBook(isbn);
+        bookId = bundle.getInt("bookId");
+        callBook(bookId);
 
         return v;
     }
 
-    private void callBook(String isbn) {
+    private void callBook(int bookId) {
         RetrofitServiceApi retrofitServiceApi = RetrofitClient
                 .createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<BookData> call = retrofitServiceApi.getBookDetails(isbn);
+        Call<BookData> call = retrofitServiceApi.getBookDetails(bookId);
         call.enqueue(new Callback<BookData>() {
             @Override
             public void onResponse(Call<BookData> call, Response<BookData> response) {
                 bookData = response.body();
-                callMemo(isbn);
+                callMemo(bookId);
             }
 
             @Override
@@ -87,16 +87,16 @@ public class ClickBookDetailsFragment extends DialogFragment {
         });
     }
 
-    private void callMemo(String isbn) {
+    private void callMemo(int bookId) {
         RetrofitServiceApi retrofitServiceApi = RetrofitClient
                 .createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<MemoData> call = retrofitServiceApi.getBookMemo(isbn);
+        Call<MemoData> call = retrofitServiceApi.getBookMemo(bookId);
         call.enqueue(new Callback<MemoData>() {
             @Override
             public void onResponse(Call<MemoData> call, Response<MemoData> response) {
 
                 if (response.body() != null) {
-                    Log.d(MainActivity.MAIN_TAG, response.body().getContent());
+                    Log.d("메모", response.body().getContent());
                     String content = response.body().getContent();
                     memoData.setContent(content);
                 }
@@ -130,7 +130,7 @@ public class ClickBookDetailsFragment extends DialogFragment {
         super.onDismiss(dialog);
         String content = memoField.getText().toString();
 
-        memoData.setISBN(isbn);
+        memoData.setBookId(bookId);
         memoData.setContent(content);
 
         RetrofitServiceApi retrofitServiceApi = RetrofitClient
@@ -139,7 +139,7 @@ public class ClickBookDetailsFragment extends DialogFragment {
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
-                Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
+                //Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
             }
 
             @Override

@@ -26,7 +26,7 @@ import retrofit2.http.Query;
 //Call안에 서버로부터 넘겨받을 데이터 구조 정의
 public interface RetrofitServiceApi {
 
-    // 유저 API
+    /* 유저 API */
     @GET("api/users/{memId}")
     Call<GetUserInfoResponse> getUserInfo(@Path("memId") int memId);
 
@@ -36,11 +36,11 @@ public interface RetrofitServiceApi {
     @PATCH("api/users")
     Call<SetUserInfoResponse> setUserInfo(@Body UserInfoData userInfoData);
 
-    // 카카오 책 검색 API
+    /* 카카오 책 검색 API */
     @GET("v3/search/book")
     Call<BookApiResponse> setBookApiResponse(@Query("query") String isbn, @Query("target") String target);
 
-    // 책장 api
+    /* 책장 api */
     @GET("api/bookshelves/{memId}")
     Call<GetShelfStatusResponse> getShelfStatus(@Path("memId") int memId);
 
@@ -51,15 +51,15 @@ public interface RetrofitServiceApi {
     @POST("api/bookshelves/{memId}")
     Call<CommonResponse> addBookInShelf(@Path("memId") int memId, @FieldMap HashMap<String, Object> parameters);
 
-    // 책 API
-    @GET("api/books/{isbn}")
-    Call<BookData> getBookDetails(@Path("isbn") String isbn);
+    /* 책 API */
+    @GET("api/books/{bookId}")
+    Call<BookData> getBookDetails(@Path("bookId") int bookId);
 
-    // 메모 API
-    @PATCH("api/memo")
+    /* 메모 API */
+    @PATCH("api/memo") // 메모 내용 업데이트
     Call<CommonResponse> addMemo(@Body MemoData memoData);
 
-    @GET("api/memo/{isbn}")
-    Call<MemoData> getBookMemo(@Path("isbn") String isbn);
+    @GET("api/memo/{bookId}") // 특정 책의 메모 불러오기
+    Call<MemoData> getBookMemo(@Path("bookId") int bookId);
 }
 

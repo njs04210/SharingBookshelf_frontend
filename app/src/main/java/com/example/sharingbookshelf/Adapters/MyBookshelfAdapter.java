@@ -44,7 +44,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                         Log.d("책", item.getIsbn());
 
                         Bundle bundle = new Bundle();
-                        bundle.putString("isbn", item.getIsbn());
+                        bundle.putInt("bookId", item.getBookId());
                         FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
                         ClickBookDetailsFragment dialog = new ClickBookDetailsFragment();
                         dialog.setArguments(bundle);
@@ -82,7 +82,6 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                 .placeholder(R.drawable.icon_book2)
                 .into(viewHolder.mimageView);
 
-        //viewHolder.mimageView.setTag(localDataSet.get(position).getIsbn());
     }
 
     @Override

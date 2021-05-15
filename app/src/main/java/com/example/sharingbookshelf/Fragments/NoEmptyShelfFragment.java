@@ -74,8 +74,10 @@ public class NoEmptyShelfFragment extends Fragment {
             Map<String, Object> myBook = myDataset.get(i);
             ThumbnailData thumbnailData = new ThumbnailData();
 
-            thumbnailData.setIsbn((String)myBook.get("ISBN"));
-            thumbnailData.setThumbnail((String)myBook.get("thumbnail"));
+            int book_id = (int)(double)myBook.get("book_id"); // double to int
+            thumbnailData.setBookId(book_id);
+            thumbnailData.setIsbn((String) myBook.get("ISBN"));
+            thumbnailData.setThumbnail((String) myBook.get("thumbnail"));
 
             thumbnailSet.add(thumbnailData);
         }
