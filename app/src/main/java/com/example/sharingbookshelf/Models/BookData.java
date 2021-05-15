@@ -1,15 +1,39 @@
 package com.example.sharingbookshelf.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class BookData implements Serializable {
 
+    @SerializedName("book_id")
+    private int book_id;
+
+    @SerializedName("ISBN")
     private String ISBN;
+
+    @SerializedName("title")
     private String title;
+
+    @SerializedName("author")
     private String author;
+
+    @SerializedName("publisher")
     private String publisher;
+
+    @SerializedName("category")
     private String category;
+
+    @SerializedName("thumbnail")
     private String thumbnail;
+
+    public int getBook_id() {
+        return book_id;
+    }
+
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
+    }
 
     public String getISBN() {
         return ISBN;
