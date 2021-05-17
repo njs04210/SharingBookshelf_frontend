@@ -118,7 +118,7 @@ public class MyBookshelfFragment extends Fragment {
         });
     }
 
-    private void setShelfView(int memId) {
+    public void setShelfView(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<GetShelfStatusResponse> call = retrofitServiceApi.getShelfStatus(memId);
         call.enqueue(new Callback<GetShelfStatusResponse>() {
