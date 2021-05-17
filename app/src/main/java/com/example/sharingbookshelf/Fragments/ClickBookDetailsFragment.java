@@ -54,7 +54,7 @@ public class ClickBookDetailsFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
             , @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_click_bookdetails, container, false);
+        View v = inflater.inflate(R.layout.fragment_click_bookdetails, container, false);
 
         iv_thumbNail = v.findViewById(R.id.iv_thumbnail);
         tv_title = v.findViewById(R.id.tv_title);

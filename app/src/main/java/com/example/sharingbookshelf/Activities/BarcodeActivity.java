@@ -1,12 +1,15 @@
 package com.example.sharingbookshelf.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.sharingbookshelf.Fragments.BookInfoPopupFragment;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
@@ -27,7 +30,6 @@ public class BarcodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_home);
         intentIntegratorSettings();
     }
 
@@ -74,6 +76,7 @@ public class BarcodeActivity extends AppCompatActivity {
                     getBookDetails(result);
                 }
             }
+
             @Override
             public void onFailure(Call<BookApiResponse> call, Throwable t) {
                 Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
@@ -85,11 +88,24 @@ public class BarcodeActivity extends AppCompatActivity {
         ArrayList<BookApiResponse.Document> documentList = books.documents;
         BookApiResponse.Meta meta = books.metas;
         //BookApiResponse.Document book = (BookApiResponse.Document) books.documents.get(0);
-        Intent intent = new Intent(BarcodeActivity.this, BookInfoPopupActivity.class);
+        /*Intent intent = new Intent(BarcodeActivity.this, BookInfoPopupActivity.class);
         intent.putExtra("documentList", documentList);
         intent.putExtra("meta", meta);
         intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         startActivity(intent);
-        finish();
+        finish();*/
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("documentList", documentList);
+        bundle.putSerializable("meta", meta);
+
+/*
+        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment();
+        bookInfoPopupFragment.setArguments(bundle);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_layout, bookInfoPopupFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();*/
+
     }
 }
