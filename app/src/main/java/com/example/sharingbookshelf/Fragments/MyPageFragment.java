@@ -81,9 +81,11 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_likeList:
-                intent = new Intent(getActivity(), LikeListActivity.class);
+                LikelistFragment l = LikelistFragment.getInstance();
+                l.show(getActivity().getSupportFragmentManager(), "Abc");
+                /*intent = new Intent(getActivity(), LikeListActivity.class);
                 startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);
+                getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);*/
                 break;
 
             case R.id.btn_memoList:
