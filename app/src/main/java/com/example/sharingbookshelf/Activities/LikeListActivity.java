@@ -12,7 +12,7 @@ public class LikeListActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_like_list);
+        setContentView(R.layout.fragment_like_list);
 
     }
 
