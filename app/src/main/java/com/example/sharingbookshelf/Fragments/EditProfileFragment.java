@@ -31,7 +31,7 @@ public class EditProfileFragment extends DialogFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) { //밑에서 뚕올라오기 아래로 뚕내려가기
         super.onCreate(savedInstanceState);
         setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
     }

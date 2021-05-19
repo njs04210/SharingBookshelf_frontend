@@ -23,7 +23,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
 
     private Button btn_editProfile;
-    private Button btn_dealList;
+    private Button btn_mailList;
     private Button btn_likeList;
     private Button btn_memoList;
     private Button btn_logout;
@@ -44,8 +44,8 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
         btn_editProfile = v.findViewById(R.id.btn_editProfile);
         btn_editProfile.setOnClickListener(this);
 
-        btn_dealList = v.findViewById(R.id.btn_dealList);
-        btn_dealList.setOnClickListener(this);
+        btn_mailList = v.findViewById(R.id.btn_mailList);
+        btn_mailList.setOnClickListener(this);
 
         btn_likeList = v.findViewById(R.id.btn_likeList);
         btn_likeList.setOnClickListener(this);
@@ -70,16 +70,20 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_editProfile:
                 EditProfileFragment e = EditProfileFragment.getInstance();
                 e.show(getActivity().getSupportFragmentManager(), "Abc");
-                /*intent = new Intent(getActivity(), EditProfileActivity.class);
+                break;
+
+
+            case R.id.btn_mailList:
+                MailboxFragment m = MailboxFragment.getInstance();
+                m.show(getActivity().getSupportFragmentManager(), "쪽지목록");
+
+                break;
+
+
+
+                                /*intent = new Intent(getActivity(), EditProfileActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);*/
-                break;
-
-            case R.id.btn_dealList:
-                //추가 예정
-                Toast.makeText(getActivity().getApplicationContext(), "거래목록", Toast.LENGTH_SHORT).show();
-                break;
-
             case R.id.btn_likeList:
                 intent = new Intent(getActivity(), LikeListActivity.class);
                 startActivity(intent);
