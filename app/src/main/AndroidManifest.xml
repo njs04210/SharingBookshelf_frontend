@@ -25,8 +25,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/StatusBar" />
-
+            android:theme="@style/StatusBar" >
+        </activity>
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
