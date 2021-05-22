@@ -28,7 +28,7 @@
     <LinearLayout
         android:id="@+id/lo_canvas"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
+        android:layout_height="350dp"
         android:layout_margin="15dp"
         android:orientation="horizontal"
         android:background="@drawable/customborder"/>
@@ -82,8 +82,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:minLines="1"
             android:maxLines="6"
             android:maxLength="48"
-            android:letterSpacing="1.0"/>
+            android:gravity="start"
+            android:letterSpacing="1.2"
+            android:fontFamily="monospace"/>
     </LinearLayout>
 </LinearLayout>

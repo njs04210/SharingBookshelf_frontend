@@ -10,9 +10,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sharingbookshelf.R;
 
-public class BookReportFragment extends Fragment {
+public class BookReportFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_write;
+    private Button btn_write, btn_write2;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -23,22 +23,52 @@ public class BookReportFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_book_report, container, false);
 
-         btn_write = v.findViewById(R.id.btn_noForm);
+        btn_write = v.findViewById(R.id.btn_noForm);
+        btn_write.setOnClickListener(this);
 
-         btn_write.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 BookReportFragment2 e = new BookReportFragment2();
-                 e.show(getActivity().getSupportFragmentManager(), "Abc");
-             }
-         });
+        btn_write2 = v.findViewById(R.id.btn_yesForm);
+        btn_write2.setOnClickListener(this);
 
         return v;
 
     }
+
+    @Override
+    public void onClick(View v){
+        switch (v.getId()) {
+            case R.id.btn_noForm:
+                BookReportFragment2 e = new BookReportFragment2();
+                e.show(getActivity().getSupportFragmentManager(), "Abc");
+                break;
+            case R.id.btn_yesForm:
+                ReportListFragment r = new ReportListFragment();
+                r.show(getActivity().getSupportFragmentManager(), "Abc");
+                break;
+
+        }
+    }
+
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//                             Bundle savedInstanceState) {
+//
+//        View v = inflater.inflate(R.layout.fragment_book_report, container, false);
+//
+//         btn_write = v.findViewById(R.id.btn_noForm);
+//
+//         btn_write.setOnClickListener(new View.OnClickListener() {
+//             @Override
+//             public void onClick(View v) {
+//                 BookReportFragment2 e = new BookReportFragment2();
+//                 e.show(getActivity().getSupportFragmentManager(), "Abc");
+//             }
+//         });
+//
+//        return v;
+//
+//    }
 
 
 }
