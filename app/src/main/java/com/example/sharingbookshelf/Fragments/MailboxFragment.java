@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class MailboxFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
     }
 
 
@@ -58,15 +60,14 @@ public class MailboxFragment extends DialogFragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_mail);
 
-        mLayoutManager = new LinearLayoutManager(getContext());
-        setMailbox();
-
+        mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        setMailbox();
+
         mAdapter = new MailboxAdapter(mailList);
         mRecyclerView.setAdapter(mAdapter);
-
 
         return view;
     }
@@ -94,29 +95,27 @@ public class MailboxFragment extends DialogFragment {
         //mAdapter.notifyDataSetChanged();
     }
 
-/*
     @Override
-    public void onResume() {   //여긴모지 일단복붙
+    public void onResume() {
         super.onResume();
 
-//      dialog fragment custom width
         try {
             WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
-            Insets insets = windowMetrics.getWindowInsets().getInsetsIgnoringVisibility(
-                    WindowInsets.Type.systemBars());
 
             Window window = getDialog().getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            window.setGravity(Gravity.BOTTOM);
+
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
 
             WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-            params.width = windowMetrics.getBounds().width() - 50;
+            params.width = windowMetrics.getBounds().width();
+            params.height = (int) (windowMetrics.getBounds().height() * 0.9);
             getDialog().getWindow().setAttributes(params);
+
         } catch (Exception e) {
-            // regardless
             e.printStackTrace();
         }
     }
-    */
 
 }

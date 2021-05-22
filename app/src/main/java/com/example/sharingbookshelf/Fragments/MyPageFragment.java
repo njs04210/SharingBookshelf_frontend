@@ -72,18 +72,11 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
                 e.show(getActivity().getSupportFragmentManager(), "Abc");
                 break;
 
-
             case R.id.btn_mailList:
                 MailboxFragment m = MailboxFragment.getInstance();
                 m.show(getActivity().getSupportFragmentManager(), "쪽지목록");
-
                 break;
 
-
-
-                                /*intent = new Intent(getActivity(), EditProfileActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);*/
             case R.id.btn_likeList:
                 intent = new Intent(getActivity(), LikeListActivity.class);
                 startActivity(intent);
