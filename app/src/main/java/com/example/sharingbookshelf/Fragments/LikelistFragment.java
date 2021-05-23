@@ -55,7 +55,7 @@ public class LikelistFragment extends DialogFragment {
         setLikelist();
 
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new GridLayoutManager(getActivity(), 2);
+        mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         mAdapter = new LikelistAdapter(likedataList);
@@ -65,7 +65,7 @@ public class LikelistFragment extends DialogFragment {
     }
 
     private void setLikelist() {
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 10; i++) {
             LikelistData likelistData = new LikelistData();
             likelistData.setBooknumber(i);
             likelistData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");

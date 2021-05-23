@@ -26,7 +26,7 @@ public class LikelistAdapter extends RecyclerView.Adapter<LikelistAdapter.ViewHo
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            mimageView = (ImageView) view.findViewById(R.id.iv_book);
+            mimageView = (ImageView) view.findViewById(R.id.iv_book_likelist);
         }
     }
 
@@ -38,7 +38,7 @@ public class LikelistAdapter extends RecyclerView.Adapter<LikelistAdapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_book_mybookshelf, viewGroup, false);
+                .inflate(R.layout.item_book_likelist, viewGroup, false);
 
         context = viewGroup.getContext();
 
