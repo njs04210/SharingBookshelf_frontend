@@ -8,9 +8,7 @@ public class RankingData {
         return grade;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
-    }
+    public void setGrade(int grade) { this.grade = grade; }
 
     public String getBooktitle() {
         return booktitle;

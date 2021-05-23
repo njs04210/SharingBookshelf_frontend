@@ -5,226 +5,226 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-tools:context=".Fragments.MyBookshelfFragment">
+    tools:context=".Fragments.MyBookshelfFragment">
 
-<androidx.appcompat.widget.Toolbar
-    android:id="@+id/my_toolbar"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:background="@color/colorPrimary_2"
-    android:elevation="4dp"
-    android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginLeft="30dp"
-        android:fontFamily="@font/font_main"
-        android:gravity="left"
-        android:text="마이페이지"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary_2"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-</androidx.appcompat.widget.Toolbar>
-
-<androidx.cardview.widget.CardView
-    android:id="@+id/empty_shelf"
-    style="@style/loginCard"
-    android:layout_width="350dp"
-    android:layout_height="500dp"
-    android:layout_gravity="center"
-    android:layout_marginTop="45dp"
-    android:backgroundTint="@color/whiteCardColor"
-    android:elevation="5dp"
-    app:cardCornerRadius="@dimen/loginCardRadius"
-    app:layout_constraintTop_toBottomOf="@+id/linearlayout1">
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:background="@color/white"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/linearlayoutMypage"
-            android:layout_width="350dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="15dp"
-            android:background="@color/white"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/profileView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:adjustViewBounds="true"
-                android:maxWidth="150dp"
-                android:maxHeight="150dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/icon_logo" />
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:orientation="vertical"
-                android:textAlignment="gravity">
-
-                <TextView
-                    android:id="@+id/tv_nickname"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="40dp"
-                    android:padding="4dp"
-                    android:text="nickname"
-                    android:textAlignment="center"
-                    android:textColor="#000000"
-                    android:textSize="22dp"
-                    android:textStyle="bold" />
-
-                <Button
-                    android:id="@+id/btn_editProfile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/tv_nickname"
-                    android:layout_marginLeft="37dp"
-                    android:layout_marginRight="50dp"
-
-                    android:backgroundTint="#E0E0E0"
-                    android:text="프로필수정"
-                    android:textColor="#212121"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="5dp"
-            android:layout_marginTop="10dp"
-            android:background="#66bdbdbd" />
-
-        <LinearLayout
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="30dp"
+            android:fontFamily="@font/font_main"
+            android:gravity="left"
+            android:text="마이페이지"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/empty_shelf"
+        style="@style/loginCard"
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="45dp"
+        android:backgroundTint="@color/whiteCardColor"
+        android:elevation="5dp"
+        app:cardCornerRadius="@dimen/loginCardRadius"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout1">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@color/white"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btn_dealList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/font_main"
-                android:gravity="left|center_vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:text="쪽지함"
-                android:textStyle="bold"
-                android:textColor="#ff7a00"
-                android:textSize="14sp" />
+            <LinearLayout
+                android:id="@+id/linearlayoutMypage"
+                android:layout_width="350dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="15dp"
+                android:background="@color/white"
+                android:orientation="horizontal">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#66bdbdbd" />
+                <ImageView
+                    android:id="@+id/profileView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="150dp"
+                    android:maxHeight="150dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_logo" />
 
-            <Button
-                android:id="@+id/btn_likeList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/heart"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/font_main"
-                android:gravity="left|center_vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:text="좋아요목록"
-                android:textStyle="bold"
-                android:textColor="#ff7a00"
-                android:textSize="14sp" />
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:textAlignment="gravity">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#66bdbdbd" />
+                    <TextView
+                        android:id="@+id/tv_nickname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="30dp"
+                        android:layout_marginRight="40dp"
+                        android:padding="4dp"
+                        android:text="nickname"
+                        android:textAlignment="center"
+                        android:textColor="#000000"
+                        android:textSize="22dp"
+                        android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/btn_memoList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/font_main"
-                android:gravity="left|center_vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:text="메모목록"
-                android:textStyle="bold"
-                android:textColor="#ff7a00"
-                android:textSize="14sp" />
+                    <Button
+                        android:id="@+id/btn_editProfile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_nickname"
+                        android:layout_marginLeft="37dp"
+                        android:layout_marginRight="50dp"
 
+                        android:backgroundTint="#E0E0E0"
+                        android:text="프로필수정"
+                        android:textColor="#212121"
+                        android:textAlignment="center"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
+                android:layout_marginTop="10dp"
                 android:background="#66bdbdbd" />
 
-            <Button
-                android:id="@+id/btn_logout"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/font_main"
-                android:gravity="left|center_vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:text="로그아웃"
-                android:textStyle="bold"
-                android:textColor="#ff7a00"
-                android:textSize="14sp" />
+                android:gravity="center"
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#66bdbdbd" />
+                <Button
+                    android:id="@+id/btn_mailList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/font_main"
+                    android:gravity="left|center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="쪽지함"
+                    android:textStyle="bold"
+                    android:textColor="#ff7a00"
+                    android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/btn_leaveId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/font_main"
-                android:gravity="left|center_vertical"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="20dp"
-                android:text="탈퇴하기"
-                android:textStyle="bold"
-                android:textColor="#ff7a00"
-                android:textSize="14sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#66bdbdbd" />
+
+                <Button
+                    android:id="@+id/btn_likeList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/heart"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/font_main"
+                    android:gravity="left|center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="좋아요목록"
+                    android:textStyle="bold"
+                    android:textColor="#ff7a00"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#66bdbdbd" />
+
+                <Button
+                    android:id="@+id/btn_memoList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/font_main"
+                    android:gravity="left|center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="메모목록"
+                    android:textStyle="bold"
+                    android:textColor="#ff7a00"
+                    android:textSize="14sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:background="#66bdbdbd" />
+
+                <Button
+                    android:id="@+id/btn_logout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/font_main"
+                    android:gravity="left|center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="로그아웃"
+                    android:textStyle="bold"
+                    android:textColor="#ff7a00"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#66bdbdbd" />
+
+                <Button
+                    android:id="@+id/btn_leaveId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/font_main"
+                    android:gravity="left|center_vertical"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="20dp"
+                    android:text="탈퇴하기"
+                    android:textStyle="bold"
+                    android:textColor="#ff7a00"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
 
 </LinearLayout>
