@@ -13,8 +13,6 @@ import android.view.WindowManager;
 import android.view.WindowMetrics;
 
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,12 +20,11 @@ import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
 import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.R;
 
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ReportListFragment extends DialogFragment {
+public class BookReportBoxFragment extends DialogFragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
@@ -42,7 +39,7 @@ public class ReportListFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_list_book_report, container, false);
+        View view = inflater.inflate(R.layout.fragment_book_report_box, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_bookreport);
 
@@ -76,7 +73,6 @@ public class ReportListFragment extends DialogFragment {
     @Override
     public void onResume() {
         super.onResume();
-//      dialog fragment custom width
         try {
             WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
             Insets insets = windowMetrics.getWindowInsets().getInsetsIgnoringVisibility(
@@ -88,7 +84,6 @@ public class ReportListFragment extends DialogFragment {
             params.width = windowMetrics.getBounds().width();
             getDialog().getWindow().setAttributes(params);
         } catch (Exception e) {
-            // regardless
             e.printStackTrace();
         }
     }

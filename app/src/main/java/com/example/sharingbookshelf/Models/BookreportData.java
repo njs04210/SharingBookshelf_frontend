@@ -1,7 +1,5 @@
 package com.example.sharingbookshelf.Models;
 
-import java.util.Date;
-
 public class BookreportData {
     int painting;
     String booktitle;
