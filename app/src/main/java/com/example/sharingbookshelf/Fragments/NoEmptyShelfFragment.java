@@ -1,33 +1,28 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.sharingbookshelf.Activities.BarcodeActivity;
-import com.example.sharingbookshelf.Activities.BookInfoPopupActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
-import com.example.sharingbookshelf.Activities.SelfAddBookPopupActivity;
 import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
@@ -72,11 +67,14 @@ public class NoEmptyShelfFragment extends Fragment {
             Map<String, Object> myBook = myDataset.get(i);
             ThumbnailData thumbnailData = new ThumbnailData();
 
-            thumbnailData.setIsbn((String)myBook.get("ISBN"));
-            thumbnailData.setThumbnail((String)myBook.get("thumbnail"));
+            int book_id = (int)(double)myBook.get("book_id"); // double to int
+            thumbnailData.setBookId(book_id);
+            thumbnailData.setIsbn((String) myBook.get("ISBN"));
+            thumbnailData.setThumbnail((String) myBook.get("thumbnail"));
 
             thumbnailSet.add(thumbnailData);
         }
+
     }
 
     @Override
@@ -95,11 +93,12 @@ public class NoEmptyShelfFragment extends Fragment {
 
         mRecyclerView.setHasFixedSize(true);
 
+        mAdapter = new MyBookshelfAdapter(thumbnailSet);
+
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new MyBookshelfAdapter(thumbnailSet);
         mRecyclerView.setAdapter(mAdapter);
+
 
         ListPopupWindow listPopupWindow = new ListPopupWindow(getActivity());
         listPopupWindow.setAnchorView(fab_addBook);
@@ -107,9 +106,10 @@ public class NoEmptyShelfFragment extends Fragment {
                 , R.layout.list_popup_window_item, popUpList);
         listPopupWindow.setAdapter(arrayAdapter);
         listPopupWindow.setContentWidth(measureContentWidth(arrayAdapter));
-        listPopupWindow.setModal(true); //선택해도 자동으로 팝업 안닫히게
-        listPopupWindow.setHorizontalOffset(-200);
+        //listPopupWindow.setModal(true); //선택해도 자동으로 팝업 안닫히게
+        listPopupWindow.setHorizontalOffset(-230);
         listPopupWindow.setVerticalOffset(100);
+        listPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
         listPopupWindow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -117,13 +117,18 @@ public class NoEmptyShelfFragment extends Fragment {
                 if (position == 0) {
                     Intent intent = new Intent(getActivity(), BarcodeActivity.class);
                     getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
+                    listPopupWindow.dismiss();
                 }
                 if (position == 1) {
-                    Intent intent = new Intent(getActivity(), SelfAddBookPopupActivity.class);
-                    getActivity().startActivityForResult(intent, ADDSELF_ACTIVITY);
+                    /*Intent intent = new Intent(getActivity(), SelfAddBookPopupActivity.class);
+                    getActivity().startActivityForResult(intent, ADDSELF_ACTIVITY);*/
+                    SelfAddBookPopupFragment selfAddBookPopupFragment = new SelfAddBookPopupFragment();
+                    selfAddBookPopupFragment.show(getActivity().getSupportFragmentManager(), "SelfAddBookPopupFragment");
+                    listPopupWindow.dismiss();
                 }
                 if (position == 2) {
                     Toast.makeText(getActivity(), "수동으로 정보 입력", Toast.LENGTH_SHORT);
+                    listPopupWindow.dismiss();
                 }
             }
 
@@ -174,7 +179,7 @@ public class NoEmptyShelfFragment extends Fragment {
     }
 
 
-    @Override
+   /* @Override
     @CallSuper
     public void onActivityResult(int requestCode, int resultCode, Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
@@ -198,7 +203,7 @@ public class NoEmptyShelfFragment extends Fragment {
         }
     }
 
-    /* Kakao Book search API 통신 */
+    *//* Kakao Book search API 통신 *//*
     private void callBookResponse(String ISBN) {
         retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
         Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
@@ -227,5 +232,5 @@ public class NoEmptyShelfFragment extends Fragment {
         intent.putExtra("meta", meta);
         intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
         startActivity(intent);
-    }
+    }*/
 }

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">iBookShare</string>
+    <string name="app_name">아이북쉐어</string>
     <string name="register">회원가입</string>
     <string name="login_email_hint">아이디(이메일)</string>
     <string name="login_password_hint">비밀번호</string>

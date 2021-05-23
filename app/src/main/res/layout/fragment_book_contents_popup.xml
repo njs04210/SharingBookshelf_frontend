@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tv_bookContents"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_bg_incoming_bubble"
+        android:paddingLeft="18dp"
+        android:paddingTop="10dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="10dp"
+        android:fontFamily="@font/font_main"
+        android:gravity="start"
+        android:lineSpacingExtra="3dp"
+        android:text="책 내용 정보가 존재하지 않습니다!"
+        android:textSize="10sp">
+
+    </TextView>
+
+</LinearLayout>

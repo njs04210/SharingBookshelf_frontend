@@ -14,10 +14,11 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:background="@drawable/toolbar_shape"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+            app:menu="@menu/top_app_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -28,12 +29,12 @@
                 android:layout_gravity="bottom|center"
                 android:layout_marginLeft="28dp"
                 android:layout_marginBottom="46dp"
-                android:text="책바구니 둘러보기"
-                android:textSize="20sp"
                 android:fontFamily="@font/font_main"
-                app:autoSizeStepGranularity="2sp"
+                android:text="책바구니 둘러보기"
                 android:textColor="@color/white"
-                android:textStyle="bold" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:autoSizeStepGranularity="2sp" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -42,8 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:chipSpacingHorizontal="10dp"
             android:layout_marginTop="10dp"
+            app:chipSpacingHorizontal="10dp"
             app:selectionRequired="true"
             app:singleSelection="true">
 
@@ -87,7 +88,7 @@
         <androidx.cardview.widget.CardView
             style="@style/loginCard"
             android:layout_width="360dp"
-            android:layout_height="420dp"
+            android:layout_height="460dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/loginViewsMargin"
@@ -99,7 +100,7 @@
                 android:id="@+id/rv_bookshelves"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="0dp"
                 android:layout_marginTop="20dp" />
 
         </androidx.cardview.widget.CardView>

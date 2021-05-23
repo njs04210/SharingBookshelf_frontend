@@ -37,7 +37,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btn_noForm"
+            android:id="@+id/btn_Form"
             style="@style/BookReportButton"
             android:layout_width="130dp"
             android:layout_height="200dp"
@@ -48,13 +48,13 @@
             app:backgroundTint="@color/colorPrimary_2" />
 
         <Button
-            android:id="@+id/btn_yesForm"
+            android:id="@+id/btn_list"
             style="@style/BookReportButton"
             android:layout_width="130dp"
             android:layout_height="200dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/btn_noForm"
+            android:layout_toRightOf="@+id/btn_Form"
             android:fontFamily="@font/font_main"
             android:text="독후감\n목록보기"
             android:textSize="20dp"

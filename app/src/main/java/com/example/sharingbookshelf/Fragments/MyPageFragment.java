@@ -106,3 +106,4 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
         }
     }
 }
+

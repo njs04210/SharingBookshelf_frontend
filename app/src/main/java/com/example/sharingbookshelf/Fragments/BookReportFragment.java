@@ -12,7 +12,7 @@ import com.example.sharingbookshelf.R;
 
 public class BookReportFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_write, btn_write2;
+    private Button btn_write, btn_list;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,11 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_book_report, container, false);
 
-        btn_write = v.findViewById(R.id.btn_noForm);
+        btn_write = v.findViewById(R.id.btn_Form);
         btn_write.setOnClickListener(this);
 
-        btn_write2 = v.findViewById(R.id.btn_yesForm);
-        btn_write2.setOnClickListener(this);
+        btn_list = v.findViewById(R.id.btn_list);
+        btn_list.setOnClickListener(this);
 
         return v;
 
@@ -38,11 +38,11 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v){
         switch (v.getId()) {
-            case R.id.btn_noForm:
+            case R.id.btn_Form:
                 BookReportFragment2 e = new BookReportFragment2();
                 e.show(getActivity().getSupportFragmentManager(), "Abc");
                 break;
-            case R.id.btn_yesForm:
+            case R.id.btn_list:
                 ReportListFragment r = new ReportListFragment();
                 r.show(getActivity().getSupportFragmentManager(), "Abc");
                 break;

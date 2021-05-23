@@ -2,18 +2,26 @@ package com.example.sharingbookshelf.Fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SearchView;
 
 import com.example.sharingbookshelf.Activities.HomeActivity;
+import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
@@ -31,6 +39,7 @@ public class OtherBookshelfFragment extends Fragment {
     private OthersBookshelfAdapter mAdapter;
     private ArrayList<BookshelfInfoData> bookshelfList = new ArrayList<>();
     private ArrayList<BookData> bookList;
+    private Context context;
 
     public ArrayList<BookshelfInfoData> getBookshelfList() {
         return bookshelfList;
@@ -38,6 +47,7 @@ public class OtherBookshelfFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
     }
 
@@ -46,6 +56,8 @@ public class OtherBookshelfFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
+
+        context = container.getContext();
 
         mRecyclerView = v.findViewById(R.id.rv_bookshelves);
         mRecyclerView.setHasFixedSize(true);
@@ -64,6 +76,37 @@ public class OtherBookshelfFragment extends Fragment {
         }
 
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        menu.clear();
+        inflater.inflate(R.menu.top_app_bar, menu);
+        MenuItem item = menu.findItem(R.id.search);
+        //SearchView searchView = new SearchView(((HomeActivity) context).getSupportActionBar().getThemedContext());
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        SearchView searchView = (SearchView) item.getActionView();
+        // These lines are deprecated in API 26 use instead
+        item.setActionView(searchView);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        searchView.setOnClickListener(new View.OnClickListener() {
+                                          @Override
+                                          public void onClick(View v) {
+
+                                          }
+                                      }
+        );
     }
 
     private void setBookshelf() {
