@@ -25,7 +25,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
     private Button btn_editProfile;
     private Button btn_mailList;
     private Button btn_likeList;
-    private Button btn_memoList;
     private Button btn_logout;
     private Button btn_leaveId;
 
@@ -49,9 +48,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
 
         btn_likeList = v.findViewById(R.id.btn_likeList);
         btn_likeList.setOnClickListener(this);
-
-        btn_memoList = v.findViewById(R.id.btn_memoList);
-        btn_memoList.setOnClickListener(this);
 
         btn_logout = v.findViewById(R.id.btn_logout);
         btn_logout.setOnClickListener(this);
@@ -83,11 +79,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
                 /*intent = new Intent(getActivity(), LikeListActivity.class);
                 startActivity(intent);
                 getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);*/
-                break;
-
-            case R.id.btn_memoList:
-                //추가 예정
-                Toast.makeText(getActivity().getApplicationContext(), "메모목록", Toast.LENGTH_SHORT).show();
                 break;
 
             case R.id.btn_logout:
