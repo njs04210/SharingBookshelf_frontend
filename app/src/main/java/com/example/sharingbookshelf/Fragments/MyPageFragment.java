@@ -73,7 +73,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btn_mailList:
-                MailboxFragment m = MailboxFragment.getInstance();
+                MessageBoxFragment m = MessageBoxFragment.getInstance();
                 m.show(getActivity().getSupportFragmentManager(), "쪽지목록");
                 break;
 

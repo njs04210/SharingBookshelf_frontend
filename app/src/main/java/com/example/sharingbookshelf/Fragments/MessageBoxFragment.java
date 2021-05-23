@@ -1,14 +1,10 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.graphics.Color;
-import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,27 +13,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowInsets;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
 
 import com.example.sharingbookshelf.Adapters.MailboxAdapter;
-import com.example.sharingbookshelf.Models.MailData;
+import com.example.sharingbookshelf.Models.MessageData;
 import com.example.sharingbookshelf.R;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
 
-public class MailboxFragment extends DialogFragment {
+public class MessageBoxFragment extends DialogFragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<MailData> mailList = new ArrayList<>();
+    private ArrayList<MessageData> mailList = new ArrayList<>();
 
 
     @Override
@@ -47,16 +37,16 @@ public class MailboxFragment extends DialogFragment {
     }
 
 
-    public static MailboxFragment getInstance() {
-        MailboxFragment mailboxFragment = new MailboxFragment();
-        return mailboxFragment;
+    public static MessageBoxFragment getInstance() {
+        MessageBoxFragment messageBoxFragment = new MessageBoxFragment();
+        return messageBoxFragment;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_mailbox, container, false);
+        View view = inflater.inflate(R.layout.fragment_messagebox, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_mail);
 
@@ -64,7 +54,7 @@ public class MailboxFragment extends DialogFragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        setMailbox();
+        setMessageBox();
 
         mAdapter = new MailboxAdapter(mailList);
         mRecyclerView.setAdapter(mAdapter);
@@ -72,27 +62,18 @@ public class MailboxFragment extends DialogFragment {
         return view;
     }
 
-    private void setMailbox() { //얼레벌레 만들어놓은 데이터
+    private void setMessageBox() {
         for (int i = 0; i < 5; i++) {
 
-            MailData mailData = new MailData();
+            MessageData messageData = new MessageData();
 
-            mailData.setProfileImage(R.drawable.icon_logo);
-            mailData.setUserName("진주맘");
-            mailData.setLastMessage("독후감이 좋네요^^");
-            mailData.setMessageTime("날짜,시간");
-            /*시간받아오는 거였는데 이게 맞는지도 모르겠음
-            Date now = new Date();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-            // Model Data
-            String dateTimeString = df.format(now);
-            // Show in VIEW
-            mailData.setMessageTime(dateTimeString);
-*/
+            messageData.setProfileImage(R.drawable.icon_logo);
+            messageData.setUserName("진주맘");
+            messageData.setLastMessage("독후감이 좋네요^^");
+            messageData.setMessageTime("날짜,시간");
 
-            mailList.add(mailData);
+            mailList.add(messageData);
         }
-        //mAdapter.notifyDataSetChanged();
     }
 
     @Override

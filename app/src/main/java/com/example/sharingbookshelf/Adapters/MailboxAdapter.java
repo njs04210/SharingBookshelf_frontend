@@ -7,20 +7,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.Models.MailData;
+import com.example.sharingbookshelf.Models.MessageData;
 import com.example.sharingbookshelf.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class MailboxAdapter extends RecyclerView.Adapter<MailboxAdapter.ViewHolder> {
 
-    private ArrayList<MailData> mailList;
+    private ArrayList<MessageData> mailList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView iv_profileImage;
@@ -37,7 +34,7 @@ public class MailboxAdapter extends RecyclerView.Adapter<MailboxAdapter.ViewHold
         }
     }
 
-    public MailboxAdapter(ArrayList<MailData> dataSet) {
+    public MailboxAdapter(ArrayList<MessageData> dataSet) {
         mailList = dataSet;
     }
 
@@ -45,24 +42,24 @@ public class MailboxAdapter extends RecyclerView.Adapter<MailboxAdapter.ViewHold
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.item_mail, viewGroup, false);
+                .inflate(R.layout.item_message, viewGroup, false);
 
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        MailData mailData = mailList.get(position);
+        MessageData messageData = mailList.get(position);
         Glide
                 .with(viewHolder.iv_profileImage.getContext())
-                .load(mailData.getProfileImage())
+                .load(messageData.getProfileImage())
                 .fitCenter()
                 .placeholder(R.drawable.icon_logo)
                 .into(viewHolder.iv_profileImage);
 
-        viewHolder.tv_nickname.setText(mailData.getUserName());
-        viewHolder.tv_mailtext.setText(mailData.getLastMessage());
-        viewHolder.tv_time.setText(mailData.getMessageTime());
+        viewHolder.tv_nickname.setText(messageData.getUserName());
+        viewHolder.tv_mailtext.setText(messageData.getLastMessage());
+        viewHolder.tv_time.setText(messageData.getMessageTime());
     }
 
     @Override
