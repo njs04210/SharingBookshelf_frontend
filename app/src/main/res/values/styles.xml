@@ -124,4 +124,15 @@
         <item name="android:fontFamily">@font/font_main</item>
     </style>
 
+    <style name="SpecialTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:letterSpacing">1.6</item>
+    </style>
+
+    <style name="SpecialTextAppearance_alpha" parent="@android:style/TextAppearance">
+        <item name="android:letterSpacing">1.2</item>
+        <item name="lineSpacing">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
 </resources>
