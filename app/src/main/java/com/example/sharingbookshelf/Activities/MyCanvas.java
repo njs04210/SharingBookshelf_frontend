@@ -17,6 +17,8 @@ import androidx.annotation.Nullable;
 
 import com.example.sharingbookshelf.R;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -37,6 +39,7 @@ public class MyCanvas extends View {
         this.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         mPaint.setColor(Color.BLACK);
         paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(5);
     }
 
     public MyCanvas(Context context, @Nullable AttributeSet attrs) {
@@ -44,6 +47,7 @@ public class MyCanvas extends View {
         this.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         mPaint.setColor(Color.BLACK);
         paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(5);
 
     }
 
@@ -57,7 +61,8 @@ public class MyCanvas extends View {
             if (operationType.equalsIgnoreCase("eraser")) {
                 clear();
             } else if (operationType.equalsIgnoreCase("open")) {
-                canvas.drawBitmap(resize, (getWidth() - resize.getWidth()) / 2, (getHeight() - resize.getHeight()) / 2, paint);
+                canvas.drawBitmap(resize, (getWidth() - resize.getWidth()) / 2
+                        , (getHeight() - resize.getHeight()) / 2, paint);
             } else if (operationType.equalsIgnoreCase("rotate")) {
                 rotate = true;
             } else if (operationType.equalsIgnoreCase("move")) {
@@ -87,11 +92,11 @@ public class MyCanvas extends View {
     public boolean onTouchEvent(MotionEvent event) {
         int x = (int) event.getX();
         int y = (int) event.getY();
-        if (stamp) {
+        /*if (stamp) {
             if (event.getAction() == event.ACTION_DOWN) {
                 drawStamp(x, y);
             }
-        } else {
+        } else {*/
             if (event.getAction() == event.ACTION_DOWN) {
                 oldX = x;
                 oldY = y;
@@ -112,7 +117,7 @@ public class MyCanvas extends View {
                 oldY = -1;
             }
 
-        }
+//        }
         return true;
     }
 
@@ -121,7 +126,7 @@ public class MyCanvas extends View {
         invalidate();
     }
 
-    public void drawStamp(int x, int y) {
+  /*  public void drawStamp(int x, int y) {
         Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.icon_logo);
         if (rotate) {
             mCanvas.rotate(30, getWidth() / 2, getHeight() / 2);
@@ -142,7 +147,7 @@ public class MyCanvas extends View {
         img.recycle();
         invalidate();
 
-    }
+    }*/
 
     private void clear() {
         mBitmap.eraseColor(Color.WHITE);
@@ -156,17 +161,22 @@ public class MyCanvas extends View {
         this.setOperationType("");
     }
 
-    public void setPenColor(Boolean b) {
-        if (b) paint.setColor(Color.RED);
-        else paint.setColor(Color.BLUE);
+    public void setPenColor(int colorId) {
+        if (colorId == 1) paint.setColor(Color.BLUE);
+        else if (colorId == 2) paint.setColor(Color.RED);
+        else paint.setColor(Color.BLACK);
     }
 
-    public void setPenWidth(boolean b) {
-        if (b) paint.setStrokeWidth(10);
+    public void setPenWidth(boolean widthFlag) {
+        if (widthFlag) paint.setStrokeWidth(10);
         else paint.setStrokeWidth(5);
     }
 
-    public boolean save(String file_name) {
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
+
+  /*  public boolean save(String file_name) {
         try {
             FileOutputStream out = new FileOutputStream(file_name, false);
             mBitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
@@ -178,5 +188,5 @@ public class MyCanvas extends View {
             Log.e("IOException", e.getMessage());
         }
         return false;
-    }
+    }*/
 }

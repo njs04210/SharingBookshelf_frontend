@@ -23,72 +23,116 @@
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
             android:backgroundTint="@color/white"
-            android:fontFamily="monospace"
-            android:text="SAVE"
+            android:fontFamily="@font/font_main"
+            android:text="저장"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <!--    <LinearLayout-->
-    <!--        android:id="@+id/lo_canvas"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="300dp"-->
-    <!--        android:layout_margin="15dp"-->
-    <!--        android:background="@drawable/customborder"-->
-    <!--        android:orientation="horizontal" />-->
     <com.example.sharingbookshelf.Activities.MyCanvas
         android:id="@+id/canvas"
         android:layout_width="350dp"
-        android:layout_height="280dp"
-        android:layout_marginTop="35dp"
-        android:layout_marginBottom="10dp"
+        android:layout_height="140dp"
         android:layout_gravity="center"
-        android:elevation="10dp"
-        android:background="@color/white" />
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/white"
+        android:elevation="10dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/saveImg"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"/>
+
+    <RelativeLayout
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:gravity="right"
+        android:layout_gravity="center"
         android:orientation="horizontal">
 
-        <Button
+        <TextView
+            android:id="@+id/tv_date"
+            android:text="오늘의 날짜"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/font_main" />
+
+        <ImageButton
             android:id="@+id/btn_eraser"
-            android:tag="eraser"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:backgroundTint="@color/colorPrimary_2"
-            android:text="지우개"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btn_penWidth"
+            android:background="@drawable/eraser_variant"
+            android:tag="eraser" />
 
         <Button
-            android:id="@+id/btn_pen"
-            android:tag="pen"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_margin="5dp"
+            android:id="@+id/btn_penWidth"
+            style="@style/myColoredButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btnToggleGroup"
             android:backgroundTint="@color/colorPrimary_2"
-            android:text="펜"
-            android:onClick="showMenu"
+            android:backgroundTintMode="add"
+            android:fontFamily="@font/font_main"
+            android:tag="pen"
+            android:text="굵게"
             android:textColor="@color/white"
             android:textStyle="bold" />
 
-    </LinearLayout>
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/btnToggleGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_penBlack"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@android:color/black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_penBlue"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#0000FF" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_penRed"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@android:color/holo_red_light" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="350dp"
         android:layout_height="240dp"
         android:layout_gravity="center"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:background="@drawable/paper2"
         android:focusable="true"
         android:focusableInTouchMode="true">

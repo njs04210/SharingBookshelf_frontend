@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
@@ -9,20 +10,36 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sharingbookshelf.R;
 
-public class CreateBookReportActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
-    private Button btn_eraser;
-    private Button btn_pen;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class CreateBookReportActivity extends AppCompatActivity
+        implements View.OnClickListener {
+
+    private ImageButton btn_eraser;
+    private Button btn_save;
+    private Button btn_penWidth;
+    private Button btn_penBlack;
+    private Button btn_penBlue;
+    private Button btn_penRed;
     private EditText editText;
-    boolean isChecked = false;
+    private TextView tv_date;
+    private boolean widthFlag = false;
     MyCanvas canvas;
-    String file_name = "sample.jpg";
+    private int book_id = 1;
+    String file_name = "mem_" + MainActivity.getMemId() + "_" + book_id + ".jpg";
+    public ImageView imgView;
+    private Bitmap drawing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +47,29 @@ public class CreateBookReportActivity extends AppCompatActivity implements Popup
         setContentView(R.layout.activity_create_bookreport);
 
         btn_eraser = findViewById(R.id.btn_eraser);
-        btn_pen = findViewById(R.id.btn_pen);
+        btn_penWidth = findViewById(R.id.btn_penWidth);
+        btn_penBlack = findViewById(R.id.btn_penBlack);
+        btn_penBlue = findViewById(R.id.btn_penBlue);
+        btn_penRed = findViewById(R.id.btn_penRed);
+        btn_save = findViewById(R.id.btn_save);
+        tv_date = findViewById(R.id.tv_date);
         canvas = findViewById(R.id.canvas);
         editText = findViewById(R.id.et_paper);
+        imgView = findViewById(R.id.saveImg);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
+        Date time = new Date();
+        String date = dateFormat.format(time);
+        tv_date.setText(date);
 
         editTextSettings();
 
-        btn_eraser.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                canvas.setOperationType((String) v.getTag());
-            }
-        });
+        btn_eraser.setOnClickListener(this);
+        btn_penWidth.setOnClickListener(this);
+        btn_penBlack.setOnClickListener(this);
+        btn_penBlue.setOnClickListener(this);
+        btn_penRed.setOnClickListener(this);
+        btn_save.setOnClickListener(this);
 
     }
 
@@ -83,41 +111,36 @@ public class CreateBookReportActivity extends AppCompatActivity implements Popup
         });
     }
 
-    public void showMenu(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        // This activity implements OnMenuItemClickListener
-        popup.setOnMenuItemClickListener(this);
-        popup.inflate(R.menu.draw_menu);
-    }
-
     @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        if (isChecked) item.setChecked(true);
-        else item.setChecked(false);
-        switch (item.getItemId()) {
-            case R.id.penWidth:
-                if (item.isChecked()) {
-                    item.setChecked(false);
-                    canvas.setPenWidth(false);
-                    isChecked = false;
-                } else {
-                    item.setChecked(true);
-                    canvas.setPenWidth(item.isChecked());
-                    isChecked = true;
-                }
-                return true;
+    public void onClick(View v) {
+        int selectedButton = v.getId();
 
-            case R.id.pen_RED:
-                canvas.setPenColor(true);
-                return true;
-
-            case R.id.pen_BLUE:
-                canvas.setPenColor(false);
-                return true;
-
-            default:
-                return false;
+        if (selectedButton == R.id.btn_eraser) {
+            canvas.setOperationType((String) v.getTag());
+        }
+        if (selectedButton == R.id.btn_penWidth) {
+            if (!widthFlag) {
+                widthFlag = true;
+                btn_penWidth.setText("얇게");
+                canvas.setPenWidth(true);
+            } else {
+                widthFlag = false;
+                btn_penWidth.setText("굵게");
+                canvas.setPenWidth(false);
+            }
+        }
+        if (selectedButton == R.id.btn_penBlack) {
+            canvas.setPenColor(0);
+        }
+        if (selectedButton == R.id.btn_penBlue) {
+            canvas.setPenColor(1);
+        }
+        if (selectedButton == R.id.btn_penRed) {
+            canvas.setPenColor(2);
+        }
+        if (selectedButton == R.id.btn_save) {
+            drawing = canvas.getBitmap();
+            imgView.setImageBitmap(drawing);
         }
     }
-
 }

@@ -68,15 +68,15 @@ public class MyBookshelfFragment extends Fragment {
                 Fragment selectedFragment = null;
                 if (position == 0) {
                     if (getHasShelfcode() == 1 && flag == true) {
-                        getActivity().getSupportFragmentManager().beginTransaction()
+                        getChildFragmentManager().beginTransaction()
                                 .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
                     } else if (getHasShelfcode() == 0) {
-                        getActivity().getSupportFragmentManager().beginTransaction()
+                        getChildFragmentManager().beginTransaction()
                                 .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
                     }
                 }
                 if (position == 1) {
-                    getActivity().getSupportFragmentManager().beginTransaction()
+                    getChildFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new BookReportFragment()).commit();
                 }
             }
@@ -132,10 +132,10 @@ public class MyBookshelfFragment extends Fragment {
                 Log.d(MainActivity.MAIN_TAG, msg);
 
                 if (getHasShelfcode() == 0) {
-                    getActivity().getSupportFragmentManager().beginTransaction()
+                    getChildFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
                 } else if (getHasShelfcode() == 1) {
-                    getActivity().getSupportFragmentManager().beginTransaction()
+                    getChildFragmentManager().beginTransaction()
                             .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
                     flag = true;
                 }

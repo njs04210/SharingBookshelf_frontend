@@ -32,7 +32,10 @@
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
 
@@ -46,11 +49,9 @@
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activities.LeaveIdActivity" />
         <activity android:name=".Activities.LikeListActivity" />
-        <activity android:name=".Activities.CreateBookReportActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".Activities.CreateBookReportActivity"
+            android:theme="@style/StatusBar">
         </activity>
     </application>
 
