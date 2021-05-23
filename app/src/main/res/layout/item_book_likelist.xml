@@ -9,7 +9,10 @@
     <ImageView
         android:id="@+id/iv_book_likelist"
         android:layout_width="100dp"
-        android:layout_height="150dp"
+        android:layout_height="160dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp"
         android:src="@mipmap/ic_launcher" />
 
 </LinearLayout>

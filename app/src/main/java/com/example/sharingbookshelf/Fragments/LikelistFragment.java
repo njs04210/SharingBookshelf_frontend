@@ -1,13 +1,23 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.WindowMetrics;
+import android.widget.FrameLayout;
+import android.widget.ListAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -64,8 +74,32 @@ public class LikelistFragment extends DialogFragment {
         return v;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        try {
+            WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
+
+            Window window = getDialog().getWindow();
+            window.setGravity(Gravity.BOTTOM);
+
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+
+            WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
+            params.width = windowMetrics.getBounds().width();
+            params.height = (int) (windowMetrics.getBounds().height() * 0.9);
+            getDialog().getWindow().setAttributes(params);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private void setLikelist() {
-        for (int i = 1; i < 10; i++) {
+        for (int i = 1; i < 13; i++) {
             LikelistData likelistData = new LikelistData();
             likelistData.setBooknumber(i);
             likelistData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");
