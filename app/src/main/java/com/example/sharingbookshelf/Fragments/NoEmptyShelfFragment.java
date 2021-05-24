@@ -25,8 +25,10 @@ import com.example.sharingbookshelf.Activities.BarcodeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.ThumbnailData;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -40,6 +42,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
+import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
 
 public class NoEmptyShelfFragment extends Fragment {
 
@@ -52,30 +56,7 @@ public class NoEmptyShelfFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
-    private List<Map<String, Object>> myDataset;
-    private ArrayList<ThumbnailData> thumbnailSet = new ArrayList<>();
-
-    public NoEmptyShelfFragment(ArrayList<Map<String, Object>> myDataset) {
-        this.myDataset = myDataset;
-        if (myDataset != null) {
-            getThumbnail(myDataset);
-        }
-    }
-
-    private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
-        for (int i = 0; i < myDataset.size(); i++) {
-            Map<String, Object> myBook = myDataset.get(i);
-            ThumbnailData thumbnailData = new ThumbnailData();
-
-            int book_id = (int)(double)myBook.get("book_id"); // double to int
-            thumbnailData.setBookId(book_id);
-            thumbnailData.setIsbn((String) myBook.get("ISBN"));
-            thumbnailData.setThumbnail((String) myBook.get("thumbnail"));
-
-            thumbnailSet.add(thumbnailData);
-        }
-
-    }
+    private ArrayList<Map<String, Object>> thumbnailSet;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -85,21 +66,189 @@ public class NoEmptyShelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_no_empty_shelf, container, false);
 
         fab_addBook = v.findViewById(R.id.floating_action_button);
         mRecyclerView = v.findViewById(R.id.rcv_myBookShelf);
 
+        recyclerViewSettings();
+        ListPopupWindow listPopupWindow = getListPopupWindow();
+        setShelfView(MainActivity.getMemId()); // 책장 채워넣기
+
+        if (getArguments() != null) {
+            if (getArguments().containsKey("ISBN")) {
+                callBookResponse(getArguments().getString("ISBN"));
+            }
+        }
+
+        fab_addBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listPopupWindow.show();
+            }
+        });
+
+        return v;
+    }
+
+    private void recyclerViewSettings() {
         mRecyclerView.setHasFixedSize(true);
-
-        mAdapter = new MyBookshelfAdapter(thumbnailSet);
-
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        thumbnailSet = new ArrayList<>();
+        mAdapter = new MyBookshelfAdapter(thumbnailSet);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public void setShelfView(int memId) {
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<GetShelfStatusResponse> call = retrofitServiceApi.getShelfStatus(memId);
+        call.enqueue(new Callback<GetShelfStatusResponse>() {
+            @Override
+            public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
+
+                String msg = response.body().getMsg();
+                Log.d(MainActivity.MAIN_TAG, msg);
+                getThumbnail(response.body().getHasBooks());
+
+            }
+
+            @Override
+            public void onFailure(Call<GetShelfStatusResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
+            }
+        });
+    }
+
+    private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
+
+        mAdapter = new MyBookshelfAdapter(myDataset);
+        mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 
+        this.thumbnailSet = myDataset;
 
+    }
+
+    // Kakao Book search API 통신
+    private void callBookResponse(String ISBN) {
+        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
+        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
+        call.enqueue(new Callback<BookApiResponse>() {
+            @Override
+            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
+                BookApiResponse result = response.body();
+                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
+                if (result != null) {
+                    getBookDetails(result);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookApiResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
+            }
+        });
+    }
+
+    private void getBookDetails(BookApiResponse books) {
+        ArrayList<BookApiResponse.Document> documentList = books.documents;
+        BookApiResponse.Meta meta = books.metas;
+        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("documentList", documentList);
+        bundle.putSerializable("meta", meta);
+
+        bookInfoPopupFragment.setArguments(bundle);
+        bookInfoPopupFragment.show(getActivity().getSupportFragmentManager()
+                , "BookInfoPopupFragment");
+    }
+
+    /*private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
+        ArrayList<ThumbnailData> data = new ArrayList<>();
+
+        for (int i = 0; i < myDataset.size(); i++) {
+            Map<String, Object> myBook = myDataset.get(i);
+            ThumbnailData thumbnailData = new ThumbnailData();
+
+            int book_id = (int) (double) myBook.get("book_id"); // double to int
+            thumbnailData.setBookId(book_id);
+            thumbnailData.setIsbn((String) myBook.get("ISBN"));
+            thumbnailData.setThumbnail((String) myBook.get("thumbnail"));
+
+            data.add(thumbnailData);
+        }
+
+        mAdapter = new MyBookshelfAdapter(data);
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mAdapter);
+
+        this.thumbnailSet = data;
+
+    }*/
+
+    /*@Override
+    @CallSuper
+    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == BARCODE_ACTIVITY) { //바코드 인식 결과
+            if (resultCode == RESULT_OK) {
+                String data = intent.getExtras().getString("ISBN");
+                if (data != null) {
+                    Log.d(MainActivity.MAIN_TAG, data);
+                    callBookResponse(data);
+                }
+            }
+        }
+        if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
+            if (resultCode == RESULT_OK) {
+                String data = intent.getExtras().getString("ISBN");
+                if (data != null) {
+                    Log.d(MainActivity.MAIN_TAG, data);
+                    callBookResponse(data);
+                }
+            }
+        }
+    }
+
+    // Kakao Book search API 통신
+    private void callBookResponse(String ISBN) {
+        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
+        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
+        call.enqueue(new Callback<BookApiResponse>() {
+            @Override
+            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
+                BookApiResponse result = response.body();
+                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
+                if (result != null) {
+                    getBookDetails(result);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BookApiResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
+            }
+        });
+    }
+
+    private void getBookDetails(BookApiResponse books) {
+        ArrayList<BookApiResponse.Document> documentList = books.documents;
+        BookApiResponse.Meta meta = books.metas;
+        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("documentList", documentList);
+        bundle.putSerializable("meta", meta);
+
+        bookInfoPopupFragment.setArguments(bundle);
+        bookInfoPopupFragment.show(getActivity().getSupportFragmentManager()
+                , "BookInfoPopupFragment");
+    }*/
+
+    private ListPopupWindow getListPopupWindow() {
         ListPopupWindow listPopupWindow = new ListPopupWindow(getActivity());
         listPopupWindow.setAnchorView(fab_addBook);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity()
@@ -116,7 +265,8 @@ public class NoEmptyShelfFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     Intent intent = new Intent(getActivity(), BarcodeActivity.class);
-                    getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
+                    startActivity(intent);
+                    //getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
                     listPopupWindow.dismiss();
                 }
                 if (position == 1) {
@@ -133,16 +283,9 @@ public class NoEmptyShelfFragment extends Fragment {
             }
 
         });
-
-        fab_addBook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                listPopupWindow.show();
-            }
-        });
-
-        return v;
+        return listPopupWindow;
     }
+
 
     private int measureContentWidth(ListAdapter listAdapter) {
         ViewGroup mMeasureParent = null;
@@ -178,59 +321,4 @@ public class NoEmptyShelfFragment extends Fragment {
         return maxWidth;
     }
 
-
-   /* @Override
-    @CallSuper
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == BARCODE_ACTIVITY) { //바코드 인식 결과
-            if (resultCode == RESULT_OK) {
-                String data = intent.getExtras().getString("ISBN");
-                if (data != null) {
-                    Log.d(MainActivity.MAIN_TAG, data);
-                    callBookResponse(data);
-                }
-            }
-        }
-        if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
-            if (resultCode == RESULT_OK) {
-                String data = intent.getExtras().getString("ISBN");
-                if (data != null) {
-                    Log.d(MainActivity.MAIN_TAG, data);
-                    callBookResponse(data);
-                }
-            }
-        }
-    }
-
-    *//* Kakao Book search API 통신 *//*
-    private void callBookResponse(String ISBN) {
-        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
-        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
-        call.enqueue(new Callback<BookApiResponse>() {
-            @Override
-            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
-                BookApiResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
-                if (result != null) {
-                    getBookDetails(result);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookApiResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
-            }
-        });
-    }
-
-    private void getBookDetails(BookApiResponse books) {
-        ArrayList<BookApiResponse.Document> documentList = books.documents;
-        BookApiResponse.Meta meta = books.metas;
-        Intent intent = new Intent(getActivity(), BookInfoPopupActivity.class);
-        intent.putExtra("documentList", documentList);
-        intent.putExtra("meta", meta);
-        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-        startActivity(intent);
-    }*/
 }

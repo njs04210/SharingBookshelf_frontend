@@ -20,9 +20,6 @@ import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.tabs.TabLayout;
 
-import java.util.ArrayList;
-import java.util.Map;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -36,11 +33,9 @@ public class MyBookshelfFragment extends Fragment {
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private TabLayout mtabLayout;
-    private boolean flag = false;
-
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
-    public ArrayList<Map<String, Object>> books;
+    private boolean flag = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,25 +46,25 @@ public class MyBookshelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mybookshelf, container, false);
 
         civ_profile = v.findViewById(R.id.civ_profile);
         tv_nickname = v.findViewById(R.id.tv_nickname);
         mtabLayout = v.findViewById(R.id.tabLayout);
 
-        setUserView(MainActivity.getMemId()); //사용자화면 구성
-        setShelfView(MainActivity.getMemId());
+        setUserView(MainActivity.getMemId());
+        if (getHasShelfcode() == -1) {
+            checkShelfStatus(MainActivity.getMemId());
+        } else changeInnerFragment();
 
         mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
-                Fragment selectedFragment = null;
                 if (position == 0) {
-                    if (getHasShelfcode() == 1 && flag == true) {
+                    if (getHasShelfcode() == 1 && flag) {
                         getChildFragmentManager().beginTransaction()
-                                .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
                     } else if (getHasShelfcode() == 0) {
                         getChildFragmentManager().beginTransaction()
                                 .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
@@ -118,28 +113,15 @@ public class MyBookshelfFragment extends Fragment {
         });
     }
 
-    public void setShelfView(int memId) {
+    public void checkShelfStatus(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<GetShelfStatusResponse> call = retrofitServiceApi.getShelfStatus(memId);
         call.enqueue(new Callback<GetShelfStatusResponse>() {
             @Override
             public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
-
                 setHasShelfcode(response.body().getCode());
-                String msg = response.body().getMsg();
-                books = response.body().getHasBooks();
-
-                Log.d(MainActivity.MAIN_TAG, msg);
-
-                if (getHasShelfcode() == 0) {
-                    getChildFragmentManager().beginTransaction()
-                            .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-                } else if (getHasShelfcode() == 1) {
-                    getChildFragmentManager().beginTransaction()
-                            .replace(R.id.bookshelf, new NoEmptyShelfFragment(books)).commit();
-                    flag = true;
-                }
-
+                Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
+                changeInnerFragment();
             }
 
             @Override
@@ -147,5 +129,16 @@ public class MyBookshelfFragment extends Fragment {
                 Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
             }
         });
+    }
+
+    private void changeInnerFragment() {
+        if (getHasShelfcode() == 0) {
+            getChildFragmentManager().beginTransaction()
+                    .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+        } else if (getHasShelfcode() == 1) {
+            getChildFragmentManager().beginTransaction()
+                    .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+            flag = true;
+        }
     }
 }

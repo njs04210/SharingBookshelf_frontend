@@ -35,9 +35,10 @@ public class EmptyShelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_empty_shelf, container, false);
         btn_makeBookshelf = v.findViewById(R.id.btn_makeBookshelf);
+
         btn_makeBookshelf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,7 +50,7 @@ public class EmptyShelfFragment extends Fragment {
                         setHasShelfcode(response.body().getCode());
                         Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
                         getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.bookshelf, new NoEmptyShelfFragment(null)).commit();
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
                     }
 
                     @Override
