@@ -174,7 +174,9 @@
                 android:id="@+id/rv_ranking"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbarFadeDuration="0"></androidx.recyclerview.widget.RecyclerView>
+                android:scrollbarFadeDuration="0"
+                android:theme="@style/edgeEffect">
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </LinearLayout>

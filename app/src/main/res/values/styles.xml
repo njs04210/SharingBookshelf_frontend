@@ -82,6 +82,7 @@
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorEdgeEffect">@color/colorPrimary</item>
     </style>
 
     <!-- 상태바 -->
