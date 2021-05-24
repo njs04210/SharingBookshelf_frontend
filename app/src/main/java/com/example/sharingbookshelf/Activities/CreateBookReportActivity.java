@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sharingbookshelf.Fragments.CheckReportPopupFragment;
 import com.example.sharingbookshelf.R;
 
 import java.text.SimpleDateFormat;
@@ -37,9 +38,8 @@ public class CreateBookReportActivity extends AppCompatActivity
     private boolean widthFlag = false;
     MyCanvas canvas;
     private int book_id = 1;
-    String file_name = "mem_" + MainActivity.getMemId() + "_" + book_id + ".jpg";
-    public ImageView imgView;
-    private Bitmap drawing;
+    String file_name = book_id + ".jpg";
+    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,6 @@ public class CreateBookReportActivity extends AppCompatActivity
         tv_date = findViewById(R.id.tv_date);
         canvas = findViewById(R.id.canvas);
         editText = findViewById(R.id.et_paper);
-        imgView = findViewById(R.id.saveImg);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         Date time = new Date();
@@ -139,8 +138,17 @@ public class CreateBookReportActivity extends AppCompatActivity
             canvas.setPenColor(2);
         }
         if (selectedButton == R.id.btn_save) {
-            drawing = canvas.getBitmap();
-            imgView.setImageBitmap(drawing);
+            bitmap = canvas.getBitmap();
+            CheckReportPopupFragment checkReportPopupFragment = new CheckReportPopupFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("bitmap", bitmap);
+            bundle.putString("file", file_name);
+            checkReportPopupFragment.setArguments(bundle);
+            checkReportPopupFragment.show((CreateBookReportActivity.this).getSupportFragmentManager()
+                    ,"CheckReportPopupFragment");
+
+            /*drawing = canvas.getBitmap();
+            imgView.setImageBitmap(drawing);*/
         }
     }
 }
