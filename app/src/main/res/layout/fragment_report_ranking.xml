@@ -50,11 +50,11 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
                     <!-- 나이, 성별 이름 -->
                     <LinearLayout
@@ -66,46 +66,46 @@
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/icon_crown"/>
+                            android:src="@drawable/icon_crown" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civ_1stprofile"
+                        <at.markushi.ui.CircleButton
+                            android:id="@+id/cb_profile1"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/icon_logo"/>
+                            android:src="@drawable/icon_logo" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/tv_1st_age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="나이"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text=" / "
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:id="@+id/tv_1st_gender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="성별"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -119,19 +119,19 @@
                                 android:id="@+id/tv_1st_nickname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="닉네임"
-                                android:textSize="12dp"
-                                android:textStyle="bold"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text=" 어린이"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -142,26 +142,26 @@
                         android:layout_width="200dp"
                         android:layout_height="120dp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/border_all"
                         android:layout_marginLeft="30dp"
-                        android:padding="10dp"
-                        android:orientation="vertical">
+                        android:background="@drawable/border_all"
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
                             android:text="5월의 독서짱이 된 소감"
                             android:textSize="12dp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/font_main"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="@font/font_main"
                             android:text="우왕"
-                            android:textSize="10dp"
-                            android:fontFamily="@font/font_main"/>
+                            android:textSize="10dp" />
 
                     </LinearLayout>
 
@@ -172,11 +172,11 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="10dp">
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
 
                     <!-- 나이, 성별 이름 -->
                     <LinearLayout
@@ -188,46 +188,46 @@
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/icon_crown"/>
+                            android:src="@drawable/icon_crown" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civ_2nd_profile"
+                        <at.markushi.ui.CircleButton
+                            android:id="@+id/cb_profile2"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/icon_logo"/>
+                            android:src="@drawable/icon_logo" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/tv_2nd_age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="나이"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text=" / "
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:id="@+id/tv_2nd_gender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="성별"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -241,19 +241,19 @@
                                 android:id="@+id/tv_2nd_nickname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="닉네임"
-                                android:textSize="12dp"
-                                android:textStyle="bold"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text=" 어린이"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -264,26 +264,26 @@
                         android:layout_width="200dp"
                         android:layout_height="120dp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/border_all"
                         android:layout_marginLeft="30dp"
-                        android:padding="10dp"
-                        android:orientation="vertical">
+                        android:background="@drawable/border_all"
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
                             android:text="5월의 독서짱이 된 소감"
                             android:textSize="12dp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/font_main"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="@font/font_main"
                             android:text="우왕"
-                            android:textSize="10dp"
-                            android:fontFamily="@font/font_main"/>
+                            android:textSize="10dp" />
 
                     </LinearLayout>
 
@@ -294,11 +294,11 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginLeft="30dp"
                     android:layout_marginTop="20dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginBottom="40dp">
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal">
 
                     <!-- 나이, 성별 이름 -->
                     <LinearLayout
@@ -310,46 +310,46 @@
                             android:layout_width="70dp"
                             android:layout_height="50dp"
                             android:layout_gravity="center_horizontal"
-                            android:src="@drawable/icon_crown"/>
+                            android:src="@drawable/icon_crown" />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/civ_3rd_nickname"
+                        <at.markushi.ui.CircleButton
+                            android:id="@+id/cb_profile3"
                             android:layout_width="80dp"
                             android:layout_height="80dp"
-                            android:src="@drawable/icon_logo"/>
+                            android:src="@drawable/icon_logo" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/tv_3rd_age"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="나이"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text=" / "
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:id="@+id/tv_3rd_gender"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="성별"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -363,19 +363,19 @@
                                 android:id="@+id/tv_3rd_nickname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text="닉네임"
-                                android:textSize="12dp"
-                                android:textStyle="bold"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp"
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:fontFamily="@font/font_main"
                                 android:text=" 어린이"
-                                android:textSize="12dp"
                                 android:textColor="@color/black"
-                                android:fontFamily="@font/font_main"/>
+                                android:textSize="12dp" />
 
                         </LinearLayout>
 
@@ -386,26 +386,26 @@
                         android:layout_width="200dp"
                         android:layout_height="120dp"
                         android:layout_gravity="center_vertical"
-                        android:background="@drawable/border_all"
                         android:layout_marginLeft="30dp"
-                        android:padding="10dp"
-                        android:orientation="vertical">
+                        android:background="@drawable/border_all"
+                        android:orientation="vertical"
+                        android:padding="10dp">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
                             android:text="5월의 독서짱이 된 소감"
                             android:textSize="12dp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/font_main"/>
+                            android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:fontFamily="@font/font_main"
                             android:text="우왕"
-                            android:textSize="10dp"
-                            android:fontFamily="@font/font_main"/>
+                            android:textSize="10dp" />
 
                     </LinearLayout>
 

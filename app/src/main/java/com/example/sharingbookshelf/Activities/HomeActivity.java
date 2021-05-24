@@ -13,6 +13,7 @@ import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.MyPageFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.RankingFragment;
+import com.example.sharingbookshelf.Fragments.ReportRankingFragment;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -62,7 +63,7 @@ public class HomeActivity extends AppCompatActivity {
                     } else if (itemId == R.id.ranking) {
                         selectedFragment = new RankingFragment();
                     } else if (itemId == R.id.chatting) {
-                        selectedFragment = new ChattingFragment();
+                        selectedFragment = new ReportRankingFragment();
                     } else if (itemId == R.id.myPage) {
                         selectedFragment = new MyPageFragment();
                     }
