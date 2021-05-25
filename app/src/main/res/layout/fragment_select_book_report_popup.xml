@@ -29,12 +29,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:clipToPadding="false"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="8dp">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_selectbookreport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:scrollbars="vertical">
+            </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
 
@@ -50,7 +59,6 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:backgroundTint="@null" />
-
 
     </LinearLayout>
 </LinearLayout>
