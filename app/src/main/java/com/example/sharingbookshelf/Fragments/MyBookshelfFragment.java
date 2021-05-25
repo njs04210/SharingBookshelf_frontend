@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
+import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
@@ -35,7 +36,6 @@ public class MyBookshelfFragment extends Fragment {
     private TabLayout mtabLayout;
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
-    private boolean flag = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,16 +53,18 @@ public class MyBookshelfFragment extends Fragment {
         mtabLayout = v.findViewById(R.id.tabLayout);
 
         setUserView(MainActivity.getMemId());
-        if (getHasShelfcode() == -1) {
-            checkShelfStatus(MainActivity.getMemId());
-        } else changeInnerFragment();
+        System.out.println("shelfcode = " + getHasShelfcode());
+
+        if (HomeActivity.getHasShelfcode() == -1) { // 처음 들어왔을때 -1
+            checkShelfStatus(MainActivity.getMemId()); // 책장 상태 결정할 메소드
+        } else changeInnerFragment(); // 처음 들어온거 아니면 바로 바꿔주면 됨
 
         mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
                 if (position == 0) {
-                    if (getHasShelfcode() == 1 && flag) {
+                    if (getHasShelfcode() == 1) {
                         getChildFragmentManager().beginTransaction()
                                 .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
                     } else if (getHasShelfcode() == 0) {
@@ -132,13 +134,12 @@ public class MyBookshelfFragment extends Fragment {
     }
 
     private void changeInnerFragment() {
-        if (getHasShelfcode() == 0) {
+        if (getHasShelfcode() == 0) { // 책장 생성 안한 상태
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
-        } else if (getHasShelfcode() == 1) {
+        } else if (getHasShelfcode() == 1) { // 책장 생성되어있는 상태
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
-            flag = true;
         }
     }
 }
