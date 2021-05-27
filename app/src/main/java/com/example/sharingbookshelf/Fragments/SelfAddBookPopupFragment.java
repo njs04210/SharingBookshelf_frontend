@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
@@ -24,15 +27,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
+
 public class SelfAddBookPopupFragment extends DialogFragment {
 
     private EditText isbn_field;
     private Button btn_findBook;
-    private RetrofitServiceApi retrofitServiceApi;
-
-    public static SelfAddBookPopupFragment getInstance() {
-        return new SelfAddBookPopupFragment();
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,50 +54,14 @@ public class SelfAddBookPopupFragment extends DialogFragment {
             public void onClick(View v) {
                 if (!(isbn_field.getText().toString()).equals("")) {
                     String isbn = isbn_field.getText().toString();
-                    callBookResponse(isbn);
+                    Intent intent = new Intent();
+                    intent.putExtra("ISBN", isbn);
+                    getTargetFragment().onActivityResult(getTargetRequestCode(), RESULT_OK, intent);
+                    getDialog().dismiss();
                 }
             }
         });
 
         return v;
     }
-
-    private void callBookResponse(String isbn) {
-        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
-        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(isbn, "isbn");
-        call.enqueue(new Callback<BookApiResponse>() {
-            @Override
-            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
-                BookApiResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
-                if (result != null) {
-                    getBookDetails(result);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookApiResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
-            }
-        });
-    }
-
-    private void getBookDetails(BookApiResponse books) {
-        ArrayList<BookApiResponse.Document> documentList = books.documents;
-        BookApiResponse.Meta meta = books.metas;
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("documentList", documentList);
-        bundle.putSerializable("meta", meta);
-
-        BookInfoPopupFragment bookInfoPopupFragment = BookInfoPopupFragment.getInstance();
-        bookInfoPopupFragment.setArguments(bundle);
-
-        bookInfoPopupFragment.show(getActivity().getSupportFragmentManager(), "Abc");
-        getFragmentManager().executePendingTransactions();
-        getDialog().dismiss();
-
-
-    }
-
 }

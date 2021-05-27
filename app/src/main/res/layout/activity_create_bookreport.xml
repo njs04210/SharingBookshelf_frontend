@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentRelative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".Activities.CreateBookReportActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorPrimary_2"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/font_main"
+            android:text="등록"
+            android:textColor="@color/colorPrimary_2"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.example.sharingbookshelf.Activities.MyCanvas
+        android:id="@+id/canvas"
+        android:layout_width="350dp"
+        android:layout_height="280dp"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/white"
+        android:elevation="10dp" />
+
+    <RelativeLayout
+        android:id="@+id/canvasTool"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/canvas"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:fontFamily="@font/font_main"
+            android:text="오늘의 날짜"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/btn_eraser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btn_penWidth"
+            android:background="@drawable/eraser_variant"
+            android:tag="eraser" />
+
+        <Button
+            android:id="@+id/btn_penWidth"
+            style="@style/myColoredButton"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@+id/btnToggleGroup"
+            android:backgroundTint="@color/colorPrimary_2"
+            android:backgroundTintMode="add"
+            android:fontFamily="@font/font_main"
+            android:tag="pen"
+            android:text="굵게"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/btnToggleGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            app:selectionRequired="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_penBlack"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="@android:color/black" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_penBlue"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:backgroundTint="#0000FF" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_penRed"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:backgroundTint="@android:color/holo_red_light" />
+
+        </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="240dp"
+        android:layout_below="@+id/canvasTool"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/paper2"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+        <EditText
+            android:id="@+id/et_paper"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:fontFamily="monospace"
+            android:gravity="start"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:maxLines="6"
+            android:minHeight="30dp"
+            android:minLines="1"
+            android:paddingTop="3dp"
+            app:boxBackgroundMode="none" />
+
+    </LinearLayout>
+</RelativeLayout>

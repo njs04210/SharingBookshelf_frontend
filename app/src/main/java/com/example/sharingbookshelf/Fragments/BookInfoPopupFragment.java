@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.HomeActivity;
@@ -37,6 +38,8 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+
+import static android.app.Activity.RESULT_OK;
 
 public class BookInfoPopupFragment extends DialogFragment {
 
@@ -124,6 +127,25 @@ public class BookInfoPopupFragment extends DialogFragment {
         return v;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == 2) {
+            if (resultCode == RESULT_OK) {
+                Bundle extras = intent.getExtras();
+                if (extras != null) {
+                    switchButton.setChecked(true);
+                    isSetCategory = true;
+                    String category = extras.getString("category");
+                    int categoryNum = extras.getInt("categoryNum");
+                    parameters.put("category", categoryNum);
+                    tv_category.setText(category);
+                    tv_category.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+        }
+    }
+
     private void categorySwitchListener() {
         if (switchButton != null) {
             switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -133,27 +155,22 @@ public class BookInfoPopupFragment extends DialogFragment {
                         Log.d(MainActivity.MAIN_TAG, "switch button TEST - 활성화");
                         isSetCategory = false;
                         SelectCategoryFragment selectCategoryFragment = new SelectCategoryFragment();
-                        selectCategoryFragment.show(getActivity().getSupportFragmentManager(), "SelectCategoryFragment");
+                        getFragmentManager().executePendingTransactions();
+                        Fragment targetFragment = getFragmentManager().findFragmentByTag("BookInfoPopupFragment");
+                        selectCategoryFragment.setTargetFragment(targetFragment, 2);
+                        selectCategoryFragment.show(getFragmentManager(), "SelectCategoryFragment");
                         getFragmentManager().executePendingTransactions();
                         selectCategoryFragment.getDialog().setOnDismissListener(new DialogInterface.OnDismissListener() {
                             @Override
                             public void onDismiss(DialogInterface dialog) {
                                 if (!isSetCategory) {
                                     switchButton.setChecked(false);
-                                } else {
-                                    Bundle bundle = getArguments();
-                                    String category = bundle.getString("category");
-                                    int categoryNum = bundle.getInt("categoryNum");
-                                    parameters.put("category", categoryNum);
-                                    tv_category.setText(category);
-                                    tv_category.setTextColor(Color.parseColor("#000000"));
                                 }
                             }
                         });
-
                     } else {
-                        Log.d(MainActivity.MAIN_TAG, "switch button TEST - 비활성화");
                         isSetCategory = false;
+                        switchButton.setChecked(false);
                         tv_category.setText("장르를 설정해주세요!");
                         tv_category.setTextColor(-1979711488);
                     }

@@ -39,14 +39,16 @@
 
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar">
+            android:theme="@style/StatusBar" />
 
-        </activity>
         <activity
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activities.LeaveIdActivity" />
-        <activity android:name=".Activities.LikeListActivity" />
+
+        <activity
+            android:name=".Activities.CreateBookReportActivity"
+            android:theme="@style/StatusBar" />
     </application>
 
 </manifest>

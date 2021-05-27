@@ -12,7 +12,8 @@ import com.example.sharingbookshelf.R;
 
 public class BookReportFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_write, btn_list;
+    private Button btn_showReportBox;
+    private Button btn_createReport;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,11 +26,11 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_book_report, container, false);
 
-        btn_write = v.findViewById(R.id.btn_Form);
-        btn_write.setOnClickListener(this);
+        btn_createReport = v.findViewById(R.id.btn_createReport);
+        btn_showReportBox = v.findViewById(R.id.btn_showReportBox);
 
-        btn_list = v.findViewById(R.id.btn_list);
-        btn_list.setOnClickListener(this);
+        btn_showReportBox.setOnClickListener(this);
+        btn_createReport.setOnClickListener(this);
 
         return v;
 
@@ -38,11 +39,15 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_list:
-                BookReportBoxFragment r = new BookReportBoxFragment();
-                r.show(getActivity().getSupportFragmentManager(), "Abc");
+            case R.id.btn_createReport:
+                SelectBookReportPopupFragment selectBookReportPopupFragment = new SelectBookReportPopupFragment();
+                selectBookReportPopupFragment.show(getFragmentManager(), "SelectBookReportFragment");
                 break;
 
+            case R.id.btn_showReportBox:
+                BookReportBoxFragment bookReportBoxFragment = new BookReportBoxFragment();
+                bookReportBoxFragment.show(getFragmentManager(), "BookReportBoxFragment");
+                break;
         }
     }
 
