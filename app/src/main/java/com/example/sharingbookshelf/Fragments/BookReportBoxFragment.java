@@ -60,7 +60,6 @@ public class BookReportBoxFragment extends DialogFragment {
     private void setReport() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         Date time = new Date();
-        String date = dateFormat.format(time);
         for (int i = 0; i < 10; i++) {
             BookreportData bookreportData = new BookreportData();
             bookreportData.setCanvas_uri("https://firebasestorage.googleapis.com/v0/b/ibookshare--login.appspot.com/o/BookReportImg%2F38%2F1.jpg?alt=media&token=6a449e38-2a59-4799-bb1f-4a5716541eb7");
