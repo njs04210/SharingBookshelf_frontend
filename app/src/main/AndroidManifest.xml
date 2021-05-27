@@ -26,7 +26,6 @@
         <activity
             android:name=".Activities.HomeActivity"
             android:theme="@style/StatusBar">
-
         </activity>
 
         <activity
@@ -48,7 +47,6 @@
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activities.LeaveIdActivity" />
-        <activity android:name=".Activities.LikeListActivity" />
     </application>
 
 </manifest>
