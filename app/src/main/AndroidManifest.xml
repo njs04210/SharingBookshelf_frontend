@@ -44,6 +44,10 @@
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activities.LeaveIdActivity" />
+
+        <activity
+            android:name=".Activities.CreateBookReportActivity"
+            android:theme="@style/StatusBar" />
     </application>
 
 </manifest>

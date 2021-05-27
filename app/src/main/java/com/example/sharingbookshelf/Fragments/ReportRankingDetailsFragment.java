@@ -15,10 +15,12 @@ import android.view.WindowMetrics;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
+import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
 import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.R;
 
@@ -50,28 +52,29 @@ public class ReportRankingDetailsFragment extends DialogFragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_reportdetails);
 
-        mLayoutManager = new LinearLayoutManager(getContext());
+        recyclerViewSettings();
         setReport();
-
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        mAdapter = new BookreportsAdapter(reportList);
-        mRecyclerView.setAdapter(mAdapter);
 
         return view;
     }
 
+    private void recyclerViewSettings() {
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        reportList = new ArrayList<>();
+        mAdapter = new BookreportsAdapter(reportList);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+
     private void setReport() {
-        SimpleDateFormat mFormat = new SimpleDateFormat("yyyy-MM-dd");
-        for (int i = 1; i < 11; i++) {
+        Date mDate = new Date();
+        for (int i = 0; i < 10; i++) {
             BookreportData bookreportData = new BookreportData();
-            bookreportData.setPainting(R.drawable.icon_book2);
-            bookreportData.setBooktitle("책 제목이 길어도 그렇게 얄쌍하게 나오나");
-            long now = System.currentTimeMillis();
-            Date mDate = new Date(now);
-            String getDate = mFormat.format(mDate);
-            bookreportData.setDate(getDate);
+            bookreportData.setCanvas_uri("https://firebasestorage.googleapis.com/v0/b/ibookshare--login.appspot.com/o/BookReportImg%2F40%2F1.jpg?alt=media&token=2366fa8f-d04c-4e48-9386-fdc7bf20f9b9");
+            bookreportData.setTitle("책 제목이 길어도 그렇게 얄쌍하게 나오나");
+            bookreportData.setCreated(mDate);
 
             reportList.add(bookreportData);
         }
