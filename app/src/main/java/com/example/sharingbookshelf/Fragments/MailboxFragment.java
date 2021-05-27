@@ -1,5 +1,5 @@
+/*
 package com.example.sharingbookshelf.Fragments;
-
 import android.graphics.Color;
 import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
@@ -88,7 +88,7 @@ public class MailboxFragment extends DialogFragment {
             String dateTimeString = df.format(now);
             // Show in VIEW
             mailData.setMessageTime(dateTimeString);
-*/
+
 
             mailList.add(mailData);
         }
@@ -119,3 +119,4 @@ public class MailboxFragment extends DialogFragment {
     }
 
 }
+*/

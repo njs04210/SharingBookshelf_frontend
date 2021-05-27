@@ -273,7 +273,7 @@ public class SelectAgeAreaActivity extends Activity {
         if (DocumentsContract.isDocumentUri(context, uri)) {
             if (isExternalStorageDocument(uri)) {
                 final String docId = DocumentsContract.getDocumentId(uri);
-                String[] split = docId.split(":");
+                final String[] split = docId.split(":"); //final 추가
                 final String type = split[0];
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/"

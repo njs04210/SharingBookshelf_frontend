@@ -7,33 +7,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-<<<<<<< HEAD
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.Models.MailData;
-import com.example.sharingbookshelf.R;
-
-import org.w3c.dom.Text;
-
-=======
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Models.MessageData;
 import com.example.sharingbookshelf.R;
 
->>>>>>> main
 import java.util.ArrayList;
 
 public class MailboxAdapter extends RecyclerView.Adapter<MailboxAdapter.ViewHolder> {
-
-<<<<<<< HEAD
-    private ArrayList<MailData> mailList;
-=======
     private ArrayList<MessageData> mailList;
->>>>>>> main
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView iv_profileImage;
