@@ -25,8 +25,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/StatusBar">
-        </activity>
+            android:theme="@style/StatusBar" />
 
         <activity
             android:name=".Activities.MainActivity"
@@ -39,9 +38,8 @@
 
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar">
+            android:theme="@style/StatusBar" />
 
-        </activity>
         <activity
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />

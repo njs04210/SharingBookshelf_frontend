@@ -11,37 +11,46 @@
     app:cardCornerRadius="@dimen/loginCardRadius"
     app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/bookreport_background">
 
         <Button
             android:id="@+id/btn_Form"
-            style="@style/BookReportButton"
-            android:layout_width="130dp"
-            android:layout_height="200dp"
-            android:layout_centerVertical="true"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            app:backgroundTint="@color/white"
+            android:elevation="20dp"
             android:fontFamily="@font/font_main"
-            android:text="독후감\n작성하기"
-            android:textSize="20dp"
-            app:backgroundTint="@color/colorPrimary_2" />
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="독후감 작성하기"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btn_list"
-            style="@style/BookReportButton"
-            android:layout_width="130dp"
-            android:layout_height="200dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@+id/btn_Form"
+            android:layout_width="180dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="20dp"
+            app:backgroundTint="@color/white"
+            android:elevation="20dp"
             android:fontFamily="@font/font_main"
-            android:text="독후감\n목록보기"
-            android:textSize="20dp"
-            app:backgroundTint="@color/colorPrimary_2" />
+            android:gravity="center"
+            android:padding="20dp"
+            android:text="독후감 목록보기"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-    </RelativeLayout>
+    </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>
