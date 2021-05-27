@@ -21,18 +21,25 @@ import androidx.fragment.app.DialogFragment;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.BookreportData;
+import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.ByteArrayOutputStream;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class CheckReportPopupFragment extends DialogFragment {
 
@@ -41,6 +48,8 @@ public class CheckReportPopupFragment extends DialogFragment {
     private Button btn_addReport;
     private FirebaseStorage storage;
     private String file;
+    private String contents;
+    private String downloadUri;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +68,7 @@ public class CheckReportPopupFragment extends DialogFragment {
         Bundle arguments = getArguments();
         Bitmap bitmap = arguments.getParcelable("bitmap");
         file = arguments.getString("file");
+        contents = arguments.getString("contents");
 
         iv_canvas.setImageBitmap(bitmap);
         Glide.with(this).load("http://image.kyobobook.co.kr/images/book/large/090/l9788943306090.jpg")
@@ -76,12 +86,12 @@ public class CheckReportPopupFragment extends DialogFragment {
 
     private void canvasToFirebaseStorage() {
         storage = FirebaseStorage.getInstance();
-        // Create a storage reference from our app
         StorageReference storageRef = storage.getReference();
-        // Create a reference to 'images/mountains.jpg'
         StorageReference mountainImagesRef = storageRef.child("BookReportImg/"
                 + MainActivity.getMemId() + "/" + file);
-        mountainImagesRef.getName().equals(mountainImagesRef.getName());
+
+        mountainImagesRef.getName().equals(mountainImagesRef.getName()); //중복 안되게
+
         // Get the data from an ImageView as bytes
         iv_canvas.setDrawingCacheEnabled(true);
         iv_canvas.buildDrawingCache();
@@ -111,27 +121,46 @@ public class CheckReportPopupFragment extends DialogFragment {
                             throw task.getException();
                         }
 
-                        // Continue with the task to get the download URL
                         return mountainImagesRef.getDownloadUrl();
                     }
                 }).addOnCompleteListener(new OnCompleteListener<Uri>() {
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getContext(), "독후감 등록 성공!\n독서짱을 노려보세요 +_+"
-                                    , Toast.LENGTH_LONG).show();
-                            Uri downloadUri = task.getResult();
-                            Log.d("downloadUri", downloadUri.toString());
-                            getFragmentManager().executePendingTransactions();
-                            getDialog().dismiss();
-                            getActivity().finish();
+                            downloadUri = task.getResult().toString();
+                            addReportDataRetrofit();
                         } else {
-                            // Handle failures
-                            // ...
+                            Log.e("Firebase", "canvas 등록한 Uri 받아오기 실패");
                         }
                     }
                 });
 
+            }
+        });
+    }
+
+    private void addReportDataRetrofit() {
+        BookreportData bookreportData = new BookreportData();
+        bookreportData.setCanvas_uri(downloadUri);
+        bookreportData.setContents(contents);
+        bookreportData.setBook_id(20);
+
+        RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<CommonResponse> call = retrofitServiceApi.addBookReport(bookreportData);
+        call.enqueue(new Callback<CommonResponse>() {
+            @Override
+            public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
+                Toast.makeText(getContext(), "독후감 등록 성공!\n독서짱을 노려보세요 +_+"
+                        , Toast.LENGTH_LONG).show();
+
+                getFragmentManager().executePendingTransactions();
+                getDialog().dismiss();
+                getActivity().finish();
+            }
+
+            @Override
+            public void onFailure(Call<CommonResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "회원정보 등록 응답 못받음", t);
             }
         });
 

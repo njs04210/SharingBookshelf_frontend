@@ -33,13 +33,12 @@ public class CreateBookReportActivity extends AppCompatActivity
     private Button btn_penBlack;
     private Button btn_penBlue;
     private Button btn_penRed;
-    private EditText editText;
+    private EditText et_paper;
     private TextView tv_date;
     private boolean widthFlag = false;
     MyCanvas canvas;
     private int book_id = 1;
     String file_name = book_id + ".jpg";
-    private Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class CreateBookReportActivity extends AppCompatActivity
         btn_save = findViewById(R.id.btn_save);
         tv_date = findViewById(R.id.tv_date);
         canvas = findViewById(R.id.canvas);
-        editText = findViewById(R.id.et_paper);
+        et_paper = findViewById(R.id.et_paper);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         Date time = new Date();
@@ -73,10 +72,10 @@ public class CreateBookReportActivity extends AppCompatActivity
     }
 
     private void editTextSettings() {
-        editText.setLineSpacing(0, 1.5f);
-        editText.setLetterSpacing(1.0f);
-        editText.clearComposingText();
-        editText.addTextChangedListener(new TextWatcher() {
+        et_paper.setLetterSpacing(1.0f);
+        et_paper.setLineSpacing(0, 1.5f);
+        et_paper.clearComposingText();
+        et_paper.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -89,19 +88,19 @@ public class CreateBookReportActivity extends AppCompatActivity
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (editText.getLineCount() > 6) {
+                if (et_paper.getLineCount() > 6) {
                     s.delete(s.length() - 1, s.length());
                     Toast.makeText(getApplicationContext(), "60자 이내로 입력해주세요!", Toast.LENGTH_SHORT).show();
                 }
                 if (s.length() >= 1) {
 
-                    if ((s.charAt(editText.length() - 1) >= 32 && s.charAt(editText.length() - 1) <= 126)) {
+                    if ((s.charAt(et_paper.length() - 1) >= 32 && s.charAt(et_paper.length() - 1) <= 126)) {
                         s.setSpan(new TextAppearanceSpan(getApplicationContext(), R.style.SpecialTextAppearance)
-                                , editText.length() - 1, editText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                        if ((s.charAt(editText.length() - 1) >= 65 && s.charAt(editText.length() - 1) <= 90)
-                                || (s.charAt(editText.length() - 1) >= 97 && s.charAt(editText.length() - 1) <= 122)) {
+                                , et_paper.length() - 1, et_paper.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                        if ((s.charAt(et_paper.length() - 1) >= 65 && s.charAt(et_paper.length() - 1) <= 90)
+                                || (s.charAt(et_paper.length() - 1) >= 97 && s.charAt(et_paper.length() - 1) <= 122)) {
                             s.setSpan(new TextAppearanceSpan(getApplicationContext(), R.style.SpecialTextAppearance_alpha)
-                                    , editText.length() - 1, editText.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                                    , et_paper.length() - 1, et_paper.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                         }
                     }
                 }
@@ -138,17 +137,19 @@ public class CreateBookReportActivity extends AppCompatActivity
             canvas.setPenColor(2);
         }
         if (selectedButton == R.id.btn_save) {
-            bitmap = canvas.getBitmap();
+            Bitmap bitmap = canvas.getBitmap();
+            String contents = et_paper.getText().toString();
+
             CheckReportPopupFragment checkReportPopupFragment = new CheckReportPopupFragment();
             Bundle bundle = new Bundle();
             bundle.putParcelable("bitmap", bitmap);
+            bundle.putString("contents", contents);
             bundle.putString("file", file_name);
             checkReportPopupFragment.setArguments(bundle);
+
             checkReportPopupFragment.show((CreateBookReportActivity.this).getSupportFragmentManager()
                     ,"CheckReportPopupFragment");
 
-            /*drawing = canvas.getBitmap();
-            imgView.setImageBitmap(drawing);*/
         }
     }
 }

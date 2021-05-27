@@ -29,15 +29,6 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
         btn_createReport = v.findViewById(R.id.btn_createReport);
         btn_showReportBox = v.findViewById(R.id.btn_showReportBox);
 
-       /* btn_createReport.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CreateBookReportFragment f = CreateBookReportFragment.getInstance();
-                f.show(getActivity().getSupportFragmentManager(), "CreateBookReportFragment");
-            }
-        });*/
-
-
         btn_showReportBox.setOnClickListener(this);
         btn_createReport.setOnClickListener(this);
 
@@ -48,16 +39,14 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.btn_showReportBox:
-                BookReportBoxFragment bookReportBoxFragment = new BookReportBoxFragment();
-                bookReportBoxFragment.show(getChildFragmentManager(), "BookReportBoxFragment");
+            case R.id.btn_createReport:
+                SelectBookReportPopupFragment selectBookReportPopupFragment = new SelectBookReportPopupFragment();
+                selectBookReportPopupFragment.show(getFragmentManager(), "SelectBookReportFragment");
                 break;
 
-            case R.id.btn_createReport:
-                /*Intent intent = new Intent(getActivity(), CreateBookReportActivity.class);
-                startActivity(intent);*/
-                SelectBookReportPopupFragment selectBookReportPopupFragment = new SelectBookReportPopupFragment();
-                selectBookReportPopupFragment.show(getChildFragmentManager(), "SelectBookReportFragment");
+            case R.id.btn_showReportBox:
+                BookReportBoxFragment bookReportBoxFragment = new BookReportBoxFragment();
+                bookReportBoxFragment.show(getFragmentManager(), "BookReportBoxFragment");
                 break;
         }
     }

@@ -3,7 +3,6 @@ package com.example.sharingbookshelf.Fragments;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +22,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharingbookshelf.Activities.CreateBookReportActivity;
 import com.example.sharingbookshelf.Adapters.SelectBookreportAdapter;
 import com.example.sharingbookshelf.Models.SelectReportData;
-import com.example.sharingbookshelf.Models.MessageData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -48,17 +45,11 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_select_book_report_popup, container, false);
 
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.rv_selectbookreport);
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        setTitlelist();
-
-        mAdapter = new SelectBookreportAdapter(selectbookList);
-        mRecyclerView.setAdapter(mAdapter);
-
         Button btn_confirm = v.findViewById(R.id.btn_confirm);
+        mRecyclerView = v.findViewById(R.id.rv_selectbookreport);
+
+        recyclerViewSettings();
+        setTitleList();
 
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,19 +63,30 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         return v;
     }
 
-    private void setTitlelist() {
+    private void recyclerViewSettings() {
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        selectbookList = new ArrayList<>();
+        mAdapter = new SelectBookreportAdapter(selectbookList);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void setTitleList() {
         for (int i = 0; i < 10; i++) {
             SelectReportData selectreportData = new SelectReportData();
             selectreportData.setBooktitle("얼마나 길어도 계속 나올까요오옹");
-
             selectbookList.add(selectreportData);
         }
+
+        mAdapter = new SelectBookreportAdapter(selectbookList);
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mAdapter);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-
         try {
             WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
 
