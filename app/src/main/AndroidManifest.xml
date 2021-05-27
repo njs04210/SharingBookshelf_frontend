@@ -25,28 +25,25 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/StatusBar" >
-
-        </activity>
+            android:theme="@style/StatusBar" />
 
         <activity
             android:name=".Activities.MainActivity"
             android:theme="@style/SplashTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity
             android:name=".Activities.SelectAgeAreaActivity"
-            android:theme="@style/StatusBar"/>
+            android:theme="@style/StatusBar" />
 
         <activity
             android:name=".Activities.WebViewActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".Activities.LeaveIdActivity" />
-        <activity android:name=".Activities.LikeListActivity" />
     </application>
 
 </manifest>

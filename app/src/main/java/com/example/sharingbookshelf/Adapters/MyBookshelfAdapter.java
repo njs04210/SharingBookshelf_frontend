@@ -27,7 +27,6 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
     private ArrayList<ThumbnailData> localDataSet;
     private Context context;
 
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView mimageView;
 
