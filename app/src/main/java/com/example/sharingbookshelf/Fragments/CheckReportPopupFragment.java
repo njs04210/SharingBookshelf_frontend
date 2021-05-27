@@ -140,13 +140,13 @@ public class CheckReportPopupFragment extends DialogFragment {
     }
 
     private void addReportDataRetrofit() {
-        BookreportData bookreportData = new BookreportData();
-        bookreportData.setCanvas_uri(downloadUri);
-        bookreportData.setContents(contents);
-        bookreportData.setBook_id(20);
+        BookreportData.BookreportDetailData bookreportDetailData = new BookreportData.BookreportDetailData();
+        bookreportDetailData.setCanvas_uri(downloadUri);
+        bookreportDetailData.setContents(contents);
+        bookreportDetailData.setItem_id(51);
 
         RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<CommonResponse> call = retrofitServiceApi.addBookReport(bookreportData);
+        Call<CommonResponse> call = retrofitServiceApi.addBookReport(bookreportDetailData);
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {

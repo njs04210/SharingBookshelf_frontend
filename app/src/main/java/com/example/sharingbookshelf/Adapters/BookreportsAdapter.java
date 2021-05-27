@@ -9,8 +9,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.R;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -20,15 +23,17 @@ public class BookreportsAdapter extends RecyclerView.Adapter<BookreportsAdapter.
     private ArrayList<BookreportData> reportList;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final ImageView iv_painting;
-        private final TextView tv_bookreporttitle;
-        private final TextView tv_date;
+        private final ImageView iv_thumbnail;
+        private final TextView tv_title;
+        private final TextView tv_created;
+        private final TextView tv_num;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            iv_painting = view.findViewById(R.id.iv_painting);
-            tv_bookreporttitle = view.findViewById(R.id.tv_bookreporttitle);
-            tv_date = view.findViewById(R.id.tv_date);
+            tv_num = view.findViewById(R.id.tv_num);
+            iv_thumbnail = view.findViewById(R.id.iv_thumbnail);
+            tv_title = view.findViewById(R.id.tv_title);
+            tv_created = view.findViewById(R.id.tv_created);
         }
     }
 
@@ -46,10 +51,21 @@ public class BookreportsAdapter extends RecyclerView.Adapter<BookreportsAdapter.
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder reportViewHolder, int position) {
-        reportViewHolder.iv_painting.setImageResource(R.drawable.icon_book2);
-        reportViewHolder.tv_bookreporttitle.setText(reportList.get(position).getTitle());
-        reportViewHolder.tv_date.setText(reportList.get(position).getCreated().toString());
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        BookreportData bookreportData = reportList.get(position);
+        String thumbnailUri = bookreportData.getBook().getThumbnail();
+        String title = bookreportData.getBook().getTitle();
+        String created = bookreportData.getBookreports().getCreated();
+
+        viewHolder.tv_num.setText(String.valueOf(position+1));
+        Glide
+                .with(viewHolder.iv_thumbnail.getContext())
+                .load(thumbnailUri)
+                .fitCenter()
+                .placeholder(R.drawable.icon_book2)
+                .into(viewHolder.iv_thumbnail);
+        viewHolder.tv_title.setText(title);
+        viewHolder.tv_created.setText(created);
     }
 
     @Override

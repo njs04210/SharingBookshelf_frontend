@@ -20,18 +20,28 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Activities.CreateBookReportActivity;
+import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Adapters.SelectBookreportAdapter;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.BookData;
+import com.example.sharingbookshelf.Models.BookReportResponse;
 import com.example.sharingbookshelf.Models.SelectReportData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SelectBookReportPopupFragment extends DialogFragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
+    private RetrofitServiceApi retrofitServiceApi;
     private ArrayList<SelectReportData> selectbookList = new ArrayList<>();
 
     @Override
@@ -73,15 +83,22 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     }
 
     private void setTitleList() {
-        for (int i = 0; i < 10; i++) {
-            SelectReportData selectreportData = new SelectReportData();
-            selectreportData.setBooktitle("얼마나 길어도 계속 나올까요오옹");
-            selectbookList.add(selectreportData);
-        }
+        /*retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<BookReportResponse> call = retrofitServiceApi.getAllBookReports();
+        call.enqueue(new Callback<BookData>() {
+            @Override
+            public void onResponse(Call<BookData> call, Response<BookData> response) {
 
-        mAdapter = new SelectBookreportAdapter(selectbookList);
+            }
+
+            @Override
+            public void onFailure(Call<BookData> call, Throwable t) {
+
+            }
+        });
+                mAdapter = new SelectBookreportAdapter(selectbookList);
         mAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.setAdapter(mAdapter);*/
     }
 
     @Override
