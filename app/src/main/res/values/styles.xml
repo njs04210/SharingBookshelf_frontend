@@ -82,6 +82,7 @@
         <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="android:textColorPrimary">@color/textColorPrimary</item>
         <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="android:colorEdgeEffect">@color/colorPrimary</item>
     </style>
 
     <!-- 상태바 -->
@@ -124,4 +125,11 @@
         <item name="android:fontFamily">@font/font_main</item>
     </style>
 
+    <style name="edittexttheme">
+        <item name="android:textCursorDrawable">@drawable/text_cursor</item>
+        <item name="android:textColorHighlight">@color/colorPrimary</item>
+        <item name="android:textSelectHandle">@color/colorPrimary</item>
+        <item name="android:textSelectHandleRight">@color/colorPrimary</item>
+        <item name="android:textSelectHandleLeft">@color/colorPrimary</item>
+    </style>
 </resources>
