@@ -6,8 +6,8 @@ public class GetUserInfoResponse {
     @SerializedName("flag")
     int flag;
 
-    @SerializedName("profileImg")
-    String profileImg;
+    @SerializedName("photoURL")
+    String photoURL;
 
     @SerializedName("nickname")
     String nickname;
@@ -25,8 +25,8 @@ public class GetUserInfoResponse {
         return flag;
     }
 
-    public String getProfileImg() {
-        return profileImg;
+    public String getPhotoURL() {
+        return photoURL;
     }
 
     public String getNickname() {

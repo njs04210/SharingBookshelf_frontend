@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -20,6 +21,8 @@ import androidx.fragment.app.DialogFragment;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+
+import static android.app.Activity.RESULT_OK;
 
 public class SelectCategoryFragment extends DialogFragment {
 
@@ -47,49 +50,41 @@ public class SelectCategoryFragment extends DialogFragment {
                 int checkedChipId = chipGroup.getCheckedChipId();
                 if (checkedChipId != -1) {
 
-                    Bundle bundle = new Bundle();
+                    Intent intent = new Intent();
                     BookInfoPopupFragment bookInfoPopupFragment = BookInfoPopupFragment.getInstance();
                     String category = null;
 
                     switch (checkedChipId) {
                         case R.id.chip_study:
                             category = studyChip.getText().toString();
-                            bundle.putString("category", category);
-                            bookInfoPopupFragment.setArguments(bundle);
+                            intent.putExtra("category", category);
                             break;
 
                         case R.id.chip_fairy:
                             category = fairyChip.getText().toString();
-                            bundle.putString("category", category);
-                            bookInfoPopupFragment.setArguments(bundle);
+                            intent.putExtra("category", category);
                             break;
 
                         case R.id.chip_cartoon:
                             category = cartoonChip.getText().toString();
-                            bundle.putString("category", category);
-                            bookInfoPopupFragment.setArguments(bundle);
+                            intent.putExtra("category", category);
                             break;
 
                         case R.id.chip_etc:
                             category = etcChip.getText().toString();
-                            bundle.putString("category", category);
-                            bookInfoPopupFragment.setArguments(bundle);
+                            intent.putExtra("category", category);
                             break;
                     }
 
                     int categoryNum = classifyCategory(checkedChipId);
-                    bundle.putInt("categoryNum", categoryNum);
-                    bookInfoPopupFragment.isSetCategory = true;
-                    getDialog().dismiss();
+                    intent.putExtra("categoryNum", categoryNum);
+                    getTargetFragment().onActivityResult(getTargetRequestCode(), RESULT_OK, intent);
+                    dismiss();
 
                 } else {
                     Toast.makeText(getContext(), "장르를 선택해주세요!", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
-
-
         });
         return v;
     }

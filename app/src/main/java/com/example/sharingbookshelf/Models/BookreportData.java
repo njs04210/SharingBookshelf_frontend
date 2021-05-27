@@ -1,31 +1,63 @@
 package com.example.sharingbookshelf.Models;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Date;
+
 public class BookreportData {
-    int painting;
-    String booktitle;
-    String date;
 
-    public String getDate() {
-        return date;
+    @SerializedName("book_id")
+    private int book_id;
+
+    @SerializedName("canvas_uri")
+    private String canvas_uri;
+
+    @SerializedName("contents")
+    private String contents;
+
+    @SerializedName("created")
+    private Date created;
+
+    private String title;
+
+    public int getBook_id() {
+        return book_id;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBook_id(int book_id) {
+        this.book_id = book_id;
     }
 
-    public String getBooktitle() {
-        return booktitle;
+    public String getCanvas_uri() {
+        return canvas_uri;
     }
 
-    public void setBooktitle(String booktitle) {
-        this.booktitle = booktitle;
+    public void setCanvas_uri(String canvas_uri) {
+        this.canvas_uri = canvas_uri;
     }
 
-    public int getPainting() {
-        return painting;
+    public String getContents() {
+        return contents;
     }
 
-    public void setPainting(int painting) {
-        this.painting = painting;
+    public void setContents(String contents) {
+        this.contents = contents;
     }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 }
