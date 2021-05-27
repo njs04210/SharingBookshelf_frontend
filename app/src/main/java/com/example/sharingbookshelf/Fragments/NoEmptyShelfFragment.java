@@ -1,12 +1,17 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -47,8 +52,8 @@ import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfco
 
 public class NoEmptyShelfFragment extends Fragment {
 
-    private static final int BARCODE_ACTIVITY = 10000;
-    private static final int ADDSELF_ACTIVITY = 10001;
+    public static final int BARCODE_ACTIVITY = 10000;
+    public static final int SELFADD_FRAGMENT = 10001;
 
     private String[] popUpList = {"바코드 스캔", "ISBN 직접 입력", "세부 등록"};
     private FloatingActionButton fab_addBook;
@@ -57,6 +62,7 @@ public class NoEmptyShelfFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
     private ArrayList<Map<String, Object>> thumbnailSet;
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,18 +75,14 @@ public class NoEmptyShelfFragment extends Fragment {
 
         View v = inflater.inflate(R.layout.fragment_no_empty_shelf, container, false);
 
+        context = container.getContext();
+
         fab_addBook = v.findViewById(R.id.floating_action_button);
         mRecyclerView = v.findViewById(R.id.rcv_myBookShelf);
 
         recyclerViewSettings();
         ListPopupWindow listPopupWindow = getListPopupWindow();
         setShelfView(MainActivity.getMemId()); // 책장 채워넣기
-
-        if (getArguments() != null) {
-            if (getArguments().containsKey("ISBN")) {
-                callBookResponse(getArguments().getString("ISBN"));
-            }
-        }
 
         fab_addBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,78 +133,10 @@ public class NoEmptyShelfFragment extends Fragment {
 
     }
 
-    // Kakao Book search API 통신
-    private void callBookResponse(String ISBN) {
-        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
-        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(ISBN, "isbn");
-        call.enqueue(new Callback<BookApiResponse>() {
-            @Override
-            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
-                BookApiResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
-                if (result != null) {
-                    getBookDetails(result);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookApiResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
-            }
-        });
-    }
-
-    private void getBookDetails(BookApiResponse books) {
-        ArrayList<BookApiResponse.Document> documentList = books.documents;
-        BookApiResponse.Meta meta = books.metas;
-        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment();
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("documentList", documentList);
-        bundle.putSerializable("meta", meta);
-
-        bookInfoPopupFragment.setArguments(bundle);
-        bookInfoPopupFragment.show(getActivity().getSupportFragmentManager()
-                , "BookInfoPopupFragment");
-    }
-
-    /*private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
-        ArrayList<ThumbnailData> data = new ArrayList<>();
-
-        for (int i = 0; i < myDataset.size(); i++) {
-            Map<String, Object> myBook = myDataset.get(i);
-            ThumbnailData thumbnailData = new ThumbnailData();
-
-            int book_id = (int) (double) myBook.get("book_id"); // double to int
-            thumbnailData.setBookId(book_id);
-            thumbnailData.setIsbn((String) myBook.get("ISBN"));
-            thumbnailData.setThumbnail((String) myBook.get("thumbnail"));
-
-            data.add(thumbnailData);
-        }
-
-        mAdapter = new MyBookshelfAdapter(data);
-        mAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mAdapter);
-
-        this.thumbnailSet = data;
-
-    }*/
-
-    /*@Override
-    @CallSuper
-    public void onActivityResult(int requestCode, int resultCode, Intent intent) {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent intent) {
         super.onActivityResult(requestCode, resultCode, intent);
-        if (requestCode == BARCODE_ACTIVITY) { //바코드 인식 결과
-            if (resultCode == RESULT_OK) {
-                String data = intent.getExtras().getString("ISBN");
-                if (data != null) {
-                    Log.d(MainActivity.MAIN_TAG, data);
-                    callBookResponse(data);
-                }
-            }
-        }
-        if (requestCode == ADDSELF_ACTIVITY) { //직접 추가 결과
+        if (requestCode == BARCODE_ACTIVITY || requestCode == SELFADD_FRAGMENT) {
             if (resultCode == RESULT_OK) {
                 String data = intent.getExtras().getString("ISBN");
                 if (data != null) {
@@ -244,9 +178,9 @@ public class NoEmptyShelfFragment extends Fragment {
         bundle.putSerializable("meta", meta);
 
         bookInfoPopupFragment.setArguments(bundle);
-        bookInfoPopupFragment.show(getActivity().getSupportFragmentManager()
+        bookInfoPopupFragment.show(getChildFragmentManager()
                 , "BookInfoPopupFragment");
-    }*/
+    }
 
     private ListPopupWindow getListPopupWindow() {
         ListPopupWindow listPopupWindow = new ListPopupWindow(getActivity());
@@ -265,15 +199,15 @@ public class NoEmptyShelfFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     Intent intent = new Intent(getActivity(), BarcodeActivity.class);
-                    startActivity(intent);
-                    //getActivity().startActivityForResult(intent, BARCODE_ACTIVITY);
+                    startActivityForResult(intent, BARCODE_ACTIVITY);
                     listPopupWindow.dismiss();
                 }
                 if (position == 1) {
-                    /*Intent intent = new Intent(getActivity(), SelfAddBookPopupActivity.class);
-                    getActivity().startActivityForResult(intent, ADDSELF_ACTIVITY);*/
                     SelfAddBookPopupFragment selfAddBookPopupFragment = new SelfAddBookPopupFragment();
-                    selfAddBookPopupFragment.show(getActivity().getSupportFragmentManager(), "SelfAddBookPopupFragment");
+                    getFragmentManager().executePendingTransactions();
+                    Fragment targetFragment = getFragmentManager().findFragmentByTag("NoEmptyShelfFragment");
+                    selfAddBookPopupFragment.setTargetFragment(targetFragment, SELFADD_FRAGMENT);
+                    selfAddBookPopupFragment.show(getFragmentManager(), "SelfAddBookPopupFragment");
                     listPopupWindow.dismiss();
                 }
                 if (position == 2) {

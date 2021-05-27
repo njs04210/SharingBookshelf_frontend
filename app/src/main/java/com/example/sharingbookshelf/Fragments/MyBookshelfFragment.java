@@ -1,7 +1,9 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.CallSuper;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -26,8 +28,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
 import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
+import static com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment.BARCODE_ACTIVITY;
 
 public class MyBookshelfFragment extends Fragment {
 
@@ -66,15 +70,15 @@ public class MyBookshelfFragment extends Fragment {
                 if (position == 0) {
                     if (getHasShelfcode() == 1) {
                         getChildFragmentManager().beginTransaction()
-                                .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment(), "NoEmptyShelfFragment").commit();
                     } else if (getHasShelfcode() == 0) {
                         getChildFragmentManager().beginTransaction()
-                                .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+                                .replace(R.id.bookshelf, new EmptyShelfFragment(), "EmptyShelfFragment").commit();
                     }
                 }
                 if (position == 1) {
                     getChildFragmentManager().beginTransaction()
-                            .replace(R.id.bookshelf, new BookReportFragment()).commit();
+                            .replace(R.id.bookshelf, new BookReportFragment(), "BookReportFragment").commit();
                 }
             }
 
@@ -136,10 +140,11 @@ public class MyBookshelfFragment extends Fragment {
     private void changeInnerFragment() {
         if (getHasShelfcode() == 0) { // 책장 생성 안한 상태
             getChildFragmentManager().beginTransaction()
-                    .replace(R.id.bookshelf, new EmptyShelfFragment()).commit();
+                    .replace(R.id.bookshelf, new EmptyShelfFragment(), "EmptyShelfFragment").commit();
         } else if (getHasShelfcode() == 1) { // 책장 생성되어있는 상태
             getChildFragmentManager().beginTransaction()
-                    .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+                    .replace(R.id.bookshelf, new NoEmptyShelfFragment(), "NoEmptyShelfFragment").commit();
         }
     }
+
 }

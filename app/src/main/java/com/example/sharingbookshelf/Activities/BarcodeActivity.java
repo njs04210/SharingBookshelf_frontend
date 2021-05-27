@@ -10,6 +10,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.sharingbookshelf.Fragments.BookInfoPopupFragment;
+import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
+import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
 import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
@@ -40,7 +42,6 @@ public class BarcodeActivity extends AppCompatActivity {
         integrator.setPrompt("등록할 책의 바코드를 읽어주세요.");
         integrator.setBarcodeImageEnabled(true);
         integrator.initiateScan();
-        //new IntentIntegrator(this).initiateScan();
     }
 
     @Override
@@ -51,61 +52,15 @@ public class BarcodeActivity extends AppCompatActivity {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
                 finish();
             } else {
-                //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 String ISBN = result.getContents();
-                callBookResponse(ISBN);
-                /*Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent();
                 intent.putExtra("ISBN", ISBN);
                 setResult(RESULT_OK, intent);
-                finish();*/
+                finish();
+
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
-    }
-
-    private void callBookResponse(String isbn) {
-        retrofitServiceApi = BookApiRetrofitClient.createService(RetrofitServiceApi.class);
-        Call<BookApiResponse> call = retrofitServiceApi.setBookApiResponse(isbn, "isbn");
-        call.enqueue(new Callback<BookApiResponse>() {
-            @Override
-            public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
-                BookApiResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "책 api 통신 성공");
-                if (result != null) {
-                    getBookDetails(result);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BookApiResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "책 api 통신 실패", t);
-            }
-        });
-    }
-
-    private void getBookDetails(BookApiResponse books) {
-        ArrayList<BookApiResponse.Document> documentList = books.documents;
-        BookApiResponse.Meta meta = books.metas;
-        //BookApiResponse.Document book = (BookApiResponse.Document) books.documents.get(0);
-        /*Intent intent = new Intent(BarcodeActivity.this, BookInfoPopupActivity.class);
-        intent.putExtra("documentList", documentList);
-        intent.putExtra("meta", meta);
-        intent.setFlags(Intent.FLAG_ACTIVITY_FORWARD_RESULT);
-        startActivity(intent);
-        finish();*/
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("documentList", documentList);
-        bundle.putSerializable("meta", meta);
-
-/*
-        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment();
-        bookInfoPopupFragment.setArguments(bundle);
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_layout, bookInfoPopupFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();*/
-
     }
 }
