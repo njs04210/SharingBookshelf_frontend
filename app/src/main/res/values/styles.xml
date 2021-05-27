@@ -133,4 +133,25 @@
         <item name="android:textSelectHandleLeft">@color/colorPrimary</item>
     </style>
 
+    <style name="SpecialTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:letterSpacing">1.6</item>
+    </style>
+
+    <style name="SpecialTextAppearance_alpha" parent="@android:style/TextAppearance">
+        <item name="android:letterSpacing">1.2</item>
+        <item name="lineSpacing">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:paddingTop">0dp</item>
+    </style>
+
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="iconPadding">0dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:minWidth">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
 </resources>
