@@ -173,7 +173,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_category"
+            android:id="@+id/linear_number"
             android:layout_width="250dp"
             android:layout_height="30dp"
             android:layout_below="@id/linear_publisher"
@@ -215,7 +215,7 @@
             android:id="@+id/border_view"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_below="@id/linear_category"
+            android:layout_below="@id/linear_number"
             android:background="#66bdbdbd" />
 
         <!-- 닫기 버튼 -->

@@ -1,26 +1,35 @@
 package com.example.sharingbookshelf.Adapters;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sharingbookshelf.Fragments.ClickBookDetailsFragment;
+import com.example.sharingbookshelf.Fragments.RankingBookInfoPopupFragment;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.R;
 
 import org.w3c.dom.Text;
 
+import java.net.CookieHandler;
 import java.util.ArrayList;
 
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder> {
 
     private ArrayList<RankingData> rankingList;
+    private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_grade;
         private final TextView tv_booktitle;
 
@@ -28,6 +37,24 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
             super(view);
             tv_grade = (TextView) view.findViewById(R.id.tv_grade);
             tv_booktitle = (TextView) view.findViewById(R.id.tv_booktitle);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        RankingData item = rankingList.get(pos);
+                        Log.d("책", item.getIsbn());
+
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("bookId", item.getBookId());
+                        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                        RankingBookInfoPopupFragment dialog = new RankingBookInfoPopupFragment();
+                        dialog.setArguments(bundle);
+                        dialog.show(fm, "abc");
+                    }
+                }
+            });
         }
     }
 
@@ -41,6 +68,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_ranking, viewGroup, false);
 
+        context = viewGroup.getContext();
         return new ViewHolder(view);
     }
 
@@ -51,5 +79,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
     }
 
     @Override
-    public int getItemCount() { return (null != rankingList ? rankingList.size() : 0); }
+    public int getItemCount() {
+        return (null != rankingList ? rankingList.size() : 0);
+    }
 }
