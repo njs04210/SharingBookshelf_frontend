@@ -49,17 +49,17 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         Intent intent;
         switch (v.getId()) {
             case R.id.cb_profile1:
-                ReportRankingDetailsFragment r = ReportRankingDetailsFragment.getInstance();
+                ReportRankingShelfFragment r = ReportRankingShelfFragment.getInstance();
                 r.show(getActivity().getSupportFragmentManager(), "Abc");
                 break;
 
             case R.id.cb_profile2:
-                ReportRankingDetailsFragment p = ReportRankingDetailsFragment.getInstance();
+                ReportRankingShelfFragment p = ReportRankingShelfFragment.getInstance();
                 p.show(getActivity().getSupportFragmentManager(), "Abc");
                 break;
 
             case R.id.cb_profile3:
-                ReportRankingDetailsFragment d = ReportRankingDetailsFragment.getInstance();
+                ReportRankingShelfFragment d = ReportRankingShelfFragment.getInstance();
                 d.show(getActivity().getSupportFragmentManager(), "Abc");
                 break;
         }
