@@ -28,6 +28,7 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/bottomnavigation_shape"
             app:elevation="0dp"
+            app:itemBackground="@drawable/ripple_effect"
             app:itemIconTint="@drawable/bottomnavi_selector_color"
             app:itemTextColor="@drawable/bottomnavi_selector_color"
             app:menu="@menu/menu_bottomnavigationview" />

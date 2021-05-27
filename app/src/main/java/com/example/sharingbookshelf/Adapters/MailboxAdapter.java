@@ -16,7 +16,6 @@ import com.example.sharingbookshelf.R;
 import java.util.ArrayList;
 
 public class MailboxAdapter extends RecyclerView.Adapter<MailboxAdapter.ViewHolder> {
-
     private ArrayList<MessageData> mailList;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

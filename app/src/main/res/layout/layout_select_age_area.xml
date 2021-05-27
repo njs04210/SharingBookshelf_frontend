@@ -65,7 +65,9 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@+id/nickname"
                 android:background="@android:color/transparent"
-                app:boxBackgroundColor="@android:color/transparent">
+                app:boxBackgroundColor="@android:color/transparent"
+                app:boxStrokeColor="@color/colorPrimary"
+                app:boxStrokeErrorColor="@color/colorPrimary">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_nickname"
                     android:layout_width="match_parent"
@@ -74,7 +76,8 @@
                     android:inputType="text"
                     android:maxLength="8"
                     android:maxLines="1"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"
+                    style="@style/edittexttheme" />
             </com.google.android.material.textfield.TextInputLayout>
             <Button
                 android:id="@+id/check_nickname"

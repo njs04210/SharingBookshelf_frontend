@@ -17,27 +17,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-
-        <ImageView
-            android:id="@+id/civ_profile"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="13dp"
-            android:src="@drawable/icon_memo" />
-
         <TextView
-            android:id="@+id/tv_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:layout_marginLeft="28dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="46dp"
+            android:layout_marginBottom="45dp"
             android:fontFamily="@font/font_main"
-            android:text="우리아이 독서기록"
+            android:text="사용자의 독서기록"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             app:autoSizeStepGranularity="2sp" />
 
@@ -46,18 +34,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="20dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_bookreport"
+            android:id="@+id/rv_reportdetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="25dp"
             android:paddingTop="15dp"
             android:paddingRight="25dp"
             android:paddingBottom="10dp"
-            android:scrollbars="vertical"
-            android:theme="@style/edgeEffect"/>
-
+            android:scrollbars="vertical" />
     </LinearLayout>
+
 </LinearLayout>
