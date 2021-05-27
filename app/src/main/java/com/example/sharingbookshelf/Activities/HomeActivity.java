@@ -1,9 +1,11 @@
 package com.example.sharingbookshelf.Activities;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -11,6 +13,7 @@ import android.view.MenuItem;
 import com.example.sharingbookshelf.Fragments.ChattingFragment;
 import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.MyPageFragment;
+import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.RankingFragment;
 import com.example.sharingbookshelf.Fragments.ReportRankingFragment;
@@ -21,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private BottomNavigationView btnNav;
 
-    private static int hasShelfcode;
+    private static int hasShelfcode = -1; // 서버에서 값 할당 받기 전에 -1로 초기화
 
     public static void setHasShelfcode(int hasShelfcode) {
         HomeActivity.hasShelfcode = hasShelfcode;
@@ -56,9 +59,6 @@ public class HomeActivity extends AppCompatActivity {
                     if (itemId == R.id.myBookShelf) {
                         selectedFragment = new MyBookshelfFragment();
                     } else if (itemId == R.id.otherBookshelf) {
-                        // empty view라면
-                        // AccessWarning activity 부름
-                        // no empty라면
                         selectedFragment = new OtherBookshelfFragment();
                     } else if (itemId == R.id.ranking) {
                         selectedFragment = new RankingFragment();

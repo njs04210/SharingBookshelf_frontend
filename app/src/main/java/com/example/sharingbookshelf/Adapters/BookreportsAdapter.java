@@ -26,9 +26,9 @@ public class BookreportsAdapter extends RecyclerView.Adapter<BookreportsAdapter.
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            iv_painting = (ImageView) view.findViewById(R.id.iv_painting);
-            tv_bookreporttitle = (TextView) view.findViewById(R.id.tv_bookreporttitle);
-            tv_date = (TextView) view.findViewById(R.id.tv_date);
+            iv_painting = view.findViewById(R.id.iv_painting);
+            tv_bookreporttitle = view.findViewById(R.id.tv_bookreporttitle);
+            tv_date = view.findViewById(R.id.tv_date);
         }
     }
 
@@ -47,9 +47,9 @@ public class BookreportsAdapter extends RecyclerView.Adapter<BookreportsAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder reportViewHolder, int position) {
-        reportViewHolder.iv_painting.setImageResource(reportList.get(position).getPainting());
-        reportViewHolder.tv_bookreporttitle.setText(reportList.get(position).getBooktitle());
-        reportViewHolder.tv_date.setText(reportList.get(position).getDate());
+        reportViewHolder.iv_painting.setImageResource(R.drawable.icon_book2);
+        reportViewHolder.tv_bookreporttitle.setText(reportList.get(position).getTitle());
+        reportViewHolder.tv_date.setText(reportList.get(position).getCreated().toString());
     }
 
     @Override

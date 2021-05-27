@@ -1,6 +1,7 @@
 package com.example.sharingbookshelf.Activities;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
@@ -42,7 +43,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -188,7 +193,9 @@ public class SelectAgeAreaActivity extends Activity {
         } else {
             userInfoData = new UserInfoData(nickname, address, age, sex, null);
             if (imgUri != null) addImgToFirebaseStorage(imgUri);
-            else { startSetInfo(userInfoData);}
+            else {
+                startSetInfo(userInfoData);
+            }
             //startSetInfo(new UserInfoData(nickname, address, age, sex));
         }
     }
@@ -267,105 +274,35 @@ public class SelectAgeAreaActivity extends Activity {
     }
 
     private String getRealPathFromURI(Context context, Uri uri) {
-        if (uri.getPath().startsWith("/storage")) {
-            return uri.getPath();
-        }
-        if (DocumentsContract.isDocumentUri(context, uri)) {
-            if (isExternalStorageDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":"); //final 추가
-                final String type = split[0];
-                if ("primary".equalsIgnoreCase(type)) {
-                    return Environment.getExternalStorageDirectory() + "/"
-                            + split[1];
-                } else {
-                    String SDcardpath = getRemovableSDCardPath(context).split("/Android")[0];
-                    return SDcardpath + "/" + split[1];
-                }
-            } else if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
 
-                Uri contentUri = null;
-                if ("image".equals(type)) {
-                    contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                }
+        final ContentResolver contentResolver = context.getContentResolver();
 
-                final String selection = "_id=?";
-                final String[] selectionArgs = new String[]{split[1]};
+        if (contentResolver == null)
+            return null;
+        // 파일 경로를 만듬
+        String filePath = context.getApplicationInfo().dataDir + File.separator
+                + System.currentTimeMillis();
 
-                return getDataColumn(context, contentUri, selection,
-                        selectionArgs);
-            } else if (isDownloadsDocument(uri)) {
-                final String id = DocumentsContract.getDocumentId(uri);
-                final Uri contentUri = ContentUris.withAppendedId(
-                        Uri.parse("content://downloads/public_downloads"),
-                        Long.valueOf(id));
-
-                return getDataColumn(context, contentUri, null, null);
-            } else if ("content".equalsIgnoreCase(uri.getScheme())) {
-                // Return the remote address
-                if (isGooglePhotosUri(uri))
-                    return uri.getLastPathSegment();
-                return getDataColumn(context, uri, null, null);
-            } else if ("file".equalsIgnoreCase(uri.getScheme())) {
-                return uri.getPath();
-            }
-        }
-        return null;
-    }
-
-    public static String getRemovableSDCardPath(Context context) {
-        File[] storages = ContextCompat.getExternalFilesDirs(context, null);
-        if (storages.length > 1 && storages[0] != null && storages[1] != null)
-            return storages[1].toString();
-        else
-            return "";
-    }
-
-    public static String getDataColumn(Context context, Uri uri,
-                                       String selection, String[] selectionArgs) {
-
-        Cursor cursor = null;
-        final String column = "_data";
-        final String[] projection = {column};
-
+        File file = new File(filePath);
         try {
-            cursor = context.getContentResolver().query(uri, projection,
-                    selection, selectionArgs, null);
-            if (cursor != null && cursor.moveToFirst()) {
-                final int index = cursor.getColumnIndexOrThrow(column);
-                return cursor.getString(index);
-            }
-        } finally {
-            if (cursor != null)
-                cursor.close();
+            // 매개변수로 받은 uri 를 통해  이미지에 필요한 데이터를 불러 들인다.
+            InputStream inputStream = contentResolver.openInputStream(uri);
+            if (inputStream == null)
+                return null;
+            // 이미지 데이터를 다시 내보내면서 file 객체에  만들었던 경로를 이용한다.
+            OutputStream outputStream = new FileOutputStream(file);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = inputStream.read(buf)) > 0)
+                outputStream.write(buf, 0, len);
+            outputStream.close();
+            inputStream.close();
+
+        } catch (IOException ignore) {
+            return null;
         }
-        return null;
+
+        return file.getAbsolutePath();
+
     }
-
-    public static boolean isExternalStorageDocument(Uri uri) {
-        return "com.android.externalstorage.documents".equals(uri
-                .getAuthority());
-    }
-
-
-    public static boolean isDownloadsDocument(Uri uri) {
-        return "com.android.providers.downloads.documents".equals(uri
-                .getAuthority());
-    }
-
-
-    public static boolean isMediaDocument(Uri uri) {
-        return "com.android.providers.media.documents".equals(uri
-                .getAuthority());
-    }
-
-
-    public static boolean isGooglePhotosUri(Uri uri) {
-        return "com.google.android.apps.photos.content".equals(uri
-                .getAuthority());
-    }
-
 }

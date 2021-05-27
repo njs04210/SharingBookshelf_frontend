@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:padding="10dp"
+    android:layout_marginBottom="2dp"
+    android:background="@drawable/customborder">
+
+    <TextView
+        android:id="@+id/tv_selectbooktitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="최대 길이가 몇까지 될까요오오오ㅗㅇㅇ"
+        android:textSize="13sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/font_main"/>
+
+</LinearLayout>

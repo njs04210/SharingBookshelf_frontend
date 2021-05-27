@@ -15,15 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
+        android:background="@drawable/bookreport_background"
         android:gravity="center"
-        android:orientation="vertical"
-        android:background="@drawable/bookreport_background">
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/btn_Form"
+            android:id="@+id/btn_createReport"
             android:layout_width="180dp"
             android:layout_height="80dp"
-            app:backgroundTint="@color/white"
             android:elevation="20dp"
             android:fontFamily="@font/font_main"
             android:gravity="center"
@@ -32,14 +31,14 @@
             android:textAlignment="center"
             android:textColor="#666666"
             android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:backgroundTint="@color/white" />
 
         <Button
-            android:id="@+id/btn_list"
+            android:id="@+id/btn_showReportBox"
             android:layout_width="180dp"
             android:layout_height="80dp"
             android:layout_marginTop="20dp"
-            app:backgroundTint="@color/white"
             android:elevation="20dp"
             android:fontFamily="@font/font_main"
             android:gravity="center"
@@ -48,7 +47,8 @@
             android:textAlignment="center"
             android:textColor="#666666"
             android:textSize="18dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:backgroundTint="@color/white" />
 
     </LinearLayout>
 
