@@ -11,30 +11,7 @@
     app:cardCornerRadius="@dimen/loginCardRadius"
     app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 
-<<<<<<< Updated upstream
-    <RelativeLayout
-=======
-
-    <!--<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btn_noForm"
-            android:layout_width="130dp"
-            android:layout_height="180dp" />
-
-        <Button
-            android:id="@+id/btn_yesForm"
-            android:layout_width="130dp"
-            android:layout_height="180dp" />
-
-    </LinearLayout>-->
-
     <LinearLayout
-
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
