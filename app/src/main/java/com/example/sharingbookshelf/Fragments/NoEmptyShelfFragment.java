@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
@@ -34,12 +35,10 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
-import com.example.sharingbookshelf.Models.ThumbnailData;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -47,8 +46,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
-import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
-import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
 
 public class NoEmptyShelfFragment extends Fragment {
 
@@ -57,6 +54,7 @@ public class NoEmptyShelfFragment extends Fragment {
 
     private String[] popUpList = {"바코드 스캔", "ISBN 직접 입력", "세부 등록"};
     private FloatingActionButton fab_addBook;
+    private ImageButton iv_categorySelect;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
@@ -78,6 +76,9 @@ public class NoEmptyShelfFragment extends Fragment {
         context = container.getContext();
 
         fab_addBook = v.findViewById(R.id.floating_action_button);
+
+        iv_categorySelect = v.findViewById(R.id.iv_selectCategory);
+
         mRecyclerView = v.findViewById(R.id.rcv_myBookShelf);
 
         recyclerViewSettings();
@@ -88,6 +89,14 @@ public class NoEmptyShelfFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 listPopupWindow.show();
+            }
+        });
+
+        iv_categorySelect.setOnClickListener(new View.OnClickListener() { //필터 버튼 액티비티
+            public void onClick(View v) {
+                FilterCategoryFragment filterCategoryFragment = new FilterCategoryFragment();
+                filterCategoryFragment.show(getFragmentManager(), "FilterCategoryFragment");
+
             }
         });
 
@@ -185,8 +194,10 @@ public class NoEmptyShelfFragment extends Fragment {
     private ListPopupWindow getListPopupWindow() {
         ListPopupWindow listPopupWindow = new ListPopupWindow(getActivity());
         listPopupWindow.setAnchorView(fab_addBook);
+
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getActivity()
                 , R.layout.list_popup_window_item, popUpList);
+
         listPopupWindow.setAdapter(arrayAdapter);
         listPopupWindow.setContentWidth(measureContentWidth(arrayAdapter));
         //listPopupWindow.setModal(true); //선택해도 자동으로 팝업 안닫히게
