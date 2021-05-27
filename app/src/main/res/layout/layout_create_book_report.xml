@@ -22,7 +22,7 @@
             android:id="@+id/btn_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SAVE"/>
+            android:text="SAVE" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -30,47 +30,52 @@
         android:layout_width="match_parent"
         android:layout_height="350dp"
         android:layout_margin="15dp"
-        android:orientation="horizontal"
-        android:background="@drawable/customborder"/>
+        android:background="@drawable/customborder"
+        android:orientation="horizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btn_im"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp" />
+
         <Button
             android:id="@+id/btn_img"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp" />
+
         <Button
             android:id="@+id/btn_pensize"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"
-            android:layout_gravity=""/>
+            android:layout_gravity=""
+            android:layout_margin="5dp" />
+
         <Button
             android:id="@+id/btn_pencolor"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp" />
+
         <Button
             android:id="@+id/btn_pen"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp" />
+
         <Button
             android:id="@+id/btn_eraser"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_margin="5dp"/>
+            android:layout_margin="5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -82,11 +87,11 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:minLines="1"
-            android:maxLines="6"
-            android:maxLength="48"
+            android:fontFamily="monospace"
             android:gravity="start"
             android:letterSpacing="1.2"
-            android:fontFamily="monospace"/>
+            android:maxLength="48"
+            android:maxLines="6"
+            android:minLines="1" />
     </LinearLayout>
 </LinearLayout>
