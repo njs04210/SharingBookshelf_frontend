@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.sharingbookshelf.Activities.LeaveIdActivity;
-import com.example.sharingbookshelf.Activities.LikeListActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -65,20 +64,17 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.btn_editProfile:
                 EditProfileFragment e = EditProfileFragment.getInstance();
-                e.show(getActivity().getSupportFragmentManager(), "Abc");
+                e.show(getActivity().getSupportFragmentManager(), "EditProfileFragment");
                 break;
 
             case R.id.btn_mailList:
                 MessageBoxFragment m = MessageBoxFragment.getInstance();
-                m.show(getActivity().getSupportFragmentManager(), "쪽지목록");
+                m.show(getActivity().getSupportFragmentManager(), "MessageBoxFragment");
                 break;
 
             case R.id.btn_likeList:
                 LikelistFragment l = LikelistFragment.getInstance();
-                l.show(getActivity().getSupportFragmentManager(), "Abc");
-                /*intent = new Intent(getActivity(), LikeListActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.anim_slide_in_bottom, R.anim.anim_slide_out_top);*/
+                l.show(getActivity().getSupportFragmentManager(), "LikeListFragment");
                 break;
 
             case R.id.btn_logout:
