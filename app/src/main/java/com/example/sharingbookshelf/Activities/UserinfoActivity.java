@@ -1,12 +1,14 @@
 package com.example.sharingbookshelf.Activities;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+//import com.example.sharingbookshelf.Fragments.ChallengePopupFragment;
 import com.example.sharingbookshelf.Fragments.ReportRankingReportFragment;
 import com.example.sharingbookshelf.Fragments.ReportRankingShelfFragment;
 import com.example.sharingbookshelf.R;
@@ -26,12 +28,29 @@ public class ReportRankingPopupActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reportranking_popup);
+        setContentView(R.layout.activity_userinfo);
 
-        reportRankingReportFragment = new ReportRankingReportFragment();
-        reportrankingShelfFragement = new ReportRankingShelfFragment();
+        btn_fightUser = findViewById(R.id.btn_fightUser);
+        btn_fightUser.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //ChallengePopupFragment c = ChallengePopupFragment.getInstance();
+                //c.show(getSupportFragmentManager(), ChallengePopupFragment.TAG_EVENT_DIALOG);
+            }
+        });
 
-        getSupportFragmentManager().beginTransaction().add(R.id.reportshelf, reportRankingReportFragment).commit();
+        btn_viewProfile = findViewById(R.id.btn_viewProfile);
+        btn_viewProfile.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // TODO : click event
+            }
+        });
+
+        userinforeportFragment = new UserinfoReportFragment();
+        userinfoshelfFragment = new UserinfoShelfFragment();
+
+        getSupportFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment).commit();
 
         mtabLayout = findViewById(R.id.tabLayout_reportranking);
         mtabLayout.addTab(mtabLayout.newTab().setText("책장"));
@@ -43,11 +62,11 @@ public class ReportRankingPopupActivity extends FragmentActivity {
                 int position = tab.getPosition();
                 Fragment selected = null;
                 if (position == 0)
-                    selected = reportrankingShelfFragement;
+                    selected = userinfoshelfFragment;
                 else if (position == 1)
-                    selected = reportRankingReportFragment;
+                    selected = userinforeportFragment;
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.reportshelf, selected).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.usershelf, selected).commit();
             }
 
             @Override

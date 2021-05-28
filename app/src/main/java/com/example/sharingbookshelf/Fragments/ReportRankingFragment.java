@@ -10,8 +10,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.sharingbookshelf.Activities.LeaveIdActivity;
-import com.example.sharingbookshelf.Activities.ReportRankingPopupActivity;
+import com.example.sharingbookshelf.Activities.UserinfoActivity;
 import com.example.sharingbookshelf.R;
 
 public class ReportRankingFragment extends Fragment implements View.OnClickListener {
@@ -46,17 +45,17 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         Intent intent;
         switch (v.getId()) {
             case R.id.cb_profile1:
-                intent = new Intent(getActivity(), ReportRankingPopupActivity.class);
+                intent = new Intent(getActivity(), UserinfoActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.cb_profile2:
-                intent = new Intent(getActivity(), ReportRankingPopupActivity.class);
+                intent = new Intent(getActivity(), UserinfoActivity.class);
                 startActivity(intent);
                 break;
 
             case R.id.cb_profile3:
-                intent = new Intent(getActivity(), ReportRankingPopupActivity.class);
+                intent = new Intent(getActivity(), UserinfoActivity.class);
                 startActivity(intent);
                 break;
         }

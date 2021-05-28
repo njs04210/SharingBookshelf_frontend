@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:elevation="150dp"
+    android:gravity="center"
+    android:orientation="vertical">
+    ​
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        ​
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="@color/colorPrimary_2"
+            android:fontFamily="@font/font_main"
+            android:gravity="center"
+            android:text="독서짱 1:1 대결"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+        ​
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            ​
+            <RelativeLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp">
+
+                <TextView
+                    android:id="@+id/challenge_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="대결상대 : "
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary_2"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/challenge_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/challenge_nickname"
+                    android:padding="4dp"
+                    android:text="nickname"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+                ​
+            </RelativeLayout>
+            ​
+            <RelativeLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp">
+                <TextView
+                    android:id="@+id/challenge_duedate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="마감일 "
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary_2"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/challenge_calender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/challenge_duedate"
+                    android:onClick="OnClick"
+                    android:text="날짜"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"/>
+
+            </RelativeLayout>
+            ​
+            <RelativeLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp">
+                <TextView
+                    android:id="@+id/challenge_goal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="목표 권수 : "
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary_2"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+                <EditText
+                    android:id="@+id/goal_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:layout_toRightOf="@+id/challenge_goal"
+                    android:ems="3"
+                    android:fontFamily="@font/font_main"
+                    android:hint="N"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    style="@style/edittexttheme" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="권"
+                    android:textAlignment="center"
+                    android:layout_toRightOf="@+id/goal_text"
+                    android:textColor="@color/colorPrimary_2"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+                ​
+            </RelativeLayout>
+            ​
+            <RelativeLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp">
+                ​
+                <TextView
+                    android:id="@+id/leave_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="남길 메세지 : "
+                    android:textAlignment="center"
+                    android:textColor="@color/colorPrimary_2"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/leave_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:layout_toRightOf="@+id/leave_message"
+                    android:ems="10"
+                    android:fontFamily="@font/font_main"
+                    android:hint="Message"
+                    android:inputType="text"
+                    android:textAlignment="center"
+                    style="@style/edittexttheme" />
+                ​
+            </RelativeLayout>
+            ​
+        </LinearLayout>
+        ​
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#66bdbdbd" />
+        ​
+        <!-- 닫기 버튼 -->
+        ​
+        <Button
+            android:id="@+id/btn_request"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:fontFamily="@font/font_main"
+            android:gravity="center"
+            android:onClick="mOnClose"
+            android:padding="10dp"
+            android:text="신청"
+            android:textColor="#ff7a00"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+        ​
+    </LinearLayout>
+    ​
+</androidx.cardview.widget.CardView>

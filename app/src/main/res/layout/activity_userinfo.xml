@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activities.ReportRankingPopupActivity">
+    tools:context=".Activities.UserinfoActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/report_toolbar"
@@ -112,7 +112,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
-        android:id="@+id/reportshelf"
+        android:id="@+id/usershelf"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

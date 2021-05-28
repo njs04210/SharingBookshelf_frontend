@@ -6,16 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
 import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
-public class ReportRankingReportFragment extends Fragment {
+public class UserinfoReportFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
@@ -29,7 +27,7 @@ public class ReportRankingReportFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reportranking_report, container, false);
+        View view = inflater.inflate(R.layout.fragment_userinfo_report, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_reportdetails);
 

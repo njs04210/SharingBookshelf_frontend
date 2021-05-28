@@ -10,13 +10,12 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
-import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-public class ReportRankingShelfFragment extends Fragment {
+public class UserinfoShelfFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -31,7 +30,7 @@ public class ReportRankingShelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reportranking_shelf, container, false);
+        View view = inflater.inflate(R.layout.fragment_userinfo_shelf, container, false);
 
         mRecyclerView = view.findViewById(R.id.rcv_ReportRankingShelf);
         recyclerViewSettings();
@@ -46,6 +45,16 @@ public class ReportRankingShelfFragment extends Fragment {
         thumbnailSet = new ArrayList<>();
         mAdapter = new MyBookshelfAdapter(thumbnailSet);
         mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
+
+        mAdapter = new MyBookshelfAdapter(myDataset);
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mAdapter);
+
+        this.thumbnailSet = myDataset;
+
     }
 
 }
