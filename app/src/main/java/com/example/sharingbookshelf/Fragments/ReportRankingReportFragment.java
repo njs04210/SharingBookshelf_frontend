@@ -6,22 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
-import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
+import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
-import java.util.Map;
 
-public class ReportRankingShelfFragment extends Fragment {
-
+public class ReportRankingReportFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<Map<String, Object>> thumbnailSet;
+    private ArrayList<BookreportData> reportList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,9 +29,10 @@ public class ReportRankingShelfFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_reportranking_shelf, container, false);
+        View view = inflater.inflate(R.layout.fragment_reportranking_report, container, false);
 
-        mRecyclerView = view.findViewById(R.id.rcv_ReportRankingShelf);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_reportdetails);
+
         recyclerViewSettings();
 
         return view;
@@ -41,10 +40,10 @@ public class ReportRankingShelfFragment extends Fragment {
 
     private void recyclerViewSettings() {
         mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new GridLayoutManager(getActivity(), 3);
+        mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        thumbnailSet = new ArrayList<>();
-        mAdapter = new MyBookshelfAdapter(thumbnailSet);
+        reportList = new ArrayList<>();
+        mAdapter = new BookreportsAdapter(reportList);
         mRecyclerView.setAdapter(mAdapter);
     }
 

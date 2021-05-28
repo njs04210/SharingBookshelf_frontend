@@ -12,8 +12,6 @@ import androidx.fragment.app.Fragment;
 
 import com.example.sharingbookshelf.R;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class ReportRankingFragment extends Fragment implements View.OnClickListener {
     private ImageButton cb_profile1, cb_profile2, cb_profile3;
     private TextView tv_age1, tv_age2, tv_age3, tv_gender1, tv_gender2, tv_gender3,
@@ -46,18 +44,18 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         Intent intent;
         switch (v.getId()) {
             case R.id.cb_profile1:
-                ReportRankingDetailsFragment r = ReportRankingDetailsFragment.getInstance();
-                r.show(getActivity().getSupportFragmentManager(), "Abc");
+                ReportRankingPopupFragment r = ReportRankingPopupFragment.getInstance();
+                r.show(getActivity().getSupportFragmentManager(), "ReportRankingShelfFragment");
                 break;
 
             case R.id.cb_profile2:
-                ReportRankingDetailsFragment p = ReportRankingDetailsFragment.getInstance();
-                p.show(getActivity().getSupportFragmentManager(), "Abc");
+                ReportRankingPopupFragment s = ReportRankingPopupFragment.getInstance();
+                s.show(getActivity().getSupportFragmentManager(), "ReportRankingShelfFragment");
                 break;
 
             case R.id.cb_profile3:
-                ReportRankingDetailsFragment d = ReportRankingDetailsFragment.getInstance();
-                d.show(getActivity().getSupportFragmentManager(), "Abc");
+                ReportRankingPopupFragment f = ReportRankingPopupFragment.getInstance();
+                f.show(getActivity().getSupportFragmentManager(), "ReportRankingShelfFragment");
                 break;
         }
     }

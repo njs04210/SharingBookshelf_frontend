@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/loginBkColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.ReportRankingShelfFragment">
+    tools:context=".Fragments.ReportRankingPopupFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/report_toolbar"
@@ -51,38 +52,45 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_viewProfile"
-                    android:layout_width="70dp"
+                    android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
+                    android:layout_marginRight="10dp"
                     android:backgroundTint="#EDEDED"
                     android:fontFamily="@font/font_main"
                     android:text="프로필보기"
                     android:textAlignment="center"
-                    android:textColor="#212121"
+                    android:textColor="#666666"
                     android:textSize="10sp" />
 
                 <Button
                     android:id="@+id/btn_fightUser"
-                    android:layout_width="70dp"
+                    android:layout_width="80dp"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:backgroundTint="#EDEDED"
                     android:fontFamily="@font/font_main"
                     android:text="겨루기신청"
                     android:textAlignment="center"
-                    android:textColor="#212121"
+                    android:textColor="#666666"
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/tabLayout_reportranking"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -109,7 +117,7 @@
     </com.google.android.material.tabs.TabLayout>
 
     <FrameLayout
-        android:id="@+id/bookshelf"
+        android:id="@+id/reportshelf"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
