@@ -11,13 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Models.BookreportData;
+import com.example.sharingbookshelf.Models.BookreportDetailData;
+import com.example.sharingbookshelf.Models.UserReportData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
 public class UserReportAdapter extends RecyclerView.Adapter<UserReportAdapter.ViewHolder> {
 
-    private ArrayList<BookreportData> reportList;
+    private ArrayList<UserReportData> reportList;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView iv_thumbnail;
@@ -35,7 +37,7 @@ public class UserReportAdapter extends RecyclerView.Adapter<UserReportAdapter.Vi
         }
     }
 
-    public UserReportAdapter(ArrayList<BookreportData> dataSet) {
+    public UserReportAdapter(ArrayList<UserReportData> dataSet) {
         reportList = dataSet;
     }
 
@@ -50,10 +52,15 @@ public class UserReportAdapter extends RecyclerView.Adapter<UserReportAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        BookreportData bookreportData = reportList.get(position);
-        String thumbnailUri = bookreportData.getBook().getThumbnail();
-        String title = bookreportData.getBook().getTitle();
-        String created = bookreportData.getBookreports().getCreated();
+//        BookreportData bookreportData = reportList.get(position);
+//        String thumbnailUri = bookreportData.getBook().getThumbnail();
+//        String title = bookreportData.getBook().getTitle();
+//        String created = bookreportData.getBookreports().getCreated();
+
+        UserReportData reportData = reportList.get(position);
+        String thumbnailUri = reportData.getThumbnail();
+        String title = reportData.getTitle();
+        String created = reportData.getCreated();
 
         viewHolder.tv_num.setText(String.valueOf(position + 1));
         Glide

@@ -23,6 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.BookreportDetailData;
 import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.gms.tasks.Continuation;

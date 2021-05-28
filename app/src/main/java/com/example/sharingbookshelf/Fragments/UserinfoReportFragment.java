@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sharingbookshelf.Adapters.UserReportAdapter;
 import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.Models.MessageData;
+import com.example.sharingbookshelf.Models.UserReportData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class UserinfoReportFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<BookreportData> reportList;
+    private ArrayList<UserReportData> reportList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -51,12 +52,11 @@ public class UserinfoReportFragment extends Fragment {
 
     private void setReports() {
         for (int i = 0; i < 8; i++) {
-            BookreportData userReportData = new BookreportData();
+            UserReportData userReportData = new UserReportData();
 
-            userReportData.setProfileImage(R.drawable.icon_logo);
-            userReportData.setUserName("진주맘");
-            userReportData.setLastMessage("독후감이 좋네요^^");
-            userReportData.setMessageTime("날짜,시간");
+            userReportData.setTitle("손가락 빠는 문어");
+            userReportData.setCreated("2021-05-29");
+            userReportData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");
 
             reportList.add(userReportData);
         }
