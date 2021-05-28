@@ -16,7 +16,6 @@ import androidx.annotation.Nullable;
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.BookreportDetailData;
 import com.example.sharingbookshelf.Models.OneBookreportResponse;
 import com.example.sharingbookshelf.R;
 

@@ -3,7 +3,6 @@ package com.example.sharingbookshelf.HttpRequest;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookReportResponse;
-import com.example.sharingbookshelf.Models.BookreportDetailData;
 import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
