@@ -63,7 +63,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         selectbookList = new ArrayList<>();
-        mAdapter = new SelectBookreportAdapter(getActivity(), selectbookList);
+        mAdapter = new SelectBookreportAdapter(SelectBookReportPopupFragment.this, getActivity(), selectbookList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -94,7 +94,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     }
 
     private void showAllAvailableReports(ArrayList<SelectBookReportResponse.SelectBookReportData> dataSet) {
-        mAdapter = new SelectBookreportAdapter(getActivity(), dataSet);
+        mAdapter = new SelectBookreportAdapter(SelectBookReportPopupFragment.this, getActivity(), dataSet);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 

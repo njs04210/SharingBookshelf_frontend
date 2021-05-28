@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Activities.CreateBookReportActivity;
+import com.example.sharingbookshelf.Fragments.SelectBookReportPopupFragment;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.SelectBookReportResponse;
 import com.example.sharingbookshelf.R;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class SelectBookreportAdapter extends RecyclerView.Adapter<SelectBookreportAdapter.ViewHolder> {
 
     private ArrayList<SelectBookReportResponse.SelectBookReportData> selectbookList;
+    private SelectBookReportPopupFragment selectBookReportPopupFragment;
     private Context context;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -43,6 +45,7 @@ public class SelectBookreportAdapter extends RecyclerView.Adapter<SelectBookrepo
                         intent.putExtra("item_id", item_id);
                         intent.putExtra("title", title);
                         intent.putExtra("thumbnailUri", thumbnailUri);
+                        selectBookReportPopupFragment.dismiss();
                         v.getContext().startActivity(intent);
                     }
                 }
@@ -50,8 +53,10 @@ public class SelectBookreportAdapter extends RecyclerView.Adapter<SelectBookrepo
         }
     }
 
-    public SelectBookreportAdapter(Context context, ArrayList<SelectBookReportResponse.SelectBookReportData> dataSet) {
-        selectbookList = dataSet;
+    public SelectBookreportAdapter(SelectBookReportPopupFragment selectBookReportPopupFragment,
+                                   Context context, ArrayList<SelectBookReportResponse.SelectBookReportData> dataSet) {
+        this.selectBookReportPopupFragment = selectBookReportPopupFragment;
+        this.selectbookList = dataSet;
         this.context = context;
     }
 

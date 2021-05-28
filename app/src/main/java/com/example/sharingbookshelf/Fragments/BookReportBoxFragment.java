@@ -1,7 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.graphics.Color;
-import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
+import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -22,13 +22,10 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookReportResponse;
 import com.example.sharingbookshelf.Models.BookreportData;
-import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.R;
 
-import java.text.SimpleDateFormat;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -76,9 +73,13 @@ public class BookReportBoxFragment extends DialogFragment {
         call.enqueue(new Callback<BookReportResponse>() {
             @Override
             public void onResponse(Call<BookReportResponse> call, Response<BookReportResponse> response) {
-                if (response.body().getCode() == 71) {
-                    Log.d("아이북쉐어/독후감", response.body().getMsg());
-                    setAllReportsBox(response.body().getBookReports());
+                if (response.code() == 404) {
+                    try {
+                        Log.d("아이북쉐어/독후감", response.errorBody().string());
+                        Toast.makeText(getContext(), "작성된 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else if (response.body().getCode() == 72) {
                     setAllReportsBox(response.body().getBookReports());
                 }

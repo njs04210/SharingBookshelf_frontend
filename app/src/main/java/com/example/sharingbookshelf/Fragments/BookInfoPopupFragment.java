@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
+import android.view.WindowMetrics;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -18,12 +20,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
+import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
@@ -46,8 +50,8 @@ public class BookInfoPopupFragment extends DialogFragment {
     private static BookInfoPopupFragment bookInfoPopupFragment = null;
     private ImageView iv_thumbNail;
     private TextView tv_ISBN, tv_title, tv_authors, tv_publisher, tv_category;
-    private Button btn_addBook;
-    private Button btn_back;
+    private AppCompatButton btn_addBook;
+    private AppCompatButton btn_back;
     private SwitchButton switchButton;
 
     boolean isSetCategory = false;
@@ -228,6 +232,7 @@ public class BookInfoPopupFragment extends DialogFragment {
         try {
             Window window = getDialog().getWindow();
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
 
         } catch (Exception e) {
             e.printStackTrace();
