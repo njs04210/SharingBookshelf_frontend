@@ -28,6 +28,16 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_report_ranking, container, false);
 
+        tv_age1 = v.findViewById(R.id.tv_1st_age);
+        tv_age2 = v.findViewById(R.id.tv_2nd_age);
+        tv_age3 = v.findViewById(R.id.tv_3rd_age);
+        tv_gender1 = v.findViewById(R.id.tv_1st_gender);
+        tv_gender2 = v.findViewById(R.id.tv_2nd_gender);
+        tv_gender3 = v.findViewById(R.id.tv_3rd_gender);
+        tv_nickname1 = v.findViewById(R.id.tv_1st_nickname);
+        tv_nickname2 = v.findViewById(R.id.tv_2nd_nickname);
+        tv_nickname3 = v.findViewById(R.id.tv_3rd_nickname);
+
         cb_profile1 = v.findViewById(R.id.cb_profile1);
         cb_profile1.setOnClickListener(this);
 

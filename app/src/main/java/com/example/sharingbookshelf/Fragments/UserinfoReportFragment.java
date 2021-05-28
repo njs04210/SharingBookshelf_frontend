@@ -29,7 +29,7 @@ public class UserinfoReportFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userinfo_report, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_reportdetails);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_UserinfoReport);
 
         //recyclerViewSettings();
 
@@ -41,7 +41,7 @@ public class UserinfoReportFragment extends Fragment {
 //        mLayoutManager = new LinearLayoutManager(getContext());
 //        mRecyclerView.setLayoutManager(mLayoutManager);
 //        reportList = new ArrayList<>();
-//        mAdapter = new BookreportsAdapter(reportList);
+//        mAdapter = new UserReportAdapter(reportList);
 //        mRecyclerView.setAdapter(mAdapter);
 //    }
 

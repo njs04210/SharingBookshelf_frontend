@@ -9,7 +9,7 @@
     tools:context=".Activities.UserinfoActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/report_toolbar"
+        android:id="@+id/userinfo_toolbar"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:background="@drawable/toolbar_shape"
@@ -20,7 +20,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_profile"
+            android:id="@+id/civ_user_profile"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|center"
@@ -36,7 +36,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_nickname"
+                android:id="@+id/tv_user_nickname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -85,7 +85,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout_reportranking"
+        android:id="@+id/tabLayout_userinfo"
         android:layout_width="220dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -96,18 +96,6 @@
         app:tabMode="fixed"
         app:tabSelectedTextColor="#E65100"
         app:tabTextColor="#424242">
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:tabMode="fixed"-->
-<!--            android:text="책장" />-->
-
-<!--        <com.google.android.material.tabs.TabItem-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:tabMode="fixed"-->
-<!--            android:text="독후감" />-->
 
     </com.google.android.material.tabs.TabLayout>
 

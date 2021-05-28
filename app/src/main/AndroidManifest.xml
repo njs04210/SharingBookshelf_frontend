@@ -51,7 +51,7 @@
             android:theme="@style/StatusBar" />
 
         <activity
-            android:name=".Activities.ReportRankingPopupActivity"
+            android:name=".Activities.UserinfoActivity"
             android:theme="@style/StatusBar" />
     </application>
 

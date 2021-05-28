@@ -72,11 +72,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
                 m.show(getActivity().getSupportFragmentManager(), "MessageBoxFragment");
                 break;
 
-            case R.id.btn_likeList:
-                LikelistFragment l = LikelistFragment.getInstance();
-                l.show(getActivity().getSupportFragmentManager(), "LikeListFragment");
-                break;
-
             case R.id.btn_logout:
                 //추가 예정
                 Toast.makeText(getActivity().getApplicationContext(), "로그아웃", Toast.LENGTH_SHORT).show();

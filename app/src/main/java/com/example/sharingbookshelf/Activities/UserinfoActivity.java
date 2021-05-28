@@ -30,6 +30,9 @@ public class UserinfoActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_userinfo);
 
+        civ_profile = findViewById(R.id.civ_user_profile);
+        tv_nickname = findViewById(R.id.tv_user_nickname);
+
         btn_fightUser = findViewById(R.id.btn_fightUser);
         btn_fightUser.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -52,7 +55,7 @@ public class UserinfoActivity extends FragmentActivity {
 
         getSupportFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment).commit();
 
-        mtabLayout = findViewById(R.id.tabLayout_reportranking);
+        mtabLayout = findViewById(R.id.tabLayout_userinfo);
         mtabLayout.addTab(mtabLayout.newTab().setText("책장"));
         mtabLayout.addTab(mtabLayout.newTab().setText("독후감"));
 

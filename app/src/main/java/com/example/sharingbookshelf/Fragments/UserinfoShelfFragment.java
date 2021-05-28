@@ -9,10 +9,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
+import com.example.sharingbookshelf.Adapters.BooksAdapter;
 import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
+import com.example.sharingbookshelf.Adapters.UserShelfAdapter;
+import com.example.sharingbookshelf.Models.BookData;
+import com.example.sharingbookshelf.Models.BookreportData;
+import com.example.sharingbookshelf.Models.ThumbnailData;
 import com.example.sharingbookshelf.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Map;
 
 public class UserinfoShelfFragment extends Fragment {
@@ -20,7 +28,7 @@ public class UserinfoShelfFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<Map<String, Object>> thumbnailSet;
+    private ArrayList<ThumbnailData> thumbnailList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,9 +40,10 @@ public class UserinfoShelfFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userinfo_shelf, container, false);
 
-        mRecyclerView = view.findViewById(R.id.rcv_ReportRankingShelf);
-        recyclerViewSettings();
+        mRecyclerView = view.findViewById(R.id.rcv_UserinfoShelf);
 
+        recyclerViewSettings();
+        setThumbnail();
         return view;
     }
 
@@ -42,19 +51,20 @@ public class UserinfoShelfFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        thumbnailSet = new ArrayList<>();
-        mAdapter = new MyBookshelfAdapter(thumbnailSet);
+        thumbnailList = new ArrayList<>();
+        mAdapter = new UserShelfAdapter(thumbnailList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
-
-        mAdapter = new MyBookshelfAdapter(myDataset);
+    private void setThumbnail() {
+        for (int i = 0; i < 10; i++) {
+            ThumbnailData thumbnailData = new ThumbnailData();
+            thumbnailData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");
+            thumbnailList.add(thumbnailData);
+        }
+        mAdapter = new UserShelfAdapter(thumbnailList);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
-
-        this.thumbnailSet = myDataset;
-
     }
 
 }
