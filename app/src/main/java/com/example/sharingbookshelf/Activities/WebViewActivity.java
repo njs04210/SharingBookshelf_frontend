@@ -18,8 +18,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     private WebView browser;
 
-    class MyJavaScriptInterface
-    {
+    class MyJavaScriptInterface {
         @JavascriptInterface
         @SuppressWarnings("unused")
         public void processDATA(String data) {
@@ -37,12 +36,11 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
 
-        browser = (WebView)findViewById(R.id.webView);
+        browser = (WebView) findViewById(R.id.webView);
         browser.getSettings().setJavaScriptEnabled(true);
         browser.addJavascriptInterface(new MyJavaScriptInterface(), "Android");
 
@@ -53,7 +51,8 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
-        browser.loadUrl("http://101.101.219.107:3000/daum.html");
+//        browser.loadUrl("http://101.101.219.107:3000/daum.html");
+        browser.loadUrl("http://10.0.2.2:3000/daum.html");
     }
 
 }

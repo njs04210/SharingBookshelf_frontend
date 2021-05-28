@@ -41,7 +41,7 @@ public class BookReportFragment extends Fragment implements View.OnClickListener
         switch (v.getId()) {
             case R.id.btn_createReport:
                 SelectBookReportPopupFragment selectBookReportPopupFragment = new SelectBookReportPopupFragment();
-                selectBookReportPopupFragment.show(getFragmentManager(), "SelectBookReportFragment");
+                selectBookReportPopupFragment.show(getFragmentManager(), "SelectBookReportPopupFragment");
                 break;
 
             case R.id.btn_showReportBox:

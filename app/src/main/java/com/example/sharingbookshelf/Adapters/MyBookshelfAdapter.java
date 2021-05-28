@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +11,15 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sharingbookshelf.Activities.HomeActivity;
+import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Fragments.ClickBookDetailsFragment;
+import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -45,7 +50,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
 
                         Bundle bundle = new Bundle();
                         bundle.putInt("bookId", book_id);
-                        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                        FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
                         ClickBookDetailsFragment dialog = new ClickBookDetailsFragment();
                         dialog.setArguments(bundle);
                         dialog.show(fm, "abc");
@@ -57,8 +62,9 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
 
     }
 
-    public MyBookshelfAdapter(ArrayList<Map<String, Object>> dataSet) {
+    public MyBookshelfAdapter(Context context, ArrayList<Map<String, Object>> dataSet) {
         localDataSet = dataSet;
+        this.context = context;
     }
 
     @NonNull
@@ -67,7 +73,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_book_mybookshelf, viewGroup, false);
 
-        context = viewGroup.getContext();
+      //  context = viewGroup.getContext();
 
         return new ViewHolder(view);
     }

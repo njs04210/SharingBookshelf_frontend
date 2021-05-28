@@ -23,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.BookreportData;
+import com.example.sharingbookshelf.Models.BookreportDetailData;
 import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.gms.tasks.Continuation;
@@ -50,6 +50,8 @@ public class CheckReportPopupFragment extends DialogFragment {
     private String file;
     private String contents;
     private String downloadUri;
+    private String thumbnailUri;
+    private int item_id;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,9 +71,14 @@ public class CheckReportPopupFragment extends DialogFragment {
         Bitmap bitmap = arguments.getParcelable("bitmap");
         file = arguments.getString("file");
         contents = arguments.getString("contents");
+        item_id = arguments.getInt("item_id");
+        thumbnailUri = arguments.getString("thumbnailUri");
 
         iv_canvas.setImageBitmap(bitmap);
-        Glide.with(this).load("http://image.kyobobook.co.kr/images/book/large/090/l9788943306090.jpg")
+        Glide.with(this)
+                .load(thumbnailUri)
+                .fitCenter()
+                .placeholder(R.drawable.icon_book2)
                 .into(iv_thumbnail);
 
         btn_addReport.setOnClickListener(new View.OnClickListener() {
@@ -140,20 +147,19 @@ public class CheckReportPopupFragment extends DialogFragment {
     }
 
     private void addReportDataRetrofit() {
-        BookreportData bookreportData = new BookreportData();
-        bookreportData.setCanvas_uri(downloadUri);
-        bookreportData.setContents(contents);
-        bookreportData.setBook_id(20);
+        BookreportDetailData bookreportDetailData = new BookreportDetailData();
+        bookreportDetailData.setCanvas_uri(downloadUri);
+        bookreportDetailData.setContents(contents);
+        bookreportDetailData.setItem_id(item_id);
 
         RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<CommonResponse> call = retrofitServiceApi.addBookReport(bookreportData);
+        Call<CommonResponse> call = retrofitServiceApi.addBookReport(bookreportDetailData);
         call.enqueue(new Callback<CommonResponse>() {
             @Override
             public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                 Toast.makeText(getContext(), "독후감 등록 성공!\n독서짱을 노려보세요 +_+"
                         , Toast.LENGTH_LONG).show();
 
-                getFragmentManager().executePendingTransactions();
                 getDialog().dismiss();
                 getActivity().finish();
             }
