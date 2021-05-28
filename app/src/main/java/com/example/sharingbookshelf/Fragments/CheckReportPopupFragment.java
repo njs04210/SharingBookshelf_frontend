@@ -1,6 +1,5 @@
 package com.example.sharingbookshelf.Fragments;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,7 +13,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +23,7 @@ import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.BookreportData;
+import com.example.sharingbookshelf.Models.BookreportDetailData;
 import com.example.sharingbookshelf.Models.CommonResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.gms.tasks.Continuation;
@@ -149,7 +147,7 @@ public class CheckReportPopupFragment extends DialogFragment {
     }
 
     private void addReportDataRetrofit() {
-        BookreportData.BookreportDetailData bookreportDetailData = new BookreportData.BookreportDetailData();
+        BookreportDetailData bookreportDetailData = new BookreportDetailData();
         bookreportDetailData.setCanvas_uri(downloadUri);
         bookreportDetailData.setContents(contents);
         bookreportDetailData.setItem_id(item_id);
@@ -162,7 +160,6 @@ public class CheckReportPopupFragment extends DialogFragment {
                 Toast.makeText(getContext(), "독후감 등록 성공!\n독서짱을 노려보세요 +_+"
                         , Toast.LENGTH_LONG).show();
 
-                getFragmentManager().executePendingTransactions();
                 getDialog().dismiss();
                 getActivity().finish();
             }

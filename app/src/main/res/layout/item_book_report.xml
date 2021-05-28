@@ -8,14 +8,13 @@
 
     <TextView
         android:id="@+id/tv_num"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_gravity="center"
-        android:layout_marginRight="25dp"
-        android:gravity="center"
+        android:gravity="left|center"
         android:text="1"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -40,15 +39,11 @@
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_main"
-            android:text="책제목?? 아이가 직접 작성한 제목?"
             android:textStyle="bold"
-            app:autoSizeMaxTextSize="20sp"
-            app:autoSizeMinTextSize="15sp"
-            app:autoSizeStepGranularity="1sp"
-            app:autoSizeTextType="uniform" />
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/tv_created"

@@ -78,6 +78,7 @@ public class BookReportBoxFragment extends DialogFragment {
             public void onResponse(Call<BookReportResponse> call, Response<BookReportResponse> response) {
                 if (response.body().getCode() == 71) {
                     Log.d("아이북쉐어/독후감", response.body().getMsg());
+                    setAllReportsBox(response.body().getBookReports());
                 } else if (response.body().getCode() == 72) {
                     setAllReportsBox(response.body().getBookReports());
                 }

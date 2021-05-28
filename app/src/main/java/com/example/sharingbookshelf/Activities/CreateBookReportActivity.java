@@ -7,13 +7,10 @@ import android.text.Editable;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.TextAppearanceSpan;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,7 +39,7 @@ public class CreateBookReportActivity extends AppCompatActivity
     private int item_id;
     private String title;
     String thumbnailUri;
-    String file_name = item_id + ".jpg";
+    String file_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,6 +148,7 @@ public class CreateBookReportActivity extends AppCompatActivity
         if (selectedButton == R.id.btn_save) {
             Bitmap bitmap = canvas.getBitmap();
             String contents = et_paper.getText().toString();
+            file_name = item_id + ".jpg";
 
             CheckReportPopupFragment checkReportPopupFragment = new CheckReportPopupFragment();
             Bundle bundle = new Bundle();
