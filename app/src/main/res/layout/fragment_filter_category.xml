@@ -2,131 +2,132 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:elevation="150dp"
-    android:background="@color/white"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="380dp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/font_main"
-            android:text="보고싶은 책 장르를 선택해주세요"
-            android:textColor="#757575"
-            android:textSize="12sp"
-            android:textStyle="bold" />
+        android:elevation="10dp"
+        android:orientation="vertical"
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="30dp"
-            android:clipToPadding="false"
             android:gravity="center"
-            android:orientation="vertical"
-            android:padding="8dp">
+            android:orientation="vertical">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chipGroup_category_f"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:selectionRequired="true"
-                app:singleSelection="true">
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/font_main"
+                android:text="선택한 장르별로 책장을 확인하세요!"
+                android:textColor="#757575"
+                android:textSize="15sp"
+                android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:padding="8dp">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_all"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/chipGroup_category_f"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체"
-                    android:textAppearance="@style/ChipUncheckedText"
-                    android:textColor="#212121"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/bg_chip_state_list"
-                    app:rippleColor="@android:color/transparent" />
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_all"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="전체"
+                        android:textAppearance="@style/ChipUncheckedText"
+                        android:textColor="#212121"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="@color/bg_chip_state_list"
+                        app:rippleColor="@android:color/transparent" />
 
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_study_f"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="학습(똑똑해져요)"
-                    android:textAppearance="@style/ChipUncheckedText"
-                    android:textColor="#212121"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/bg_chip_state_list"
-                    app:rippleColor="@android:color/transparent" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_study_f"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="학습"
+                        android:textAppearance="@style/ChipUncheckedText"
+                        android:textColor="#212121"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="@color/bg_chip_state_list"
+                        app:rippleColor="@android:color/transparent" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_fairy_f"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="동화(상상력이풍부해져요)"
-                    android:textAppearance="@style/ChipUncheckedText"
-                    android:textColor="#212121"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/bg_chip_state_list"
-                    app:rippleColor="@android:color/transparent" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_fairy_f"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="동화"
+                        android:textAppearance="@style/ChipUncheckedText"
+                        android:textColor="#212121"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="@color/bg_chip_state_list"
+                        app:rippleColor="@android:color/transparent" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_cartoon_f"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="만화(시간가는줄몰라요)"
-                    android:textAppearance="@style/ChipUncheckedText"
-                    android:textColor="#212121"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/bg_chip_state_list"
-                    app:rippleColor="@android:color/transparent" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_cartoon_f"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="만화"
+                        android:textAppearance="@style/ChipUncheckedText"
+                        android:textColor="#212121"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="@color/bg_chip_state_list"
+                        app:rippleColor="@android:color/transparent" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_etc_f"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="기타"
-                    android:textAppearance="@style/ChipUncheckedText"
-                    android:textColor="#212121"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    app:chipBackgroundColor="@color/bg_chip_state_list"
-                    app:rippleColor="@android:color/transparent" />
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chip_etc_f"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="기타"
+                        android:textAppearance="@style/ChipUncheckedText"
+                        android:textColor="#212121"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        app:chipBackgroundColor="@color/bg_chip_state_list"
+                        app:rippleColor="@android:color/transparent" />
 
 
-            </com.google.android.material.chip.ChipGroup>
+                </com.google.android.material.chip.ChipGroup>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_setCategory_f"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorPrimary_2"
+                android:fontFamily="@font/font_main"
+                android:text="확인"
+                android:textColor="#EEEEEE"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/colorPrimary_2" />
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_setCategory_f"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:layout_marginTop="30dp"
-            android:background="@color/colorPrimary_2"
-            app:backgroundTint="@color/colorPrimary_2"
-            android:fontFamily="@font/font_main"
-            android:text="확인"
-            android:textColor="#EEEEEE"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
 
-
-    </LinearLayout>
 </LinearLayout>
