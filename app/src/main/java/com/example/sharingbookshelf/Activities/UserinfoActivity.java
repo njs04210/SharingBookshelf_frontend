@@ -9,17 +9,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
 //import com.example.sharingbookshelf.Fragments.ChallengePopupFragment;
-import com.example.sharingbookshelf.Fragments.ReportRankingReportFragment;
-import com.example.sharingbookshelf.Fragments.ReportRankingShelfFragment;
+import com.example.sharingbookshelf.Fragments.UserinfoReportFragment;
+import com.example.sharingbookshelf.Fragments.UserinfoShelfFragment;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.tabs.TabLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ReportRankingPopupActivity extends FragmentActivity {
+public class UserinfoActivity extends FragmentActivity {
     private TabLayout mtabLayout;
-    private ReportRankingReportFragment reportRankingReportFragment;
-    private ReportRankingShelfFragment reportrankingShelfFragement;
+    private UserinfoReportFragment userinforeportFragment;
+    private UserinfoShelfFragment userinfoshelfFragment;
 
     private CircleImageView civ_profile;
     private TextView tv_nickname;
