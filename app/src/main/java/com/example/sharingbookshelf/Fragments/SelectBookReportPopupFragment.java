@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +24,7 @@ import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.SelectBookReportResponse;
 import com.example.sharingbookshelf.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -61,7 +63,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         selectbookList = new ArrayList<>();
-        mAdapter = new SelectBookreportAdapter(getActivity(), selectbookList);
+        mAdapter = new SelectBookreportAdapter(SelectBookReportPopupFragment.this, getActivity(), selectbookList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -71,8 +73,14 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         call.enqueue(new Callback<SelectBookReportResponse>() {
             @Override
             public void onResponse(Call<SelectBookReportResponse> call, Response<SelectBookReportResponse> response) {
-                if (response.body().getCode() == 73) {
-                    Log.d("아이북쉐어/독후감", response.body().getMsg());
+                if (response.code() == 404) {
+                    try {
+                        Log.d("아이북쉐어/독후감", response.errorBody().string());
+                        Toast.makeText(getContext(), "작성 가능한 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else if (response.body().getCode() == 74) {
                     showAllAvailableReports(response.body().getBooks_NoReport());
                 }
@@ -86,7 +94,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     }
 
     private void showAllAvailableReports(ArrayList<SelectBookReportResponse.SelectBookReportData> dataSet) {
-        mAdapter = new SelectBookreportAdapter(getActivity(), dataSet);
+        mAdapter = new SelectBookreportAdapter(SelectBookReportPopupFragment.this, getActivity(), dataSet);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 
