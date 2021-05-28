@@ -1,18 +1,16 @@
 package com.example.sharingbookshelf.Activities;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.TextAppearanceSpan;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +33,13 @@ public class CreateBookReportActivity extends AppCompatActivity
     private Button btn_penRed;
     private EditText et_paper;
     private TextView tv_date;
+    private TextView tv_title;
     private boolean widthFlag = false;
     MyCanvas canvas;
-    private int book_id = 1;
-    String file_name = book_id + ".jpg";
+    private int item_id;
+    private String title;
+    String thumbnailUri;
+    String file_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,14 @@ public class CreateBookReportActivity extends AppCompatActivity
         tv_date = findViewById(R.id.tv_date);
         canvas = findViewById(R.id.canvas);
         et_paper = findViewById(R.id.et_paper);
+        tv_title = findViewById(R.id.tv_title);
+
+        Intent intent = getIntent();
+        title = intent.getExtras().getString("title");
+        tv_title.setText(title);
+
+        item_id = intent.getExtras().getInt("item_id");
+        thumbnailUri = intent.getExtras().getString("thumbnailUri");
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
         Date time = new Date();
@@ -139,12 +148,15 @@ public class CreateBookReportActivity extends AppCompatActivity
         if (selectedButton == R.id.btn_save) {
             Bitmap bitmap = canvas.getBitmap();
             String contents = et_paper.getText().toString();
+            file_name = item_id + ".jpg";
 
             CheckReportPopupFragment checkReportPopupFragment = new CheckReportPopupFragment();
             Bundle bundle = new Bundle();
             bundle.putParcelable("bitmap", bitmap);
             bundle.putString("contents", contents);
             bundle.putString("file", file_name);
+            bundle.putInt("item_id", item_id);
+            bundle.putString("thumbnailUri", thumbnailUri);
             checkReportPopupFragment.setArguments(bundle);
 
             checkReportPopupFragment.show((CreateBookReportActivity.this).getSupportFragmentManager()
