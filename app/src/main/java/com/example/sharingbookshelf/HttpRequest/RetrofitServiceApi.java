@@ -9,6 +9,7 @@ import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.LoginResponse;
 import com.example.sharingbookshelf.Models.MemoData;
+import com.example.sharingbookshelf.Models.SelectBookReportResponse;
 import com.example.sharingbookshelf.Models.SetUserInfoResponse;
 import com.example.sharingbookshelf.Models.UserInfoData;
 
@@ -65,8 +66,11 @@ public interface RetrofitServiceApi {
     Call<MemoData> getBookMemo(@Path("bookId") int bookId);
 
     /* 독후감 API */
-    @GET("api/bookreports") // 내 모든 독후감 불러오기
+    @GET("api/bookreports") // 작성된 모든 독후감 불러오기
     Call<BookReportResponse> getAllBookReports();
+
+    @GET("api/bookreports") // 작성 가능한 독후감 불러오기
+    Call<SelectBookReportResponse> getAllBookReports(@Query("available") boolean available);
 
     @POST("api/bookreports") // 독후감 등록하기
     Call<CommonResponse> addBookReport(@Body BookreportData.BookreportDetailData bookreportData);

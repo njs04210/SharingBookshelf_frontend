@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,11 +22,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Activities.CreateBookReportActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
+import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
 import com.example.sharingbookshelf.Adapters.SelectBookreportAdapter;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookReportResponse;
+import com.example.sharingbookshelf.Models.SelectBookReportResponse;
 import com.example.sharingbookshelf.Models.SelectReportData;
 import com.example.sharingbookshelf.R;
 
@@ -42,7 +45,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
-    private ArrayList<SelectReportData> selectbookList = new ArrayList<>();
+    private ArrayList<SelectBookReportResponse.SelectBookReportData> selectbookList;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,7 +62,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         mRecyclerView = v.findViewById(R.id.rv_selectbookreport);
 
         recyclerViewSettings();
-        setTitleList();
+        getAvailableReportList();
 
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,23 +85,32 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void setTitleList() {
-        /*retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<BookReportResponse> call = retrofitServiceApi.getAllBookReports();
-        call.enqueue(new Callback<BookData>() {
+    private void getAvailableReportList() {
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<SelectBookReportResponse> call = retrofitServiceApi.getAllBookReports(true);
+        call.enqueue(new Callback<SelectBookReportResponse>() {
             @Override
-            public void onResponse(Call<BookData> call, Response<BookData> response) {
-
+            public void onResponse(Call<SelectBookReportResponse> call, Response<SelectBookReportResponse> response) {
+                if (response.body().getCode() == 73) {
+                    Log.d("아이북쉐어/독후감", response.body().getMsg());
+                } else if (response.body().getCode() == 74) {
+                    showAllAvailableReports(response.body().getBooks_NoReport());
+                }
             }
 
             @Override
-            public void onFailure(Call<BookData> call, Throwable t) {
+            public void onFailure(Call<SelectBookReportResponse> call, Throwable t) {
 
             }
         });
-                mAdapter = new SelectBookreportAdapter(selectbookList);
+    }
+
+    private void showAllAvailableReports(ArrayList<SelectBookReportResponse.SelectBookReportData> dataSet) {
+        mAdapter = new SelectBookreportAdapter(dataSet);
         mAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mAdapter);*/
+        mRecyclerView.setAdapter(mAdapter);
+
+        this.selectbookList = dataSet;
     }
 
     @Override
@@ -109,11 +121,9 @@ public class SelectBookReportPopupFragment extends DialogFragment {
 
             Window window = getDialog().getWindow();
             window.setGravity(Gravity.BOTTOM);
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
             WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
             params.width = windowMetrics.getBounds().width();
-            params.horizontalMargin = 0.0f;
             getDialog().getWindow().setAttributes(params);
 
         } catch (Exception e) {
