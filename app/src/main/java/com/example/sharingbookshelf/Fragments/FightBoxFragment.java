@@ -71,7 +71,7 @@ public class FightBoxFragment extends DialogFragment {
 
             fightData.setProfileImage(R.drawable.icon_logo);
             fightData.setUserName("진주맘");
-            fightData.setFightMessage("독후감이 좋네요^^");
+            fightData.setFightMessage("독서대결 펼쳐요!");
             fightData.setFightTime("~yyyy.MM.dd");
             fightData.setFightaim("5권");
 
