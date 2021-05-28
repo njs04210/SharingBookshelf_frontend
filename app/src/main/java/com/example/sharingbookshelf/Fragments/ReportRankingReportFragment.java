@@ -33,18 +33,18 @@ public class ReportRankingReportFragment extends Fragment {
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_reportdetails);
 
-        recyclerViewSettings();
+        //recyclerViewSettings();
 
         return view;
     }
 
-    private void recyclerViewSettings() {
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        reportList = new ArrayList<>();
-        mAdapter = new BookreportsAdapter(reportList);
-        mRecyclerView.setAdapter(mAdapter);
-    }
+//    private void recyclerViewSettings() {
+//        mRecyclerView.setHasFixedSize(true);
+//        mLayoutManager = new LinearLayoutManager(getContext());
+//        mRecyclerView.setLayoutManager(mLayoutManager);
+//        reportList = new ArrayList<>();
+//        mAdapter = new BookreportsAdapter(reportList);
+//        mRecyclerView.setAdapter(mAdapter);
+//    }
 
 }

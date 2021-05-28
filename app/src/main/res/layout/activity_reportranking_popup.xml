@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.ReportRankingPopupFragment">
+    tools:context=".Activities.ReportRankingPopupActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/report_toolbar"
@@ -84,11 +84,6 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_reportranking"
         android:layout_width="220dp"
@@ -102,17 +97,17 @@
         app:tabSelectedTextColor="#E65100"
         app:tabTextColor="#424242">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:text="책장" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:tabMode="fixed"-->
+<!--            android:text="책장" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:text="독후감" />
+<!--        <com.google.android.material.tabs.TabItem-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:tabMode="fixed"-->
+<!--            android:text="독후감" />-->
 
     </com.google.android.material.tabs.TabLayout>
 

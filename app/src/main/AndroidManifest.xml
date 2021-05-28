@@ -49,6 +49,10 @@
         <activity
             android:name=".Activities.CreateBookReportActivity"
             android:theme="@style/StatusBar" />
+
+        <activity
+            android:name=".Activities.ReportRankingPopupActivity"
+            android:theme="@style/StatusBar" />
     </application>
 
 </manifest>
