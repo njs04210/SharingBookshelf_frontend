@@ -67,7 +67,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         btn_confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CreateBookReportActivity.class);
+                Intent intent = new Intent(getContext(), CreateBookReportActivity.class);
                 startActivity(intent);
 
                 Objects.requireNonNull(getDialog()).dismiss();
@@ -81,7 +81,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
         selectbookList = new ArrayList<>();
-        mAdapter = new SelectBookreportAdapter(selectbookList);
+        mAdapter = new SelectBookreportAdapter(getActivity(), selectbookList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -106,7 +106,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     }
 
     private void showAllAvailableReports(ArrayList<SelectBookReportResponse.SelectBookReportData> dataSet) {
-        mAdapter = new SelectBookreportAdapter(dataSet);
+        mAdapter = new SelectBookreportAdapter(getActivity(), dataSet);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 

@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -50,6 +52,8 @@ public class CheckReportPopupFragment extends DialogFragment {
     private String file;
     private String contents;
     private String downloadUri;
+    private String thumbnailUri;
+    private int item_id;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,9 +73,14 @@ public class CheckReportPopupFragment extends DialogFragment {
         Bitmap bitmap = arguments.getParcelable("bitmap");
         file = arguments.getString("file");
         contents = arguments.getString("contents");
+        item_id = arguments.getInt("item_id");
+        thumbnailUri = arguments.getString("thumbnailUri");
 
         iv_canvas.setImageBitmap(bitmap);
-        Glide.with(this).load("http://image.kyobobook.co.kr/images/book/large/090/l9788943306090.jpg")
+        Glide.with(this)
+                .load(thumbnailUri)
+                .fitCenter()
+                .placeholder(R.drawable.icon_book2)
                 .into(iv_thumbnail);
 
         btn_addReport.setOnClickListener(new View.OnClickListener() {
@@ -143,7 +152,7 @@ public class CheckReportPopupFragment extends DialogFragment {
         BookreportData.BookreportDetailData bookreportDetailData = new BookreportData.BookreportDetailData();
         bookreportDetailData.setCanvas_uri(downloadUri);
         bookreportDetailData.setContents(contents);
-        bookreportDetailData.setItem_id(51);
+        bookreportDetailData.setItem_id(item_id);
 
         RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<CommonResponse> call = retrofitServiceApi.addBookReport(bookreportDetailData);
