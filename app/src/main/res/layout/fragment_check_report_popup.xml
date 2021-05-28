@@ -37,14 +37,13 @@
 
             <ImageView
                 android:id="@+id/iv_thumbnail"
-                android:layout_width="120dp"
+                android:layout_width="110dp"
                 android:layout_height="140dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
                 android:layout_marginRight="4dp"
                 android:background="@color/white"
                 android:elevation="8dp"
-                android:scaleType="centerCrop"
                 android:src="@drawable/icon_logo" />
 
 

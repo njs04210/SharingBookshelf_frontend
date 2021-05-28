@@ -20,36 +20,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:backgroundTint="@color/white"
-            android:fontFamily="@font/font_main"
-            android:text="등록"
-            android:textColor="@color/colorPrimary_2"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:fontFamily="@font/font_main"
             android:layout_marginLeft="20dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
+            android:fontFamily="@font/font_main"
             android:gravity="center"
             android:text="도서명"
             android:textColor="@color/white"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.example.sharingbookshelf.Activities.MyCanvas
-        android:id="@+id/canvas"
+    <ImageView
+        android:id="@+id/iv_canvas"
         android:layout_width="350dp"
         android:layout_height="280dp"
         android:layout_below="@+id/my_toolbar"
@@ -63,8 +51,8 @@
     <RelativeLayout
         android:id="@+id/canvasTool"
         android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/canvas"
+        android:layout_height="40dp"
+        android:layout_below="@+id/iv_canvas"
         android:layout_centerInParent="true"
         android:layout_gravity="center"
         android:orientation="horizontal">
@@ -77,65 +65,8 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             android:fontFamily="@font/font_main"
-            android:text="오늘의 날짜"
+            android:text="독후감 등록일 | "
             android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btn_eraser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/btn_penWidth"
-            android:background="@drawable/eraser_variant"
-            android:tag="eraser" />
-
-        <Button
-            android:id="@+id/btn_penWidth"
-            style="@style/myColoredButton"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_gravity="center"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/btnToggleGroup"
-            android:backgroundTint="@color/colorPrimary_2"
-            android:backgroundTintMode="add"
-            android:fontFamily="@font/font_main"
-            android:tag="pen"
-            android:text="굵게"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
-        <com.google.android.material.button.MaterialButtonToggleGroup
-            android:id="@+id/btnToggleGroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            app:selectionRequired="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_penBlack"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="@android:color/black" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_penBlue"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="8dp"
-                android:backgroundTint="#0000FF" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_penRed"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
-                android:backgroundTint="@android:color/holo_red_light" />
-
-        </com.google.android.material.button.MaterialButtonToggleGroup>
 
 
     </RelativeLayout>
@@ -154,16 +85,14 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
 
-        <EditText
-            android:id="@+id/et_paper"
+        <TextView
+            android:id="@+id/tv_contents"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@null"
-            android:cursorVisible="false"
             android:fontFamily="monospace"
             android:gravity="start"
-            android:inputType="textMultiLine|textNoSuggestions"
             android:maxLines="6"
             android:minHeight="30dp"
             android:minLines="1"
