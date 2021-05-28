@@ -53,7 +53,7 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container
             , @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_click_bookdetails, container, false);
+        View v = inflater.inflate(R.layout.fragment_ranking_bookinfo_popup, container, false);
 
         iv_thumbNail = v.findViewById(R.id.iv_thumbnail);
         tv_ISBN = v.findViewById(R.id.tv_ISBN);
@@ -64,7 +64,6 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
         Bundle bundle = getArguments();
         bookId = bundle.getInt("bookId");
         callBook(bookId);
-
         return v;
     }
 
@@ -76,7 +75,8 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
             @Override
             public void onResponse(Call<BookData> call, Response<BookData> response) {
                 bookData = response.body();
-                callMemo(bookId);
+
+                setView();
             }
 
             @Override
@@ -85,25 +85,18 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
             }
         });
     }
+    private void setView() {
+        String title = bookData.getTitle();
+        String ISBN = bookData.getISBN();
+        String author = bookData.getAuthor();
+        String publisher = bookData.getPublisher();
+        String thumbnail = bookData.getThumbnail();
 
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        try {
-            WindowMetrics windowMetrics = getActivity().getWindowManager().getCurrentWindowMetrics();
-
-            Window window = getDialog().getWindow();
-            window.setGravity(Gravity.BOTTOM);
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-            WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
-            params.width = windowMetrics.getBounds().width();
-            params.horizontalMargin = 0.0f;
-            getDialog().getWindow().setAttributes(params);
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        Glide.with(this).load(thumbnail).into(iv_thumbNail);
+        tv_title.setText(title);
+        tv_ISBN.setText(ISBN);
+        tv_authors.setText(author);
+        tv_publisher.setText(publisher);
         }
     }
 
