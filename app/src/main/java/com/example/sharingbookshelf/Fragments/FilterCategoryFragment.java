@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -19,6 +20,12 @@ import com.google.android.material.chip.ChipGroup;
 import static android.app.Activity.RESULT_OK;
 
 public class FilterCategoryFragment extends DialogFragment {
+
+    private NoEmptyShelfFragment noEmptyShelfFragment;
+
+    public FilterCategoryFragment(NoEmptyShelfFragment noEmptyShelfFragment) {
+        this.noEmptyShelfFragment = noEmptyShelfFragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -79,8 +86,14 @@ public class FilterCategoryFragment extends DialogFragment {
                     }
 
                     int categoryNum = classifyCategory(checkedChipId);
-                    intent.putExtra("categoryNum", categoryNum);
-                    getTargetFragment().onActivityResult(getTargetRequestCode(), RESULT_OK, intent);
+           /*         Bundle bundle = new Bundle();
+                    bundle.putInt("categoryNum", categoryNum);*/
+                    if (categoryNum == 0) {
+                        noEmptyShelfFragment.setShelfView(MainActivity.getMemId());
+                    } else {
+                        noEmptyShelfFragment.setShelfViewCategory(MainActivity.getMemId(), categoryNum);
+                    }
+
                     dismiss();
 
                 } else {
@@ -92,10 +105,10 @@ public class FilterCategoryFragment extends DialogFragment {
     }
 
     private int classifyCategory(int checkedChipId) {
-        if (checkedChipId == R.id.chip_all) return 1;
-        if (checkedChipId == R.id.chip_study_f) return 2;
-        if (checkedChipId == R.id.chip_fairy_f) return 3;
-        if (checkedChipId == R.id.chip_cartoon_f) return 4;
+        if (checkedChipId == R.id.chip_all) return 0;
+        if (checkedChipId == R.id.chip_study_f) return 1;
+        if (checkedChipId == R.id.chip_fairy_f) return 2;
+        if (checkedChipId == R.id.chip_cartoon_f) return 3;
         if (checkedChipId == R.id.chip_etc_f) return 4;
 
         else return 0;

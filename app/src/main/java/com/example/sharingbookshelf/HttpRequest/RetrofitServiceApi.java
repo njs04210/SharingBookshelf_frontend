@@ -48,6 +48,9 @@ public interface RetrofitServiceApi {
     @GET("api/bookshelves/{memId}")
     Call<GetShelfStatusResponse> getShelfStatus(@Path("memId") int memId);
 
+    @GET("api/bookshelves/{memId}") // 카테고리 별로 책장 불러오기
+    Call<GetShelfStatusResponse> getShelfStatusCategory(@Path("memId") int memId, @Query("category") int category);
+
     @POST("api/bookshelves")
     Call<CommonResponse> createShelf();
 

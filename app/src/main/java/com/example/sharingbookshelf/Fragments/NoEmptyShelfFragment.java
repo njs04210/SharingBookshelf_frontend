@@ -61,6 +61,7 @@ public class NoEmptyShelfFragment extends Fragment {
     private RetrofitServiceApi retrofitServiceApi;
     private ArrayList<Map<String, Object>> thumbnailSet;
     private Context context;
+    public boolean isCategorySelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -76,9 +77,7 @@ public class NoEmptyShelfFragment extends Fragment {
         context = container.getContext();
 
         fab_addBook = v.findViewById(R.id.floating_action_button);
-
         iv_categorySelect = v.findViewById(R.id.iv_selectCategory);
-
         mRecyclerView = v.findViewById(R.id.rcv_myBookShelf);
 
         recyclerViewSettings();
@@ -94,7 +93,7 @@ public class NoEmptyShelfFragment extends Fragment {
 
         iv_categorySelect.setOnClickListener(new View.OnClickListener() { //필터 버튼 액티비티
             public void onClick(View v) {
-                FilterCategoryFragment filterCategoryFragment = new FilterCategoryFragment();
+                FilterCategoryFragment filterCategoryFragment = new FilterCategoryFragment(NoEmptyShelfFragment.this);
                 filterCategoryFragment.show(getFragmentManager(), "FilterCategoryFragment");
 
             }
@@ -115,6 +114,26 @@ public class NoEmptyShelfFragment extends Fragment {
     public void setShelfView(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<GetShelfStatusResponse> call = retrofitServiceApi.getShelfStatus(memId);
+        call.enqueue(new Callback<GetShelfStatusResponse>() {
+            @Override
+            public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
+
+                String msg = response.body().getMsg();
+                Log.d(MainActivity.MAIN_TAG, msg);
+                getThumbnail(response.body().getHasBooks());
+
+            }
+
+            @Override
+            public void onFailure(Call<GetShelfStatusResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
+            }
+        });
+    }
+
+    public void setShelfViewCategory(int memId, int categoryNum) {
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<GetShelfStatusResponse> call = retrofitServiceApi.getShelfStatusCategory(memId, categoryNum);
         call.enqueue(new Callback<GetShelfStatusResponse>() {
             @Override
             public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
