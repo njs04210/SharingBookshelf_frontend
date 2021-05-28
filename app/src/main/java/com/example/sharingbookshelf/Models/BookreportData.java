@@ -2,9 +2,28 @@ package com.example.sharingbookshelf.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
-
 public class BookreportData {
+
+    @SerializedName("book")
+    BookData book;
+
+    @SerializedName("bookreport")
+    BookreportDetailData bookreports;
+
+    public BookData getBook() {
+        return book;
+    }
+
+    public BookreportDetailData getBookreports() {
+        return bookreports;
+    }
+
+    public void setBookreports(BookreportDetailData bookreports) {
+        this.bookreports = bookreports;
+    }
+
+    /*@SerializedName("bookReports")
+    private BookData bookData;
 
     @SerializedName("book_id")
     private int book_id;
@@ -59,5 +78,5 @@ public class BookreportData {
     public void setTitle(String title) {
         this.title = title;
     }
-
+*/
 }

@@ -99,7 +99,7 @@ public class NoEmptyShelfFragment extends Fragment {
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         thumbnailSet = new ArrayList<>();
-        mAdapter = new MyBookshelfAdapter(thumbnailSet);
+        mAdapter = new MyBookshelfAdapter(getActivity(), thumbnailSet);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -125,7 +125,7 @@ public class NoEmptyShelfFragment extends Fragment {
 
     private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
 
-        mAdapter = new MyBookshelfAdapter(myDataset);
+        mAdapter = new MyBookshelfAdapter(getActivity(), myDataset);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 

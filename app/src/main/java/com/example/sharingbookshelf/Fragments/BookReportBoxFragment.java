@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +16,30 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.BookReportResponse;
 import com.example.sharingbookshelf.Models.BookreportData;
+import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.R;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BookReportBoxFragment extends DialogFragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private ArrayList<BookreportData> reportList;
+    private RetrofitServiceApi retrofitServiceApi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +55,7 @@ public class BookReportBoxFragment extends DialogFragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_bookreport);
 
         recyclerViewSettings();
-        setReport();
+        getAllReports();
 
         return view;
     }
@@ -57,21 +69,36 @@ public class BookReportBoxFragment extends DialogFragment {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void setReport() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
-        Date time = new Date();
-        for (int i = 0; i < 10; i++) {
-            BookreportData bookreportData = new BookreportData();
-            bookreportData.setCanvas_uri("https://firebasestorage.googleapis.com/v0/b/ibookshare--login.appspot.com/o/BookReportImg%2F38%2F1.jpg?alt=media&token=6a449e38-2a59-4799-bb1f-4a5716541eb7");
-            bookreportData.setTitle("책 제목이 길어도 그렇게 얄쌍하게 나오나");
-            bookreportData.setCreated(time);
-            reportList.add(bookreportData);
-        }
+    private void getAllReports() {
 
-        mAdapter = new BookreportsAdapter(reportList);
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<BookReportResponse> call = retrofitServiceApi.getAllBookReports();
+        call.enqueue(new Callback<BookReportResponse>() {
+            @Override
+            public void onResponse(Call<BookReportResponse> call, Response<BookReportResponse> response) {
+                if (response.body().getCode() == 71) {
+                    Log.d("아이북쉐어/독후감", response.body().getMsg());
+                    setAllReportsBox(response.body().getBookReports());
+                } else if (response.body().getCode() == 72) {
+                    setAllReportsBox(response.body().getBookReports());
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<BookReportResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
+            }
+        });
+
+    }
+
+    private void setAllReportsBox(ArrayList<BookreportData> dataSet) {
+        mAdapter = new BookreportsAdapter(dataSet);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 
+        this.reportList = dataSet;
     }
 
     @Override
@@ -84,6 +111,7 @@ public class BookReportBoxFragment extends DialogFragment {
             window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
             WindowManager.LayoutParams params = getDialog().getWindow().getAttributes();
             params.width = windowMetrics.getBounds().width();
+            params.height = (int) (windowMetrics.getBounds().height() * 0.9);
             getDialog().getWindow().setAttributes(params);
         } catch (Exception e) {
             e.printStackTrace();
