@@ -6,13 +6,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.R;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -22,12 +20,12 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_grade;
-        private final TextView tv_booktitle;
+        private final TextView tv_title;
 
         public ViewHolder(@NonNull View view) {
             super(view);
             tv_grade = (TextView) view.findViewById(R.id.tv_grade);
-            tv_booktitle = (TextView) view.findViewById(R.id.tv_booktitle);
+            tv_title = (TextView) view.findViewById(R.id.tv_title);
         }
     }
 
@@ -45,11 +43,16 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder rankingViewHolder, int position) {
-        rankingViewHolder.tv_grade.setText(Integer.toString(rankingList.get(position).getGrade()));
-        rankingViewHolder.tv_booktitle.setText(rankingList.get(position).getBooktitle());
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        BookData book = rankingList.get(position).getBook();
+        int ranking = rankingList.get(position).getRanking();
+        viewHolder.tv_title.setText(book.getTitle());
+        viewHolder.tv_grade.setText(String.valueOf(ranking));
+
     }
 
     @Override
-    public int getItemCount() { return (null != rankingList ? rankingList.size() : 0); }
+    public int getItemCount() {
+        return (null != rankingList ? rankingList.size() : 0);
+    }
 }

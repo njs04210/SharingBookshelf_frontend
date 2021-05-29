@@ -1,20 +1,39 @@
 package com.example.sharingbookshelf.Models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class RankingData {
-    private int grade;
-    private String booktitle;
+    @SerializedName("ranking")
+    int ranking;
 
-    public int getGrade() {
-        return grade;
+    @SerializedName("total")
+    int total;
+
+    @SerializedName("book")
+    BookData book;
+
+    public int getRanking() {
+        return ranking;
     }
 
-    public void setGrade(int grade) { this.grade = grade; }
-
-    public String getBooktitle() {
-        return booktitle;
+    public void setRanking(int ranking) {
+        this.ranking = ranking;
     }
 
-    public void setBooktitle(String booktitle) {
-        this.booktitle = booktitle;
+    public int getTotal() {
+        return total;
     }
+
+    public void setTotal(int total) {
+        this.total = total;
+    }
+
+    public BookData getBook() {
+        return book;
+    }
+
+    public void setBook(BookData book) {
+        this.book = book;
+    }
+
 }

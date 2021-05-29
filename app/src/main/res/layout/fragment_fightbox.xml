@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/icon_mailbox" />
+                android:src="@drawable/icon_fight" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
                 android:layout_marginLeft="10dp"
                 android:fontFamily="@font/font_main"
                 android:gravity="center"
-                android:text="쪽지함"
+                android:text="대결함"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="30sp"

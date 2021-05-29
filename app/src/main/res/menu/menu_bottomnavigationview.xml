@@ -12,7 +12,7 @@
     <item
         android:id="@+id/ranking"
         android:icon="@drawable/icon_trophy"
-        android:title="순위" />
+        android:title="랭킹" />
     <item
         android:id="@+id/chatting"
         android:icon="@drawable/icon_boycrown"
