@@ -10,6 +10,7 @@ import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.LoginResponse;
 import com.example.sharingbookshelf.Models.MemoData;
 import com.example.sharingbookshelf.Models.OneBookreportResponse;
+import com.example.sharingbookshelf.Models.RankingResponse;
 import com.example.sharingbookshelf.Models.SelectBookReportResponse;
 import com.example.sharingbookshelf.Models.SetUserInfoResponse;
 import com.example.sharingbookshelf.Models.UserInfoData;
@@ -81,5 +82,9 @@ public interface RetrofitServiceApi {
 
     @POST("api/bookreports") // 독후감 등록하기
     Call<CommonResponse> addBookReport(@Body BookreportDetailData bookreportData);
+
+    /* 랭킹 API */
+    @GET("api/ranking")
+    Call<RankingResponse> getRanking();
 }
 
