@@ -47,7 +47,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class BookInfoPopupFragment extends DialogFragment {
 
-    private static BookInfoPopupFragment bookInfoPopupFragment = null;
     private ImageView iv_thumbNail;
     private TextView tv_ISBN, tv_title, tv_authors, tv_publisher, tv_category;
     private AppCompatButton btn_addBook;
@@ -58,11 +57,10 @@ public class BookInfoPopupFragment extends DialogFragment {
     private HashMap<String, Object> parameters = new HashMap<>();
     private BookApiResponse.Document book;
 
-    public static BookInfoPopupFragment getInstance() {
-        if (bookInfoPopupFragment == null) {
-            bookInfoPopupFragment = new BookInfoPopupFragment();
-        }
-        return bookInfoPopupFragment;
+    private NoEmptyShelfFragment noEmptyShelfFragment;
+
+    public BookInfoPopupFragment(NoEmptyShelfFragment noEmptyShelfFragment) {
+        this.noEmptyShelfFragment = noEmptyShelfFragment;
     }
 
     @Override
@@ -101,12 +99,8 @@ public class BookInfoPopupFragment extends DialogFragment {
                         @Override
                         public void onResponse(Call<CommonResponse> call, Response<CommonResponse> response) {
                             Log.d(MainActivity.MAIN_TAG, response.body().getCode() + " : " + response.body().getMsg());
+                            noEmptyShelfFragment.setShelfView(MainActivity.getMemId());
                             getDialog().dismiss();
-
-                            //액티비티 전체 말고 NoEmptyFragment 만 reload 되는 방법 찾기
-                            Intent intent = new Intent(getActivity(), HomeActivity.class);
-                            startActivity(intent);
-                            getActivity().finish();
                         }
 
                         @Override

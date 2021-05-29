@@ -1,19 +1,15 @@
 package com.example.sharingbookshelf.Activities;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
 
-import com.example.sharingbookshelf.Fragments.ChattingFragment;
 import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.MyPageFragment;
-import com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.RankingFragment;
 import com.example.sharingbookshelf.Fragments.ReportRankingFragment;

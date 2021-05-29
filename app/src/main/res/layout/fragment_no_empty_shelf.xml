@@ -1,20 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/no_empty_shelf"
-    style="@style/loginCard"
-    android:layout_width="350dp"
-    android:layout_height="460dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_gravity="center"
-    app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-    android:background="@color/whiteCardColor"
-    android:elevation="5dp"
-    app:cardCornerRadius="@dimen/loginCardRadius">
+    android:gravity="center"
+    android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/no_empty_shelf"
+        style="@style/loginCard"
+        android:layout_width="350dp"
+        android:layout_height="460dp"
+        android:layout_gravity="center"
+        android:background="@color/whiteCardColor"
+        android:elevation="5dp"
+        app:cardCornerRadius="@dimen/loginCardRadius"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
+
+        <ImageButton
+            android:id="@+id/iv_selectCategory"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/login_button_bk"
+            android:backgroundTint="#4Dffffff"
+            android:elevation="1dp"
+            android:src="@drawable/outline_filter_alt_24" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcv_myBookShelf"
@@ -24,8 +36,7 @@
             android:paddingTop="15dp"
             android:paddingRight="25dp"
             android:paddingBottom="10dp"
-            android:scrollbars="vertical"
-            android:theme="@style/edgeEffect"/>
+            android:scrollbars="vertical" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
@@ -38,12 +49,9 @@
                 android:layout_gravity="bottom|right"
                 android:layout_margin="16dp"
                 android:src="@drawable/outline_add_24"
-                app:fabSize="auto"
-                app:backgroundTint="@color/colorPrimary_2" />
+                app:backgroundTint="@color/colorPrimary_2"
+                app:fabSize="auto" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-    </RelativeLayout>
-
-
-</androidx.cardview.widget.CardView>
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

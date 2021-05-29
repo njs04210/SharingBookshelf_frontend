@@ -60,14 +60,14 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:text="My 책장" />
+            android:text="My 책장"
+            app:tabMode="fixed" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabMode="fixed"
-            android:text="My 독후감" />
+            android:text="My 독후감"
+            app:tabMode="fixed" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -75,5 +75,6 @@
         android:id="@+id/bookshelf"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 
 </LinearLayout>
