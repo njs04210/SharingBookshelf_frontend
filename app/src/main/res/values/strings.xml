@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">아이북쉐어</string>
+    <string name="app_name">iBookShare!</string>
     <string name="register">회원가입</string>
     <string name="login_email_hint">아이디(이메일)</string>
     <string name="login_password_hint">비밀번호</string>
@@ -9,4 +9,6 @@
     <string name="cameraButton">바코드로 추가</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_addBook">책 추가</string>
+    <string name="btn_back">돌아가기</string>
 </resources>
