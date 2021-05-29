@@ -8,7 +8,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-//import com.example.sharingbookshelf.Fragments.ChallengePopupFragment;
+import com.example.sharingbookshelf.Fragments.ChallengePopupFragment;
 import com.example.sharingbookshelf.Fragments.UserinfoReportFragment;
 import com.example.sharingbookshelf.Fragments.UserinfoShelfFragment;
 import com.example.sharingbookshelf.R;
@@ -37,8 +37,8 @@ public class UserinfoActivity extends FragmentActivity {
         btn_fightUser.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //ChallengePopupFragment c = ChallengePopupFragment.getInstance();
-                //c.show(getSupportFragmentManager(), ChallengePopupFragment.TAG_EVENT_DIALOG);
+                ChallengePopupFragment c = ChallengePopupFragment.getInstance();
+                c.show(getSupportFragmentManager(), ChallengePopupFragment.TAG_EVENT_DIALOG);
             }
         });
 

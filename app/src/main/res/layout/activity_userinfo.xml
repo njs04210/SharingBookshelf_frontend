@@ -24,6 +24,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|center"
+            android:layout_marginBottom="10dp"
             android:src="@drawable/icon_logo"
             app:civ_border_color="#a6a6a6"
             app:civ_border_width="1dp" />
@@ -32,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="28dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="bottom|center"
             android:orientation="vertical">
 
@@ -65,7 +67,7 @@
                     android:fontFamily="@font/font_main"
                     android:text="프로필보기"
                     android:textAlignment="center"
-                    android:textColor="#666666"
+                    android:textColor="#939393"
                     android:textSize="10sp" />
 
                 <Button
@@ -77,7 +79,7 @@
                     android:fontFamily="@font/font_main"
                     android:text="겨루기신청"
                     android:textAlignment="center"
-                    android:textColor="#666666"
+                    android:textColor="#939393"
                     android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
