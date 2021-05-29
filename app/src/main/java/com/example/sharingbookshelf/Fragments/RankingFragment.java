@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ public class RankingFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private ArrayList<RankingData> rankingList = new ArrayList<>();
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class RankingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ranking, container, false);
 
+        context = container.getContext();
+
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_ranking);
 
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -43,7 +47,7 @@ public class RankingFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new RankingAdapter(rankingList);
+        mAdapter = new RankingAdapter(context, rankingList);
         mRecyclerView.setAdapter(mAdapter);
 
 
@@ -55,6 +59,7 @@ public class RankingFragment extends Fragment {
         for (int i = 4; i < 11; i++) {
             RankingData rankingData = new RankingData();
             rankingData.setGrade(i);
+            rankingData.setBookId(i);
             rankingData.setBooktitle("누가 내 머리에 똥쌌어?");
 
             rankingList.add(rankingData);

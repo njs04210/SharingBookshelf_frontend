@@ -35,8 +35,8 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            tv_grade = (TextView) view.findViewById(R.id.tv_grade);
-            tv_booktitle = (TextView) view.findViewById(R.id.tv_booktitle);
+            tv_grade = view.findViewById(R.id.tv_grade);
+            tv_booktitle = view.findViewById(R.id.tv_booktitle);
 
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -44,7 +44,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
                     int pos = getAdapterPosition();
                     if (pos != RecyclerView.NO_POSITION) {
                         RankingData item = rankingList.get(pos);
-                        Log.d("책", item.getIsbn());
+                        Log.d("책", String.valueOf(item.getBookId()));
 
                         Bundle bundle = new Bundle();
                         bundle.putInt("bookId", item.getBookId());
@@ -58,8 +58,9 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
         }
     }
 
-    public RankingAdapter(ArrayList<RankingData> dataSet) {
+    public RankingAdapter(Context context, ArrayList<RankingData> dataSet) {
         rankingList = dataSet;
+        this.context = context;
     }
 
     @NonNull
@@ -68,7 +69,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_ranking, viewGroup, false);
 
-        context = viewGroup.getContext();
+        //context = viewGroup.getContext();
         return new ViewHolder(view);
     }
 

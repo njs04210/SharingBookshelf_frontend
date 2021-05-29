@@ -69,15 +69,15 @@ public class ReportRankingDetailsFragment extends DialogFragment {
 
 
     private void setReport() {
-        Date mDate = new Date();
+        /*Date mDate = new Date();
         for (int i = 0; i < 10; i++) {
-            BookreportData bookreportData = new BookreportData();
-            bookreportData.setCanvas_uri("https://firebasestorage.googleapis.com/v0/b/ibookshare--login.appspot.com/o/BookReportImg%2F40%2F1.jpg?alt=media&token=2366fa8f-d04c-4e48-9386-fdc7bf20f9b9");
+            BookreportData.BookreportDetailData bookreportDetailData = new BookreportData.BookreportDetailData();
+            bookreportDetailData.setCanvas_uri("https://firebasestorage.googleapis.com/v0/b/ibookshare--login.appspot.com/o/BookReportImg%2F40%2F1.jpg?alt=media&token=2366fa8f-d04c-4e48-9386-fdc7bf20f9b9");
             bookreportData.setTitle("책 제목이 길어도 그렇게 얄쌍하게 나오나");
             bookreportData.setCreated(mDate);
 
             reportList.add(bookreportData);
-        }
+        }*/
     }
 
     @Override
