@@ -21,8 +21,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/font_main"
             android:layout_gravity="center"
+            android:fontFamily="@font/font_main"
             android:text="책 순위"
             android:textColor="@color/white"
             android:textSize="30dp"
@@ -30,31 +30,32 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.google.android.material.tabs.TabLayout
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:background="@color/loginBkColor"
-        app:tabIndicatorColor="@color/colorPrimary_2"
-        app:tabSelectedTextColor="@color/colorPrimary_2">
+    <!--    <com.google.android.material.tabs.TabLayout-->
+    <!--        android:layout_width="300dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center_horizontal"-->
+    <!--        android:background="@color/loginBkColor"-->
+    <!--        app:tabIndicatorColor="@color/colorPrimary_2"-->
+    <!--        app:tabSelectedTextColor="@color/colorPrimary_2">-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_main"
-            android:text="좋아요" />
+    <!--        <com.google.android.material.tabs.TabItem-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/font_main"-->
+    <!--            android:text="좋아요" />-->
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/font_main"
-            android:text="책바구니" />
+    <!--        <com.google.android.material.tabs.TabItem-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:fontFamily="@font/font_main"-->
+    <!--            android:text="책바구니" />-->
 
-    </com.google.android.material.tabs.TabLayout>
+    <!--    </com.google.android.material.tabs.TabLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="20dp"
         android:background="@color/white"
         android:orientation="vertical">
@@ -79,7 +80,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="80dp"
                 android:fontFamily="@font/font_main"
-                android:text="좋아요가 가장 많은 책"
+                android:text="가장 많이 담긴 도서"
                 android:textSize="25dp"
                 android:textStyle="bold" />
 
@@ -106,7 +107,8 @@
                     android:layout_width="80dp"
                     android:layout_height="100dp"
                     android:layout_below="@+id/tv_1st"
-                    android:background="@color/purple_200" />
+                    android:background="@color/white"
+                    android:elevation="5dp" />
 
             </RelativeLayout>
 
@@ -133,7 +135,8 @@
                     android:layout_width="80dp"
                     android:layout_height="100dp"
                     android:layout_below="@+id/tv_2nd"
-                    android:background="@color/purple_200" />
+                    android:background="@color/white"
+                    android:elevation="5dp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -159,7 +162,8 @@
                     android:layout_width="80dp"
                     android:layout_height="100dp"
                     android:layout_below="@+id/tv_3rd"
-                    android:background="@color/purple_200" />
+                    android:background="@color/white"
+                    android:elevation="5dp" />
             </RelativeLayout>
         </FrameLayout>
 
@@ -175,8 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scrollbarFadeDuration="0"
-                android:theme="@style/edgeEffect">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:theme="@style/edgeEffect"></androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </LinearLayout>

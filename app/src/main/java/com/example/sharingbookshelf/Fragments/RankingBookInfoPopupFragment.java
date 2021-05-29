@@ -49,6 +49,7 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
         }
         return selectBookReportPopupFragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
