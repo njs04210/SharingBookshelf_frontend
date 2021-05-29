@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/font_main"
-            android:text="5월의 독서짱"
+            android:text="6월의 독서짱"
             android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -70,10 +70,14 @@
 
                         <ImageButton
                             android:id="@+id/cb_profile1"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/icon_logo" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="80dp"
+                            android:maxHeight="80dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/icon_logo"
+                            android:background="@drawable/icon_logo"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -152,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/font_main"
-                            android:text="5월의 독서짱이 된 소감"
+                            android:text="6월의 독서짱이 된 소감"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 
@@ -193,10 +197,14 @@
 
                         <ImageButton
                             android:id="@+id/cb_profile2"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/icon_logo" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="80dp"
+                            android:maxHeight="80dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/icon_logo"
+                            android:background="@drawable/icon_logo" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -275,7 +283,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/font_main"
-                            android:text="5월의 독서짱이 된 소감"
+                            android:text="6월의 독서짱이 된 소감"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 
@@ -316,10 +324,15 @@
 
                         <ImageButton
                             android:id="@+id/cb_profile3"
-                            android:layout_width="80dp"
-                            android:layout_height="80dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/icon_logo" />
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:maxWidth="80dp"
+                            android:maxHeight="80dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/icon_logo"
+                            android:background="@drawable/icon_logo"
+                            />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -398,7 +411,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/font_main"
-                            android:text="5월의 독서짱이 된 소감"
+                            android:text="6월의 독서짱이 된 소감"
                             android:textSize="12dp"
                             android:textStyle="bold" />
 
