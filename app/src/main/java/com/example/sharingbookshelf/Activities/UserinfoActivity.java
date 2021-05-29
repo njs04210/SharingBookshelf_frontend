@@ -53,7 +53,7 @@ public class UserinfoActivity extends FragmentActivity {
         userinforeportFragment = new UserinfoReportFragment();
         userinfoshelfFragment = new UserinfoShelfFragment();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.usershelf, userinfoshelfFragment).commit();
 
         mtabLayout = findViewById(R.id.tabLayout_userinfo);
         mtabLayout.addTab(mtabLayout.newTab().setText("책장"));
@@ -63,6 +63,7 @@ public class UserinfoActivity extends FragmentActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
+
                 Fragment selected = null;
                 if (position == 0)
                     selected = userinfoshelfFragment;

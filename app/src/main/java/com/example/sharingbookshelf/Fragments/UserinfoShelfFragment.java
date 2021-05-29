@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +30,7 @@ public class UserinfoShelfFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private ArrayList<ThumbnailData> thumbnailList;
+    private ImageButton iv_categorySelect;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,15 @@ public class UserinfoShelfFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_userinfo_shelf, container, false);
+
+        iv_categorySelect = view.findViewById(R.id.iv_selectCategory);
+        iv_categorySelect.setOnClickListener(new View.OnClickListener() { //필터 버튼 액티비티
+            public void onClick(View v) {
+                FilterCategoryFragment filterCategoryFragment = new FilterCategoryFragment(UserinfoShelfFragment.this);
+                filterCategoryFragment.show(getFragmentManager(), "FilterCategoryFragment");
+
+            }
+        });
 
         mRecyclerView = view.findViewById(R.id.rcv_UserinfoShelf);
 
