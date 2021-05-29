@@ -1,17 +1,13 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 
-import androidx.annotation.CallSuper;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -61,7 +57,6 @@ public class NoEmptyShelfFragment extends Fragment {
     private RetrofitServiceApi retrofitServiceApi;
     private ArrayList<Map<String, Object>> thumbnailSet;
     private Context context;
-    public boolean isCategorySelected = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -199,7 +194,7 @@ public class NoEmptyShelfFragment extends Fragment {
     private void getBookDetails(BookApiResponse books) {
         ArrayList<BookApiResponse.Document> documentList = books.documents;
         BookApiResponse.Meta meta = books.metas;
-        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment();
+        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment(NoEmptyShelfFragment.this);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("documentList", documentList);

@@ -51,7 +51,6 @@ public class SelectCategoryFragment extends DialogFragment {
                 if (checkedChipId != -1) {
 
                     Intent intent = new Intent();
-                    BookInfoPopupFragment bookInfoPopupFragment = BookInfoPopupFragment.getInstance();
                     String category = null;
 
                     switch (checkedChipId) {

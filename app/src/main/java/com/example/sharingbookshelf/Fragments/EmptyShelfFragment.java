@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
@@ -51,8 +53,11 @@ public class EmptyShelfFragment extends Fragment {
                             setHasShelfcode(1);
                         }
                         Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
-                        getActivity().getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();
+                        Intent intent = new Intent(getActivity(), HomeActivity.class);
+                        startActivity(intent);
+                        getActivity().finish();
+                       /* getActivity().getSupportFragmentManager().beginTransaction()
+                                .replace(R.id.bookshelf, new NoEmptyShelfFragment()).commit();*/
                     }
 
                     @Override
