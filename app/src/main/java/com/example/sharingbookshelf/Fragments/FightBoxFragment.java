@@ -2,8 +2,10 @@ package com.example.sharingbookshelf.Fragments;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,18 +18,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
 
-import com.example.sharingbookshelf.Adapters.MailboxAdapter;
-import com.example.sharingbookshelf.Models.MessageData;
+import com.example.sharingbookshelf.Adapters.FightboxAdapter;
+import com.example.sharingbookshelf.Models.fightData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
-public class MessageBoxFragment extends DialogFragment {
+public class FightBoxFragment extends DialogFragment {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<MessageData> mailList = new ArrayList<>();
+    private ArrayList<fightData> fightlist = new ArrayList<>();
 
 
     @Override
@@ -37,16 +39,16 @@ public class MessageBoxFragment extends DialogFragment {
     }
 
 
-    public static MessageBoxFragment getInstance() {
-        MessageBoxFragment messageBoxFragment = new MessageBoxFragment();
-        return messageBoxFragment;
+    public static FightBoxFragment getInstance() {
+        FightBoxFragment fightBoxFragment = new FightBoxFragment();
+        return fightBoxFragment;
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_messagebox, container, false);
+        View view = inflater.inflate(R.layout.fragment_fightbox, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_mail);
 
@@ -56,7 +58,7 @@ public class MessageBoxFragment extends DialogFragment {
 
         setMessageBox();
 
-        mAdapter = new MailboxAdapter(mailList);
+        mAdapter = new FightboxAdapter(fightlist);
         mRecyclerView.setAdapter(mAdapter);
 
         return view;
@@ -65,17 +67,19 @@ public class MessageBoxFragment extends DialogFragment {
     private void setMessageBox() {
         for (int i = 0; i < 5; i++) {
 
-            MessageData messageData = new MessageData();
+            fightData fightData = new fightData();
 
-            messageData.setProfileImage(R.drawable.icon_logo);
-            messageData.setUserName("진주맘");
-            messageData.setLastMessage("독후감이 좋네요^^");
-            messageData.setMessageTime("날짜,시간");
+            fightData.setProfileImage(R.drawable.icon_logo);
+            fightData.setUserName("진주맘");
+            fightData.setFightMessage("독서대결 펼쳐요!");
+            fightData.setFightTime("~yyyy.MM.dd");
+            fightData.setFightaim("5권");
 
-            mailList.add(messageData);
+            fightlist.add(fightData);
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
     public void onResume() {
         super.onResume();
