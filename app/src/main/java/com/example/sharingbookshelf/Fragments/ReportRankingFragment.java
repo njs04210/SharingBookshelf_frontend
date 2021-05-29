@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,7 @@ import com.example.sharingbookshelf.Activities.UserinfoActivity;
 import com.example.sharingbookshelf.R;
 
 public class ReportRankingFragment extends Fragment implements View.OnClickListener {
-    private ImageButton cb_profile1, cb_profile2, cb_profile3;
+    private ImageView cb_profile1, cb_profile2, cb_profile3;
     private TextView tv_age1, tv_age2, tv_age3, tv_gender1, tv_gender2, tv_gender3,
             tv_nickname1, tv_nickname2, tv_nickname3;
 
