@@ -1,5 +1,7 @@
 package com.example.sharingbookshelf.Models;
 
+import android.service.autofill.UserData;
+
 import com.google.gson.annotations.SerializedName;
 
 public class RankingData {
@@ -11,6 +13,12 @@ public class RankingData {
 
     @SerializedName("book")
     BookData book;
+
+    @SerializedName("user")
+    GetUserInfoResponse user;
+
+    @SerializedName("kids")
+    KidsData kids;
 
     public int getRanking() {
         return ranking;
@@ -36,4 +44,19 @@ public class RankingData {
         this.book = book;
     }
 
+    public GetUserInfoResponse getUser() {
+        return user;
+    }
+
+    public void setUser(GetUserInfoResponse user) {
+        this.user = user;
+    }
+
+    public KidsData getKids() {
+        return kids;
+    }
+
+    public void setKids(KidsData kids) {
+        this.kids = kids;
+    }
 }

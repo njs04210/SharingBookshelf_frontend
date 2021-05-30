@@ -86,5 +86,9 @@ public interface RetrofitServiceApi {
     /* 랭킹 API */
     @GET("api/ranking")
     Call<RankingResponse> getRanking();
+
+    @GET("api/ranking/bookreports")
+    Call<RankingResponse> getReportsRanking();
+
 }
 

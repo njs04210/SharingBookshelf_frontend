@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/loginBkColor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/loginBkColor"
     android:orientation="vertical"
     tools:context=".Activities.UserinfoActivity">
 
@@ -19,77 +19,85 @@
         app:layout_constraintStart_toStartOf="parent"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/civ_user_profile"
-            android:layout_width="70dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="10dp"
-            android:src="@drawable/icon_logo"
-            app:civ_border_color="#a6a6a6"
-            app:civ_border_width="1dp" />
+            android:paddingRight="15dp"
+            android:gravity="center">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="28dp"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="bottom|center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_user_nickname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center_horizontal"
-                android:fontFamily="@font/font_main"
-                android:text="사용자의 책바구니"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                app:autoSizeStepGranularity="2sp" />
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_user_profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="bottom|center"
+                android:src="@drawable/icon_logo"
+                app:civ_border_color="#a6a6a6"
+                app:civ_border_width="1dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom|center"
+                android:layout_marginLeft="15dp"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/civ_user_profile"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/btn_viewProfile"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="10dp"
-                    android:backgroundTint="#EDEDED"
+                <TextView
+                    android:id="@+id/tv_user_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:gravity="bottom"
+                    android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/font_main"
-                    android:text="프로필보기"
+                    android:text="사용자의 책바구니"
                     android:textAlignment="center"
-                    android:textColor="#939393"
-                    android:textSize="10sp" />
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:autoSizeStepGranularity="2sp" />
 
-                <Button
-                    android:id="@+id/btn_fightUser"
-                    android:layout_width="80dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:backgroundTint="#EDEDED"
-                    android:fontFamily="@font/font_main"
-                    android:text="겨루기신청"
-                    android:textAlignment="center"
-                    android:textColor="#939393"
-                    android:textSize="10sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="bottom"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btn_viewProfile"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="0dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#EDEDED"
+                        android:fontFamily="@font/font_main"
+                        android:text="프로필보기"
+                        android:textAlignment="center"
+                        android:textColor="#939393"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/btn_fightUser"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="bottom|center"
+                        android:layout_weight="1"
+                        android:backgroundTint="#EDEDED"
+                        android:fontFamily="@font/font_main"
+                        android:text="대결신청"
+                        android:textColor="#939393"
+                        android:textSize="10sp" />
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
+
+        </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout_userinfo"
         android:layout_width="220dp"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         app:tabBackground="@color/loginBkColor"

@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sharingbookshelf.Adapters.UserReportAdapter;
-import com.example.sharingbookshelf.Models.BookreportData;
-import com.example.sharingbookshelf.Models.MessageData;
 import com.example.sharingbookshelf.Models.UserReportData;
 import com.example.sharingbookshelf.R;
 

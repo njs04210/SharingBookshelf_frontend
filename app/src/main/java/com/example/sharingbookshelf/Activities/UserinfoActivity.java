@@ -53,13 +53,15 @@ public class UserinfoActivity extends FragmentActivity {
         userinforeportFragment = new UserinfoReportFragment();
         userinfoshelfFragment = new UserinfoShelfFragment();
 
-        getSupportFragmentManager().beginTransaction().add(R.id.usershelf, userinfoshelfFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment).commit();
 
         mtabLayout = findViewById(R.id.tabLayout_userinfo);
         mtabLayout.addTab(mtabLayout.newTab().setText("책장"));
         mtabLayout.addTab(mtabLayout.newTab().setText("독후감"));
 
-        mtabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mtabLayout.getTabAt(1).select();
+
+        mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 int position = tab.getPosition();
