@@ -71,7 +71,7 @@ public class UserinfoShelfFragment extends Fragment {
         mRecyclerView = view.findViewById(R.id.rcv_UserinfoShelf);
 
         recyclerViewSettings();
-        //setThumbnail();
+
         setShelfView(mem_id); // 책장 채워넣기
         return view;
     }
@@ -91,7 +91,6 @@ public class UserinfoShelfFragment extends Fragment {
 
             @Override
             public void onFailure(Call<GetShelfStatusResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
             }
         });
     }
@@ -111,7 +110,7 @@ public class UserinfoShelfFragment extends Fragment {
 
             @Override
             public void onFailure(Call<GetShelfStatusResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
+
             }
         });
     }
@@ -134,17 +133,5 @@ public class UserinfoShelfFragment extends Fragment {
         mAdapter = new UserShelfAdapter(thumbnailList);
         mRecyclerView.setAdapter(mAdapter);
     }
-
-
-   /* private void setThumbnail() {
-        for (int i = 0; i < 10; i++) {
-            ThumbnailData thumbnailData = new ThumbnailData();
-            thumbnailData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");
-            thumbnailList.add(thumbnailData);
-        }
-        mAdapter = new UserShelfAdapter(thumbnailList);
-        mAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mAdapter);
-    }*/
 
 }

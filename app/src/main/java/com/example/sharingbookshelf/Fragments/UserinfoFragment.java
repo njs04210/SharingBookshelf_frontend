@@ -55,7 +55,7 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_otherpage, container, false);
+        View v = inflater.inflate(R.layout.fragment_userinfo, container, false);
 
         civ_profile = v.findViewById(R.id.civ_user_profile);
         tv_nickname = v.findViewById(R.id.tv_user_nickname);
