@@ -63,7 +63,7 @@ public class ClickBookDetailsFragment extends DialogFragment {
         memoField = v.findViewById(R.id.et_memo);
 
         Bundle bundle = getArguments();
-        bookId = bundle.getInt("bookId");
+        bookId = bundle.getInt("book_id");
         callBook(bookId);
 
         return v;

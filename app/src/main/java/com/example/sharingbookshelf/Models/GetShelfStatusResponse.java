@@ -14,7 +14,7 @@ public class GetShelfStatusResponse {
     private String msg;
 
     @SerializedName("hasBooks")
-    private ArrayList<Map<String,Object>> hasBook;
+    private ArrayList<BookData> hasBook;
 
     public int getCode() {
         return code;
@@ -24,8 +24,7 @@ public class GetShelfStatusResponse {
         return msg;
     }
 
-    public ArrayList<Map<String,Object>> getHasBooks() {
+    public ArrayList<BookData> getHasBooks() {
         return hasBook;
     }
-
 }

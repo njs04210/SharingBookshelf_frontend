@@ -23,13 +23,15 @@ public class FilterCategoryFragment extends DialogFragment {
 
     private NoEmptyShelfFragment noEmptyShelfFragment;
     private UserinfoShelfFragment userinfoShelfFragment;
+    private int userinfo_memId;
 
     public FilterCategoryFragment(NoEmptyShelfFragment noEmptyShelfFragment) {
         this.noEmptyShelfFragment = noEmptyShelfFragment;
     }
 
-    public FilterCategoryFragment(UserinfoShelfFragment userinfoShelfFragment) {
+    public FilterCategoryFragment(UserinfoShelfFragment userinfoShelfFragment, int memId) {
         this.userinfoShelfFragment = userinfoShelfFragment;
+        this.userinfo_memId = memId;
     }
 
     @Override
@@ -93,9 +95,17 @@ public class FilterCategoryFragment extends DialogFragment {
            /*         Bundle bundle = new Bundle();
                     bundle.putInt("categoryNum", categoryNum);*/
                     if (categoryNum == 0) {
-                        noEmptyShelfFragment.setShelfView(MainActivity.getMemId());
+                        if (noEmptyShelfFragment != null) {
+                            noEmptyShelfFragment.setShelfView(MainActivity.getMemId());
+                        } else if (userinfoShelfFragment != null) {
+                            userinfoShelfFragment.setShelfView(userinfo_memId);
+                        }
                     } else {
-                        noEmptyShelfFragment.setShelfViewCategory(MainActivity.getMemId(), categoryNum);
+                        if (noEmptyShelfFragment != null) {
+                            noEmptyShelfFragment.setShelfViewCategory(MainActivity.getMemId(), categoryNum);
+                        } else if (userinfoShelfFragment != null) {
+                            userinfoShelfFragment.setShelfViewCategory(userinfo_memId, categoryNum);
+                        }
                     }
 
                     dismiss();

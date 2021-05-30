@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,12 +53,14 @@ public class SelfAddBookPopupFragment extends DialogFragment {
         btn_findBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!(isbn_field.getText().toString()).equals("")) {
+                if (!(isbn_field.getText().toString()).equals("") && isbn_field.getText().length() >= 10) {
                     String isbn = isbn_field.getText().toString();
                     Intent intent = new Intent();
                     intent.putExtra("ISBN", isbn);
                     getTargetFragment().onActivityResult(getTargetRequestCode(), RESULT_OK, intent);
                     getDialog().dismiss();
+                } else {
+                    Toast.makeText(getContext(), "잘못된 형식의 ISBN 입니다!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

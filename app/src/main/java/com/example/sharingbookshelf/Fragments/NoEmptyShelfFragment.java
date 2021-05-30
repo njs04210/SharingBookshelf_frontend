@@ -30,6 +30,7 @@ import com.example.sharingbookshelf.HttpRequest.BookApiRetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.BookApiResponse;
+import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -55,7 +56,7 @@ public class NoEmptyShelfFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
-    private ArrayList<Map<String, Object>> thumbnailSet;
+    private ArrayList<BookData> thumbnailSet;
     private Context context;
 
     @Override
@@ -102,7 +103,7 @@ public class NoEmptyShelfFragment extends Fragment {
         mLayoutManager = new GridLayoutManager(getActivity(), 3);
         mRecyclerView.setLayoutManager(mLayoutManager);
         thumbnailSet = new ArrayList<>();
-        mAdapter = new MyBookshelfAdapter(getActivity(), thumbnailSet);
+        mAdapter = new MyBookshelfAdapter(NoEmptyShelfFragment.this, getActivity(), thumbnailSet);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -146,9 +147,9 @@ public class NoEmptyShelfFragment extends Fragment {
         });
     }
 
-    private void getThumbnail(ArrayList<Map<String, Object>> myDataset) {
+    private void getThumbnail(ArrayList<BookData> myDataset) {
 
-        mAdapter = new MyBookshelfAdapter(getActivity(), myDataset);
+        mAdapter = new MyBookshelfAdapter(NoEmptyShelfFragment.this, getActivity(), myDataset);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 
@@ -193,16 +194,20 @@ public class NoEmptyShelfFragment extends Fragment {
 
     private void getBookDetails(BookApiResponse books) {
         ArrayList<BookApiResponse.Document> documentList = books.documents;
-        BookApiResponse.Meta meta = books.metas;
-        BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment(NoEmptyShelfFragment.this);
+        if (documentList.size() != 0) {
+            BookApiResponse.Meta meta = books.metas;
+            BookInfoPopupFragment bookInfoPopupFragment = new BookInfoPopupFragment(NoEmptyShelfFragment.this);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("documentList", documentList);
-        bundle.putSerializable("meta", meta);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("documentList", documentList);
+            bundle.putSerializable("meta", meta);
 
-        bookInfoPopupFragment.setArguments(bundle);
-        bookInfoPopupFragment.show(getChildFragmentManager()
-                , "BookInfoPopupFragment");
+            bookInfoPopupFragment.setArguments(bundle);
+            bookInfoPopupFragment.show(getChildFragmentManager()
+                    , "BookInfoPopupFragment");
+        } else {
+            Toast.makeText(context, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private ListPopupWindow getListPopupWindow() {

@@ -1,9 +1,7 @@
 package com.example.sharingbookshelf.Adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +9,14 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.Activities.HomeActivity;
-import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Fragments.ClickBookDetailsFragment;
-import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
+import com.example.sharingbookshelf.Fragments.RankingBookInfoPopupFragment;
+import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -27,8 +24,9 @@ import java.util.Map;
 
 public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.ViewHolder> {
 
-    private ArrayList<Map<String, Object>> localDataSet;
+    private ArrayList<BookData> localDataSet;
     private Context context;
+    private Fragment selectedFragment;
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private final ImageView mimageView;
@@ -42,19 +40,22 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     if (position != RecyclerView.NO_POSITION) {
-                        String isbn = (String) localDataSet.get(position).get("ISBN");
-                        Double d = (Double) localDataSet.get(position).get("book_id"); // book_id를 double -> int 로 형변환 해야함
-                        int book_id = d.intValue();
 
-                        Log.d("책", isbn);
-
+                        int book_id = localDataSet.get(position).getBook_id();
                         Bundle bundle = new Bundle();
-                        bundle.putInt("bookId", book_id);
-                        FragmentManager fm = ((AppCompatActivity)context).getSupportFragmentManager();
-                        ClickBookDetailsFragment dialog = new ClickBookDetailsFragment();
-                        dialog.setArguments(bundle);
-                        dialog.show(fm, "abc");
+                        bundle.putInt("book_id", book_id);
+                        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
 
+                        if (selectedFragment.getTag().equals("NoEmptyShelfFragment")) {
+                            ClickBookDetailsFragment clickBookDetailsFragment = new ClickBookDetailsFragment();
+                            clickBookDetailsFragment.setArguments(bundle);
+                            clickBookDetailsFragment.show(fm, "MyBookshelfAdapter");
+
+                        } else if (selectedFragment.getTag().equals("UserinfoShelfFragment")) {
+                            RankingBookInfoPopupFragment rankingBookInfoPopupFragment = new RankingBookInfoPopupFragment();
+                            rankingBookInfoPopupFragment.setArguments(bundle);
+                            rankingBookInfoPopupFragment.show(fm, "MyBookshelfAdapter");
+                        }
                     }
                 }
             });
@@ -62,9 +63,10 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
 
     }
 
-    public MyBookshelfAdapter(Context context, ArrayList<Map<String, Object>> dataSet) {
-        localDataSet = dataSet;
+    public MyBookshelfAdapter(Fragment fragment, Context context, ArrayList<BookData> dataSet) {
+        this.selectedFragment = fragment;
         this.context = context;
+        this.localDataSet = dataSet;
     }
 
     @NonNull
@@ -73,7 +75,7 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
         View view = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.item_book_mybookshelf, viewGroup, false);
 
-      //  context = viewGroup.getContext();
+        //  context = viewGroup.getContext();
 
         return new ViewHolder(view);
     }
@@ -81,8 +83,8 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, final int position) {
 
-        Map<String, Object> data = localDataSet.get(position);
-        String thumbnailUri = (String) data.get("thumbnail");
+        BookData data = localDataSet.get(position);
+        String thumbnailUri = (String) data.getThumbnail();
         Glide
                 .with(viewHolder.mimageView.getContext())
                 .load(thumbnailUri)
