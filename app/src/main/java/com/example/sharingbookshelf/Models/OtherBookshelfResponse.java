@@ -29,13 +29,13 @@ public class OtherBookshelfResponse {
     }
 
     public class OtherShelfData {
-        @SerializedName("member")
-        GetUserInfoResponse member;
+        @SerializedName("user")
+        UserData member;
 
         @SerializedName("hasBookList")
         ArrayList<BookData> hasBookList;
 
-        public GetUserInfoResponse getMember() {
+        public UserData getMember() {
             return member;
         }
 

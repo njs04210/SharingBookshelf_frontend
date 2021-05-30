@@ -21,6 +21,7 @@ import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.KidsData;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.Models.RankingResponse;
+import com.example.sharingbookshelf.Models.UserData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         for (int i = 0; i < 3; i++) {
             int total = rankingData.get(i).getTotal();
             KidsData kids = rankingData.get(i).getKids();
-            GetUserInfoResponse user = rankingData.get(i).getUser();
+            UserData user = rankingData.get(i).getUser();
 
             String sex = null;
             if (kids.getSex() == 1) {

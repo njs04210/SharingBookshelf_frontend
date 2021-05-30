@@ -103,9 +103,9 @@ public class MyBookshelfFragment extends Fragment {
             @Override
             public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
                 GetUserInfoResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "현재사용자 : " + result.getNickname() + " 프로필 : " + result.getPhotoURL());
-                String nickname = result.getNickname() + "의 책바구니";
-                String profileImg = result.getPhotoURL();
+                Log.d(MainActivity.MAIN_TAG, "현재사용자 : " + result.getUser().getNickname() + " 프로필 : " + result.getUser().getNickname());
+                String nickname = result.getUser().getNickname() + "의 책바구니";
+                String profileImg = result.getUser().getPhotoURL();
                 tv_nickname.setText(nickname);
                 if (profileImg != null) {
                     mGlideRequestManager.load(profileImg).into(civ_profile);
