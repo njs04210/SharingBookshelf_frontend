@@ -126,6 +126,7 @@ public class MyBookshelfFragment extends Fragment {
             @Override
             public void onResponse(Call<GetShelfStatusResponse> call, Response<GetShelfStatusResponse> response) {
                 setHasShelfcode(response.body().getCode());
+
                 Log.d(MainActivity.MAIN_TAG, response.body().getMsg());
                 changeInnerFragment();
             }

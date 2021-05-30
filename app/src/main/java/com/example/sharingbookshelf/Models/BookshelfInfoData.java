@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BookshelfInfoData {
     private String nickname;
-    private int profile;
+    private String profile;
     private ArrayList<BookData> bookList;
 
     public String getNickname() {
@@ -15,11 +15,11 @@ public class BookshelfInfoData {
         this.nickname = nickname;
     }
 
-    public int getProfile() {
+    public String getProfile() {
         return profile;
     }
 
-    public void setProfile(int profile) {
+    public void setProfile(String profile) {
         this.profile = profile;
     }
 

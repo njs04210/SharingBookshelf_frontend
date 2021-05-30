@@ -2,7 +2,10 @@ package com.example.sharingbookshelf.Models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class GetUserInfoResponse {
+import java.io.Serializable;
+
+public class GetUserInfoResponse implements Serializable {
+
     @SerializedName("flag")
     int flag;
 

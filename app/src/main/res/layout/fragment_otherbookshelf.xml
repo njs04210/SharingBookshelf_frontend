@@ -14,11 +14,10 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:background="@drawable/toolbar_shape"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary_2"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-            app:menu="@menu/top_app_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
@@ -26,15 +25,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center"
-                android:layout_marginLeft="28dp"
-                android:layout_marginBottom="46dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="25dp"
                 android:fontFamily="@font/font_main"
-                android:text="책바구니 둘러보기"
+                android:text="이웃 책장"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:autoSizeStepGranularity="2sp" />
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </androidx.appcompat.widget.Toolbar>
 
@@ -61,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
-                android:text="학습(똑똑해져요)"
+                android:text="전체"
                 android:textSize="12sp"/>
 
             <com.google.android.material.chip.Chip
@@ -69,7 +66,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
-                android:text="동화(상상력이풍부해져요)"
+                android:text="학습"
                 android:textSize="12sp"/>
 
             <com.google.android.material.chip.Chip
@@ -77,7 +74,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
-                android:text="만화(시간가는줄몰라요)"
+                android:text="동화"
+                android:textSize="12sp"/>
+
+            <com.google.android.material.chip.Chip
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_main"
+                android:text="만화"
                 android:textSize="12sp"/>
 
             <com.google.android.material.chip.Chip
@@ -88,11 +93,12 @@
                 android:text="기타"
                 android:textSize="12sp"/>
 
+
         </com.google.android.material.chip.ChipGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="@dimen/loginViewsMargin"

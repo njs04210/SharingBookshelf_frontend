@@ -12,6 +12,7 @@ import com.example.sharingbookshelf.Models.MemoData;
 import com.example.sharingbookshelf.Models.OneBookreportResponse;
 import com.example.sharingbookshelf.Models.RankingResponse;
 import com.example.sharingbookshelf.Models.SelectBookReportResponse;
+import com.example.sharingbookshelf.Models.OtherBookshelfResponse;
 import com.example.sharingbookshelf.Models.SetUserInfoResponse;
 import com.example.sharingbookshelf.Models.UserInfoData;
 
@@ -46,6 +47,9 @@ public interface RetrofitServiceApi {
     Call<BookApiResponse> setBookApiResponse(@Query("query") String isbn, @Query("target") String target);
 
     /* 책장 api */
+    @GET("api/bookshelves")
+    Call<OtherBookshelfResponse> getOtherShelf();
+
     @GET("api/bookshelves/{memId}")
     Call<GetShelfStatusResponse> getShelfStatus(@Path("memId") int memId);
 
