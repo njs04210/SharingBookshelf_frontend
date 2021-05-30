@@ -8,19 +8,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.Models.BookData;
+import com.example.sharingbookshelf.Models.OtherBookshelfResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
 
 public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelfAdapter.ViewHolder> {
 
-    private ArrayList<BookshelfInfoData> bookshelfList;
+    private ArrayList<OtherBookshelfResponse.OtherShelfData> bookshelfList;
     private Context context;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -36,7 +38,7 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
         }
     }
 
-    public OthersBookshelfAdapter(ArrayList<BookshelfInfoData> dataSet) {
+    public OthersBookshelfAdapter(FragmentActivity activity, ArrayList<OtherBookshelfResponse.OtherShelfData> dataSet) {
         bookshelfList = dataSet;
     }
 
@@ -51,34 +53,28 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
-        BookshelfInfoData bookshelfInfoData = bookshelfList.get(position);
-        if (bookshelfInfoData.getProfile() == null) {
-            Glide
-                    .with(viewHolder.iv_profileImg.getContext())
-                    .load(R.drawable.icon_logo)
-                    .fitCenter()
-                    .placeholder(R.drawable.icon_logo)
-                    .into(viewHolder.iv_profileImg);
-        } else {
-            Glide
-                    .with(viewHolder.iv_profileImg.getContext())
-                    .load(bookshelfInfoData.getProfile())
-                    .fitCenter()
-                    .placeholder(R.drawable.icon_logo)
-                    .into(viewHolder.iv_profileImg);
-        }
+        OtherBookshelfResponse.OtherShelfData bookshelfInfoData = bookshelfList.get(position);
 
-        viewHolder.tv_nickname.setText(bookshelfInfoData.getNickname());
+        Glide
+                .with(viewHolder.iv_profileImg.getContext())
+                .load(bookshelfInfoData.getMember().getPhotoURL())
+                .fitCenter()
+                .placeholder(R.drawable.icon_logo)
+                .into(viewHolder.iv_profileImg);
+        viewHolder.tv_nickname.setText(bookshelfInfoData.getMember().getNickname());
 
-        ArrayList<BookData> bookList = bookshelfInfoData.getBookList();
+        ArrayList<BookData> bookList = bookshelfInfoData.getHasBookList();
+        setBooksinShelfView(bookList, viewHolder);
+    }
+
+    private void setBooksinShelfView(ArrayList<BookData> bookList, ViewHolder viewHolder) {
         BooksAdapter booksAdapter = new BooksAdapter(bookList);
-
         viewHolder.mRecyclerView.setAdapter(booksAdapter);
         viewHolder.mRecyclerView.setHasFixedSize(true);
         viewHolder.mRecyclerView.setLayoutManager(new LinearLayoutManager(context,
                 LinearLayoutManager.HORIZONTAL, false));
-
     }
+
 
     @Override
     public int getItemCount() {

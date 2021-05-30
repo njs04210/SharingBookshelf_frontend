@@ -14,7 +14,7 @@ public class OtherBookshelfResponse {
     String msg;
 
     @SerializedName("result")
-    List<OtherShelfData> result;
+    ArrayList<OtherShelfData> result;
 
     public int getCode() {
         return code;
@@ -24,7 +24,7 @@ public class OtherBookshelfResponse {
         return msg;
     }
 
-    public List<OtherShelfData> getResult() {
+    public ArrayList<OtherShelfData> getResult() {
         return result;
     }
 
@@ -33,13 +33,13 @@ public class OtherBookshelfResponse {
         GetUserInfoResponse member;
 
         @SerializedName("hasBookList")
-        List<BookData> hasBookList;
+        ArrayList<BookData> hasBookList;
 
         public GetUserInfoResponse getMember() {
             return member;
         }
 
-        public List<BookData> getHasBookList() {
+        public ArrayList<BookData> getHasBookList() {
             return hasBookList;
         }
     }

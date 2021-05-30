@@ -1,12 +1,8 @@
 package com.example.sharingbookshelf.Fragments;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,23 +14,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.SearchView;
 
-import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.BookData;
-import com.example.sharingbookshelf.Models.BookshelfInfoData;
-import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.OtherBookshelfResponse;
 import com.example.sharingbookshelf.R;
-import com.google.android.material.chip.ChipGroup;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,14 +36,9 @@ public class OtherBookshelfFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private OthersBookshelfAdapter mAdapter;
-    private ArrayList<BookshelfInfoData> bookshelfList;
-    private ArrayList<BookData> bookList;
+    private ArrayList<OtherBookshelfResponse.OtherShelfData> bookshelfList;
     private Context context;
     private RetrofitServiceApi retrofitServiceApi;
-
-    public ArrayList<BookshelfInfoData> getBookshelfList() {
-        return bookshelfList;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,15 +53,9 @@ public class OtherBookshelfFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
 
         context = container.getContext();
-
         mRecyclerView = v.findViewById(R.id.rv_bookshelves);
-        mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new OthersBookshelfAdapter(bookshelfList);
-        mRecyclerView.setAdapter(mAdapter);
-
+        recyclerViewSettings();
         getAllShelfView();
 
         if (getHasShelfcode() == 0) {
@@ -87,6 +65,15 @@ public class OtherBookshelfFragment extends Fragment {
         return v;
     }
 
+    private void recyclerViewSettings() {
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        bookshelfList = new ArrayList<>();
+        mAdapter = new OthersBookshelfAdapter(getActivity(), bookshelfList);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
     private void getAllShelfView() {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<OtherBookshelfResponse> call = retrofitServiceApi.getOtherShelf();
@@ -94,33 +81,7 @@ public class OtherBookshelfFragment extends Fragment {
             @Override
             public void onResponse(Call<OtherBookshelfResponse> call, Response<OtherBookshelfResponse> response) {
                 Log.d("책장받아오기 테스트", "성공");
-
-                List<OtherBookshelfResponse.OtherShelfData> result = response.body().getResult();
-                bookshelfList = new ArrayList<>();
-
-                for (int i = 0; i < result.size(); i++) {
-                    BookshelfInfoData bookshelfInfoData = new BookshelfInfoData();
-                    GetUserInfoResponse member = result.get(i).getMember();
-                    List<BookData> hasBookList = result.get(i).getHasBookList();
-
-                    bookshelfInfoData.setNickname(member.getNickname());
-                    bookshelfInfoData.setProfile(member.getPhotoURL());
-                    bookList = new ArrayList<>();
-                    for (int j = 0; j < hasBookList.size(); j++) {
-                        //책정보 세팅
-                        BookData bookData = new BookData();
-                        bookData.setThumbnail(hasBookList.get(j).getThumbnail());
-                        bookList.add(bookData);
-                    }
-
-                    //책장에 책리스트 넣기
-                    bookshelfInfoData.setBookList(bookList);
-                    //책장목록에 책 넣기
-                    bookshelfList.add(bookshelfInfoData);
-
-                }
-                mAdapter = new OthersBookshelfAdapter(bookshelfList);
-                mRecyclerView.setAdapter(mAdapter);
+                setAllShelfView(response.body().getResult());
             }
 
             @Override
@@ -128,6 +89,16 @@ public class OtherBookshelfFragment extends Fragment {
                 Log.d("책장받아오기 테스트", "실패");
             }
         });
+    }
+
+    private void setAllShelfView(ArrayList<OtherBookshelfResponse.OtherShelfData> result) {
+
+        mAdapter = new OthersBookshelfAdapter(getActivity(), result);
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mAdapter);
+
+        this.bookshelfList = result;
+
     }
 
     @Override
