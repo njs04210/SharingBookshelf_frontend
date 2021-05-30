@@ -127,12 +127,7 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
             KidsData kids = rankingData.get(i).getKids();
             UserData user = rankingData.get(i).getUser();
 
-            String sex = null;
-            if (kids.getSex() == 1) {
-                sex = "남자";
-            } else if (kids.getSex() == 2) {
-                sex = "여자";
-            }
+            String sex = kids.getSex() == 1 ? "남자" : "여자";
 
             tv_age.get(i).setText(kids.getAge() + "세");
             tv_gender.get(i).setText(sex);
@@ -144,13 +139,19 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
                     .centerCrop()
                     .placeholder(R.drawable.icon_logo)
                     .into(iv_profile.get(i));
+
+            iv_profile.get(i).setTag(user.getMem_id());
         }
     }
 
     @Override
     public void onClick(View v) {
 
+        Bundle bundle = new Bundle();
+        bundle.putInt("mem_id", (int) v.getTag());
+
         UserinfoFragment userinfoFragment = new UserinfoFragment();
+        userinfoFragment.setArguments(bundle);
         userinfoFragment.show(getActivity().getSupportFragmentManager(), "UserinfoFragment");
 
     }

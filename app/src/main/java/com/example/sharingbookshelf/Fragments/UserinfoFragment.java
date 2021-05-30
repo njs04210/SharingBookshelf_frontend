@@ -3,6 +3,7 @@ package com.example.sharingbookshelf.Fragments;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +17,27 @@ import android.widget.TextView;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.RequestManager;
 import com.example.sharingbookshelf.Activities.MainActivity;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.tabs.TabLayout;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserinfoFragment extends DialogFragment implements View.OnClickListener {
 
     private TabLayout mtabLayout;
     private UserinfoReportFragment userinforeportFragment;
     private UserinfoShelfFragment userinfoshelfFragment;
+    private RetrofitServiceApi retrofitServiceApi;
+    public RequestManager mGlideRequestManager;
 
     private CircleImageView civ_profile;
     private TextView tv_nickname;
@@ -34,8 +45,9 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
         super.onCreate(savedInstanceState);
+        setStyle(STYLE_NORMAL, R.style.CustomBottomSheetDialogTheme);
+        mGlideRequestManager = Glide.with(this);
     }
 
     @Override
@@ -55,13 +67,33 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
 
         SettingsTabLayout();
 
-        setUserView(MainActivity.getMemId());
+        Bundle bundle = getArguments();
+        int mem_id = bundle.getInt("mem_id");
+        setUserView(mem_id);
 
         return v;
     }
 
     private void setUserView(int memId) {
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<GetUserInfoResponse> call = retrofitServiceApi.getUserInfo(memId);
+        call.enqueue(new Callback<GetUserInfoResponse>() {
+            @Override
+            public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
+                GetUserInfoResponse result = response.body();
+                String nickname = result.getUser().getNickname() + "의 책바구니";
+                String profileImg = result.getUser().getPhotoURL();
+                tv_nickname.setText(nickname);
+                if (profileImg != null) {
+                    mGlideRequestManager.load(profileImg).into(civ_profile);
+                }
+            }
 
+            @Override
+            public void onFailure(Call<GetUserInfoResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "사용자 정보 가져오기 실패", t);
+            }
+        });
     }
 
     private void SettingsTabLayout() {

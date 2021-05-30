@@ -3,6 +3,10 @@ package com.example.sharingbookshelf.Models;
 import com.google.gson.annotations.SerializedName;
 
 public class UserData {
+
+    @SerializedName("mem_id")
+    int mem_id;
+
     @SerializedName("nickname")
     String nickname;
 
@@ -20,6 +24,10 @@ public class UserData {
 
     @SerializedName("created")
     String created;
+
+    public int getMem_id() {
+        return mem_id;
+    }
 
     public String getNickname() {
         return nickname;
