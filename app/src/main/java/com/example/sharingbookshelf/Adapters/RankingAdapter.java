@@ -1,5 +1,8 @@
 package com.example.sharingbookshelf.Adapters;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,25 +15,51 @@ import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.R;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+
+import com.example.sharingbookshelf.Fragments.RankingBookInfoPopupFragment;
+
 import java.util.ArrayList;
 
 public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHolder> {
 
     private ArrayList<RankingData> rankingList;
+    private Context context;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tv_grade;
         private final TextView tv_title;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            tv_grade = (TextView) view.findViewById(R.id.tv_grade);
-            tv_title = (TextView) view.findViewById(R.id.tv_title);
+            tv_grade = view.findViewById(R.id.tv_grade);
+            tv_title = view.findViewById(R.id.tv_title);
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION) {
+                        RankingData item = rankingList.get(pos);
+                        Log.d("책", String.valueOf(item.getBook().getBook_id()));
+
+                        Bundle bundle = new Bundle();
+                        bundle.putInt("bookId", item.getBook().getBook_id());
+                        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+                        RankingBookInfoPopupFragment dialog = new RankingBookInfoPopupFragment();
+                        dialog.setArguments(bundle);
+                        dialog.show(fm, "abc");
+                    }
+                }
+            });
+
         }
     }
 
-    public RankingAdapter(ArrayList<RankingData> dataSet) {
+    public RankingAdapter(Context context, ArrayList<RankingData> dataSet) {
         rankingList = dataSet;
+        this.context = context;
     }
 
     @NonNull

@@ -22,9 +22,14 @@ import static android.app.Activity.RESULT_OK;
 public class FilterCategoryFragment extends DialogFragment {
 
     private NoEmptyShelfFragment noEmptyShelfFragment;
+    private UserinfoShelfFragment userinfoShelfFragment;
 
     public FilterCategoryFragment(NoEmptyShelfFragment noEmptyShelfFragment) {
         this.noEmptyShelfFragment = noEmptyShelfFragment;
+    }
+
+    public FilterCategoryFragment(UserinfoShelfFragment userinfoShelfFragment) {
+        this.userinfoShelfFragment = userinfoShelfFragment;
     }
 
     @Override

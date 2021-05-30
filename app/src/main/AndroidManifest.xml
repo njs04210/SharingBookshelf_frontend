@@ -25,7 +25,8 @@
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".Activities.HomeActivity"
-            android:theme="@style/StatusBar" />
+            android:theme="@style/StatusBar">
+        </activity>
 
         <activity
             android:name=".Activities.MainActivity"
@@ -47,6 +48,10 @@
 
         <activity
             android:name=".Activities.CreateBookReportActivity"
+            android:theme="@style/StatusBar" />
+
+        <activity
+            android:name=".Activities.UserinfoActivity"
             android:theme="@style/StatusBar" />
 
         <activity

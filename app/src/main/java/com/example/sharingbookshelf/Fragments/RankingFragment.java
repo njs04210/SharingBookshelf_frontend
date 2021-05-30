@@ -1,9 +1,12 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.fragment.app.FragmentManager;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,7 +17,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
-import com.example.sharingbookshelf.Adapters.MyBookshelfAdapter;
 import com.example.sharingbookshelf.Adapters.RankingAdapter;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
@@ -24,14 +26,12 @@ import com.example.sharingbookshelf.Models.RankingResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RankingFragment extends Fragment {
+public class RankingFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView mRecyclerView;
     private ImageView iv_first, iv_second, iv_third;
@@ -39,6 +39,7 @@ public class RankingFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
     private ArrayList<RankingData> rankingList;
+    private Context context;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,10 +51,16 @@ public class RankingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ranking, container, false);
 
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_ranking);
+        context = container.getContext();
+
+        mRecyclerView = view.findViewById(R.id.rv_ranking);
         iv_first = view.findViewById(R.id.iv_first);
         iv_second = view.findViewById(R.id.iv_second);
         iv_third = view.findViewById(R.id.iv_third);
+
+        iv_first.setOnClickListener(this);
+        iv_second.setOnClickListener(this);
+        iv_third.setOnClickListener(this);
 
         recyclerViewSettings();
         loadRankingData();
@@ -65,8 +72,7 @@ public class RankingFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
-        rankingList = new ArrayList<>();
-        mAdapter = new RankingAdapter(rankingList);
+        mAdapter = new RankingAdapter(getActivity(), rankingList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
@@ -90,7 +96,6 @@ public class RankingFragment extends Fragment {
     }
 
     private void setRankingView(ArrayList<RankingData> dataSet) {
-
         ImageView selectedView;
 
         for (int i = 0; i < 3; i++) {
@@ -101,7 +106,7 @@ public class RankingFragment extends Fragment {
                 selectedView = iv_first;
             } else if (i == 1) {
                 selectedView = iv_second;
-            } else if (i == 2) {
+            } else {
                 selectedView = iv_third;
             }
 
@@ -115,12 +120,33 @@ public class RankingFragment extends Fragment {
             dataSet.remove(0);
         }
 
-        mAdapter = new RankingAdapter(dataSet);
+        mAdapter = new RankingAdapter(getActivity(), dataSet);
         mAdapter.notifyDataSetChanged();
         mRecyclerView.setAdapter(mAdapter);
 
         this.rankingList = dataSet;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.iv_first:
+                FragmentManager fm1 = ((AppCompatActivity) context).getSupportFragmentManager();
+                RankingBookInfoPopupFragment dialog1 = new RankingBookInfoPopupFragment();
+                dialog1.show(fm1, "abc");
+                break;
 
+            case R.id.iv_second:
+                FragmentManager fm2 = ((AppCompatActivity) context).getSupportFragmentManager();
+                RankingBookInfoPopupFragment dialog2 = new RankingBookInfoPopupFragment();
+                dialog2.show(fm2, "abc");
+                break;
+
+            case R.id.iv_third:
+                FragmentManager fm3 = ((AppCompatActivity) context).getSupportFragmentManager();
+                RankingBookInfoPopupFragment dialog3 = new RankingBookInfoPopupFragment();
+                dialog3.show(fm3, "abc");
+                break;
+        }
+    }
 }
