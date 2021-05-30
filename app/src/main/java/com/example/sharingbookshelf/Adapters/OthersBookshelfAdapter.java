@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.R;
@@ -51,7 +52,22 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         BookshelfInfoData bookshelfInfoData = bookshelfList.get(position);
-        viewHolder.iv_profileImg.setImageResource(bookshelfInfoData.getProfile());
+        if (bookshelfInfoData.getProfile() == null) {
+            Glide
+                    .with(viewHolder.iv_profileImg.getContext())
+                    .load(R.drawable.icon_logo)
+                    .fitCenter()
+                    .placeholder(R.drawable.icon_logo)
+                    .into(viewHolder.iv_profileImg);
+        } else {
+            Glide
+                    .with(viewHolder.iv_profileImg.getContext())
+                    .load(bookshelfInfoData.getProfile())
+                    .fitCenter()
+                    .placeholder(R.drawable.icon_logo)
+                    .into(viewHolder.iv_profileImg);
+        }
+
         viewHolder.tv_nickname.setText(bookshelfInfoData.getNickname());
 
         ArrayList<BookData> bookList = bookshelfInfoData.getBookList();
