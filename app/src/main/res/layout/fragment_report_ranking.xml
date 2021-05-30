@@ -5,31 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragments.ChattingFragment">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorPrimary_2"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginRight="25dp"
-            android:fontFamily="@font/font_main"
-            android:text="6월의 독서짱"
-            android:textColor="@color/white"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-    </androidx.appcompat.widget.Toolbar>
+    tools:context=".Fragments.ReportRankingFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,11 +32,11 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingBottom="20dp">
+                android:paddingBottom="10dp">
 
                 <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
+                    android:layout_width="60dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/icon_crown" />
 
@@ -73,10 +49,11 @@
                     android:src="@drawable/icon_logo" />
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
                     android:layout_marginTop="10dp"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
@@ -108,9 +85,10 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     android:orientation="horizontal">
 
                     <TextView
