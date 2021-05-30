@@ -42,6 +42,7 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private Button btn_showFight, btn_viewProfile;
+    private int mem_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,13 +66,27 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
         btn_showFight.setOnClickListener(this);
         btn_viewProfile.setOnClickListener(this);
 
+        Bundle bundle = getArguments();
+        mem_id = bundle.getInt("mem_id");
+
+        if (mem_id == MainActivity.getMemId()) {
+            btn_viewProfile.setVisibility(View.GONE);
+            btn_showFight.setVisibility(View.GONE);
+            setMargins(tv_nickname, 0, 50, 0, 0);
+        }
+
+        setUserView(mem_id);
         SettingsTabLayout();
 
-        Bundle bundle = getArguments();
-        int mem_id = bundle.getInt("mem_id");
-        setUserView(mem_id);
-
         return v;
+    }
+
+    private void setMargins (View view, int left, int top, int right, int bottom) {
+        if (view.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) view.getLayoutParams();
+            p.setMargins(left, top, right, bottom);
+            view.requestLayout();
+        }
     }
 
     private void setUserView(int memId) {
@@ -96,10 +111,11 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
         });
     }
 
+
     private void SettingsTabLayout() {
 
-        userinforeportFragment = new UserinfoReportFragment();
-        userinfoshelfFragment = new UserinfoShelfFragment();
+        userinforeportFragment = new UserinfoReportFragment(mem_id);
+        userinfoshelfFragment = new UserinfoShelfFragment(mem_id);
 
         getChildFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment).commit();
 
@@ -113,12 +129,17 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
                 int position = tab.getPosition();
 
                 Fragment selected = null;
-                if (position == 0)
+                if (position == 0) {
                     selected = userinfoshelfFragment;
-                else if (position == 1)
+                    getChildFragmentManager().beginTransaction().replace(R.id.usershelf, selected
+                            , "UserinfoShelfFragment").commit();
+                }
+                else if (position == 1) {
                     selected = userinforeportFragment;
+                    getChildFragmentManager().beginTransaction().replace(R.id.usershelf, selected
+                            , "UserinfoReportFragment").commit();
+                }
 
-                getChildFragmentManager().beginTransaction().replace(R.id.usershelf, selected).commit();
             }
 
             @Override

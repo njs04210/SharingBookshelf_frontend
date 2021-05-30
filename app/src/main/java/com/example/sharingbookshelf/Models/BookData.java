@@ -3,6 +3,7 @@ package com.example.sharingbookshelf.Models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class BookData implements Serializable {
 
@@ -22,10 +23,13 @@ public class BookData implements Serializable {
     private String publisher;
 
     @SerializedName("category")
-    private String category;
+    private ArrayList<CategoryData> category;
 
     @SerializedName("thumbnail")
     private String thumbnail;
+
+    @SerializedName("total_inShelf")
+    private int total_inShelf;
 
     public int getBook_id() {
         return book_id;
@@ -67,11 +71,11 @@ public class BookData implements Serializable {
         this.publisher = publisher;
     }
 
-    public String getCategory() {
+    public ArrayList<CategoryData> getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(ArrayList<CategoryData> category) {
         this.category = category;
     }
 
@@ -83,13 +87,7 @@ public class BookData implements Serializable {
         this.thumbnail = thumbnail;
     }
 
-    /*private int iv_book;
-
-    public int getIv_book() {
-        return iv_book;
+    public int getTotal_inShelf() {
+        return total_inShelf;
     }
-
-    public void setIv_book(int iv_book) {
-        this.iv_book = iv_book;
-    }*/
 }

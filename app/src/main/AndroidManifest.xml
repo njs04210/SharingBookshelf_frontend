@@ -51,10 +51,6 @@
             android:theme="@style/StatusBar" />
 
         <activity
-            android:name=".Activities.UserinfoActivity"
-            android:theme="@style/StatusBar" />
-
-        <activity
             android:name=".Activities.OneBookReportActivity"
             android:theme="@style/StatusBar" />
     </application>

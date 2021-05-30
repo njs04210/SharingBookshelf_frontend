@@ -150,7 +150,7 @@ public class BookRankingFragment extends Fragment implements View.OnClickListene
 
         Bundle bundle = new Bundle();
         bundle.putInt("book_id", (int) tag.get(0));
-        bundle.putInt("total", (int) tag.get(1));
+        //bundle.putInt("total", (int) tag.get(1));
 
         FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
         RankingBookInfoPopupFragment rankingBookInfoPopupFragment = new RankingBookInfoPopupFragment();

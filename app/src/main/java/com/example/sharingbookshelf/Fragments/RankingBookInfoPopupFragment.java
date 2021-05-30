@@ -29,7 +29,7 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
     private ImageView iv_thumbNail;
     private TextView tv_ISBN, tv_title, tv_authors, tv_publisher, tv_number;
     private BookData bookData;
-    private int book_id, total;
+    private int book_id;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -53,7 +53,6 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
 
         Bundle bundle = getArguments();
         book_id = bundle.getInt("book_id");
-        total = bundle.getInt("total");
 
         callBook(book_id);
 
@@ -68,7 +67,7 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
             @Override
             public void onResponse(Call<BookData> call, Response<BookData> response) {
                 bookData = response.body();
-                setView(bookData, total);
+                setView(bookData);
             }
 
             @Override
@@ -78,12 +77,13 @@ public class RankingBookInfoPopupFragment extends DialogFragment {
         });
     }
 
-    private void setView(BookData bookData, int total) {
+    private void setView(BookData bookData) {
         String title = bookData.getTitle();
         String ISBN = bookData.getISBN();
         String author = bookData.getPublisher();
         String thumbnailUri = bookData.getThumbnail();
         String publisher = bookData.getPublisher();
+        int total = bookData.getTotal_inShelf();
 
         Glide.with(this).load(thumbnailUri).into(iv_thumbNail);
         tv_title.setText(title);
