@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.sharingbookshelf.Models.BookshelfInfoData;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.OtherBookshelfResponse;
 import com.example.sharingbookshelf.R;
@@ -29,12 +28,14 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
         private final RecyclerView mRecyclerView;
         private final ImageView iv_profileImg;
         private final TextView tv_nickname;
+        private final TextView tv_kidsInfo;
 
         public ViewHolder(@NonNull View view) {
             super(view);
             this.mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_bookshelf);
             this.iv_profileImg = (ImageView) view.findViewById(R.id.iv_profileImg);
             this.tv_nickname = (TextView) view.findViewById(R.id.tv_nickname);
+            this.tv_kidsInfo = (TextView) view.findViewById(R.id.tv_kidsInfo);
         }
     }
 
@@ -57,11 +58,13 @@ public class OthersBookshelfAdapter extends RecyclerView.Adapter<OthersBookshelf
 
         Glide
                 .with(viewHolder.iv_profileImg.getContext())
-                .load(bookshelfInfoData.getMember().getPhotoURL())
+                .load(bookshelfInfoData.getUser().getPhotoURL())
                 .fitCenter()
                 .placeholder(R.drawable.icon_logo)
                 .into(viewHolder.iv_profileImg);
-        viewHolder.tv_nickname.setText(bookshelfInfoData.getMember().getNickname());
+        viewHolder.tv_nickname.setText(bookshelfInfoData.getUser().getNickname());
+        String sex = bookshelfInfoData.getKids().getSex() == 1 ? "남자" : "여자";
+        viewHolder.tv_kidsInfo.setText("(" + bookshelfInfoData.getKids().getAge() + "세 / " + sex + ")");
 
         ArrayList<BookData> bookList = bookshelfInfoData.getHasBookList();
         setBooksinShelfView(bookList, viewHolder);
