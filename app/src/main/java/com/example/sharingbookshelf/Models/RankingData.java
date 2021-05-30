@@ -5,6 +5,7 @@ import android.service.autofill.UserData;
 import com.google.gson.annotations.SerializedName;
 
 public class RankingData {
+
     @SerializedName("ranking")
     int ranking;
 
@@ -50,6 +51,7 @@ public class RankingData {
 
     public void setUser(GetUserInfoResponse user) {
         this.user = user;
+
     }
 
     public KidsData getKids() {
