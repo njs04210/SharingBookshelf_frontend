@@ -37,7 +37,7 @@ public class UserinfoActivity extends FragmentActivity {
         btn_fightUser.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ChallengePopupFragment c = ChallengePopupFragment.getInstance();
+                ChallengePopupFragment c = new ChallengePopupFragment();
                 c.show(getSupportFragmentManager(), ChallengePopupFragment.TAG_EVENT_DIALOG);
             }
         });

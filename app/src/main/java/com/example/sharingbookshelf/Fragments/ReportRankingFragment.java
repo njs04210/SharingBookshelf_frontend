@@ -1,11 +1,9 @@
 package com.example.sharingbookshelf.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,11 +11,8 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
-import com.example.sharingbookshelf.Activities.UserinfoActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
-import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.KidsData;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.Models.RankingResponse;
@@ -154,22 +149,9 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-            case R.id.cb_profile1:
-                intent = new Intent(getActivity(), UserinfoActivity.class);
-                startActivity(intent);
-                break;
 
-            case R.id.cb_profile2:
-                intent = new Intent(getActivity(), UserinfoActivity.class);
-                startActivity(intent);
-                break;
+        UserinfoFragment userinfoFragment = new UserinfoFragment();
+        userinfoFragment.show(getActivity().getSupportFragmentManager(), "UserinfoFragment");
 
-            case R.id.cb_profile3:
-                intent = new Intent(getActivity(), UserinfoActivity.class);
-                startActivity(intent);
-                break;
-        }
     }
 }
