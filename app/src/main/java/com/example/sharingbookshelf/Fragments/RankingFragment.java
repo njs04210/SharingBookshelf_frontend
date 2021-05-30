@@ -24,6 +24,7 @@ import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.Models.RankingResponse;
 import com.example.sharingbookshelf.R;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -31,14 +32,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class RankingFragment extends Fragment implements View.OnClickListener {
+import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
 
-    private RecyclerView mRecyclerView;
-    private ImageView iv_first, iv_second, iv_third;
-    private RecyclerView.LayoutManager mLayoutManager;
-    private RecyclerView.Adapter mAdapter;
-    private RetrofitServiceApi retrofitServiceApi;
-    private ArrayList<RankingData> rankingList;
+public class RankingFragment extends Fragment {
+
+
+    private TabLayout mtabLayout;
     private Context context;
 
     @Override
@@ -53,100 +52,35 @@ public class RankingFragment extends Fragment implements View.OnClickListener {
 
         context = container.getContext();
 
-        mRecyclerView = view.findViewById(R.id.rv_ranking);
-        iv_first = view.findViewById(R.id.iv_first);
-        iv_second = view.findViewById(R.id.iv_second);
-        iv_third = view.findViewById(R.id.iv_third);
+        mtabLayout = view.findViewById(R.id.tabLayout);
 
-        iv_first.setOnClickListener(this);
-        iv_second.setOnClickListener(this);
-        iv_third.setOnClickListener(this);
+        getFragmentManager().beginTransaction()
+                .replace(R.id.ranking, new BookRankingFragment(), "BookRankingFragment").commit();
 
-        recyclerViewSettings();
-        loadRankingData();
-
-        return view;
-    }
-
-    private void recyclerViewSettings() {
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RankingAdapter(getActivity(), rankingList);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void loadRankingData() {
-        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<RankingResponse> call = retrofitServiceApi.getRanking();
-        call.enqueue(new Callback<RankingResponse>() {
+        mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onResponse(Call<RankingResponse> call, Response<RankingResponse> response) {
-                if (response.body() != null) {
-                    setRankingView(response.body().getRankingData());
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                if (position == 0) {
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.ranking, new BookRankingFragment(), "BookRankingFragment").commit();
+                } else if (position == 1) {
+                    getFragmentManager().beginTransaction()
+                            .replace(R.id.ranking, new ReportRankingFragment(), "ReportRankingFragment").commit();
                 }
             }
 
             @Override
-            public void onFailure(Call<RankingResponse> call, Throwable t) {
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
 
-    }
-
-    private void setRankingView(ArrayList<RankingData> dataSet) {
-        ImageView selectedView;
-
-        for (int i = 0; i < 3; i++) {
-            BookData book = dataSet.get(0).getBook();
-
-            selectedView = null;
-            if (i == 0) {
-                selectedView = iv_first;
-            } else if (i == 1) {
-                selectedView = iv_second;
-            } else {
-                selectedView = iv_third;
-            }
-
-            Glide
-                    .with(selectedView.getContext())
-                    .load(book.getThumbnail())
-                    .fitCenter()
-                    .placeholder(R.drawable.icon_book2)
-                    .into(selectedView);
-
-            dataSet.remove(0);
-        }
-
-        mAdapter = new RankingAdapter(getActivity(), dataSet);
-        mAdapter.notifyDataSetChanged();
-        mRecyclerView.setAdapter(mAdapter);
-
-        this.rankingList = dataSet;
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_first:
-                FragmentManager fm1 = ((AppCompatActivity) context).getSupportFragmentManager();
-                RankingBookInfoPopupFragment dialog1 = new RankingBookInfoPopupFragment();
-                dialog1.show(fm1, "abc");
-                break;
-
-            case R.id.iv_second:
-                FragmentManager fm2 = ((AppCompatActivity) context).getSupportFragmentManager();
-                RankingBookInfoPopupFragment dialog2 = new RankingBookInfoPopupFragment();
-                dialog2.show(fm2, "abc");
-                break;
-
-            case R.id.iv_third:
-                FragmentManager fm3 = ((AppCompatActivity) context).getSupportFragmentManager();
-                RankingBookInfoPopupFragment dialog3 = new RankingBookInfoPopupFragment();
-                dialog3.show(fm3, "abc");
-                break;
-        }
+        return view;
     }
 }

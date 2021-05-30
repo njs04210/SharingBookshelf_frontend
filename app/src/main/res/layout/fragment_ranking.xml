@@ -24,147 +24,41 @@
             android:layout_gravity="right"
             android:layout_marginRight="25dp"
             android:fontFamily="@font/font_main"
-            android:text="도서 랭킹"
+            android:text="랭킹"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
 
-    <LinearLayout
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="20dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="vertical">
+        app:tabBackground="@color/loginBkColor"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#E65100"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="#E65100"
+        app:tabTextColor="#424242">
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:text="인기도서\n(1~10위)"
+            app:tabMode="fixed" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="회원들이 직접 뽑은"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_rankingtag"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="가장 많이 담긴 도서"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:gravity="center">
-
-
-                <TextView
-                    android:id="@+id/tv_1st"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_above="@+id/iv_first"
-                    android:background="@drawable/hlafcircle"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="1등 "
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_first"
-                    android:layout_width="85dp"
-                    android:layout_height="110dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:background="@color/white"
-                    android:elevation="10dp" />
-
-                <TextView
-                    android:id="@+id/tv_2nd"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_above="@id/iv_second"
-                    android:layout_toRightOf="@id/iv_first"
-                    android:background="@drawable/hlafcircle"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="2등 "
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_second"
-                    android:layout_width="85dp"
-                    android:layout_height="110dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toRightOf="@id/iv_first"
-                    android:background="@color/white"
-                    android:elevation="10dp" />
-
-                <TextView
-                    android:id="@+id/tv_3rd"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_above="@id/iv_third"
-                    android:layout_toRightOf="@id/iv_second"
-                    android:background="@drawable/hlafcircle"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="3등 "
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/iv_third"
-                    android:layout_width="85dp"
-                    android:layout_height="110dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/iv_second"
-                    android:background="@color/white"
-                    android:elevation="10dp" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@color/whiteCardColor"
-            android:gravity="center">
+            android:text="독서짱\n(1~3위)"
+            app:tabMode="fixed" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_ranking"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:scrollbarFadeDuration="0"
-                android:theme="@style/edgeEffect" />
+    </com.google.android.material.tabs.TabLayout>
 
-        </LinearLayout>
-    </LinearLayout>
+    <FrameLayout
+        android:id="@+id/ranking"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>
