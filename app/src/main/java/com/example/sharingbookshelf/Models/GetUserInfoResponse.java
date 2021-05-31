@@ -34,42 +34,20 @@ public class GetUserInfoResponse implements Serializable {
         return kids;
     }
 
-    /*@SerializedName("photoURL")
-    String photoURL;
-
-    @SerializedName("nickname")
-    String nickname;
-
-    @SerializedName("area")
-    String area;
-
-    @SerializedName("email")
-    String email;
-
-    @SerializedName("name")
-    String name;
-
-    public int getFlag() {
-        return flag;
+    public void setCode(int code) {
+        this.code = code;
     }
 
-    public String getPhotoURL() {
-        return photoURL;
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
-    public String getNickname() {
-        return nickname;
+    public void setUser(UserData user) {
+        this.user = user;
     }
 
-    public String getArea() {
-        return area;
+    public void setKids(KidsData kids) {
+        this.kids = kids;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public String getName() {
-        return name;
-    }*/
 }

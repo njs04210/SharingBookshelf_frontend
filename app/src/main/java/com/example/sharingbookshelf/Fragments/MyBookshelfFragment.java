@@ -97,6 +97,15 @@ public class MyBookshelfFragment extends Fragment {
     }
 
     private void setUserView(int memId) {
+        String nickname = HomeActivity.getMyData().getUser().getNickname() + "의 책바구니";
+        String profileImg = HomeActivity.getMyData().getUser().getPhotoURL();
+        tv_nickname.setText(nickname);
+        if (profileImg != null) {
+            mGlideRequestManager.load(profileImg).into(civ_profile);
+        }
+    }
+
+   /* private void setUserView(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
         Call<GetUserInfoResponse> call = retrofitServiceApi.getUserInfo(memId);
         call.enqueue(new Callback<GetUserInfoResponse>() {
@@ -117,7 +126,7 @@ public class MyBookshelfFragment extends Fragment {
                 Log.e(MainActivity.MAIN_TAG, "사용자 정보 가져오기 실패", t);
             }
         });
-    }
+    }*/
 
     public void checkShelfStatus(int memId) {
         retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());

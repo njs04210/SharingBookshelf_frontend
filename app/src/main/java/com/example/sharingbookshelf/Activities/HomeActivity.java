@@ -13,8 +13,20 @@ import com.example.sharingbookshelf.Fragments.MyPageFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.RankingFragment;
 import com.example.sharingbookshelf.Fragments.ReportRankingFragment;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.GetUserInfoResponse;
+import com.example.sharingbookshelf.Models.KidsData;
+import com.example.sharingbookshelf.Models.UserData;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -30,6 +42,12 @@ public class HomeActivity extends AppCompatActivity {
         return hasShelfcode;
     }
 
+    private static GetUserInfoResponse myData;
+
+    public static GetUserInfoResponse getMyData() {
+        return myData;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +56,36 @@ public class HomeActivity extends AppCompatActivity {
         btnNav = findViewById(R.id.bottomNavigationView);
         btnNav.setOnNavigationItemSelectedListener(navListener);
 
-        // Setting MyBookshelf Fragment as main fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();
+        setUserSettings(MainActivity.getMemId());
 
+      /*  // Setting MyBookshelf Fragment as main fragment
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();*/
+
+    }
+
+    private void setUserSettings(int memId) {
+        RetrofitServiceApi retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<GetUserInfoResponse> userInfo = retrofitServiceApi.getUserInfo(memId);
+        userInfo.enqueue(new Callback<GetUserInfoResponse>() {
+            @Override
+            public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
+                myData = response.body();
+                // Setting MyBookshelf Fragment as main fragment
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();
+               /* myData = new GetUserInfoResponse();
+                UserData currentUser = response.body().getUser();
+                KidsData currentKids = response.body().getKids();
+                myData.setKids(currentKids);
+                myData.setUser(currentUser);*/
+            }
+
+            @Override
+            public void onFailure(Call<GetUserInfoResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new
