@@ -84,23 +84,29 @@ public class HomeActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFragment = null;
+                    String tag = null;
 
                     int itemId = item.getItemId();
 
                     if (itemId == R.id.myBookShelf) {
                         selectedFragment = new MyBookshelfFragment();
+                        tag = "MyBookshelfFragment";
                     } else if (itemId == R.id.otherBookshelf) {
                         selectedFragment = new OtherBookshelfFragment();
+                        tag = "OtherBookshelfFragment";
                     } else if (itemId == R.id.ranking) {
                         selectedFragment = new RankingFragment();
+                        tag = "RankingFragment";
                     } else if (itemId == R.id.chatting) {
                         selectedFragment = new ReportRankingFragment();
+                        tag = "ReportRankingFragment";
                     } else if (itemId == R.id.myPage) {
                         selectedFragment = new MyPageFragment();
+                        tag = "MyPageFragment";
                     }
 
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.fragment_layout, selectedFragment).commit();
+                            .replace(R.id.fragment_layout, selectedFragment, tag).commit();
 
                     return true;
                 }
