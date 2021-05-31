@@ -129,6 +129,7 @@
         </com.google.android.material.chip.ChipGroup>
 
         <ImageButton
+            android:id="@+id/ib_selectAge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

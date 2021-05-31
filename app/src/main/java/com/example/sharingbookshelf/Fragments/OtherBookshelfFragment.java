@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.SearchView;
 
 import com.example.sharingbookshelf.Activities.HomeActivity;
@@ -41,6 +42,8 @@ public class OtherBookshelfFragment extends Fragment {
     private ArrayList<OtherBookshelfResponse.OtherShelfData> bookshelfList;
     private Context context;
     private RetrofitServiceApi retrofitServiceApi;
+    private ImageButton ib_selectAge;
+    private Chip chip_age;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,16 +58,29 @@ public class OtherBookshelfFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
 
         context = container.getContext();
-        Chip chip = v.findViewById(R.id.chip_age);
-        chip.setText(HomeActivity.getMyData().getKids().getAge() + "세");
-        mRecyclerView = v.findViewById(R.id.rv_bookshelves);
 
+        chip_age = v.findViewById(R.id.chip_age);
+        mRecyclerView = v.findViewById(R.id.rv_bookshelves);
+        ib_selectAge = v.findViewById(R.id.ib_selectAge);
+
+        chip_age.setText(HomeActivity.getMyData().getKids().getAge() + "세");
         recyclerViewSettings();
         getAllShelfView();
 
         if (getHasShelfcode() == 0) {
             openDialog();
         }
+
+        ib_selectAge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SelectAgeFragment selectAgeFragment = new SelectAgeFragment();
+               // getFragmentManager().executePendingTransactions();
+                Fragment targetFragment = getFragmentManager().findFragmentByTag("OtherBookshelfFragment");
+                selectAgeFragment.setTargetFragment(targetFragment, 2);
+                selectAgeFragment.show(getFragmentManager(), "SelectAgeFragment");
+            }
+        });
 
         return v;
     }
