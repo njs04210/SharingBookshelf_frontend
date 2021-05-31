@@ -1,25 +1,37 @@
 package com.example.sharingbookshelf.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sharingbookshelf.Adapters.UserReportAdapter;
-import com.example.sharingbookshelf.Models.UserReportData;
+import com.example.sharingbookshelf.Activities.MainActivity;
+import com.example.sharingbookshelf.Adapters.BookreportsAdapter;
+import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
+import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
+import com.example.sharingbookshelf.Models.BookReportResponse;
+import com.example.sharingbookshelf.Models.BookreportData;
 import com.example.sharingbookshelf.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserinfoReportFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
-    private ArrayList<UserReportData> reportList;
+    private ArrayList<BookreportData> reportList;
+    private RetrofitServiceApi retrofitServiceApi;
     private int mem_id;
 
     public UserinfoReportFragment(int mem_id) {
@@ -39,7 +51,7 @@ public class UserinfoReportFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_UserinfoReport);
 
         recyclerViewSettings();
-        setReports();
+        getAllOtherReports();
 
         return view;
     }
@@ -49,20 +61,44 @@ public class UserinfoReportFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         reportList = new ArrayList<>();
-        mAdapter = new UserReportAdapter(reportList);
+        mAdapter = new BookreportsAdapter(reportList);
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void setReports() {
-        for (int i = 0; i < 8; i++) {
-            UserReportData userReportData = new UserReportData();
+    private void getAllOtherReports() {
 
-            userReportData.setTitle("손가락 빠는 문어");
-            userReportData.setCreated("2021-05-29");
-            userReportData.setThumbnail("http://image.kyobobook.co.kr/images/book/xlarge/923/x9791164137923.jpg");
+        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
+        Call<BookReportResponse> call = retrofitServiceApi.getAllOtherBookReports(mem_id);
+        call.enqueue(new Callback<BookReportResponse>() {
+            @Override
+            public void onResponse(Call<BookReportResponse> call, Response<BookReportResponse> response) {
+                if (response.code() == 404) {
+                    try {
+                        Log.d("아이북쉐어/독후감", response.errorBody().string());
+                        Toast.makeText(getContext(), "작성된 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else if (response.body().getCode() == 72) {
+                    setAllReportsBox(response.body().getBookReports());
+                }
 
-            reportList.add(userReportData);
-        }
+            }
+
+            @Override
+            public void onFailure(Call<BookReportResponse> call, Throwable t) {
+                Log.e(MainActivity.MAIN_TAG, "GetstatusCode 받아오기 실패", t);
+            }
+        });
+
+    }
+
+    private void setAllReportsBox(ArrayList<BookreportData> dataSet) {
+        mAdapter = new BookreportsAdapter(dataSet);
+        mAdapter.notifyDataSetChanged();
+        mRecyclerView.setAdapter(mAdapter);
+
+        this.reportList = dataSet;
     }
 
 }
