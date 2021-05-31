@@ -65,13 +65,6 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         tv_age.add(tv_age2);
         tv_age.add(tv_age3);
 
-        tv_gender1 = v.findViewById(R.id.tv_1st_gender);
-        tv_gender2 = v.findViewById(R.id.tv_2nd_gender);
-        tv_gender3 = v.findViewById(R.id.tv_3rd_gender);
-        tv_gender.add(tv_gender1);
-        tv_gender.add(tv_gender2);
-        tv_gender.add(tv_gender3);
-
         tv_nickname1 = v.findViewById(R.id.tv_1st_nickname);
         tv_nickname2 = v.findViewById(R.id.tv_2nd_nickname);
         tv_nickname3 = v.findViewById(R.id.tv_3rd_nickname);
