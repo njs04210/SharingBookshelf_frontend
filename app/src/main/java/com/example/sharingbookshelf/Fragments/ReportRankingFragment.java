@@ -29,11 +29,11 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
 
     private RetrofitServiceApi retrofitServiceApi;
     private ImageView iv_profile1, iv_profile2, iv_profile3;
-    private TextView tv_age1, tv_age2, tv_age3, tv_gender1, tv_gender2, tv_gender3,
-            tv_nickname1, tv_nickname2, tv_nickname3, tv_count1, tv_count2, tv_count3;
+    private TextView tv_info1, tv_info2, tv_info3;
+    private TextView tv_nickname1, tv_nickname2, tv_nickname3;
+    private TextView tv_count1, tv_count2, tv_count3;
 
-    private ArrayList<TextView> tv_age;
-    private ArrayList<TextView> tv_gender;
+    private ArrayList<TextView> tv_info;
     private ArrayList<TextView> tv_nickname;
     private ArrayList<TextView> tv_count;
     private ArrayList<ImageView> iv_profile;
@@ -48,46 +48,43 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_report_ranking, container, false);
 
-        tv_age = new ArrayList<>();
-        tv_gender = new ArrayList<>();
+        tv_info = new ArrayList<>();
         tv_nickname = new ArrayList<>();
         tv_count = new ArrayList<>();
         iv_profile = new ArrayList<>();
 
-        tv_age1 = v.findViewById(R.id.tv_1st_age);
-        tv_age2 = v.findViewById(R.id.tv_2nd_age);
-        tv_age3 = v.findViewById(R.id.tv_3rd_age);
-        tv_age.add(tv_age1);
-        tv_age.add(tv_age2);
-        tv_age.add(tv_age3);
-
+        tv_info1 = v.findViewById(R.id.tv_1st_info);
+        tv_info2 = v.findViewById(R.id.tv_2nd_info);
+        tv_info3 = v.findViewById(R.id.tv_3rd_info);
+        tv_count1 = v.findViewById(R.id.tv_count1);
+        tv_count2 = v.findViewById(R.id.tv_count2);
+        tv_count3 = v.findViewById(R.id.tv_count3);
         tv_nickname1 = v.findViewById(R.id.tv_1st_nickname);
         tv_nickname2 = v.findViewById(R.id.tv_2nd_nickname);
         tv_nickname3 = v.findViewById(R.id.tv_3rd_nickname);
+        iv_profile1 = v.findViewById(R.id.cb_profile1);
+        iv_profile2 = v.findViewById(R.id.cb_profile2);
+        iv_profile3 = v.findViewById(R.id.cb_profile3);
+
+        tv_info.add(tv_info1);
+        tv_info.add(tv_info2);
+        tv_info.add(tv_info3);
+
         tv_nickname.add(tv_nickname1);
         tv_nickname.add(tv_nickname2);
         tv_nickname.add(tv_nickname3);
-
-        iv_profile1 = v.findViewById(R.id.cb_profile1);
-        iv_profile1.setOnClickListener(this);
-
-        iv_profile2 = v.findViewById(R.id.cb_profile2);
-        iv_profile2.setOnClickListener(this);
-
-        iv_profile3 = v.findViewById(R.id.cb_profile3);
-        iv_profile3.setOnClickListener(this);
 
         iv_profile.add(iv_profile1);
         iv_profile.add(iv_profile2);
         iv_profile.add(iv_profile3);
 
-        tv_count1 = v.findViewById(R.id.tv_count1);
-        tv_count2 = v.findViewById(R.id.tv_count2);
-        tv_count3 = v.findViewById(R.id.tv_count3);
-
         tv_count.add(tv_count1);
         tv_count.add(tv_count2);
         tv_count.add(tv_count3);
+
+        iv_profile1.setOnClickListener(this);
+        iv_profile2.setOnClickListener(this);
+        iv_profile3.setOnClickListener(this);
 
         getReportRankingData();
 
@@ -120,12 +117,11 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
             KidsData kids = rankingData.get(i).getKids();
             UserData user = rankingData.get(i).getUser();
 
-            String sex = kids.getSex() == 1 ? "남자" : "여자";
+            String sex = kids.getSex() == 1 ? "남" : "여";
 
-            tv_age.get(i).setText(kids.getAge() + "세");
-            tv_gender.get(i).setText(sex);
+            tv_info.get(i).setText("(" + kids.getAge() + "세/" + sex + ")");
             tv_nickname.get(i).setText(user.getNickname());
-            tv_count.get(i).setText("독후감 개수 : " + total + "개");
+            tv_count.get(i).setText(total + "권");
             Glide
                     .with(iv_profile.get(i).getContext())
                     .load(user.getPhotoURL())
