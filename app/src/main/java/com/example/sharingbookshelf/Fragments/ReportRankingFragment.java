@@ -134,6 +134,7 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
                     .into(iv_profile.get(i));
 
             iv_profile.get(i).setTag(user.getMem_id());
+
         }
     }
 
