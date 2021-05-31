@@ -92,6 +92,8 @@
             android:layout_marginTop="10dp"
             android:background="@null"
             android:fontFamily="monospace"
+            android:textSize="18sp"
+            android:textColor="@color/black"
             android:gravity="start"
             android:maxLines="6"
             android:minHeight="30dp"

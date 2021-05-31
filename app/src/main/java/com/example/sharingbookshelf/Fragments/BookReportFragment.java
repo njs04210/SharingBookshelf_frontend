@@ -6,14 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.example.sharingbookshelf.R;
 
 public class BookReportFragment extends Fragment implements View.OnClickListener {
 
-    private Button btn_showReportBox;
-    private Button btn_createReport;
+    private AppCompatButton btn_showReportBox;
+    private AppCompatButton btn_createReport;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -63,6 +63,12 @@ public interface RetrofitServiceApi {
     @POST("api/bookshelves/{memId}")
     Call<CommonResponse> addBookInShelf(@Path("memId") int memId, @FieldMap HashMap<String, Object> parameters);
 
+    @GET("api/bookshelves/{memId}/bookreports")
+    Call<BookReportResponse> getAllOtherBookReports(@Path("memId") int memId);
+
+    @GET("api/bookshelves/{memId}/bookreports/{itemId}")
+    Call<OneBookreportResponse> getOneOtherBookReport(@Path("memId") int memId, @Path("itemId") int itemId);
+
     /* 책 API */
     @GET("api/books/{bookId}")
     Call<BookData> getBookDetails(@Path("bookId") int bookId);
