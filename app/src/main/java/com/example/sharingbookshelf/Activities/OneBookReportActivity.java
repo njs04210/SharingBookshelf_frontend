@@ -7,6 +7,8 @@ import android.text.Editable;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.TextAppearanceSpan;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -87,10 +89,32 @@ public class OneBookReportActivity extends Activity {
     }
 
     private void contentsViewSettings() {
-        tv_contents.setLetterSpacing(1.0f);
+        //tv_contents.setLetterSpacing(1.0f);
         tv_contents.setLineSpacing(0, 1.5f);
         tv_contents.clearComposingText();
-        tv_contents.addTextChangedListener(new TextWatcher() {
+        tv_contents.setLetterSpacing((float) 1.05);
+        /*for (int i = 0; i < tv_contents.getText().length(); i++) {
+            char c = tv_contents.getText().charAt(i);
+            if (c >= 32 && c <= 126) {
+                tv_contents.setLetterSpacing((float) 1.05);
+                if (c >= 65 && c <= 90 || c>=97 && c <= 122) {
+                    tv_contents.setLetterSpacing((float) 0.8);
+                    tv_contents.setLineSpacing(0,5);
+                    tv_contents.setTextSize(20);
+                }
+            }*/
+            /*if ((s.charAt(tv_contents.length() - 1) >= 32 && s.charAt(tv_contents.length() - 1) <= 126)) {
+                tv_contents.getText().setSpan(new TextAppearanceSpan(getApplicationContext(), R.style.SpecialTextAppearance)
+                        , tv_contents.length() - 1, tv_contents.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                if ((s.charAt(tv_contents.length() - 1) >= 65 && s.charAt(tv_contents.length() - 1) <= 90)
+                        || (s.charAt(tv_contents.length() - 1) >= 97 && s.charAt(tv_contents.length() - 1) <= 122)) {
+                    s.setSpan(new TextAppearanceSpan(getApplicationContext(), R.style.SpecialTextAppearance_alpha)
+                            , tv_contents.length() - 1, tv_contents.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+            }*/
+        }
+
+        /*tv_contents.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -121,6 +145,6 @@ public class OneBookReportActivity extends Activity {
                 }
 
             }
-        });
+        });*/
     }
-}
+//}
