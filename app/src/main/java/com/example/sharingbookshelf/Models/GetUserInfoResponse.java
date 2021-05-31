@@ -6,10 +6,35 @@ import java.io.Serializable;
 
 public class GetUserInfoResponse implements Serializable {
 
-    @SerializedName("flag")
-    int flag;
+    @SerializedName("code")
+    int code;
 
-    @SerializedName("photoURL")
+    @SerializedName("msg")
+    String msg;
+
+    @SerializedName("user")
+    UserData user;
+
+    @SerializedName("kids")
+    KidsData kids;
+
+    public int getCode() {
+        return code;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public UserData getUser() {
+        return user;
+    }
+
+    public KidsData getKids() {
+        return kids;
+    }
+
+    /*@SerializedName("photoURL")
     String photoURL;
 
     @SerializedName("nickname")
@@ -46,5 +71,5 @@ public class GetUserInfoResponse implements Serializable {
 
     public String getName() {
         return name;
-    }
+    }*/
 }

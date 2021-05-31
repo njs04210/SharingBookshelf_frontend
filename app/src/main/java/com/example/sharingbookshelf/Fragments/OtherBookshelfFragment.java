@@ -123,6 +123,7 @@ public class OtherBookshelfFragment extends Fragment {
                 return false;
             }
         });
+
         searchView.setOnClickListener(new View.OnClickListener() {
                                           @Override
                                           public void onClick(View v) {

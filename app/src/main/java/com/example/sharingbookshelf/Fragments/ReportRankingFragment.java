@@ -1,11 +1,9 @@
 package com.example.sharingbookshelf.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,14 +11,12 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.sharingbookshelf.Activities.MainActivity;
-import com.example.sharingbookshelf.Activities.UserinfoActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
-import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.Models.KidsData;
 import com.example.sharingbookshelf.Models.RankingData;
 import com.example.sharingbookshelf.Models.RankingResponse;
+import com.example.sharingbookshelf.Models.UserData;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
@@ -122,14 +118,9 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         for (int i = 0; i < 3; i++) {
             int total = rankingData.get(i).getTotal();
             KidsData kids = rankingData.get(i).getKids();
-            GetUserInfoResponse user = rankingData.get(i).getUser();
+            UserData user = rankingData.get(i).getUser();
 
-            String sex = null;
-            if (kids.getSex() == 1) {
-                sex = "남자";
-            } else if (kids.getSex() == 2) {
-                sex = "여자";
-            }
+            String sex = kids.getSex() == 1 ? "남자" : "여자";
 
             tv_age.get(i).setText(kids.getAge() + "세");
             tv_gender.get(i).setText(sex);
@@ -141,27 +132,20 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
                     .centerCrop()
                     .placeholder(R.drawable.icon_logo)
                     .into(iv_profile.get(i));
+
+            iv_profile.get(i).setTag(user.getMem_id());
         }
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-            case R.id.cb_profile1:
-                intent = new Intent(getActivity(), UserinfoActivity.class);
-                startActivity(intent);
-                break;
 
-            case R.id.cb_profile2:
-                intent = new Intent(getActivity(), UserinfoActivity.class);
-                startActivity(intent);
-                break;
+        Bundle bundle = new Bundle();
+        bundle.putInt("mem_id", (int) v.getTag());
 
-            case R.id.cb_profile3:
-                intent = new Intent(getActivity(), UserinfoActivity.class);
-                startActivity(intent);
-                break;
-        }
+        UserinfoFragment userinfoFragment = new UserinfoFragment();
+        userinfoFragment.setArguments(bundle);
+        userinfoFragment.show(getActivity().getSupportFragmentManager(), "UserinfoFragment");
+
     }
 }

@@ -45,11 +45,13 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
                         Log.d("책", String.valueOf(item.getBook().getBook_id()));
 
                         Bundle bundle = new Bundle();
-                        bundle.putInt("bookId", item.getBook().getBook_id());
+                        bundle.putInt("book_id", item.getBook().getBook_id());
+                        bundle.putInt("total", item.getTotal());
+
                         FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
-                        RankingBookInfoPopupFragment dialog = new RankingBookInfoPopupFragment();
-                        dialog.setArguments(bundle);
-                        dialog.show(fm, "abc");
+                        RankingBookInfoPopupFragment rankingBookInfoPopupFragment = new RankingBookInfoPopupFragment();
+                        rankingBookInfoPopupFragment.setArguments(bundle);
+                        rankingBookInfoPopupFragment.show(fm, "RankingBookInfoPopupFragment");
                     }
                 }
             });
@@ -58,7 +60,7 @@ public class RankingAdapter extends RecyclerView.Adapter<RankingAdapter.ViewHold
     }
 
     public RankingAdapter(Context context, ArrayList<RankingData> dataSet) {
-        rankingList = dataSet;
+        this.rankingList = dataSet;
         this.context = context;
     }
 

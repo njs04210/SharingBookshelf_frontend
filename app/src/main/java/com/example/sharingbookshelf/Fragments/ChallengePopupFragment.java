@@ -17,20 +17,14 @@ import com.example.sharingbookshelf.R;
 import java.util.Calendar;
 
 public class ChallengePopupFragment extends DialogFragment {
-    private static ChallengePopupFragment challengePopupFragment = null;
+
     public static final String TAG_EVENT_DIALOG = "dialog event";
 
     private TextView tv_name, tv_cal;
     private EditText messageField, goalField;
     private Calendar cal;
     private Button btn_ok;
-    public static ChallengePopupFragment getInstance(){
-        if(challengePopupFragment == null){
-            challengePopupFragment = new ChallengePopupFragment();
-        }
-        return challengePopupFragment;
-    }
-    @Override
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +27,7 @@ import com.example.sharingbookshelf.Models.RankingResponse;
 import com.example.sharingbookshelf.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -35,6 +37,7 @@ public class BookRankingFragment extends Fragment implements View.OnClickListene
 
     private RecyclerView mRecyclerView;
     private ImageView iv_first, iv_second, iv_third;
+    private TextView tv_count1, tv_count2, tv_count3;
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
@@ -57,6 +60,9 @@ public class BookRankingFragment extends Fragment implements View.OnClickListene
         iv_first = view.findViewById(R.id.iv_first);
         iv_second = view.findViewById(R.id.iv_second);
         iv_third = view.findViewById(R.id.iv_third);
+        tv_count1 = view.findViewById(R.id.tv_count1);
+        tv_count2 = view.findViewById(R.id.tv_count2);
+        tv_count3 = view.findViewById(R.id.tv_count3);
 
         iv_first.setOnClickListener(this);
         iv_second.setOnClickListener(this);
@@ -96,26 +102,36 @@ public class BookRankingFragment extends Fragment implements View.OnClickListene
     }
 
     private void setRankingView(ArrayList<RankingData> dataSet) {
-        ImageView selectedView;
+
+        ImageView selectedIv;
+        TextView selectedTv;
 
         for (int i = 0; i < 3; i++) {
             BookData book = dataSet.get(0).getBook();
+            List<Object> TagSet = new ArrayList<>(); // book_id, total 저장
 
-            selectedView = null;
             if (i == 0) {
-                selectedView = iv_first;
+                selectedIv = iv_first;
+                selectedTv = tv_count1;
             } else if (i == 1) {
-                selectedView = iv_second;
+                selectedIv = iv_second;
+                selectedTv = tv_count2;
             } else {
-                selectedView = iv_third;
+                selectedIv = iv_third;
+                selectedTv = tv_count3;
             }
 
             Glide
-                    .with(selectedView.getContext())
+                    .with(selectedIv.getContext())
                     .load(book.getThumbnail())
                     .fitCenter()
                     .placeholder(R.drawable.icon_book2)
-                    .into(selectedView);
+                    .into(selectedIv);
+            selectedTv.setText(dataSet.get(0).getTotal() + "권");
+
+            TagSet.add(book.getBook_id());
+            TagSet.add(dataSet.get(0).getTotal());
+            selectedIv.setTag(TagSet);
 
             dataSet.remove(0);
         }
@@ -129,25 +145,18 @@ public class BookRankingFragment extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.iv_first:
-                FragmentManager fm1 = ((AppCompatActivity) context).getSupportFragmentManager();
-                RankingBookInfoPopupFragment dialog1 = new RankingBookInfoPopupFragment();
-                dialog1.show(fm1, "abc");
-                break;
 
-            case R.id.iv_second:
-                FragmentManager fm2 = ((AppCompatActivity) context).getSupportFragmentManager();
-                RankingBookInfoPopupFragment dialog2 = new RankingBookInfoPopupFragment();
-                dialog2.show(fm2, "abc");
-                break;
+        ArrayList<Object> tag = (ArrayList<Object>) v.getTag();
 
-            case R.id.iv_third:
-                FragmentManager fm3 = ((AppCompatActivity) context).getSupportFragmentManager();
-                RankingBookInfoPopupFragment dialog3 = new RankingBookInfoPopupFragment();
-                dialog3.show(fm3, "abc");
-                break;
-        }
+        Bundle bundle = new Bundle();
+        bundle.putInt("book_id", (int) tag.get(0));
+        //bundle.putInt("total", (int) tag.get(1));
+
+        FragmentManager fm = ((AppCompatActivity) context).getSupportFragmentManager();
+        RankingBookInfoPopupFragment rankingBookInfoPopupFragment = new RankingBookInfoPopupFragment();
+        rankingBookInfoPopupFragment.setArguments(bundle);
+        rankingBookInfoPopupFragment.show(fm, "RankinBookInfoPopupFragment");
+
     }
 
 }

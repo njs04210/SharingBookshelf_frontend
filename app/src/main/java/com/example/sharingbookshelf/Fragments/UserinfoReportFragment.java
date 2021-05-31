@@ -20,6 +20,11 @@ public class UserinfoReportFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private RecyclerView.Adapter mAdapter;
     private ArrayList<UserReportData> reportList;
+    private int mem_id;
+
+    public UserinfoReportFragment(int mem_id) {
+        this.mem_id = mem_id;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

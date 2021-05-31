@@ -51,76 +51,132 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="190dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:gravity="center">
 
-                <TextView
-                    android:id="@+id/tv_1st"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_above="@+id/iv_first"
-                    android:background="@drawable/hlafcircle"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="1등 "
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                <RelativeLayout
+                    android:id="@+id/rl_first"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/iv_first"
-                    android:layout_width="85dp"
-                    android:layout_height="110dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:background="@color/white"
-                    android:elevation="10dp" />
+                    <TextView
+                        android:id="@+id/tv_1st"
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_above="@+id/iv_first"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/hlafcircle"
+                        android:fontFamily="@font/font_main"
+                        android:gravity="center"
+                        android:text="1등 "
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/tv_2nd"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_above="@id/iv_second"
-                    android:layout_toRightOf="@id/iv_first"
-                    android:background="@drawable/hlafcircle"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="2등 "
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                    <ImageView
+                        android:id="@+id/iv_first"
+                        android:layout_width="85dp"
+                        android:layout_height="110dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/white"
+                        android:elevation="10dp" />
 
-                <ImageView
-                    android:id="@+id/iv_second"
-                    android:layout_width="85dp"
-                    android:layout_height="110dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:layout_toRightOf="@id/iv_first"
-                    android:background="@color/white"
-                    android:elevation="10dp" />
+                    <TextView
+                        android:id="@+id/tv_count1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_first"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/font_main"
+                        android:text="10권" />
 
-                <TextView
-                    android:id="@+id/tv_3rd"
-                    android:layout_width="50dp"
-                    android:layout_height="25dp"
-                    android:layout_above="@id/iv_third"
-                    android:layout_toRightOf="@id/iv_second"
-                    android:background="@drawable/hlafcircle"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="center"
-                    android:text="3등 "
-                    android:textColor="@color/white"
-                    android:textStyle="bold" />
+                </RelativeLayout>
 
-                <ImageView
-                    android:id="@+id/iv_third"
-                    android:layout_width="85dp"
-                    android:layout_height="110dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@id/iv_second"
-                    android:background="@color/white"
-                    android:elevation="10dp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_second"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/rl_first">
+
+                    <TextView
+                        android:id="@+id/tv_2nd"
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_above="@id/iv_second"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/hlafcircle"
+                        android:fontFamily="@font/font_main"
+                        android:gravity="center"
+                        android:text="2등 "
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_second"
+                        android:layout_width="85dp"
+                        android:layout_height="110dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/white"
+                        android:elevation="10dp" />
+
+                    <TextView
+                        android:id="@+id/tv_count2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_second"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/font_main"
+                        android:text="10권" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_third"
+                    android:layout_width="110dp"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/rl_second">
+
+                    <TextView
+                        android:id="@+id/tv_3rd"
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:layout_above="@id/iv_third"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/hlafcircle"
+                        android:fontFamily="@font/font_main"
+                        android:gravity="center"
+                        android:text="3등 "
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/iv_third"
+                        android:layout_width="85dp"
+                        android:layout_height="110dp"
+                        android:layout_centerInParent="true"
+                        android:layout_centerVertical="true"
+                        android:background="@color/white"
+                        android:elevation="10dp" />
+
+                    <TextView
+                        android:id="@id/tv_count3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/iv_third"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/font_main"
+                        android:text="10권" />
+
+                </RelativeLayout>
+
 
             </RelativeLayout>
 
