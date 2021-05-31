@@ -58,10 +58,6 @@ public class HomeActivity extends AppCompatActivity {
 
         setUserSettings(MainActivity.getMemId());
 
-      /*  // Setting MyBookshelf Fragment as main fragment
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();*/
-
     }
 
     private void setUserSettings(int memId) {
@@ -74,11 +70,6 @@ public class HomeActivity extends AppCompatActivity {
                 // Setting MyBookshelf Fragment as main fragment
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();
-               /* myData = new GetUserInfoResponse();
-                UserData currentUser = response.body().getUser();
-                KidsData currentKids = response.body().getKids();
-                myData.setKids(currentKids);
-                myData.setUser(currentUser);*/
             }
 
             @Override

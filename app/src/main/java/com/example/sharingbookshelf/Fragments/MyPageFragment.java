@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,23 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.LeaveIdActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
-import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
-import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
-import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 import com.google.firebase.auth.FirebaseAuth;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class MyPageFragment extends Fragment implements View.OnClickListener {
 
-
-    private FirebaseAuth mAuth;
-    private RetrofitServiceApi retrofitServiceApi;
     private Button btn_editProfile;
     private Button btn_mailList;
     private Button btn_likeList;
@@ -53,7 +43,7 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_my_page, container, false);
 
         btn_editProfile = v.findViewById(R.id.btn_editProfile);
-        btn_mailList = v.findViewById(R.id.btn_mailList);
+        btn_mailList = v.findViewById(R.id.btn_fightbox);
         btn_likeList = v.findViewById(R.id.btn_likeList);
         btn_logout = v.findViewById(R.id.btn_logout);
         btn_leaveId = v.findViewById(R.id.btn_leaveId);
@@ -67,40 +57,26 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
         btn_logout.setOnClickListener(this);
         btn_leaveId.setOnClickListener(this);
 
-        setUserView(MainActivity.getMemId());
+        setUserView();
 
         return v;
 
     }
 
-    private void setUserView(int memId) {
-        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<GetUserInfoResponse> call = retrofitServiceApi.getUserInfo(memId);
-        call.enqueue(new Callback<GetUserInfoResponse>() {
-            @Override
-            public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
-                GetUserInfoResponse result = response.body();
-                String nickname = result.getUser().getNickname();
-                String profileImg = result.getUser().getPhotoURL();
-                int kids_sex = result.getKids().getSex();
-                String sex = kids_sex == 1 ? "남자" : "여자";
-                int kids_age = result.getKids().getAge();
+    private void setUserView() {
+        String nickname = HomeActivity.getMyData().getUser().getNickname();
+        String photoURL = HomeActivity.getMyData().getUser().getPhotoURL();
+        String sex = HomeActivity.getMyData().getKids().getSex() == 1 ? "남자" : "여자";
+        int age = HomeActivity.getMyData().getKids().getAge();
 
-                tv_kidsInfo.setText(kids_age + "세 / " + sex);
-                tv_nickname.setText(nickname);
-                Glide
-                        .with(iv_profileImg.getContext())
-                        .load(profileImg)
-                        .fitCenter()
-                        .placeholder(R.drawable.icon_logo)
-                        .into(iv_profileImg);
-            }
-
-            @Override
-            public void onFailure(Call<GetUserInfoResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "사용자 정보 가져오기 실패", t);
-            }
-        });
+        tv_kidsInfo.setText(age + "세 / " + sex);
+        tv_nickname.setText(nickname);
+        Glide
+                .with(iv_profileImg.getContext())
+                .load(photoURL)
+                .fitCenter()
+                .placeholder(R.drawable.icon_logo)
+                .into(iv_profileImg);
     }
 
     @Override
@@ -112,13 +88,12 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
                 e.show(getActivity().getSupportFragmentManager(), "EditProfileFragment");
                 break;
 
-            case R.id.btn_mailList:
+            case R.id.btn_fightbox:
                 FightBoxFragment m = FightBoxFragment.getInstance();
-                m.show(getActivity().getSupportFragmentManager(), "MessageBoxFragment");
+                m.show(getActivity().getSupportFragmentManager(), "FightBoxFragment");
                 break;
 
             case R.id.btn_logout:
-                //추가 예정
                 Toast.makeText(getActivity().getApplicationContext(), "로그아웃", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getActivity(), MainActivity.class));
