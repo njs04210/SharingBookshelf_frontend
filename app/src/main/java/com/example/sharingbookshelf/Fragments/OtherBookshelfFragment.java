@@ -16,12 +16,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
+import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.Adapters.OthersBookshelfAdapter;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.OtherBookshelfResponse;
 import com.example.sharingbookshelf.R;
+import com.google.android.material.chip.Chip;
 
 import java.util.ArrayList;
 
@@ -53,6 +55,8 @@ public class OtherBookshelfFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_otherbookshelf, container, false);
 
         context = container.getContext();
+        Chip chip = v.findViewById(R.id.chip_age);
+        chip.setText(HomeActivity.getMyData().getKids().getAge() + "세");
         mRecyclerView = v.findViewById(R.id.rv_bookshelves);
 
         recyclerViewSettings();
