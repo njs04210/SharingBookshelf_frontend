@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import com.example.sharingbookshelf.Activities.HomeActivity;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.bottomnavigation.BottomNavigationItemView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -37,8 +38,7 @@ public class AccessWarningFragment extends DialogFragment {
         btn_backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_layout, new MyBookshelfFragment()).commit();
+                HomeActivity.btnNav.setSelectedItemId(R.id.myBookShelf);
             }
 
         });
