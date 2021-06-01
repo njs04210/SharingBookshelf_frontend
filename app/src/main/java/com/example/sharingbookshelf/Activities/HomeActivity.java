@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.sharingbookshelf.Fragments.ChartFragment;
 import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.MyPageFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
@@ -91,9 +92,9 @@ public class HomeActivity extends AppCompatActivity {
                     } else if (itemId == R.id.ranking) {
                         selectedFragment = new RankingFragment();
                         tag = "RankingFragment";
-                    } else if (itemId == R.id.chatting) {
-                        selectedFragment = new ReportRankingFragment();
-                        tag = "ReportRankingFragment";
+                    } else if (itemId == R.id.chart) {
+                        selectedFragment = new ChartFragment();
+                        tag = "ChartFragment";
                     } else if (itemId == R.id.myPage) {
                         selectedFragment = new MyPageFragment();
                         tag = "MyPageFragment";
