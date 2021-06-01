@@ -23,4 +23,7 @@
     <!--colros for card-->
     <color name="whiteCardColor">#fff</color>
 
+    <!--default background color-->
+    <color name="default_color">#F5F5F5</color>
+
 </resources>

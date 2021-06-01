@@ -1,459 +1,380 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@color/white"
+    android:gravity="center|bottom"
     android:orientation="vertical"
-    tools:context=".Fragments.ReportRankingFragment">
+    android:paddingBottom="25dp">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@color/white"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
-        <!-- 1st -->
+        <ImageView
+            android:layout_width="330dp"
+            android:layout_centerHorizontal="true"
+            android:layout_height="200dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/balloon" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@drawable/border"
+            android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_above="@+id/ranking_group"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/font_eng"
+                android:text="congratulations!"
+                android:textStyle="italic"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/font_main"
+                android:text="최고의 독서짱"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ranking_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center|bottom"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
-            <!-- 나이, 성별 이름 -->
+            <!-- 2nd -->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="115dp"
+                android:layout_height="310dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="10dp">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="40dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_crown" />
-
-                <ImageView
-                    android:id="@+id/cb_profile1"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/iv_stroke"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/icon_logo" />
-
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cb_profile2"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/crown2"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/iv_round_stroke"
+                        android:src="@drawable/icon_logo" />
+
+                    <ImageView
+                        android:id="@+id/crown2"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_crown" />
 
                     <TextView
-                        android:id="@+id/tv_1st_age"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_count2"
+                        android:layout_width="55dp"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/cb_profile2"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="-5dp"
+                        android:background="@drawable/tv_round_background"
+                        android:elevation="2dp"
                         android:fontFamily="@font/font_main"
-                        android:text="나이"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="10권"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/row_bookshelf2" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/loginBkColor"
                         android:fontFamily="@font/font_main"
-                        android:text=" / "
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:textAlignment="center"
+                        android:textColor="#959595"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/tv_1st_gender"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="성별"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_2nd_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
+                            android:text="닉네임 "
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
-                <LinearLayout
+                        <TextView
+                            android:id="@+id/tv_2nd_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
+                            android:text="(10세/남)"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+            </LinearLayout>
+            <!-- end 2nd -->
+
+            <!-- 1st -->
+            <LinearLayout
+                android:layout_width="115dp"
+                android:layout_height="350dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_gravity="center"
+                    android:clipToPadding="false"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:paddingBottom="8dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cb_profile1"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/crown1"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/iv_round_stroke"
+                        android:src="@drawable/icon_logo" />
+
+                    <ImageView
+                        android:id="@+id/crown1"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_crown" />
 
                     <TextView
-                        android:id="@+id/tv_1st_nickname"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_count1"
+                        android:layout_width="55dp"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/cb_profile1"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="-5dp"
+                        android:background="@drawable/tv_round_background"
+                        android:elevation="2dp"
                         android:fontFamily="@font/font_main"
-                        android:text="닉네임"
-                        android:textColor="@color/black"
-                        android:textSize="12dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="10권"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text=" 어린이"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
+                </RelativeLayout>
 
-                </LinearLayout>
+                <ImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/row_bookshelf2" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:background="#D8D8D8"
+                        android:fontFamily="@font/font_main"
+                        android:textAlignment="center"
+                        android:textColor="#959595"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_1st_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
+                            android:text="닉네임 "
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_1st_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
+                            android:text="(10세/남)"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
 
             </LinearLayout>
+            <!-- end 1st -->
 
+            <!-- 3rd -->
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
+                android:layout_width="115dp"
+                android:layout_height="280dp"
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv_count1"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/font_main"
-                    android:text="독후감 권수: 10권"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <!-- 메모칸 -->
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/border_all"
+                    android:layout_gravity="center"
+                    android:clipToPadding="false"
+                    android:gravity="center"
                     android:orientation="vertical"
-                    android:padding="10dp">
+                    android:paddingBottom="8dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/cb_profile3"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_below="@+id/crown3"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/iv_round_stroke"
+                        android:src="@drawable/icon_logo" />
+
+                    <ImageView
+                        android:id="@+id/crown3"
+                        android:layout_width="50dp"
+                        android:layout_height="30dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/icon_crown" />
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tv_count3"
+                        android:layout_width="55dp"
                         android:layout_height="wrap_content"
+                        android:layout_below="@+id/cb_profile3"
+                        android:layout_centerInParent="true"
+                        android:layout_marginTop="-5dp"
+                        android:background="@drawable/tv_round_background"
+                        android:elevation="2dp"
                         android:fontFamily="@font/font_main"
-                        android:text="5월의 독서짱이 된 소감"
-                        android:textSize="12dp"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="10권"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
 
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="115dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/row_bookshelf2" />
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center">
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="110dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/loginBkColor"
+                        android:fontFamily="@font/font_main"
+                        android:textAlignment="center"
+                        android:textColor="#959595"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:fontFamily="@font/font_main"
-                        android:text="우왕"
-                        android:textSize="10dp" />
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/tv_3rd_nickname"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
+                            android:text="닉네임 "
+                            android:textColor="@color/black"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_3rd_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/font_main"
+                            android:text="(10세/남)"
+                            android:textColor="@color/black"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
             </LinearLayout>
+
+            <!-- end 3rd -->
+
         </LinearLayout>
-        <!-- end 1st -->
+    </RelativeLayout>
 
-        <!-- 2nd -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <!-- 나이, 성별 이름 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="20dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_crown" />
-
-                <ImageView
-                    android:id="@+id/cb_profile2"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/iv_stroke"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/icon_logo" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_2nd_age"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="나이"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text=" / "
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:id="@+id/tv_2nd_gender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="성별"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_2nd_nickname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="닉네임"
-                        android:textColor="@color/black"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text=" 어린이"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_count2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/font_main"
-                    android:text="독후감 권수: 10권"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <!-- 메모칸 -->
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/border_all"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="5월의 독서짱이 된 소감"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/font_main"
-                        android:text="우왕"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        <!-- end 2nd -->
-
-        <!-- 3rd -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:layout_weight="1"
-            android:background="@drawable/border"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <!-- 나이, 성별 이름 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingBottom="20dp">
-
-                <ImageView
-                    android:layout_width="70dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:src="@drawable/icon_crown" />
-
-                <ImageView
-                    android:id="@+id/cb_profile3"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="@drawable/iv_stroke"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/icon_logo" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_3rd_age"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="나이"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text=" / "
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                    <TextView
-                        android:id="@+id/tv_3rd_gender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="성별"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/tv_3rd_nickname"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="닉네임"
-                        android:textColor="@color/black"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text=" 어린이"
-                        android:textColor="@color/black"
-                        android:textSize="12dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="30dp"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_count3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="left"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="@font/font_main"
-                    android:text="독후감 권수: 10권"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <!-- 메모칸 -->
-                <LinearLayout
-                    android:layout_width="200dp"
-                    android:layout_height="100dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginBottom="15dp"
-                    android:background="@drawable/border_all"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/font_main"
-                        android:text="5월의 독서짱이 된 소감"
-                        android:textSize="12dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/font_main"
-                        android:text="우왕"
-                        android:textSize="10dp" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-        <!-- end 3rd -->
-
-    </LinearLayout>
 
 </LinearLayout>

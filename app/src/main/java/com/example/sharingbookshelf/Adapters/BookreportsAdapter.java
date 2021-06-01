@@ -78,7 +78,7 @@ public class BookreportsAdapter extends RecyclerView.Adapter<BookreportsAdapter.
                 .with(viewHolder.iv_thumbnail.getContext())
                 .load(thumbnailUri)
                 .fitCenter()
-                .placeholder(R.drawable.icon_book2)
+                .placeholder(R.drawable.ic_blank4)
                 .into(viewHolder.iv_thumbnail);
         viewHolder.tv_title.setText(title);
         viewHolder.tv_created.setText(created);

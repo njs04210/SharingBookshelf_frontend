@@ -58,7 +58,7 @@ public class SelectAgeAreaActivity extends Activity {
     private static final int SEARCH_ADDRESS_ACTIVITY = 10000;
     private static final int IMAGE_VIEW_REQUEST = 10001;
     private final String[] ages = {"1세", "2세", "3세", "4세", "5세", "6세", "7세", "8세", "9세", "10세",
-            "11세", "12세", "13세", "14세", "15세", "16세", "17세", "18세"};
+            "11세", "12세", "13세"};
 
     private Spinner sp_age;
     private TextView tv_address;

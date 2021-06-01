@@ -1,9 +1,7 @@
 package com.example.sharingbookshelf.Fragments;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.CallSuper;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -19,7 +17,6 @@ import com.example.sharingbookshelf.Activities.MainActivity;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.GetShelfStatusResponse;
-import com.example.sharingbookshelf.Models.GetUserInfoResponse;
 import com.example.sharingbookshelf.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -28,10 +25,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
 import static com.example.sharingbookshelf.Activities.HomeActivity.getHasShelfcode;
 import static com.example.sharingbookshelf.Activities.HomeActivity.setHasShelfcode;
-import static com.example.sharingbookshelf.Fragments.NoEmptyShelfFragment.BARCODE_ACTIVITY;
 
 public class MyBookshelfFragment extends Fragment {
 
@@ -56,8 +51,7 @@ public class MyBookshelfFragment extends Fragment {
         tv_nickname = v.findViewById(R.id.tv_nickname);
         mtabLayout = v.findViewById(R.id.tabLayout);
 
-        setUserView(MainActivity.getMemId());
-        System.out.println("shelfcode = " + getHasShelfcode());
+        setUserView();
 
         if (HomeActivity.getHasShelfcode() == -1) { // 처음 들어왔을때 -1
             checkShelfStatus(MainActivity.getMemId()); // 책장 상태 결정할 메소드
@@ -96,27 +90,13 @@ public class MyBookshelfFragment extends Fragment {
         return v;
     }
 
-    private void setUserView(int memId) {
-        retrofitServiceApi = RetrofitClient.createService(RetrofitServiceApi.class, MainActivity.getJWT());
-        Call<GetUserInfoResponse> call = retrofitServiceApi.getUserInfo(memId);
-        call.enqueue(new Callback<GetUserInfoResponse>() {
-            @Override
-            public void onResponse(Call<GetUserInfoResponse> call, Response<GetUserInfoResponse> response) {
-                GetUserInfoResponse result = response.body();
-                Log.d(MainActivity.MAIN_TAG, "현재사용자 : " + result.getUser().getNickname() + " 프로필 : " + result.getUser().getNickname());
-                String nickname = result.getUser().getNickname() + "의 책바구니";
-                String profileImg = result.getUser().getPhotoURL();
-                tv_nickname.setText(nickname);
-                if (profileImg != null) {
-                    mGlideRequestManager.load(profileImg).into(civ_profile);
-                }
-            }
-
-            @Override
-            public void onFailure(Call<GetUserInfoResponse> call, Throwable t) {
-                Log.e(MainActivity.MAIN_TAG, "사용자 정보 가져오기 실패", t);
-            }
-        });
+    private void setUserView() {
+        String nickname = HomeActivity.getMyData().getUser().getNickname() + "의 책바구니";
+        String profileImg = HomeActivity.getMyData().getUser().getPhotoURL();
+        tv_nickname.setText(nickname);
+        if (profileImg != null) {
+            mGlideRequestManager.load(profileImg).into(civ_profile);
+        }
     }
 
     public void checkShelfStatus(int memId) {

@@ -1,5 +1,6 @@
 package com.example.sharingbookshelf.Fragments;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -38,11 +40,15 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
     private UserinfoShelfFragment userinfoshelfFragment;
     private RetrofitServiceApi retrofitServiceApi;
     public RequestManager mGlideRequestManager;
-
     private CircleImageView civ_profile;
     private TextView tv_nickname;
     private Button btn_showFight, btn_viewProfile;
     private int mem_id;
+    private Fragment context;
+
+    public UserinfoFragment(Fragment fragment) {
+        this.context = fragment;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -117,11 +123,16 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
         userinforeportFragment = new UserinfoReportFragment(mem_id);
         userinfoshelfFragment = new UserinfoShelfFragment(mem_id);
 
-        getChildFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment).commit();
-
         mtabLayout.addTab(mtabLayout.newTab().setText("책장"));
         mtabLayout.addTab(mtabLayout.newTab().setText("독후감"));
-        mtabLayout.getTabAt(1).select(); // 독후감 탭으로 초기화
+
+        if (context == getFragmentManager().findFragmentByTag("OtherBookshelfFragment")) {
+            getChildFragmentManager().beginTransaction().add(R.id.usershelf, userinfoshelfFragment, "UserinfoShelfFragment").commit();
+            mtabLayout.getTabAt(0).select(); // 독후감 탭으로 초기화
+        } else if (context == getFragmentManager().findFragmentByTag("ReportRankingFragment")) {
+            getChildFragmentManager().beginTransaction().add(R.id.usershelf, userinforeportFragment, "UserinfoReportFragment").commit();
+            mtabLayout.getTabAt(1).select(); // 독후감 탭으로 초기화
+        }
 
         mtabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

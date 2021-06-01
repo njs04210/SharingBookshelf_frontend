@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -33,6 +34,7 @@ public class UserinfoReportFragment extends Fragment {
     private ArrayList<BookreportData> reportList;
     private RetrofitServiceApi retrofitServiceApi;
     private int mem_id;
+    private TextView tv_warning;
 
     public UserinfoReportFragment(int mem_id) {
         this.mem_id = mem_id;
@@ -49,6 +51,7 @@ public class UserinfoReportFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_userinfo_report, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rcv_UserinfoReport);
+        tv_warning = view.findViewById(R.id.tv_warning);
 
         recyclerViewSettings();
         getAllOtherReports();
@@ -75,7 +78,10 @@ public class UserinfoReportFragment extends Fragment {
                 if (response.code() == 404) {
                     try {
                         Log.d("아이북쉐어/독후감", response.errorBody().string());
-                        Toast.makeText(getContext(), "작성된 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), "작성된 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+                        tv_warning.setVisibility(View.VISIBLE);
+                        setAllReportsBox(null);
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

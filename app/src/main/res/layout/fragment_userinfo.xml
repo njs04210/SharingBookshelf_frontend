@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/loginBkColor"
     android:orientation="vertical"
-    tools:context=".Activities.UserinfoActivity">
+    tools:context=".Fragments.UserinfoFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/userinfo_toolbar"
