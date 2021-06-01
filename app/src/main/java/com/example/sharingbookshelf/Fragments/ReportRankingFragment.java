@@ -150,7 +150,7 @@ public class ReportRankingFragment extends Fragment implements View.OnClickListe
         Bundle bundle = new Bundle();
         bundle.putInt("mem_id", (int) v.getTag());
 
-        UserinfoFragment userinfoFragment = new UserinfoFragment();
+        UserinfoFragment userinfoFragment = new UserinfoFragment(ReportRankingFragment.this);
         userinfoFragment.setArguments(bundle);
         userinfoFragment.show(getActivity().getSupportFragmentManager(), "UserinfoFragment");
 

@@ -55,6 +55,10 @@ public class MyBookshelfAdapter extends RecyclerView.Adapter<MyBookshelfAdapter.
                             RankingBookInfoPopupFragment rankingBookInfoPopupFragment = new RankingBookInfoPopupFragment();
                             rankingBookInfoPopupFragment.setArguments(bundle);
                             rankingBookInfoPopupFragment.show(fm, "MyBookshelfAdapter");
+                        } else {
+                            RankingBookInfoPopupFragment rankingBookInfoPopupFragment = new RankingBookInfoPopupFragment();
+                            rankingBookInfoPopupFragment.setArguments(bundle);
+                            rankingBookInfoPopupFragment.show(fm, "MyBookshelfAdapter");
                         }
                     }
                 }
