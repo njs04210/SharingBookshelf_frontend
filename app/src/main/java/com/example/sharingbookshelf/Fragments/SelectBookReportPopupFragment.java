@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
     private RecyclerView.Adapter mAdapter;
     private RetrofitServiceApi retrofitServiceApi;
     private ArrayList<SelectBookReportResponse.SelectBookReportData> selectbookList;
+    private TextView tv_warning;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +53,7 @@ public class SelectBookReportPopupFragment extends DialogFragment {
         View v = inflater.inflate(R.layout.fragment_select_book_report_popup, container, false);
 
         mRecyclerView = v.findViewById(R.id.rv_selectbookreport);
+        tv_warning = v.findViewById(R.id.tv_warning);
 
         recyclerViewSettings();
         getAvailableReportList();
@@ -76,8 +79,9 @@ public class SelectBookReportPopupFragment extends DialogFragment {
                 if (response.code() == 404) {
                     try {
                         Log.d("아이북쉐어/독후감", response.errorBody().string());
-                        Toast.makeText(getContext(), "작성 가능한 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
-
+                        tv_warning.setVisibility(View.VISIBLE);
+//                        Toast.makeText(getContext(), "작성 가능한 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+                        showAllAvailableReports(null);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

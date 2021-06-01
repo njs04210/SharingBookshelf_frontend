@@ -213,7 +213,7 @@
             android:layout_height="match_parent"
             android:fontFamily="@font/font_main"
             android:gravity="center"
-            android:text="검색결과가 없습니다."
+            android:text="추천 결과가 없습니다."
             android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView

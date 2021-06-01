@@ -80,7 +80,7 @@ public class OneBookReportActivity extends Activity {
                 .with(iv_canvas.getContext())
                 .load(canvasUri)
                 .fitCenter()
-                .placeholder(R.drawable.icon_book2)
+                .placeholder(R.drawable.ic_blank4)
                 .into(iv_canvas);
         tv_contents.setText(contents);
         tv_created.setText(created);

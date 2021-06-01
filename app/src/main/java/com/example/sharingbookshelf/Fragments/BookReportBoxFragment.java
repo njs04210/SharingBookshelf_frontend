@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowMetrics;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.DialogFragment;
@@ -37,6 +38,7 @@ public class BookReportBoxFragment extends DialogFragment {
     private RecyclerView.Adapter mAdapter;
     private ArrayList<BookreportData> reportList;
     private RetrofitServiceApi retrofitServiceApi;
+    private TextView tv_warning;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,7 @@ public class BookReportBoxFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_book_report_box, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_bookreport);
+        tv_warning = view.findViewById(R.id.tv_warning);
 
         recyclerViewSettings();
         getAllReports();
@@ -76,7 +79,9 @@ public class BookReportBoxFragment extends DialogFragment {
                 if (response.code() == 404) {
                     try {
                         Log.d("아이북쉐어/독후감", response.errorBody().string());
-                        Toast.makeText(getContext(), "작성된 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), "작성된 독후감이 없습니다!", Toast.LENGTH_SHORT).show();
+                        tv_warning.setVisibility(View.VISIBLE);
+                        setAllReportsBox(null);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
