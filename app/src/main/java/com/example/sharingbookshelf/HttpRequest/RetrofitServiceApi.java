@@ -50,6 +50,10 @@ public interface RetrofitServiceApi {
     @GET("api/bookshelves")
     Call<OtherBookshelfResponse> getOtherShelf();
 
+    @GET("api/bookshelves")
+    Call<OtherBookshelfResponse> getOtherShelfFiltered(@Query(value = "age", encoded = true) String age,
+                                                       @Query(value = "category", encoded = true) String category);
+
     @GET("api/bookshelves/{memId}")
     Call<GetShelfStatusResponse> getShelfStatus(@Path("memId") int memId);
 

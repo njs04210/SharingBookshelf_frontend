@@ -13,7 +13,6 @@
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginBottom="10dp"
         android:background="@color/colorPrimary_2"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -36,13 +35,41 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/font_main"
+            android:paddingLeft="5dp"
+            android:text="이웃책장 추천받기"
+            android:textColor="#616161" />
+
+        <ImageButton
+            android:id="@+id/ib_selectAge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:background="@null"
+            android:src="@drawable/outline_sort_24" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="5dp"
         android:gravity="left|center"
         android:paddingLeft="12dp">
 
         <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
+            android:id="@+id/chipGroup_shelves"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -54,11 +81,12 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_age"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
-                android:layout_width="58dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
                 android:gravity="center"
-                android:text="11세"
+                android:tag="age"
+                android:text="11세 ~ 12세"
                 android:textAlignment="center"
                 android:textColor="@color/othershelf_category_chip"
                 android:textSize="12sp"
@@ -68,11 +96,13 @@
                 app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_study"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
                 android:gravity="center"
+                android:tag="1"
                 android:text="학습"
                 android:textAlignment="center"
                 android:textColor="@color/othershelf_category_chip"
@@ -83,11 +113,13 @@
                 app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fairy"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
                 android:gravity="center"
+                android:tag="2"
                 android:text="동화"
                 android:textAlignment="center"
                 android:textColor="@color/othershelf_category_chip"
@@ -98,11 +130,13 @@
                 app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_cartoon"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
                 android:gravity="center"
+                android:tag="3"
                 android:text="만화"
                 android:textAlignment="center"
                 android:textColor="@color/othershelf_category_chip"
@@ -113,11 +147,13 @@
                 app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/chip_etc"
                 style="@style/Widget.MaterialComponents.Chip.Choice"
                 android:layout_width="58dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font_main"
                 android:gravity="center"
+                android:tag="4"
                 android:text="기타"
                 android:textAlignment="center"
                 android:textColor="@color/othershelf_category_chip"
@@ -128,19 +164,20 @@
                 app:rippleColor="@android:color/transparent" />
         </com.google.android.material.chip.ChipGroup>
 
-        <ImageButton
-            android:id="@+id/ib_selectAge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="13dp"
-            android:background="@null"
-            android:src="@drawable/outline_sort_24" />
+        <!-- <ImageButton
+             android:id="@+id/ib_selectAge"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentRight="true"
+             android:layout_centerVertical="true"
+             android:layout_marginRight="13dp"
+             android:background="@null"
+             android:src="@drawable/outline_sort_24" />-->
 
     </RelativeLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_recommend"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
@@ -148,7 +185,7 @@
         android:fontFamily="@font/font_main"
         android:gravity="center"
         android:text="추천 받기"
-        android:textColor="#9E9E9E"
+        android:textColor="#616161"
         android:textSize="13sp" />
 
     <View
@@ -165,7 +202,19 @@
         android:layout_marginTop="6dp"
         android:layout_marginBottom="@dimen/loginViewsMargin"
         android:background="@color/whiteCardColor"
-        android:padding="5dp">
+        android:orientation="vertical"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:id="@+id/tv_result"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/font_main"
+            android:gravity="center"
+            android:text="검색결과가 없습니다."
+            android:visibility="gone" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_bookshelves"
