@@ -75,7 +75,6 @@ public class OtherBookshelfFragment extends Fragment {
 
         context = container.getContext();
 
-
         btn_recommend = v.findViewById(R.id.btn_recommend);
         chip_age = v.findViewById(R.id.chip_age);
         chip_study = v.findViewById(R.id.chip_study);

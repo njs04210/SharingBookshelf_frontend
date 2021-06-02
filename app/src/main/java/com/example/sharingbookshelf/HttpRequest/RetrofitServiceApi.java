@@ -1,5 +1,7 @@
 package com.example.sharingbookshelf.HttpRequest;
 
+import com.example.sharingbookshelf.Models.AnalysisData;
+import com.example.sharingbookshelf.Models.AnalysisResponse;
 import com.example.sharingbookshelf.Models.BookApiResponse;
 import com.example.sharingbookshelf.Models.BookData;
 import com.example.sharingbookshelf.Models.BookReportResponse;
@@ -41,6 +43,9 @@ public interface RetrofitServiceApi {
 
     @PATCH("api/users")
     Call<SetUserInfoResponse> setUserInfo(@Body UserInfoData userInfoData);
+
+    @GET("api/users/{memId}/analysis")
+    Call<AnalysisResponse> getAnalysis(@Path("memId") int memId);
 
     /* 카카오 책 검색 API */
     @GET("v3/search/book")

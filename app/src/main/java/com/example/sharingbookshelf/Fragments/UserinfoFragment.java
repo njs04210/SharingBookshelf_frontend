@@ -42,7 +42,7 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
     public RequestManager mGlideRequestManager;
     private CircleImageView civ_profile;
     private TextView tv_nickname;
-    private Button btn_showFight, btn_viewProfile;
+    private Button btn_viewProfile;
     private int mem_id;
     private Fragment context;
 
@@ -65,11 +65,9 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
 
         civ_profile = v.findViewById(R.id.civ_user_profile);
         tv_nickname = v.findViewById(R.id.tv_user_nickname);
-        btn_showFight = v.findViewById(R.id.btn_showfight);
         btn_viewProfile = v.findViewById(R.id.btn_showprofile);
         mtabLayout = v.findViewById(R.id.tabLayout_userinfo);
 
-        btn_showFight.setOnClickListener(this);
         btn_viewProfile.setOnClickListener(this);
 
         Bundle bundle = getArguments();
@@ -77,7 +75,6 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
 
         if (mem_id == MainActivity.getMemId()) {
             btn_viewProfile.setVisibility(View.GONE);
-            btn_showFight.setVisibility(View.GONE);
             setMargins(tv_nickname, 0, 50, 0, 0);
         }
 
@@ -193,11 +190,6 @@ public class UserinfoFragment extends DialogFragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_showprofile:
-                break;
-
-            case R.id.btn_showfight:
-                ChallengePopupFragment challengePopupFragment = new ChallengePopupFragment();
-                challengePopupFragment.show(getChildFragmentManager(), ChallengePopupFragment.TAG_EVENT_DIALOG);
                 break;
 
         }

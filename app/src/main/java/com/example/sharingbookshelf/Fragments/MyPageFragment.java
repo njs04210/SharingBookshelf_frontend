@@ -24,7 +24,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
 
     private Button btn_editProfile;
     private Button btn_mailList;
-    private Button btn_likeList;
     private Button btn_logout;
     private Button btn_leaveId;
     private TextView tv_nickname;
@@ -44,7 +43,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
 
         btn_editProfile = v.findViewById(R.id.btn_editProfile);
         btn_mailList = v.findViewById(R.id.btn_fightbox);
-        btn_likeList = v.findViewById(R.id.btn_likeList);
         btn_logout = v.findViewById(R.id.btn_logout);
         btn_leaveId = v.findViewById(R.id.btn_leaveId);
         tv_nickname = v.findViewById(R.id.tv_nickname);
@@ -53,7 +51,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
 
         btn_editProfile.setOnClickListener(this);
         btn_mailList.setOnClickListener(this);
-        btn_likeList.setOnClickListener(this);
         btn_logout.setOnClickListener(this);
         btn_leaveId.setOnClickListener(this);
 
@@ -86,11 +83,6 @@ public class MyPageFragment extends Fragment implements View.OnClickListener {
             case R.id.btn_editProfile:
                 EditProfileFragment e = EditProfileFragment.getInstance();
                 e.show(getActivity().getSupportFragmentManager(), "EditProfileFragment");
-                break;
-
-            case R.id.btn_fightbox:
-                FightBoxFragment m = FightBoxFragment.getInstance();
-                m.show(getActivity().getSupportFragmentManager(), "FightBoxFragment");
                 break;
 
             case R.id.btn_logout:
