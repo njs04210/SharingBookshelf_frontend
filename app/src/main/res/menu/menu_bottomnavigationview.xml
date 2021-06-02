@@ -15,7 +15,7 @@
         android:title="랭킹" />
     <item
         android:id="@+id/chart"
-        android:icon="@drawable/icon_boycrown"
+        android:icon="@drawable/outline_fact_check_20"
         android:title="책장 분석" />
     <item
         android:id="@+id/myPage"

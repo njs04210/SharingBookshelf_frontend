@@ -2,9 +2,11 @@ package com.example.sharingbookshelf.Models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 public class AnalysisData {
     @SerializedName("countCategory")
-    CategoryData categoryData;
+    ArrayList<CategoryData> categoryData;
 
     @SerializedName("totalBooks")
     int totalBooks;
@@ -16,7 +18,7 @@ public class AnalysisData {
     CountReadData totalPerDate;
 
     @SerializedName("avg_Others") // 우리 아이와 같은 나이의 아이는 저번주보다 이번주에 얼마만큼 더 읽었는지 (평균)
-    int avg_Others;
+    float avg_Others;
 
     public static class CountReportData {
         @SerializedName("Not_Written")
@@ -64,7 +66,7 @@ public class AnalysisData {
         }
     }
 
-    public CategoryData getCategoryData() {
+    public ArrayList<CategoryData> getCategoryData() {
         return categoryData;
     }
 
@@ -80,7 +82,7 @@ public class AnalysisData {
         return totalPerDate;
     }
 
-    public int getAvg_Others() {
+    public float getAvg_Others() {
         return avg_Others;
     }
 }

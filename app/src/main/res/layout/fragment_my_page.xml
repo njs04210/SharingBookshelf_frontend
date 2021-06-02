@@ -147,7 +147,7 @@
                     android:paddingLeft="20dp"
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp"
-                    android:text="대결신청 목록"
+                    android:text="공지사항"
                     android:textColor="#ff7a00"
                     android:textSize="14sp"
                     android:textStyle="bold" />
@@ -156,22 +156,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="#66bdbdbd" />
-
-                <Button
-                    android:id="@+id/btn_likeList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/heart"
-                    android:background="@android:color/transparent"
-                    android:fontFamily="@font/font_main"
-                    android:gravity="left|center_vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingBottom="10dp"
-                    android:text="좋아요 목록"
-                    android:textColor="#ff7a00"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
 
                 <View
                     android:layout_width="match_parent"

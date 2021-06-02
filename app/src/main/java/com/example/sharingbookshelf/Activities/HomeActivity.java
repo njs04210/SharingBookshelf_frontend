@@ -7,12 +7,11 @@ import androidx.fragment.app.Fragment;
 import android.os.Bundle;
 import android.view.MenuItem;
 
-import com.example.sharingbookshelf.Fragments.ChartFragment;
+import com.example.sharingbookshelf.Fragments.AnalysisFragment;
 import com.example.sharingbookshelf.Fragments.MyBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.MyPageFragment;
 import com.example.sharingbookshelf.Fragments.OtherBookshelfFragment;
 import com.example.sharingbookshelf.Fragments.RankingFragment;
-import com.example.sharingbookshelf.Fragments.ReportRankingFragment;
 import com.example.sharingbookshelf.HttpRequest.RetrofitClient;
 import com.example.sharingbookshelf.HttpRequest.RetrofitServiceApi;
 import com.example.sharingbookshelf.Models.GetUserInfoResponse;
@@ -93,8 +92,8 @@ public class HomeActivity extends AppCompatActivity {
                         selectedFragment = new RankingFragment();
                         tag = "RankingFragment";
                     } else if (itemId == R.id.chart) {
-                        selectedFragment = new ChartFragment();
-                        tag = "ChartFragment";
+                        selectedFragment = new AnalysisFragment();
+                        tag = "AnalysisFragment";
                     } else if (itemId == R.id.myPage) {
                         selectedFragment = new MyPageFragment();
                         tag = "MyPageFragment";

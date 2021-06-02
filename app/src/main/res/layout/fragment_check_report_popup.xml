@@ -33,7 +33,7 @@
                 android:layout_marginLeft="4dp"
                 android:background="@color/white"
                 android:elevation="3dp"
-                android:src="@drawable/ic_blank4" />
+                android:src="@drawable/ic_blank3" />
 
             <ImageView
                 android:id="@+id/iv_thumbnail"
