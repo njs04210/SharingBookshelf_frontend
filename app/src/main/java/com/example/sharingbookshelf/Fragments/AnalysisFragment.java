@@ -123,7 +123,7 @@ public class AnalysisFragment extends Fragment {
         } else if (totalPerDate.getMinus() == 0) {
             text1 = "저번주만큼 똑같이 읽었어! 성실해!";
         } else {
-            text1 = "아쉽지만 저번주보다 " + totalPerDate.getMinus() + "권 덜 읽었어 :(";
+            text1 = "아쉽지만 저번주보다 " + -totalPerDate.getMinus() + "권 덜 읽었어 :(";
         }
 
         if (totalReports.getNot_Written() != 0) {
