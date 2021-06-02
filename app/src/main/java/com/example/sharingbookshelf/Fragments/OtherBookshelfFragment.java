@@ -219,7 +219,15 @@ public class OtherBookshelfFragment extends Fragment {
             @Override
             public void onResponse(Call<OtherBookshelfResponse> call, Response<OtherBookshelfResponse> response) {
                 Log.d("책장받아오기 테스트", "성공");
-                setAllShelfView(response.body().getResult());
+                if (response.body() != null) {
+                    Log.d("책장받아오기 테스트", "성공");
+                    tv_result.setVisibility(View.GONE);
+                    setAllShelfView(response.body().getResult());
+                } else {
+                    // Toast.makeText(getContext(), "검색 결과가 없습니다!", Toast.LENGTH_SHORT).show();
+                    setAllShelfView(null);
+                    tv_result.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
