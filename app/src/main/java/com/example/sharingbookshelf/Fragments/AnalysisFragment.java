@@ -50,9 +50,9 @@ public class AnalysisFragment extends Fragment {
     private RelativeLayout relativeLayout;
     private RelativeLayout rl_set;
     RetrofitServiceApi retrofitServiceApi;
-    private int[] colorArray = new int[]{Color.parseColor("#757575")
-            , Color.parseColor("#9E9E9E"), Color.parseColor("#BDBDBD")
-            , Color.parseColor("#E0E0E0")};
+    private int[] colorArray = new int[]{Color.parseColor("#FFD54F")
+            , Color.parseColor("#FFC107"), Color.parseColor("#FFA000")
+            , Color.parseColor("#FF6F00")};
     private ArrayList<PieEntry> dataValue;
 
     @Override
@@ -123,7 +123,7 @@ public class AnalysisFragment extends Fragment {
         } else if (totalPerDate.getMinus() == 0) {
             text1 = "저번주만큼 똑같이 읽었어! 성실해!";
         } else {
-            text1 = "아쉽지만 저번주보다 " + totalPerDate.getMinus() + "권 덜 읽었어 :(";
+            text1 = "아쉽지만 저번주보다 " + -totalPerDate.getMinus() + "권 덜 읽었어 :(";
         }
 
         if (totalReports.getNot_Written() != 0) {
@@ -133,7 +133,12 @@ public class AnalysisFragment extends Fragment {
         }
 
         if ((int) avg_others != 0) {
-            text3 = "\n참고로 현재 " + age + "살 친구들은 저번주보다\n이번주에 평균 " + avg_others + "권 더 읽었대. 참고해봐~";
+            text3 = "\n참고로 현재 " + age + "살 친구들은 저번주보다\n이번주에 너보다 평균 ";
+            if (avg_others < 0) {
+                text3 += -avg_others + "권 적게 읽었대. 참고해봐~";
+            } else {
+                text3 += avg_others + "권 더 읽었대. 참고해봐~";
+            }
         } else {
             text3 = "";
         }
